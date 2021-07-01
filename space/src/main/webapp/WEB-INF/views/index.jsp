@@ -4,13 +4,492 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>스페이스 닷컴</title>
+<link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/carousel.css">
 <style>
-body{
-	min-width:1280px;
-	max-width:1920px;
-	margin:0 auto;
+/* 콘테이너 { */
+.container:after {
+	content: '';
+	display:block;
+	clear:both;
+}
+/* } 콘테이너 */
+.visual {
+	box-sizing:border-box;
 	position:relative;
+	width:100%;
+	min-width:1280px;
+	height:646px;
+	padding-top:182px;
+	background:url('http://localhost:9000/space/images/main_visual.png') no-repeat top center;
+}
+
+.visual_box {
+	width:1200px;
+	margin:0 auto;
+}
+
+.main_visual_text_box {
+	margin-bottom:30px;
+	font-size:0;
+}
+.main_visual_text_box_logo {
+	display:inline-block;
+	vertical-align:top;
+}
+.main_visual_text_box_text {
+	position:relative;
+	display:inline-block;
+	vertical-align:top;
+	padding-left:19px;
+	margin-left:18px;
+	font-family:"nanumsquare-r";
+	font-size:18px;
+	line-height:26px;
+	color:#ffffff;
+	letter-spacing:-1px;
+}
+.main_visual_text_box_text span {
+	opacity:0.8;
+}
+.main_visual_text_box_text:before {
+	content:'';
+	display:block;
+	width:1px;
+	height:36px;
+	margin-top:-18px;
+	position:absolute;
+	left:0;
+	top:50%;
+	background:#66a6ec;
+}
+
+.main_visual_search_box {
+	position:relative;
+	box-sizing:border-box;
+	background:#f5f5f5;
+	border-radius:5px;
+	width:640px;
+	padding:18px 15px;
+	font-size:0;
+}
+.main_visual_search_btn {
+	width:18px;
+	height:18px;
+	vertical-align:top;
+	border:none;
+	background:url('/pc/images/main_search_btn.jpg');
+}
+.main_visual_search_text {
+	width:calc(100% - 33px);
+	height:18px;
+	margin-left:15px;
+	vertical-align:top;
+	border:none;
+	background:none;
+}
+.main_visual_search_list {
+	display:none;
+	box-sizing:border-box;
+	width:100%;
+	min-height:131px;
+	max-height:217px;
+	padding-top:5px;
+	overflow-y:auto;
+	position:absolute;
+	top:49px;
+	left:0;
+	z-index:1;
+	background:#f5f5f5;
+}
+.main_visual_search_list.on {
+	display:block;
+}
+.main_visual_search_list li {
+	padding:13px 0 13px 30px;
+}
+.main_visual_search_list li a {
+	font-family:"nanumsquare-r";
+	font-size:16px;
+	line-height:16px;
+	color:#252626;
+}
+
+.main_visual_slide_box {
+	margin-top:30px;
+}
+.main_visual_slide_control {
+	margin-bottom:30px;
+}
+.main_visual_slide_index_box {
+	margin-bottom:10px;
+	font-family:"nanumsquare-eb";
+	font-size:16px;
+	line-height:16px;
+	color:#ffffff;
+}
+.main_visual_slide_index {
+	display:inline-block;
+	margin-right:2px;
+	vertical-align:top;
+}
+.main_visual_slide_nav {
+	width:180px;
+	font-size:0;
+}
+.main_visual_slide_nav button {
+	border:none;
+	width:100%;
+	height:1px;
+	background:#f3f3f3;
+}
+.main_visual_slide_nav.x2 button {
+	width:50%;
+}
+.main_visual_slide_nav.x3 button {
+	width:33.3333%;
+}
+.main_visual_slide_nav.x4 button {
+	width:25%;
+}
+.main_visual_slide_nav.x5 button {
+	width:20%;
+}
+.main_visual_slide_nav.x6 button {
+	width:16.6666%;
+}
+.main_visual_slide_nav.x7 button {
+	width:14.2857%;
+}
+.main_visual_slide_nav.x8 button {
+	width:12.5%;
+}
+.main_visual_slide_nav.x9 button {
+	width:11.1111%;
+}
+.main_visual_slide_nav.x10 button {
+	width:10%;
+}
+.main_visual_slide_nav .on {
+	background:#51e8ff;
+}
+
+.main_visual_slide {
+	overflow:hidden;
+	width:780px;
+	margin:-5px 0 0 -5px;
+}
+.main_visual_slide .slick-list {
+	padding:5px;
+	margin-left:-10px;
+}
+.main_visual_slide .slick-list .slick-track {
+	margin:0 !important;
+}
+.main_visual_slide > div > div > div {
+	margin-left:10px;
+}
+.main_visual_slide01 div a {
+	position:relative;
+	box-sizing:border-box;
+	display:block;
+	width:120px;
+	height:120px;
+	padding-top:70px;
+	border-radius:9px;
+	background:#ffffff;
+	font-family:"nanumsquare-b";
+	font-size:18px;
+	line-height:22px;
+	color:#242525;
+	text-align:center;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+.main_visual_slide01 div a.on {
+	background:url('/pc/images/main_visual_slide_bg01.png') no-repeat left top;
+	color:#ffffff;
+}
+.main_visual_slide01 div a:before {
+	content:'';
+	display:block;
+	width:26px;
+	height:30px;
+	background:url('/pc/images/main_visual_slide_marker.png') no-repeat left top;
+	position:absolute;
+	top:30px;
+	left:50%;
+	margin-left:-15px;
+}
+
+.main_visual_slide02 > div > div > div > div {
+	display:table;
+}
+.main_visual_slide02 div a {
+	position:relative;
+	box-sizing:border-box;
+	display:table-cell;
+	width:120px;
+	height:60px;
+	border-radius:9px;
+	background:#ffffff;
+	font-family:"nanumsquare-b";
+	font-size:18px;
+	line-height:22px;
+	color:#242525;
+	text-align:center;
+	vertical-align:middle;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+.main_visual_slide02 div a.on {
+	background:url('/pc/images/main_visual_slide_bg01.png') no-repeat left top;
+	color:#ffffff;
+}
+.main_visual_slide02 div a:before {
+	content:'';
+	display:none;
+	width:26px;
+	height:30px;
+	background:url('/pc/images/main_visual_slide_marker.png') no-repeat left top;
+	position:absolute;
+	top:30px;
+	left:50%;
+	margin-left:-15px;
+}
+
+/* } */
+
+.main_tit_box {
+	position:relative;
+	margin-bottom:36px;
+}
+.main_tit_box.line:after, .main_tit_box.line:before {
+	content:'';
+	display:block;
+	width:450px;
+	height:1px;
+	position:absolute;
+	top:60%;
+	background:#e5e5e5;
+}
+.main_tit_box.line:after {
+	left:0;
+}
+.main_tit_box.line:before {
+	right:0;
+}
+.main_tit01 {
+	margin-bottom:12px;
+	font-size:35px;
+	line-height:32px;
+	color:#252626;
+	text-align:center;
+	letter-spacing:-1px;
+}
+.main_tit01 span {
+	color:#3284e6;
+}
+.main_stit01 {
+	font-size:16px;
+	line-height:16px;
+	color:#6a6a6a;
+	text-align:center;
+}
+/* }  */
+
+/************************* carousel *****************************************/
+#demo, .section, .center_box {
+	width:100%;
+	min-width:1280px;
+}
+#demo, .section, .center_box{
+	width:1200px;
+	margin:0 auto;
+	}
+.carousel-inner {
+	text-align:center;
+	margin-top:80px;
+}
+.carousel-inner img {
+	border-radius:7px;
+
+}
+
+/********************************end carousel *********************************/
+
+/*  */
+.section.section02 {
+	padding:95px 0 100px;
+	background:#ffffff;
+}
+/* */
+
+/**/
+.section.section03 {
+	padding:75px 0 80px;
+	background:url('/pc/images/main_section03_bg.jpg') no-repeat center;
+}
+/* */
+
+/* */
+.section.section04 {
+	padding:75px 0 25px;
+}
+/* */
+
+/* */
+.section.section05 {
+	position:relative;
+	height:340px;
+}
+.section.section05:before {
+	content:'';
+	display:block;
+	width:100%;
+	height:200px;
+	position:absolute;
+	left:0;
+	top:50%;
+	margin-top:-100px;
+	background:#dbf0f6;
+}
+.section.section05 .section_center_box {
+	position:relative;
+}
+.main_section05_slide_box a {
+	display:block;
+}
+.main_section05_slide_box .slick-dots {
+	position:absolute;
+	right:10px;
+	bottom:20px;
+}
+.main_section05_slide_box .slick-dots li {
+	float:left;
+	line-height:0;
+}
+.main_section05_slide_box .slick-dots li button {
+	box-sizing:content-box;
+	overflow:hidden;
+	text-indent:-9999px;
+	width:8px;
+	height:8px;
+	margin:4px;
+	border-radius:50%;
+	border:none;
+	background:#7f8688;
+}
+.main_section05_slide_box .slick-dots li.slick-active button {
+	margin:0;
+	background:none;
+	border:4px solid #413f3f;
+}
+/* 05 */
+
+/*06 */
+.section.section06 {
+	padding:55px 0 65px;
+}
+.main_section06_content_box:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+.main_section06_content_box > div {
+	float:left;
+}
+.main_section06_content_box_location {
+	width:545px;
+}
+.main_section06_content_box_text {
+	box-sizing:border-box;
+	width:655px;
+	padding-left:17px;
+}
+.main_section06_content_box_tit {
+	padding-top:90px;
+	padding-left:70px;
+	font-family:"nanumsquare-r";
+	font-size:42px;
+	line-height:52px;
+	color:#252626;
+	letter-spacing:-2px;
+}
+.main_section06_content_box_tit span {
+	position:relative;
+	display:inline-block;
+	vertical-align:top;
+	font-family:"nanumsquare-l";
+	font-size:42px;
+	line-height:52px;
+	color:#252626;
+}
+.main_section06_content_box_tit span:after {
+	content:'';
+	display:block;
+	width:29px;
+	height:41px;
+	background:url('/pc/images/main_section06_content_box_tit_mark.png') no-repeat left top;
+	position:absolute;
+	top:3px;
+	right:-34px;
+}
+
+.main_section06_content_box_stit {
+	margin-top:10px;
+	padding-left:70px;
+	font-family:"nanumsquare-r";
+	font-size:16px;
+	line-height:26px;
+	color:#252626;
+	letter-spacing:-1px;
+}
+
+.main_section06_content_box_list {
+	margin-top:50px;
+}
+.main_section06_content_box_list:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+.main_section06_content_box_list li {
+	position:relative;
+	float:left;
+	width:210px;
+}
+.main_section06_content_box_list li + li:after {
+	content:'';
+	display:block;
+	width:1px;
+	height:100%;
+	background:#d3d4d4;
+	position:absolute;
+	left:0;
+	top:0;
+}
+.main_section06_content_box_list_num {
+	display:block;
+	font-family:"nanumsquare-l";
+	font-size:55px;
+	line-height:55px;
+	color:#3a7fb9;
+	letter-spacing:-2px;
+	text-align:center;
+}
+.main_section06_content_box_list_text {
+	display:block;
+	margin-top:10px;
+	font-family:"nanumsquare-b";
+	font-size:18px;
+	line-height:18px;
+	color:#252626;
+	letter-spacing:-2px;
+	text-align:center;
 }
 </style>
 </head>
@@ -20,7 +499,8 @@ body{
 	<jsp:include page="header.jsp"></jsp:include>
 	
 	<!-- content -->
-		<!-- s container -->
+	
+	<!-- s container -->
 	<div class="container">
 		<h2 id="content" class="hidden">콘텐츠 영역</h2>
 		
@@ -28,7 +508,7 @@ body{
 	<div class="visual">
 		<div class="visual_box">
 			<div class="main_visual_text_box">
-				<div class="main_visual_text_box_logo"><img src="/pc/images/main_visual_logo.png" alt="회의실닷컴"></div>
+				<div class="main_visual_text_box_logo"><img src="http://localhost:9000/space/images/main_visual_logo.png" alt="회의실닷컴"></div>
 				<p class="main_visual_text_box_text"><span>회의실의 모든 것. 비즈니스 모임공간 최저가로 한번에 비교! <br>
                         국내 최초 회의실 매칭 플랫폼</span></p>
 			</div>
@@ -38,84 +518,54 @@ body{
 					<input id="search" class="main_visual_search_text" type="text" placeholder="지역, 역으로 검색해주세요">
 				</label>
 			</div>
-			<!-- main_visual_slide_box01클래스 추가
-                    main_visual_slide_index 감싸는 main_visual_slide_index_box div추가
-                    main_visual_slide클래스 main_visual_slide01 추가
-                -->
-			<div class="main_visual_slide_box main_visual_slide_box01">
-				<div class="main_visual_slide_control">
-					<div class="main_visual_slide_index_box">
-						<span class="main_visual_slide_index">01</span>
-						수도권
-					</div>
-					<div class="main_visual_slide_nav"></div>
-				</div>
-				<div class="main_visual_slide main_visual_slide01 hf_effect">
-																		<div><a href="https://www.kmeetingroom.com/centers?filter=bname&amp;f_value=11680">강남구</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=bname&amp;f_value=11110">종로구</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=bname&amp;f_value=11170">용산구</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=bname&amp;f_value=11440">마포구</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=bname&amp;f_value=11140">중구</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=bname&amp;f_value=11740">강동구</a></div>
-															</div>
-			</div>
-
-			<!-- 전국용 슬라이드 추가
-				main_visual_slide_box02클래스 추가
-				main_visual_slide_index 감싸는 main_visual_slide_index_box div추가
-				main_visual_slide클래스 main_visual_slide02 추가
-				main_visual_slide02 아래 div 두번 감싸는 구조
-			-->
-			<div class="main_visual_slide_box main_visual_slide_box02">
-				<div class="main_visual_slide_control">
-					<div class="main_visual_slide_index_box">
-						<span class="main_visual_slide_index">02</span>
-						전국
-					</div>
-					<div class="main_visual_slide_nav"></div>
-				</div>
-				<div class="main_visual_slide main_visual_slide02 hf_effect">
-																		<div><a href="https://www.kmeetingroom.com/centers?filter=state&amp;f_value=41">경기</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=state&amp;f_value=28">인천</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=state&amp;f_value=26">부산</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=state&amp;f_value=42">강원</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=state&amp;f_value=30">대전</a></div>
-																								<div><a href="https://www.kmeetingroom.com/centers?filter=state&amp;f_value=50">제주</a></div>
-															</div>
-			</div>
-
 		</div>
+	</div>
 	</div>
 	<!-- e main_visual -->
 
-	<!-- s main_section01 -->
-	<div class="section section01">
-		<div class="section_center_box">
-			<div class="main_section01_slide_box">
-									<div>
-						<a href="https://www.kmeetingroom.com/notices/171" >
-							<img src="/_storage/banners/dK7qWq21H1a40aasSNZuu0YInYmfCxEylnlY08Ms.jpg" alt=""></a>
-					</div>
-									<div>
-						<a href="https://www.kmeetingroom.com/video/rental" >
-							<img src="/_storage/banners/KFaOcLArikVWmRR5mDvwvXsd6SeW02E25AuLxkpl.jpg" alt=""></a>
-					</div>
-									<div>
-						<a href="https://www.kmeetingroom.com/notices/165" >
-							<img src="/_storage/banners/dELPSWEY31IE7qYotj3zKzHMOiJytzD3PkpUHBhe.png" alt=""></a>
-					</div>
-									<div>
-						<a href="https://www.kmeetingroom.com/centers?filter=conference" >
-							<img src="/_storage/banners/M8ZwruRdKfvHJuJ4h8fuDsnNmkzDJWZgqTe9FH8H.png" alt=""></a>
-					</div>
-									<div>
-						<a href="https://www.kmeetingroom.com/centers?filter=ktxsrt" >
-							<img src="/_storage/banners/STokWuWFdhcYj9wIkcwz7kLvw5tAUyfCPai5AclA.png" alt=""></a>
-					</div>
-							</div>
-		</div>
+			<!-- 캐러셀 시작 -->
+		<div id="demo" class="carousel slide" data-ride="carousel">
+		
+		<!-- Indicators -->
+		  <ul class="carousel-indicators">
+		    <li class="item1 active"></li>
+		    <li class="item2"></li>
+		    <li class="item3"></li>
+		  </ul>
+		  
+		  <!-- The slideshow -->
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <a href="#" >
+		      <img src="http://localhost:9000/space/images/dK7qWq21H1a40aasSNZuu0YInYmfCxEylnlY08Ms.jpg"></a>
+		    </div>
+		    <div class="carousel-item">
+			    <a href="#" >
+				<img src="http://localhost:9000/space/images/KFaOcLArikVWmRR5mDvwvXsd6SeW02E25AuLxkpl.jpg"></a>
+		    </div>
+		    <div class="carousel-item">
+		      	<a href="#" >
+				<img src="http://localhost:9000/space/images/dELPSWEY31IE7qYotj3zKzHMOiJytzD3PkpUHBhe.png"></a>
+		    </div>
+		    <div class="carousel-item">
+		      	<a href="#" >
+				<img src="http://localhost:9000/space/images/M8ZwruRdKfvHJuJ4h8fuDsnNmkzDJWZgqTe9FH8H.png"></a>
+		    </div>
+		    <div class="carousel-item">
+		      	<a href="#" >
+				<img src="http://localhost:9000/space/images/STokWuWFdhcYj9wIkcwz7kLvw5tAUyfCPai5AclA.png"></a>
+		    </div>
+		  </div>
+		  
+		  <!-- Left and right controls -->
+		  <a class="carousel-control-prev" href="#myCarousel">
+		    <span class="carousel-control-prev-icon"></span>
+		  </a>
+		  <a class="carousel-control-next" href="#myCarousel">
+		    <span class="carousel-control-next-icon"></span>
+		  </a>
 	</div>
-	<!-- e main_section01 -->
+	<!-- 캐러셀종료 -->
 
 	<!-- s main_section02 -->
 	<div class="section section02">
@@ -128,31 +578,7 @@ body{
 				<button class="right" type="button" title="다음"></button>
 				<button class="left" type="button" title="이전"></button>
 				<div class="md_slider cont_list_div hf_effect02">
-											<div>
-							<a class="move_box" href="https://www.kmeetingroom.com/centers/62">
-								<div class="cont_list_thum" style="background:url('/_storage/thumbnails/tLJGa98NdqC1rktEdwEY97aG5JozbFxctxJmnid9.jpg') no-repeat center;background-size:cover;">
-																		<button class="heart_btn  " type="button" data-likable="centers" data-target="62"></button>
-								</div>
-								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">공덕역 대형회의장</p>
-									<p class="cont_list_detail_tit">마포구 3호점 (공덕동)</p>
 
-									<div class="cont_list_detail_info">
-										<ul class="cont_list_detail_info_l">
-											<li class="mark">공덕동</li>
-											<li class="subway">공덕역</li>
-										</ul>
-										<p class="cont_list_detail_info_m">120인실, 80인실, 50인실...</p>
-									</div>
-
-									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">65,000원<span>부터</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star40.png" alt=""> <span>4.0</span>
-										</p>
-									</div>
-								</div>
-							</a>
-						</div>
 											<div>
 							<a class="move_box" href="https://www.kmeetingroom.com/centers/15">
 								<div class="cont_list_thum" style="background:url('/_storage/thumbnails/gwodlXqFzuM2InkKSQTzNMqO0qcKmhhQsys43rQM.jpg') no-repeat center;background-size:cover;">

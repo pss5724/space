@@ -11,7 +11,6 @@
 	min-width:1280px;
 	background:#f9f9f9;
 }
-
 .footer_top {
 	border-top:1px solid #e4e4e4;
 	border-bottom:1px solid #e4e4e4;
