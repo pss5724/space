@@ -5,7 +5,34 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+
+	$("html").click(function(e) { 
+		if(!$(e.target).is(".select_data") && !$(e.target).is("label input")) { 
+			$("label").siblings("div").removeClass("on");
+		} 
+	});
+
+	
+	$("label").click(function() {
+		$(this).parent("li").siblings().children("div").removeClass("on");
+		$(this).siblings("div").toggleClass("on");
+
+	});
+
+	
+});
+</script>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/* .nanumgothic * {
+	font-family: 'Nanum Gothic', sans-serif;
+} */
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
 body {
 	margin: auto;
 	padding: 0;
@@ -21,50 +48,99 @@ body {
 	margin: auto;
 	padding: 0;
 	height: 300px;
+	text-align: center;
 	background: url("http://localhost:9000/space/images/search_box_bg.jpg") center top no-repeat;
 }
 .search_box {
-	margin: 0 auto;
-	text-align: center;
+	margin: auto;
+	width: 1000px;
 }
 .search_box_title {
-	padding: 30px 0 0 0;
+	display: inline-block;
+	width: 1000px;
+	margin-top: 40px;
 	color: white;
 	font-weight: bold;
+	text-align: left;
+	text-indent: 30px;
 }
 .search_box_list {
-	width: 1000px;
-	padding: 0;
-	margin: 30px auto;
 	list-style-type: none;
+	display: inline-block;
+	padding: 0 20px;
+	margin: 0 auto;
 }
 .search_box_list li {
+	float: left;
 	display: inline-block;
-	width: 300px;
-	height: 40px;
-	padding: 10px;
-	margin: 3px;
+	position: relative;
+	width: 450px;
+	padding: 20px 10px;
+	margin: 5px;
 	text-align: center;
 	border-radius: 3px;
 	background-color: white;
+	box-shadow: 5px 5px 7px 0 rgba(0, 0, 0, 0.4);
 }
-.search_box_list li * {
-	height: 20px;
+.search_box_list li:nth-child(4) {
+	padding: 0;
+	width: 470px;
+	height: 63px;
+}
+.search_box_list label * {
+	float: left;
+	margin: 0 5px;
 }
 .search_box_list li input[type=text] {
 	padding: 3px 5px;
-	/* border: 0; */
+	width: 350px;
+	border: none;
+	font-size: 14px;
+	background-color: white;
+}
+.search_box_list li input[type=text]:focus {
+	outline: none;
+}
+.search_box_list li input[type=text]:hover{
+	cursor: pointer;
+}
+.select_data {
+	display: none;
+	position: absolute;
+	top: 60px;
+	left: 0;
+	width: 450px;
+	height: 100px;
+	padding: 20px 10px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	background-color: white;
+	z-index: 100;
+	box-shadow: 7px 7px 7px 0 rgba(0, 0, 0, 0.1);
+}
+.on {
+	display: block;
 }
 .btn_search_reset {
 	background: none;
 	border: none;
 }
 .btn_search {
-	width: 150px;
-	padding: 15px;
 	border: none;
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	text-indent: 20px;
+	background: url("http://localhost:9000/space/images/search_icon.png") lightsteelblue no-repeat 170px;
 	border-radius: 3px;
 }
+.btn_search:hover {
+	cursor: pointer;
+	background-color: steelblue;
+}
+
 </style>
 </head>
 <body>
@@ -79,29 +155,31 @@ body {
 					<li>
 						<label>
 							<span><img src="http://localhost:9000/space/images/search_icon_location.png"></span>
-							<input type="text" name="location" id="search_location" placeholder="지역">
+							<input type="text" name="location" id="search_location" placeholder="지역" readonly>
 						</label>
 						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
-						<div></div>
+						<div class="select_data">안녕</div>
 					</li>
 					<li>
 						<label>
 							<span><img src="http://localhost:9000/space/images/search_icon_date.png"></span>
-							<input type="text" name="date" id="search_date" placeholder="날짜/시간">
+							<input type="text" name="date" id="search_date" placeholder="날짜/시간" readonly>
 						</label>
 						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
-						<div></div>
+						<div class="select_data"></div>
 					</li>
 					<li>
 						<label>
 							<span><img src="http://localhost:9000/space/images/search_icon_person.png"></span>
-							<input type="text" name="capacity" id="search_capacity" placeholder="수용인원">
+							<input type="text" name="capacity" id="search_capacity" placeholder="수용인원" readonly>
 						</label>
 						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
-						<div></div>
+						<div class="select_data"></div>
 					</li>
-				</ul>
-				<button type="button" class="btn_search">검색하기</button>
+					<li>
+						<button type="button" class="btn_search">검색하기</button>
+					</li>
+				</ul>	
 			</div>
 		</div>
 		
