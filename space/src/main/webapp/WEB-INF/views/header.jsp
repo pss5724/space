@@ -11,7 +11,7 @@
 		<!-- s header -->
 	<div id="header">
 		<div class="header_inner">
-			<h1 class="logo"><a href="#"><img src="http://localhost:9000/space/images/logo_off.png"></a></h1>
+			<h1 class="logo"><a href="#"><img src="http://localhost:9000/space/images/logo_off.png" width=133px; height=27px;></a></h1>
 		
 			
 			<ul id="gnb">
@@ -53,7 +53,7 @@
 					<li><a href="#">나의 회의실</a></li>
 			</ul>
 
-			<form id="logout-form" action="https://www.kmeetingroom.com/logout" method="POST" style="display: none;">
+			<form id="logout-form" action="#" method="POST" style="display: none;">
 				<input type="hidden" name="_token" value="JG5lgwlj2eG3zfWUYfpnf9hNuVbiZPMNDhRvYBQz">			</form>
 		</div>
 		<div class="header_bg_box"></div>
