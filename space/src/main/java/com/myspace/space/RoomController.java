@@ -27,4 +27,8 @@ public class RoomController {
 		return "room/room_payment";
 	}
 	
+	@RequestMapping(value="/room_map.do", method=RequestMethod.GET)
+	public String room_map() {
+		return "room/room_map";
+	}
 }

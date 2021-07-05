@@ -1,3 +1,5 @@
+/********** list **********/
+/********** list **********/
 /**
  * 검색 상단(검색바)
  */
@@ -32,6 +34,7 @@ body {
 	display: inline-block;
 	width: 1000px;
 	margin-top: 40px;
+	margin-bottom: 10px;
 	color: white;
 	font-weight: bold;
 	text-align: left;
@@ -465,3 +468,111 @@ li.room_info a, li.room_info a:active {
 }
 
 
+/********** payment **********/
+/********** payment **********/
+.container {
+	margin: 0;
+	padding: 100px 0;
+}
+.container.payment h1 {
+	text-align: center;
+	padding: 38px;
+	background-color: #f9f9f9;
+}
+.payment_wrap {
+	width: 600px;
+	margin: 50px auto;
+    border: 1px solid darkgray;
+}
+.payment_title {
+	width: 100%;
+	padding: 15px 0;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	background: linear-gradient(to right, #5342e3 , #104ebc);
+}
+.payment_title:before {
+	content: "";
+	width: 20px;
+	height: 20px;
+	padding-left: 40px;
+	display: inline-block;
+	background: url("http://localhost:9000/space/images/payment_icon.png") center no-repeat;
+}
+.payment_info + .payment_info {
+	border-top: 1px solid darkgray;
+}
+.payment_info {
+	padding: 25px 10px;
+	margin: 0 40px;
+	text-align: left;
+	font-size: 15px;
+}
+.payment_info p {
+	padding: 5px 0;
+	text-align: left;
+	margin: 0;
+}
+.payment_info.item {
+	font-size: 20px;
+	font-weight: bold;
+}
+.payment_info span {
+	display: inline-block;
+	padding: 5px;
+}
+.payment_item_title {
+	float: left;
+	width: 150px;
+	text-align: left;
+	font-weight: bold;
+}
+.payment_item_detail, .payment_item_price {
+	width: calc(100% - 150px);
+}
+.payment_item_price {
+	text-align: right;
+}
+ul.payment_item_price {
+	display: inline-block;	
+}
+ul.payment_item_price .item_price {
+	width: 120px;
+}
+ul.payment_item_price .item_price, span.payment_item_price {
+	color: royalblue;
+	font-weight: bold;
+}
+.payment_item_price.total {
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+}
+.payment_item_title.total {
+	padding: 10px 5px;
+}
+.total {
+	height: 40px;
+}
+.payment_btns_wrap {
+	width: 100%;
+}
+.payment_btns_wrap button {
+	float: left;
+	width: 50%;
+	padding: 20px 0;
+	border: none;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+.payment_btns_wrap button:hover {
+	cursor: pointer;
+}
+.btn_payment {
+	background: #325ad1;
+}
+.btn_print {
+	background: #333333;
+}
