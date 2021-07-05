@@ -8,18 +8,18 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/carousel.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/space/js/space_javascript.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="http://localhost:9000/space/js/space_javascript.js"></script>
+<script src="http://localhost:9000/space/js/jquery.countup.min.js"></script>
+<script src="http://localhost:9000/space/js/jquery.countup.js"></script>
+<script>
+</script>
 <style>
-
-/* 콘테이너 { */
-.container:after {
-	content: '';
-	display:block;
-	clear:both;
+header {
+	height:0;
+	display:absolute;
 }
-/* } 콘테이너 */
 .visual {
 	box-sizing:border-box;
 	position:relative;
@@ -92,10 +92,12 @@
 
 /* } */
 
-.main_tit_box {
+.main_tit_box{
 	position:relative;
 	margin-bottom:36px;
+	font-weight:bold;
 }
+
 .main_tit_box.line:after, .main_tit_box.line:before {
 	content:'';
 	display:block;
@@ -150,28 +152,29 @@
 
 /********************************end carousel *********************************/
 
-/*  */
+/* 02 */
 
 .section.section02 {
 	padding:95px 0 100px;
 	background:#ffffff;
 }
-/* */
+/*02*/
 
-/**/
+/*03*/
 .section.section03 {
 	padding:75px 0 80px;
 	background:url('http://localhost:9000/space/images/main_section03_bg.jpg') no-repeat center;
 }
-/* */
+/* 03*/
 
-/* */
+/* 04*/
 .section.section04 {
 	padding:75px 0 25px;
 }
-/* */
 
-/* */
+/*04 */
+
+/* 05*/
 .section.section05 {
 	position:relative;
 	height:340px;
@@ -262,7 +265,7 @@
 	display:block;
 	width:29px;
 	height:41px;
-	background:url('/pc/images/main_section06_content_box_tit_mark.png') no-repeat left top;
+	background:url('http:/localhost:9000/space/images/main_section06_content_box_tit_mark.png') no-repeat left top;
 	position:absolute;
 	top:3px;
 	right:-34px;
@@ -350,6 +353,8 @@
 	display:block;
 	border-radius:15px;
 	transition:transform 0.5s;
+	width:300px;
+	
 }
 .cont_list > li.on .move_box {
 	-webkit-transform:translateY(-10px);
@@ -387,7 +392,7 @@
 	transform:rotate(-45deg);
 	left:-50px;
 	top:32px;
-	background:url('/pc/images/cont_list_thum_cover_bg.jpg') repeat-y left top;
+	background:url('http://localhost:9000/space/images/cont_list_thum_cover_bg.jpg') repeat-y left top;
 }
 .cont_list_thum .heart_btn {
 	width:30px;
@@ -412,6 +417,7 @@
 	border-radius:15px;
 	border:1px solid #ebebeb;
 	background:#ffffff;
+	font-weight:bold;
 }
 .cont_list_detail_tit {
 	width:100%;
@@ -467,7 +473,7 @@
 	position:absolute;
 	left:0;
 	top:0;
-	background:url('/pc/images/cont_list_detail_info02.png') no-repeat left top;
+	background:url('http://localhost:9000/space/images/images/cont_list_detail_info02.png') no-repeat left top;
 }
 .cont_list_detail_info_m {
 	box-sizing:border-box;
@@ -581,13 +587,259 @@
 
 /* } 리스트 */
 
+/* 효과 { */
+.s_obj.active.left_obj01 {
+	-webkit-transform: translateX(-30%) translateY(50px);
+	-ms-transform: translateX(-30%) translateY(50px);
+	-o-transform: translateX(-30%) translateY(50px);
+	transform: translateX(-30%) translateY(50px);
+}
+.s_obj.active.right_obj01 {
+	-webkit-transform: translateX(30%) translateY(50px);
+	-ms-transform: translateX(30%) translateY(50px);
+	-o-transform: translateX(30%) translateY(50px);
+	transform: translateX(30%) translateY(50px);
+}
+.s_obj.active.left_obj02 {
+	-webkit-transform: translateX(-30%);
+	-ms-transform: translateX(-30%);
+	-o-transform: translateX(-30%);
+	transform: translateX(-30%);
+}
+.s_obj.active.right_obj02 {
+	-webkit-transform: translateX(30%);
+	-ms-transform: translateX(30%);
+	-o-transform: translateX(30%);
+	transform: translateX(30%);
+}
+.s_obj.active.top_obj01 {
+	-webkit-transform:translateY(-50%);
+	-ms-transform:translateY(-50%);
+	-o-transform:translateY(-50%);
+	transform:translateY(-50%);
+	opacity:0.5;
+}
+.s_obj.active.bottom_obj01 {
+	-webkit-transform:translateY(30px);
+	-ms-transform:translateY(30px);
+	-o-transform:translateY(30px);
+	transform:translateY(30px);
+	opacity:0.5;
+}
+.s_obj.active.opa_obj01 {
+	opacity:0.1;
+}
+.motion {
+	-webkit-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+.motion02 {
+	-webkit-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+/* } 효과 */
+.sub_section.sub_section_videoconference01 {
+	padding:100px 0 150px;
+}
+.sub_section_videoconference01_contentbox:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+.sub_section_videoconference01_contentbox > div {
+	float:left;
+	box-sizing:border-box;
+	width:50%;
+}
+.sub_section_videoconference01_contentbox_right {
+	padding:120px 0 0 60px;
+}
+.sub_section_videoconference01_contentbox_tit {
+	font-family:"nanumsquare-l";
+	font-size:42px;
+	line-height:54px;
+	color:#252626;
+	letter-spacing:-2px;
+}
+.sub_section_videoconference01_contentbox_tit span {
+	font-weight:bold;	
+}
+.sub_section_videoconference01_contentbox_btn {
+	display:block;
+	width:200px;
+	margin-top:32px;
+	border-radius:50px;
+	font-family:"nanumsquare-b";
+	font-size:15px;
+	line-height:50px;
+	color:#ffffff;
+	text-align:center;
+	background:linear-gradient(to right, #4d3ccf , #1251bc);
+	-webkit-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.1);
+	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.1);
+}
+.sub_section_videoconference01_contentbox_btn span {
+	opacity:0.9;
+}
+
 </style>
+<script>
+function section01Slider() {
+	$('.main_section01_slide_box').slick({
+		dots:true,
+		arrows:false,
+		infinite:true,
+		slidesToShow:1,
+		slidesToScroll:1,
+		speed:300,
+		autoplay:true,
+		autoplaySpeed: 6000
+	});
+}
+function section05Slider() {
+	$('.main_section05_slide_box').slick({
+		dots:true,
+		arrows:false,
+		infinite:true,
+		slidesToShow:1,
+		slidesToScroll:1,
+		speed:300,
+		autoplay:true,
+		autoplaySpeed: 5000
+	});
+}
+
+function mainSlider01() {
+	$('.md_slider').slick({
+		dots:false,
+		arrows:true,
+		infinite:true,
+		slidesToShow:4,
+		slidesToScroll:1,
+		speed:300,
+		prevArrow:'.md_slider_wrap .left',
+		nextArrow:'.md_slider_wrap .right',
+		autoplay:true,
+		autoplaySpeed:5000,
+		pauseOnHover:false,
+		variableWidth:true,
+		focusOnSelect:true
+	});
+}
+function mainSlider02() {
+	$('.popularity_slider').slick({
+		dots:false,
+		arrows:true,
+		infinite:true,
+		slidesToShow:4,
+		slidesToScroll:1,
+		speed:300,
+		prevArrow:'.popularity_slider_wrap .left',
+		nextArrow:'.popularity_slider_wrap .right',
+		autoplay:true,
+		autoplaySpeed:5000,
+		pauseOnHover:false,
+		variableWidth:true,
+		focusOnSelect:true
+	});
+}
+function mainSlider03() {
+	$('.discount_slider').slick({
+		dots:false,
+		arrows:true,
+		infinite:true,
+		slidesToShow:4,
+		slidesToScroll:1,
+		speed:300,
+		prevArrow:'.discount_slider_wrap .left',
+		nextArrow:'.discount_slider_wrap .right',
+		autoplay:true,
+		autoplaySpeed:5000,
+		pauseOnHover:false,
+		variableWidth:true,
+		focusOnSelect:true
+	});
+}
+
+//숫자 카운트 
+ $(function(){
+		var count01 = $('#count01').html(),
+		count02 = $('#count02').html(),
+		count03 = $('#count03').html();
+		count01 = count01.replace(',','');
+		count02 = count02.replace(',','');
+		count03 = count03.replace(',','');
+		var count01Target = new CountUp('count01',0,count01,0,5),
+			count02Target = new CountUp('count02',0,count02,0,5),
+			count03Target = new CountUp('count03',0,count03,0,5);
+
+	$(window).on('mousewheel scroll', function(){
+		var thisTop = $(this).scrollTop(),
+			thisHeight = $(this).outerHeight(true),
+			thisBottom = thisTop + thisHeight;
+
+		var targetOffsetTop = $('.section06').offset().top;
+		var targetOffsetHeight = $('.section06').outerHeight();
+		var targetOffsetBottom = targetOffsetTop + targetOffsetHeight;
+
+
+		if(((targetOffsetTop <= thisBottom) && (targetOffsetBottom >= thisTop))) {
+
+			count01Target.start();
+			count02Target.start();
+			count03Target.start();
+		}
+	});
+
+});
+ $(function(){
+		var initViewTop = $(window).scrollTop(),
+			initViewHeight = $(window).outerHeight(true),
+			initViewBottom = initViewTop + initViewHeight;
+
+		$('.s_obj').each(function(){
+			var initElementTop = $(this).offset().top,
+				initElementHeight = $(this).outerHeight(),
+				initElementBottom = initElementTop + initElementHeight;
+
+			if(((initElementTop <= initViewBottom) && (initElementBottom >= initViewTop))) {
+				$(this).removeClass('active');
+			} else {
+				$(this).addClass('active');
+			}
+		});
+
+		$(window).on("mousewheel scroll", function(){
+			var viewTop = $(this).scrollTop(),
+				viewHeight = $(this).outerHeight(true),
+				viewBottom = viewTop + viewHeight;
+
+			$('.s_obj').each(function(){
+				var elementTop = $(this).offset().top,
+					elementHeight = $(this).outerHeight(),
+					elementBottom = elementTop + elementHeight;
+
+				if(((elementTop <= viewBottom) && (elementBottom >= viewTop))) {
+					$(this).removeClass('active');
+				}
+				// else {
+				// 	$(this).addClass('active');
+				// }
+			});
+		});
+	});
+
+</script>
 </head>
 <body>
 
 	<!-- header -->
-	<jsp:include page="header.jsp"></jsp:include>
-	<div class="line"></div>
+	<jsp:include page="header_main.jsp"></jsp:include>
 	<!-- content -->
 	
 	<!-- s container -->
@@ -621,8 +873,6 @@
 		    <li class="item1 active"></li>
 		    <li class="item2"></li>
 		    <li class="item3"></li>
-		    <li class="item4"></li>
-		    <li class="item5"></li>
 		  </ul>
 		  
 		  <!-- The slideshow -->
@@ -648,8 +898,17 @@
 				<img src="http://localhost:9000/space/images/STokWuWFdhcYj9wIkcwz7kLvw5tAUyfCPai5AclA.png"></a>
 		    </div>
 		  </div>
+		  
+		  <!-- Left and right controls -->
+		  <a class="carousel-control-prev" href="#myCarousel">
+		    <span class="carousel-control-prev-icon"></span>
+		  </a>
+		  <a class="carousel-control-next" href="#myCarousel">
+		    <span class="carousel-control-next-icon"></span>
+		  </a>
 	</div>
 	<!-- 캐러셀종료 -->
+
 
 	<!-- s main_section02 -->
 	<div class="section section02">
@@ -664,7 +923,7 @@
 				<div class="md_slider cont_list_div hf_effect02">
 
 						<div>
-							<a class="move_box" href="https://www.kmeetingroom.com/centers/15">
+							<a class="move_box" href="#">
 								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/gwodlXqFzuM2InkKSQTzNMqO0qcKmhhQsys43rQM.jpg') no-repeat center;background-size:cover;">
 									<span class="cont_list_thum_cover">7월<br />10% 할인 프로모션</span>
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="15"></button>
@@ -708,7 +967,7 @@
 				<div class="popularity_slider cont_list_div hf_effect02">
 				
 						<div>
-							<a class="move_box" href="https://www.kmeetingroom.com/centers/119">
+							<a class="move_box" href="#">
 								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
@@ -751,7 +1010,7 @@
 				<div class="discount_slider cont_list_div hf_effect02">
 				
 					<div>
-						<a class="move_box" href="https://www.kmeetingroom.com/centers/64">
+						<a class="move_box" href="#">
 							<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/WLA7dDyQKpnOB8rHD19ZG1UiJTczyuTIXWV4CoTl.jpg') no-repeat center;background-size:cover;">
 								<span class="cont_list_thum_cover">7월 <br />20% 할인 프로모션</span>
 								<button class="heart_btn  " type="button" data-likable="centers" data-target="64"></button>
@@ -777,7 +1036,7 @@
 						</a>
 					</div>
 					<div>
-						<a class="move_box" href="https://www.kmeetingroom.com/centers/64">
+						<a class="move_box" href="#">
 							<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/WLA7dDyQKpnOB8rHD19ZG1UiJTczyuTIXWV4CoTl.jpg') no-repeat center;background-size:cover;">
 								<span class="cont_list_thum_cover">7월 <br />20% 할인 프로모션</span>
 								<button class="heart_btn  " type="button" data-likable="centers" data-target="64"></button>
@@ -859,13 +1118,13 @@
 		<div class="center_box">
 			<div class="sub_section_videoconference01_contentbox">
 				<div class="sub_section_videoconference01_contentbox_right motion02 s_obj opa_obj01 active">
-					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 39px;">고가의 최신형 화상 회의 솔루션을<br>
+					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 37px;">고가의 최신형 화상 회의 솔루션을<br>
 						<span>월 렌탈</span>로 이용해보세요.</p>
 						<br>
-					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 24px;">
+					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 22px;">
 						단 하루 사용을 위한 렌탈부터 장기 렌탈까지 가능합니다.
 					</p>
-					<a class="sub_section_videoconference01_contentbox_btn" href="https://www.kmeetingroom.com/video/rental"><span>화상회의 솔루션</span></a>
+					<a class="sub_section_videoconference01_contentbox_btn" href="#"><span>화상회의 솔루션</span></a>
 				</div>
 				<div class="sub_section_videoconference01_contentbox_left motion s_obj left_obj02 active"><img src="http://localhost:9000/space/images/sub_section_videoconference01_contentbox_img01.jpg" alt=""></div>
 			</div>

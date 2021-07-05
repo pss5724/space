@@ -6,19 +6,6 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script>
-$(document).ready(function(){
-	var gnb = $('#gnb'),
-	gnbDepth01 = $('.depth1 h3 a'),
-	gnbDepth02 = $('.depth2 h4 a'),
-	depth01 = $('.depth1'),
-	depth02 = $('.depth2'),
-	depth02li = $('.depth2 li'),
-	gnbBg = $('.header_bg_box'),
-	gnbEtc = $('.gnb_etc');
-	gnb.addClass('on');
-	gnbBg.addClass('on');
-	gnbEtc.addClass('on');
-});
 //gnb
 $(function(){
 	var gnb = $('#gnb'),
@@ -42,10 +29,14 @@ $(function(){
 		logo.attr('src', logoSrc);
 	});
 	gnb.on('mouseleave', function(){
+		gnb.removeClass('on');
+		gnbBg.removeClass('on');
+		gnbEtc.removeClass('on');
 		depth01.removeClass('focus');
 		depth02li.removeClass('focus');
 		depth02.stop(true).slideUp(gnbSpeed);
 		logoSrc = logo.attr('src');
+		logoSrc = logoSrc.replace('_on','_off');
 		logo.attr('src', logoSrc);
 	});
 
@@ -95,7 +86,7 @@ $(function(){
 		<!-- s header -->
 	<div id="header">
 		<div class="header_inner">
-			<h1 class="logo"><a href="#"><img src="http://localhost:9000/space/images/logo_on.png" width=133px; height=27px;></a></h1>
+			<h1 class="logo"><a href="#"><img src="http://localhost:9000/space/images/logo_off.png" width=133px; height=27px;></a></h1>
 		
 			
 			<ul id="gnb">
