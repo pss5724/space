@@ -17,5 +17,14 @@ public class RoomController {
 		return "room/room_content";
 	}
 	
+	@RequestMapping(value="/room_reserve.do", method=RequestMethod.GET)
+	public String room_reserve() {
+		return "room/room_reserve";
+	}
 
+	@RequestMapping(value="/room_payment.do", method=RequestMethod.GET)
+	public String room_payment() {
+		return "room/room_payment";
+	}
+	
 }
