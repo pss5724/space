@@ -1,0 +1,57 @@
+@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    outline: none;
+    
+    border: 1px solid #c6c6c6;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+}
+
+.slick-prev
+{
+    left: -60px;
+    background-image: url("http://localhost:9000/space/images/item_viewbox_top_slide_left.png");
+}
+
+.slick-next
+{
+    right: -60px;
+    background-image: url("http://localhost:9000/space/images/item_viewbox_top_slide_right.png");
+}
+
