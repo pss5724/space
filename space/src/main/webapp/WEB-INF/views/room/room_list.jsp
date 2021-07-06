@@ -250,7 +250,7 @@ $(document).ready(function() {
 		<div class="search_area_bottom">
 			<!-- 좌측 옵션 검색 -->
 			<div class="search_left_box">
-				<a href="#" class="map">지도로 보기</a>
+				<a href="http://localhost:9000/space/room_map.do" class="map">지도로 보기</a>
 				<div class="search_option_list">
 					<div class="search_option">
 						<p class="search_option_title">금액대(시간당)</p>
