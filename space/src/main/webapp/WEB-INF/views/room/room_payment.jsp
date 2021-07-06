@@ -6,100 +6,90 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
-<style>
-.container {
-	margin: 0;
-	padding-top: 100px;
-}
-.payment_wrap {
-	width: 700px;
-	margin: auto;
-    padding: 100px 20px;
-	text-align: center;
-}
-.payment_title {
-	width: 100%;
-	padding: 15px 0;
-	color: white;
-	font-size: 24px;
-	font-weight: bold;
-	background: linear-gradient(to right, #5342e3 , #104ebc);
-}
-.payment_info + .payment_info {
-	border-top: 1px solid darkgray;
-}
-.payment_info {
-	padding: 30px 20px;
-}
-.payment_info p{
-	padding: 5px 0;
-	text-align: left;
-}
-.payment_info span {
-	display: inline-block;
-	padding: 5px;
-	text-align: left;
-	width: 100px;
-	border: 1px solid red;
-}
-
-</style>
+<link rel="stylesheet" href="http://localhost:9000/space/css/room.css">
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+	
+	function print() {
+		var p = window.open("", "_blank", "left=0, top=0, width=0, height=0");
+		var style = "<head> <link rel='stylesheet' href='http://localhost:9000/space/css/room.css'>"
+			+ "<style> ul{list-style-type: none; padding: 0; display: inline-block;} ul span{box-sizing: border-box;}</style> </head>";
+		
+		p.document.write(style);	
+		p.document.write($(".payment_wrap").html());
+		p.document.close();
+		p.focus();
+		p.print();
+		p.close();
+	}
+	
+	
+	$(".btn_print").click(function() {
+		print();
+	});
+	
+	$(".btn_payment").click(function() {
+		alert("결제");
+	});
+	
+});
+</script>
 </head>
 <body>
-
 	<jsp:include page="../header.jsp"></jsp:include>
-	
-	<div class="container">
-		<div class="payment_wrap">
+	<div class="container payment">
+		<h1>결제하기</h1>
+		<div class="payment_wrap" id="print_area">
 			<p class="payment_title">결제 안내</p>
-			<div class="payment_info">
-				<p>종로구 1호점 - 37층 아폴론</p>
+			<div class="payment_info item">
+				<p>종로구 1호점 - 컨퍼런스룸 A</p>
 				<p>38,500원 / 시간</p>
 			</div>
 			<div class="payment_info">
 				<ul>
 					<li>
-						<span>이용 일자</span>
-						<span>2021.07.07(수)</span>		
+						<span class="payment_item_title">이용 일자</span>
+						<span class="payment_item_detail">2021.07.07(수)</span>		
 					</li>
 					<li>
-						<span>이용 시간</span>
-						<span>18:00 ~ 20:30</span>				
+						<span class="payment_item_title">이용 시간</span>
+						<span class="payment_item_detail">18:00 ~ 20:30</span>				
 					</li>
 					<li>
-						<span>이용 인원</span>
-						<span>2021.07.07(수)</span>		
+						<span class="payment_item_title">이용 인원</span>
+						<span class="payment_item_detail">25명</span>		
 					</li>
 					<li>
-						<span>수용 형태</span>
-						<span>2021.07.07(수)</span>		
+						<span class="payment_item_title">수용 형태</span>
+						<span class="payment_item_detail">U자형</span>		
 					</li>
 				</ul>
 			</div>
 			<div class="payment_info">
-				<span>대관료</span>
-				<span>38,500원</span>
+				<span class="payment_item_title">대관료</span>
+				<span class="payment_item_price">38,500원</span>
 			</div>
 			<div class="payment_info">
-				<span>부가서비스</span>
-				<ul class="service_list">
+				<span class="payment_item_title">부가서비스</span>
+				<ul class="payment_item_price">
 					<li>
 						<span>라커룸 1개/종일 1개</span>
-						<span>11,000원</span>
+						<span class="item_price">11,000원</span>
 					</li>
 					<li>
 						<span>음료/잔 1개</span>
-						<span>7,700원</span>
+						<span class="item_price">7,700원</span>
 					</li>
 				</ul>
 				
 			</div>
 			<div class="payment_info">
-				<span>결제 예상금액</span>
-				<span>38,500원</span>
+				<span class="payment_item_title total">결제 예상금액</span>
+				<span class="payment_item_price total">38,500원</span>
 			</div>
-			<div class="payment_btns">
-				<button class="btn_payment">예약신청</button>
+			<div class="payment_btns_wrap">
+				<button class="btn_payment">결제</button>
 				<button class="btn_print">견적서 출력</button>
 			</div>
 		</div>
