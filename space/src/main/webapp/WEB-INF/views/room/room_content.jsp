@@ -439,6 +439,10 @@ ul>li>label {
 	border-bottom: 1px solid lightgray;
 	border-top: 1px solid lightgray;
 }
+.review>ul>li>div>div:nth-child(2) {
+	display: flex;
+	justify-content: space-between;
+}
 
 /* 오시는 길 */
 .map {
@@ -1069,9 +1073,11 @@ $(document).ready(function() {
 					<div>
 						<div id="user_id">woo*****</div>
 						<div>
-							<img src="http://localhost:9000/space/images/list_star50.png">
-							<span>5</span>
-							<span>강남구 7호점</span>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
 						</div>
 						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
 					</div>
@@ -1080,9 +1086,11 @@ $(document).ready(function() {
 					<div>
 						<div id="user_id">woo*****</div>
 						<div>
-							<img src="http://localhost:9000/space/images/list_star50.png">
-							<span>5</span>
-							<span>강남구 7호점</span>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
 						</div>
 						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
 					</div>
