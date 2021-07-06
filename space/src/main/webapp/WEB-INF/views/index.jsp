@@ -7,12 +7,15 @@
 <title>스페이스 닷컴</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/carousel.css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/jquery.simple-dtpicker.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="http://localhost:9000/space/js/space_javascript.js"></script>
 <script src="http://localhost:9000/space/js/jquery.countup.min.js"></script>
 <script src="http://localhost:9000/space/js/jquery.countup.js"></script>
+<script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
+<script src="http://localhost:9000/space/js/jquery-ui.js"></script>
 <script>
 </script>
 <style>
@@ -687,6 +690,191 @@ header {
 	opacity:0.9;
 }
 
+/* 검색 상자 { */
+.search_box {
+	margin-left:-30px;
+	width: 1000px;
+}
+.search_box_title {
+	display: inline-block;
+	width: 1000px;
+	margin-top: 40px;
+	color: white;
+	font-weight: bold;
+	text-align: left;
+	text-indent: 30px;
+}
+.search_box_list {
+	list-style-type: none;
+	display: inline-block;
+	padding: 0 20px;
+	margin: 0 auto;
+}
+.search_box_list>li {
+	float: left;
+	display: inline-block;
+	position: relative;
+	width: 450px;
+	padding: 20px 10px;
+	margin: 5px;
+	text-align: center;
+	border-radius: 3px;
+	background-color: white;
+	box-shadow: 5px 5px 7px 0 rgba(0, 0, 0, 0.4);
+}
+.search_box_list>li:nth-child(4) {
+	padding: 0;
+	height: 63px;
+}
+.search_box_list label * {
+	float: left;
+	margin: 0 5px;
+}
+.search_box_list>li>label>input[type=text] {
+	padding: 3px 5px;
+	width: 350px;
+	border: none;
+	font-size: 15px;
+	background-color: white;
+}
+.search_box_list li input[type=text]:focus {
+	outline: none;
+}
+.search_box_list li input[type=text]:hover{
+	cursor: pointer;
+}
+.select_data {
+	display: none;
+	position: absolute;
+	top: 60px;
+	left: 0;
+	width: 450px;
+	height: 100px;
+	padding: 5px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	background-color: white;
+	z-index: 100;
+	box-shadow: 7px 7px 7px 0 rgba(0, 0, 0, 0.1);
+}
+.date {
+	height: 300px;
+}
+.open {
+	display: block;
+}
+.btn_search_reset {
+	background: none;
+	border: none;
+}
+.btn_search_reset:hover {
+	cursor: pointer;	
+}
+.btn_search {
+	border: none;
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	text-indent: 20px;
+	background: url("http://localhost:9000/space/images/search_icon.png") lightsteelblue no-repeat 170px;
+	border-radius: 3px;
+}
+.btn_search:hover {
+	cursor: pointer;
+	background-color: steelblue;
+}
+.location {
+	height: 280px;
+}
+.location p {
+	margin: 0 0 10px 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid darkgray;
+}
+.location_list, .location_list ul {
+	list-style-type: none;
+	padding: 0;
+	margin-top: 15px;
+}
+.location_list ul {
+	margin-top: 10px;
+}
+.location_list>li {
+	float: left;
+	display: inline-block;
+	margin-left: 3px;
+	width: 200px;
+	height: 220px;
+	overflow-y: scroll;
+}
+.main_location {
+	font-weight: bold;
+	margin-bottom: 0;
+}
+.sub_location {
+	font-size: 15px;
+	padding: 7px 10px;
+	border: none;
+	background: none;
+}
+.main_location:hover, .sub_location:hover {
+	color: steelblue;
+	cursor: pointer;
+}
+
+.type {
+	padding-top: 0;
+	height: 260px;
+}
+div.type ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+span.room_type {
+	float: left;
+	padding: 7px;
+	margin-left: 50px;
+}
+input.room_capacity {
+	float: left;
+	padding: 7px;
+	width: 40px;
+ 	border: none;
+	text-align: center;
+}
+.room_type_list li {
+	padding: 2px;
+}
+.room_type_list div {
+	margin-left: 100px;
+	display: inline-block;
+}
+.room_type_list button {
+	float: left;
+	width: 32px;
+	height: 32px;
+	border: none;
+}
+.room_type_list button:hover {
+	cursor: pointer;
+}
+button.down {
+	background-image: url("http://localhost:9000/space/images/down.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+button.down.active {
+	background-image: url("http://localhost:9000/space/images/down_active.png");
+}
+button.up {
+	background-image: url("http://localhost:9000/space/images/up.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+/* } 검색 상자 */
 </style>
 <script>
 function section01Slider() {
@@ -833,7 +1021,83 @@ function mainSlider03() {
 			});
 		});
 	});
+ 
+ // 검색 기능
+ $(document).ready(function() {
+		
+		$("html").click(function(e) { 
+			if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data *") && !$(e.target).is("label input") 
+					&& !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
+				$("label").siblings("div").removeClass("open");
+				$('*[name=date]').handleDtpicker('hide');
+			}
+		});
 
+		$("label").click(function() {
+			$(this).parent("li").siblings().children("div").removeClass("open");
+			$(this).siblings("div").toggleClass("open");
+			
+			if($(this).siblings("div").hasClass("open")) {
+				$('*[name=date]').handleDtpicker('show');
+			} else {
+				$('*[name=date]').handleDtpicker('hide');
+			}
+		});
+		
+		$(".btn_search_reset").click(function() {
+			$(this).siblings("label").children("input").val("");
+		});
+		
+		/* 날짜 선택 */
+		$('*[name=date]').appendDtpicker({
+			locale:"ko",
+			futureOnly: true,
+			minuteInterval: 30,
+			dateFormat:"YYYY.MM.DD 일 hh:mm"
+	    });
+		
+		/* 지역 선택 */
+		$(".main_location").click(function() {
+			$("#search_location").val($(this).text());	
+			$(".location").removeClass("on");
+		});
+		
+		$(".sub_location").click(function() {
+			var location = $(this).parent().parent().siblings("span").text() + " > " + $(this).text()
+			$("#search_location").val(location);
+			$(".location").removeClass("on");
+		});
+		
+		/* 타입 및 인원수 선택 */	
+		$(".up").click(function() {
+			var capacity = $(this).siblings(".room_capacity").val();
+			capacity = Number(capacity);
+			
+			$(this).siblings(".room_capacity").val(capacity+5); //5씩 증가
+			$(this).siblings(".down").addClass("active");
+			$(this).parent().parent().siblings().find("input").val("0"); //다른 옵션 초기화
+			$(this).parent().parent().siblings().find(".down").removeClass("active");
+			
+			var type = $(this).parent().siblings("span").text(); //선택한 타입
+			$("#search_type").val(type + " " + $(this).siblings(".room_capacity").val());
+		});
+		
+		$(".down").click(function() {
+			var capacity = $(this).siblings(".room_capacity").val();
+			capacity = Number(capacity);
+			var type = $(this).parent().siblings("span").text();
+			
+			if(capacity > 5) {
+				$(this).siblings(".room_capacity").val(capacity-5);
+				$("#search_type").val(type + " " + $(this).siblings(".room_capacity").val());
+			} else if(capacity > 0 && capacity <= 5) {
+				$(this).siblings(".room_capacity").val(capacity-5);
+				$("#search_type").val("");
+				$(this).removeClass("active");
+				
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -854,11 +1118,124 @@ function mainSlider03() {
 				<p class="main_visual_text_box_text"><span>회의실의 모든 것. 비즈니스 모임공간 최저가로 한번에 비교! <br>
                         국내 최초 회의실 매칭 플랫폼</span></p>
 			</div>
-			<div class="main_visual_search_box">
-				<label>
-					<button class="main_visual_search_btn" type="button" disabled></button>
-					<input id="search" class="main_visual_search_text" type="text" placeholder="지역, 역으로 검색해주세요">
-				</label>
+			<div class="search_box">
+				<ul class="search_box_list">
+					<li>
+						<label>
+							<span><img src="http://localhost:9000/space/images/search_icon_location.png"></span>
+							<input type="text" name="location" id="search_location" placeholder="지역" readonly>
+						</label>
+						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
+						<div class="select_data location">
+							<p>방문할 지역을 선택해주세요</p>
+							<div>
+								<ul class="location_list">
+									<li>
+										<span class="main_location">서울</span>
+										<ul>
+											<li><button class="sub_location">강남구</button></li>
+											<li><button class="sub_location">강동구</button></li>
+											<li><button class="sub_location">강서구</button></li>
+											<li><button class="sub_location">광진구</button></li>
+											<li><button class="sub_location">구로구</button></li>
+											<li><button class="sub_location">금천구</button></li>
+											<li><button class="sub_location">동작구</button></li>
+											<li><button class="sub_location">마포구</button></li>
+											<li><button class="sub_location">서대문구</button></li>
+											<li><button class="sub_location">서초구</button></li>
+											<li><button class="sub_location">성동구</button></li>
+											<li><button class="sub_location">송파구</button></li>
+											<li><button class="sub_location">영등포구</button></li>
+											<li><button class="sub_location">용산구</button></li>
+											<li><button class="sub_location">종로구</button></li>
+											<li><button class="sub_location">중구</button></li>
+										</ul>
+									</li>
+									<li>
+										<span class="main_location">경기</span>
+										<ul>
+											<li><button class="sub_location">고양시</button></li>
+											<li><button class="sub_location">광명시</button></li>
+											<li><button class="sub_location">성남시</button></li>
+											<li><button class="sub_location">안산시</button></li>
+											<li><button class="sub_location">안양시</button></li>
+										</ul>
+									</li>																
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<label>
+							<span><img src="http://localhost:9000/space/images/search_icon_date.png"></span>
+							<input type="text" name="date" id="search_date" placeholder="날짜/시간" readonly>
+						</label>
+						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
+						<div class="select_data date"></div>
+					</li>
+					<li>
+						<label>
+							<span><img src="http://localhost:9000/space/images/search_icon_person.png"></span>
+							<input type="text" name="type" id="search_type" placeholder="구조/인원" readonly>
+						</label>
+						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
+						<div class="select_data type">
+							<ul class="room_type_list">
+								<li>
+									<span class="room_type">강의식</span>
+									<div>
+										<button type="button" class="down"></button>
+										<input type="text" class="room_capacity" value="0" readonly>
+										<button type="button" class="up"></button>
+									</div>
+								</li>
+								<li>
+									<span class="room_type">분임식</span>
+									<div>
+										<button type="button" class="down"></button>
+										<input type="text" class="room_capacity" value="0" readonly>
+										<button type="button" class="up"></button>
+									</div>
+								</li>
+								<li>
+									<span class="room_type">U자형</span>
+									<div>
+										<button type="button" class="down"></button>
+										<input type="text" class="room_capacity" value="0" readonly>
+										<button type="button" class="up"></button>
+									</div>
+								</li>
+								<li>
+									<span class="room_type">□자형</span>
+									<div>
+										<button type="button" class="down"></button>
+										<input type="text" class="room_capacity" value="0" readonly>
+										<button type="button" class="up"></button>
+									</div>
+								</li>
+								<li>
+									<span class="room_type">연회식</span>
+									<div>
+										<button type="button" class="down"></button>
+										<input type="text" class="room_capacity" value="0" readonly>
+										<button type="button" class="up"></button>
+									</div>
+								</li>
+								<li>
+									<span class="room_type">극장식</span>
+									<div>
+										<button type="button" class="down"></button>
+										<input type="text" class="room_capacity" value="0" readonly>
+										<button type="button" class="up"></button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<button type="button" class="btn_search">검색하기</button>
+					</li>
+				</ul>	
 			</div>
 		</div>
 	</div>

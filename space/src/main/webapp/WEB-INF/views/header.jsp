@@ -95,7 +95,7 @@ $(function(){
 		<!-- s header -->
 	<div id="header">
 		<div class="header_inner">
-			<h1 class="logo"><a href="#"><img src="http://localhost:9000/space/images/logo_on.png" width=133px; height=27px;></a></h1>
+			<h1 class="logo"><a href="http://localhost:9000/space/index.do"><img src="http://localhost:9000/space/images/logo_on.png" width=133px; height=27px;></a></h1>
 		
 			
 			<ul id="gnb">
@@ -122,8 +122,8 @@ $(function(){
 				
 				<li class="depth1"><h3><a href="#">고객센터<span class="gnb_bar"></span></a></h3>
 					<ul class="depth2">
-						<li><h4><a href="#">공지사항</a></h4></li>
-						<li><h4><a href="#">자주묻는 질문</a></h4></li>
+						<li><h4><a href="http://localhost:9000/space/notice.do">공지사항</a></h4></li>
+						<li><h4><a href="http://localhost:9000/space/faq.do">자주묻는 질문</a></h4></li>
 						<li><h4><a href="#">1:1 문의</a></h4></li>
 					</ul>
 				</li>
