@@ -102,7 +102,7 @@ header{
 	font-family:"nanumsquare-b";
 	color:#252626;
 }
-/* 효과 { */
+/* /* 효과 {
 .s_obj.active.left_obj01 {
 	-webkit-transform: translateX(-30%) translateY(50px);
 	-ms-transform: translateX(-30%) translateY(50px);
@@ -156,7 +156,7 @@ header{
 	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
-/* } 효과 */
+} 효과 */ */
 /* 소개 { */
 
 .sub_section.sub_section_introduce01 {
