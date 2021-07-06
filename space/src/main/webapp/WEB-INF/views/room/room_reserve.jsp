@@ -8,11 +8,12 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="http://localhost:9000/space/css/datepicker.css" />
+<link rel="stylesheet" href="http://localhost:9000/space/css/jquery-ui.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/room_bootstrap.css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 <style>
@@ -46,7 +47,6 @@
 	vertical-align: middle;
 }
 .title {
-	padding: 100px 0 30px;
 }
 .title h1 {
 	text-align: center;
