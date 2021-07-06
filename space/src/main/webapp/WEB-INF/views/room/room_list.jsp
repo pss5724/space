@@ -42,13 +42,14 @@ $(document).ready(function() {
 	});
 	
 	/* 날짜 선택 */
-	$('*[name=date]').appendDtpicker({
+ 	$('*[name=date]').appendDtpicker({
+		/* inline: true, */
 		locale:"ko",
 		futureOnly: true,
 		minuteInterval: 30,
 		dateFormat:"YYYY.MM.DD 일 hh:mm"
     });
-	
+   
 	/* 지역 선택 */
 	$(".main_location").click(function() {
 		$("#search_location").val($(this).text());	
@@ -414,7 +415,7 @@ $(document).ready(function() {
 							</a>
 						</li>
 						
-						
+	<!-- 추가 예제 -->					
 												<li class="room_info">
 							<a href="#">
 								<div class="info_image"
@@ -441,7 +442,7 @@ $(document).ready(function() {
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
 										<p class="room_review"><span>5</span>개의 이용후기</p>
 										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
+											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
 										<P class="room_price"><span>38,500원</span>부터(시간)</P>
@@ -474,7 +475,7 @@ $(document).ready(function() {
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
 										<p class="room_review"><span>5</span>개의 이용후기</p>
 										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
+											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
 										<P class="room_price"><span>38,500원</span>부터(시간)</P>
@@ -507,7 +508,7 @@ $(document).ready(function() {
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
 										<p class="room_review"><span>5</span>개의 이용후기</p>
 										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
+											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
 										<P class="room_price"><span>38,500원</span>부터(시간)</P>
@@ -540,7 +541,7 @@ $(document).ready(function() {
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
 										<p class="room_review"><span>5</span>개의 이용후기</p>
 										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
+											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
 										<P class="room_price"><span>38,500원</span>부터(시간)</P>
@@ -573,7 +574,7 @@ $(document).ready(function() {
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
 										<p class="room_review"><span>5</span>개의 이용후기</p>
 										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
+											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
 										<P class="room_price"><span>38,500원</span>부터(시간)</P>
@@ -606,14 +607,14 @@ $(document).ready(function() {
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
 										<p class="room_review"><span>5</span>개의 이용후기</p>
 										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
+											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
 										<P class="room_price"><span>38,500원</span>부터(시간)</P>
 									</div>
 								</div>
 							</a>
-						</li>
+						</li> 
 						
 					</ul>
 				</div>
