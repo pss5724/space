@@ -4,7 +4,7 @@
  */
 
 .datepicker {
-	position: relative;
+	position: absolute;
 	display: inline-block;
 	font: 15px/1.5 "Helvetica Neue", mplus-2c, Helvetica, Arial, "Hiragino Kaku Gothic Pro", Meiryo, sans-serif;
 	font-weight: 300;
@@ -16,14 +16,13 @@
 /* 	box-shadow: 0.5px 0.5px 0px #c8c8c8;
 		-webkit-box-shadow: 0.5px 0.5px 3px #eeeeee;
 		-moz-box-shadow: 0.5px 0.5px 3px #eeeeee; */
-	top: -240px;
+	top: -1835px;
 	/* left: 650px; */
 }
 
 /*
  * datepicker_header
 */
-
 .datepicker > .datepicker_header {
 	padding-top:	2px;
 	padding-bottom: 2px;
@@ -91,7 +90,7 @@
 	width: 16px;
 	height: 16px;
 	vertical-align: middle;
-	padding: 8px;
+	padding: 15px;
 	top: 0;
 	right: 0;
 	background: url("http://localhost:9000/space/images/btn_reset_icon.png") center no-repeat;
@@ -190,7 +189,7 @@
 		-webkit-user-select: none;
 		-moz-user-select: none;
 	cursor: pointer;
-	padding: 10px;
+	padding: 8px;
 }
 
 .datepicker > .datepicker_inner_container > .datepicker_calendar > .datepicker_table > tbody > tr > td.today {
