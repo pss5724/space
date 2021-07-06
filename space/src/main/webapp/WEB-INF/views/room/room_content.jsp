@@ -30,7 +30,7 @@
 }
 
 .res_cond, .facilities, .room_inform, .caution, .review {
-	padding: 20px 0;
+	padding-top: 20px;
 	border-bottom: 1px solid lightgray;
 }
 
@@ -218,6 +218,7 @@ ul>li>label {
 	font-weight: bold;
 	width: 170px;
 	display: inline-block;
+	vertical-align: top;
 }
 .f_inform #rate {
 	margin-right: 3px;
@@ -441,6 +442,56 @@ ul>li>label {
 .review>ul>li>div>div:nth-child(2) {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.review>ul>li>div>div:nth-child(2)>span {
+	font-size: 14px;
+}
+.review>ul>li>div>div:nth-child(2)>div>img {
+	vertical-align: middle;
+}
+.review>ul>li>div>div:nth-child(2)>div>span {
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 14px;
+}
+.review>ul>li>div>span {
+	font-size: 14px;
+}
+.review>ul>li:last-child>div {
+	border: none;
+}
+#user_id {
+	padding-left: 3px;
+	font-weight: bold;
+}
+#ampaginationsm {
+	text-align: center;
+}
+.pager-prev>a {
+	background: url("http://localhost:9000/space/images/cus_calendar_top_leftbtn.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	padding: 10px;
+}
+.pager-next>a {
+	background: url("http://localhost:9000/space/images/cus_calendar_top_rightbtn.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+  	padding: 10px;
+}
+.am-pagination-default-sm > li > a,
+.am-pagination-default-sm > li > span {
 }
 
 /* 오시는 길 */
@@ -451,7 +502,6 @@ ul>li>label {
 	height: 400px;
 	margin: 0 20px;
 }
-
 .oblique {
 	height: 10px;
 	width: 100%;
@@ -622,17 +672,20 @@ ul>li>label {
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/c_carousel.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/datepicker.css" />
-<link rel="stylesheet" href="http://localhost:9000/space/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick-theme.css"/>
+<link rel="stylesheet" href="http://localhost:9000/space/css/am-pagination.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyBmLyB6XJqHVUN1U86gHoIahlUtr1uHkGw"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="http://localhost:9000/space/js/am-pagination.js"></script>
 
 <script>
 $(document).ready(function() {
+	
 	var mapContainer = document.getElementById('g_map');
 	var mapOptions = {
 		center: new google.maps.LatLng(37.51312106734197, 127.0597625707216),
@@ -671,6 +724,32 @@ $(document).ready(function() {
 
 	$("#datepicker").datepicker().datepicker("setDate", new Date());
 	
+var pager = jQuery('#ampaginationsm').pagination({
+		
+	    maxSize: 7,	    		// max page size
+	    totals: 5,	// total pages	
+	    page: 1,		// initial page		
+	    pageSize: 2,	// max number items per page
+		
+	    //totals: ${dbcount},	// total pages	
+	    //page: ${rpage},		// initial page		
+	    //pageSize: ${pageSize},	// max number items per page
+	    
+	    
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: ' ',		
+	    nextText: ' ',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
+	});
+	
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
+		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+           $(location).attr('href', "http://localhost:9000/space/room_content.do?rpage="+e.page);         
+    });
+	
 	$(".select_btn").click(function(){
 			$(this).css('background','#006be0').css('color','white');
 			$(".room_inform>div:last-child").css('border', '1px solid #006be0')
@@ -688,6 +767,8 @@ $(document).ready(function() {
     $(".large_img>div>img:first-child").click(function(){
     	$(".large_img>div").hide();
     });
+    
+    
     
 });
 </script>
@@ -840,23 +921,23 @@ $(document).ready(function() {
 				<ul>
 					<li>
 						<label>영업시간</label>
-						<span>09:00 ~ 22:00</span>
+						<div><span>09:00 ~ 22:00</span></div>
 					</li>
 					<li>
 						<label>휴무일</label>
-						<span>주말 및 공휴일</span>
+						<div><span>주말 및 공휴일</span></div>
 					</li>
 					<li>
 						<label>입, 퇴실 시간</label>
-						<span>예약시간 10분 전 입실 / 정시 퇴실</span>
+						<div><span>예약시간 10분 전 입실 / 정시 퇴실</span></div>
 					</li>
 					<li>
 						<label>결제구분</label>
-						<span>현장결제</span>
+						<div><span>현장결제</span></div>
 					</li>
 					<li>
 						<label>현장결제 선금</label>
-						<span>0%</span>
+						<div><span>0%</span></div>
 					</li>
 					<li>
 						<label>평점</label>
@@ -917,19 +998,19 @@ $(document).ready(function() {
 					</li>
 					<li>
 						<label>식음료 안내사항</label>
-						<span>코로나로 인해 케이터링 주문 불가하며, 외부 간단한 다과류도 반입 금지 (물과 음료 종류만 가능)</span>
+						<div><span>코로나로 인해 케이터링 주문 불가하며, 외부 간단한 다과류도 반입 금지 (물과 음료 종류만 가능)</span></div>
 					</li>
 					<li>
 						<label>사전수화물접수</label>
-						<span>일부가능(행사 당일만 보관 가능)</span>
+						<div><span>일부가능(행사 당일만 보관 가능)</span>
 					</li>
 					<li>
 						<label>주차안내</label>
-						<span>지하 주차장, 3,300원/시간(회의실결제-컨시어지에서 행사당일 차량번호 등록), 4,800원/시간(별도 주차장결제)</span>
+						<div><span>지하 주차장, 3,300원/시간(회의실결제-컨시어지에서 행사당일 차량번호 등록), 4,800원/시간(별도 주차장결제)</span></div>
 					</li>
 					<li>
 						<label>회의명 안내</label>
-						<span>인포데스크 옆 TV(png파일 세로형-미전달시 기재x), 30F, 37F 엘리베이터 앞 안내</span>
+						<div><span>인포데스크 옆 TV(png파일 세로형-미전달시 기재x), 30F, 37F 엘리베이터 앞 안내</span></div>
 					</li>
 				</ul>
 			</div>
@@ -1092,6 +1173,46 @@ $(document).ready(function() {
 						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
 					</div>
 				</li>
+				<li>
+					<div>
+						<div id="user_id">woo*****</div>
+						<div>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
+						</div>
+						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div id="user_id">woo*****</div>
+						<div>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
+						</div>
+						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div id="user_id">woo*****</div>
+						<div>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
+						</div>
+						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
+					</div>
+				</li>
+				<li><div id="ampaginationsm"></div></li>
 			</ul>
 		</div>
 		
