@@ -12,12 +12,14 @@
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 <style>
 .content {
-	padding: 100px 0;
-	width: 1200px;
+	width: 800px;
 	margin: 0 auto;
+	padding-bottom: 100px;
 }
 
 .label {
@@ -43,16 +45,20 @@
 	height: 15px;
 	vertical-align: middle;
 }
-.content h1 {
+.title {
+	padding: 100px 0 30px;
+}
+.title h1 {
 	text-align: center;
 	padding: 38px;
+	margin: 0;
 	background-color: #f9f9f9;
 }
 
 
 /* 회의실 정보1 */
 .name {
-	padding: 15px 0 30px 0;
+	padding: 15px 0;
 	border-bottom: 1px solid lightgray;
 }
 #image {
@@ -62,11 +68,41 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: 45%;
+	margin-top: 10px;
+}
+/* 이미지 크게 보기 */
+.large_img {
+	position: relative;
+	bottom: 30px;
+	right: 10px;
+	text-align:right;
+}
+.large_img>img:hover {
+	cursor: pointer;
+}
+.large_img>div {
+	padding: 30px;
+	background-color: white;
+	border-radius: 10px;
+	display: none;
+	position: absolute;
+	top: -290px;
+	left: 0px;
+	text-align: right;
+	z-index: 10;
+}
+.large_img>div>img:first-child {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.large_img>div>img:first-child:hover {
+	cursor: pointer;
 }
 
 /* 회의실 정보2 */
 .room_inform {
-	padding: 15px 0 30px 0;
+	padding: 15px 0;
 	border-bottom: 1px solid lightgray;
 	margin-bottom: 30px;
 }
@@ -75,15 +111,19 @@
 }
 .room_inform>ul>li>label {
 	font-weight: bold;
-	width: 170px;
+	width: 120px;
 	display: inline-block;
 	vertical-align: top;
 }
 .room_inform>ul>li>div {
 	display: inline-block;
 	border-bottom: 1px solid lightgray;
-	padding-bottom: 20px;
-	width: 1023px;
+	padding: 0 20px 20px 20px;
+	margin-right: 15px;
+	width: 660px;
+}
+.room_inform>ul>li>div>div {
+	display: inline-block;
 }
 .room_inform>ul>li>div>ul>li,.room_inform>ul>li>div>div>ul>li {
 	text-align: center;
@@ -126,14 +166,20 @@
 	margin-left: 5px;
 }
 .res_inform>div:last-child {
-	padding: 20px;
+	padding: 20px 10px 20px 20px;
 }
 .res_inform>div:last-child>ul>li {
 	padding: 10px 0;
+	width: 324px;
+	display: inline-block;
+	
 }
 .res_inform>div:last-child>ul>li>label {
 	font-weight: bold;
+	width: 90px;
 }
+
+
 /* 이용일자 */
 #datepicker {
 	border: none;
@@ -150,6 +196,9 @@
 	width: 210px;
 	padding: 10px;
 	display: none;
+}
+.ui-state-default {
+	color: #bfbfbf;
 }
 .ui-icon {
 	position: absolute;
@@ -210,6 +259,7 @@ td {
 	margin: 0 10px;
 	vertical-align: middle;
 	width: 90px;
+	display: inline-block;
 }
 #time2 {
 	border: none;
@@ -218,6 +268,7 @@ td {
 	margin-left: 10px;
 	vertical-align: middle;
 	width: 90px;
+	display: inline-block;
 }
 .ui-menu-item>a {
 	font-size: 12px;
@@ -225,12 +276,9 @@ td {
 	text-align: left;
 }
 #people {
-	border: none;
-	border-bottom: 1px solid #bfbfbf;
-	padding: 5px 10px;
-	margin: 0 10px;
-	vertical-align: middle;
-	width: 212px;
+	width: 210px;
+	right: 10px;
+	bottom: 30px;
 }
 #selectbox {
 	border: none;
@@ -238,9 +286,15 @@ td {
 	padding: 5px 10px;
 	margin: 0 10px;
 	vertical-align: middle;
-	width: 213px;
+	width: 210px;
 }
-
+.res_inform>div:last-child>ul>li:nth-child(3) {
+	height: 55px;
+	margin-right: 115px;
+}
+.res_inform>div:last-child>ul>li:nth-child(1) {
+	margin-right: 115px;
+}
 
 /* 부가서비스 */
 .e_service {
@@ -249,7 +303,7 @@ td {
 	margin-bottom: 15px;
 }
 .e_service>div:last-child {
-	padding: 10px 20px;
+	padding: 10px 20px 0 20px;
 }
 .e_service>div:last-child>ul>li {
 	border-bottom: 1px solid lightgray;
@@ -257,6 +311,7 @@ td {
 }
 .e_service>div:last-child>ul>li:last-child {
 	border: none;
+	padding: 10px 0 0 0;
 }
 .required {
 	width: 5px;
@@ -277,10 +332,13 @@ td {
 #s_content>span {
 	font-size: 14px;
 }
-#s_content+input {
-	margin-top: 33px;
+
+.number-spinner {
+	margin-top: 25px;
 	float: right;
+	width: 200px;
 }
+
 
 /* 예약자 정보 */
 .p_inform {
@@ -310,23 +368,23 @@ td {
 	float: right;
 }
 .p_inform>div:last-child>ul>li>label {
-	width: 110px;
+	width: 100px;
 	display: inline-block;
 }
 #r_name {
-	width: 300px;
+	width: 200px;
 	padding: 10px;
 	border: 1px solid lightgray;
 	border-radius: 3px;
 }
 #phone {
-	width: 150px;
+	width: 90px;
 	padding: 10px;
 	border: 1px solid lightgray;
 	border-radius: 3px;
 }
 #email,#c_name,#event_name,#etc {
-	width: 90%;
+	width: 654px;
 	padding: 10px;
 	border: 1px solid lightgray;
 	border-radius: 3px;
@@ -334,7 +392,7 @@ td {
 
 /* 주의사항 */
 .caution>ul {
-	padding: 0 20px;
+	padding: 10px 20px;
 }
 .caution>ul>li {
 	padding-bottom: 20px;
@@ -350,7 +408,37 @@ td {
 }
 .caution>ul>li>div {
 	display: inline-block;
+	width: 584px;
 }
+
+/* 예약하기 버튼 */
+.r_button {
+	text-align: center;
+	padding-top: 20px;
+}
+#btn_reserve {
+	padding: 20px;
+	width: 200px;
+	border: 1px solid #104ebc;
+	background: #104ebc;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 16px;
+}
+#btn_reset {
+	padding: 20px;
+	width: 200px;
+	border: 1px solid #2d2d2e;
+	background: #2d2d2e;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-left: 20px;
+	font-size: 16px;
+}
+
+
 </style>
 <script>
 $(document).ready(function() {
@@ -391,6 +479,32 @@ $(document).ready(function() {
         dropdown: true,
         scrollbar: true        
     });
+	
+	$(".number-spinner button").click(function(){   
+		var btn = $(this),
+			oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+			newVal = 0;
+		
+		if (btn.attr('data-dir') == 'up') {
+			newVal = parseInt(oldValue) + 1;
+		} else {
+			if (oldValue > 1) {
+				newVal = parseInt(oldValue) - 1;
+			} else {
+				newVal = 0;
+			}
+		}
+		btn.closest('.number-spinner').find('input').val(newVal);
+	});
+	
+	$(".large_img>img").click(function(){
+    	$(".large_img>div").show();
+    	$(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
+    });
+    
+    $(".large_img>div>img:first-child").click(function(){
+    	$(".large_img>div").hide();
+    });
 });
 </script>
 </head>
@@ -398,13 +512,20 @@ $(document).ready(function() {
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
+	<div class="title"><h1>예약하기</h1></div>
 	<div class="content">
-		<h1>예약하기</h1>
 		
 		<!-- 회의실 정보1 -->
 		<div class="name">
 			<div class="label"><div class="l_line"></div><label>강남구 7호점</label><div></div><label>30층 노스</label></div>
 			<div id="image"></div>
+			<div class="large_img">
+				<img src="http://localhost:9000/space/images/thum_more_icon.png">
+				<div>
+					<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
+					<img src="http://localhost:9000/space/images/carousel1.jpg">
+				</div>
+			</div>
 		</div>
 		
 		<!-- 회의실 정보2 -->
@@ -425,10 +546,10 @@ $(document).ready(function() {
 							<ul>
 								<li>
 									<img src="http://localhost:9000/space/images/shape_icon03.png">
-									<span>U자형 9명</span>
+									<span>U자형 6명</span>
 								</li>
 								<li>
-									<img src="http://localhost:9000/space/images/shape_icon03.png">
+									<img src="http://localhost:9000/space/images/shape_icon04.png">
 									<span>ㅁ자형 10명</span>
 								</li>
 							</ul>
@@ -441,11 +562,11 @@ $(document).ready(function() {
 					<div>
 						<ul>
 							<li>
-								<img src="http://localhost:9000/space/images/shape_icon03.png">
+								<img src="http://localhost:9000/space/images/convenience_icon01.png">
 								<span>공용 라운지</span>
 							</li>
 							<li>
-								<img src="http://localhost:9000/space/images/shape_icon03.png">
+								<img src="http://localhost:9000/space/images/convenience_icon02.png">
 								<span>흡연실</span>
 							</li>
 						</ul>
@@ -456,11 +577,11 @@ $(document).ready(function() {
 					<div>
 						<ul>
 							<li>
-								<img src="http://localhost:9000/space/images/shape_icon03.png">
+								<img src="http://localhost:9000/space/images/convenience_icon12.png">
 								<span>TV</span>
 							</li>
 							<li>
-								<img src="http://localhost:9000/space/images/shape_icon03.png">
+								<img src="http://localhost:9000/space/images/convenience_icon18.png">
 								<span>화이드보드</span>
 							</li>
 						</ul>
@@ -487,11 +608,19 @@ $(document).ready(function() {
 					</li>
 					<li>
 						<label>이용시간</label>
-						<input type="text" id="time1" name="time1" class="form-control">~<input type="text" id="time2" name="time2" class="form-control">
+						<input type="text" id="time1" name="time1">~<input type="text" id="time2" name="time2">
 					</li>
 					<li>
 						<label>이용인원</label>
-						<input type="number" min="1" id="people">
+						<div class="input-group number-spinner" id="people">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="0">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
 					</li>
 					<li>
 						<label>수용형태</label>
@@ -517,32 +646,72 @@ $(document).ready(function() {
 						<div id="s_content">
 							<span>라커룸 1개/종일<br>11,000원/일<br>11,000원</span>
 						</div>
-						<input type="number" id="num">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="0">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
 					</li>
 					<li>
 						<div id="s_content">
 							<span>18시 이후 직원 stand by 비용<br>33,000원/시간(19시 이후 대관시 18~19시 stand by 비용)<br>33,000원</span>
 						</div>
-						<input type="number" id="num">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="0">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
 					</li>
 					<li>
 						<div class="s_label"><div class="required"></div><label>식음료</label></div>
 						<div id="s_content">
 							<span>음료/잔<br>(coffee, tea, juices 선택)7,700원/잔<br>7,700원</span>
 						</div>
-						<input type="number" id="num">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="0">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
 					</li>
 					<li>
 						<div id="s_content">
 							<span>COFFEE 10인 set<br>33,000원/pot(1회 리필 포함)<br>33,000원</span>
 						</div>
-						<input type="number" id="num">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="0">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
 					</li>
 					<li>
 						<div id="s_content">
 							<span>케이터링 SET<br>(커피 1POT, 쿠키, 빵 임의구성 10인분) 132,000원<br>132,000원</span>
 						</div>
-						<input type="number" id="num">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="0">
+							<span class="input-group-btn">
+								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -563,7 +732,7 @@ $(document).ready(function() {
 					</li>
 					<li>
 						<label>연락처<span>*</span></label>
-						<input type="text" id="phone">-<input type="text" id="phone">-<input type="text" id="phone">
+						<input type="text" id="phone"> - <input type="text" id="phone"> - <input type="text" id="phone">
 					</li>
 					<li>
 						<label>이메일<span>*</span></label>
@@ -618,6 +787,11 @@ $(document).ready(function() {
 			</ul>
 		</div>
 	
+		<!-- 예약하기 버튼 -->
+		<div class="r_button">
+			<a href="room_payment.do"><input type="button" value="예약신청" id="btn_reserve"></a>
+			<a href="room_list.do"><input type="reset" value="취소" id="btn_reset"></a>
+		</div>
 	</div>
 	
 	<!-- footer -->
