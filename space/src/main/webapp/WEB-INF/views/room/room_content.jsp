@@ -583,6 +583,7 @@ ul>li>label {
 	width: 210px;
 	padding: 10px;
 	display: none;
+	box-shadow: -1px 3px 5px 1px lightgray;
 }
 .ui-icon {
 	position: absolute;

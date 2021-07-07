@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="http://localhost:9000/space/css/datepicker.css" />
-<link rel="stylesheet" href="http://localhost:9000/space/css/jquery-ui.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
@@ -196,9 +195,13 @@
 	width: 210px;
 	padding: 10px;
 	display: none;
+	box-shadow: -1px 3px 5px 1px lightgray;
 }
 .ui-state-default {
 	color: #bfbfbf;
+}
+.ui-datepicker-current-day {
+	border: 1px solid blue;
 }
 .ui-icon {
 	position: absolute;
