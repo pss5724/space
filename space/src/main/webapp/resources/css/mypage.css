@@ -1,0 +1,223 @@
+.mypage_container {
+ 	width: 100%;
+ 	margin : 0;
+ 	display:inline-block;
+ 	position:relative;
+ }
+ .mypage_content{
+ 	width:70%;
+ 	margin : auto;
+ 	
+ }
+ .mypage_left_box{
+ 	margin-top:80px;
+ 	margin-bottom:150px;
+ 	margin-left:50px;
+ 	width : 20%;
+ 	float:left;
+ 	margin-right:20px;
+ 	border:1px solid lightgray;
+ }
+ .mypage_ltitle{
+ 	background-color : rgb(78,66,226);
+ 	color:white;
+ }
+ .mypage_ltitle span {
+    font-family: "nanumsquare-b";
+    font-weight: 900;
+    font-size: 20px;
+    margin:auto;
+    line-height: 90px;
+    color: #ffffff;
+}
+ .mypage_ltitle img {
+     vertical-align: top;
+}
+.mypage_left_box ul{
+	list-style-type:none;
+	border:1px solid lightgray;
+}
+.mypage_left_box ul li{
+	margin-top: 40px;
+	margin-bottom:40px;
+	margin-left: 10px;
+}
+
+
+.mypage_left_box ul li a{ 
+ 	text-decoration: none; 
+ 	font-size:18px; 
+	font-weight:bold; 
+ 	color:gray; 
+ }
+ .title_deco {
+ 	magin-top:10px;
+ 	width:5px;
+ 	height:20px;
+ 	background-color:skyblue;
+ 	border:1px solid skyblue;
+ 	border-radius:5px;
+ 	float:left;
+ } 
+ .mypage_right_box {
+ 	margin-top:80px;
+ 	margin-bottom:150px;
+ 	margin-left:20px;
+ 	margin-right:50px;
+ 	width:65%;
+ 	float:left;
+ }
+ .mypage_right_tit{
+ 	font-size:21px;
+	font-weight:bold;
+ 	float:left;
+ 	margin-top :-5px;
+ 	margin-left:20px;
+ }
+ .select_menu {
+ 	float:right;
+	margin-top:-5px;
+ 	width:150px;
+ 	padding:6px;
+ 	font-size:15px;
+ 	color:lightgray;
+ 	border: 1px solid lightgray;
+ 	border-radius:3px;
+ }
+ 
+/*  테이블  */
+ .mypage_right_box_table {
+ margin-top:20px;
+ width:100%;
+ border-spacing:0;
+ border-collapse:collapse;
+ }
+ .mypage_right_box_table tr:first-child{
+ 	background-color: rgb(251,251,251);
+ 	font-size:16px;
+ 	font-weight:700; 
+ 	text-align:center;
+ 	height:60px;
+ 	border-top:1px solid lightgray;	
+ 	border-bottom:1px solid lightgray;
+ }
+  .mypage_right_box_table tr{
+ 	font-size:14px; 
+ 	font-weight:520;   
+ 	text-align:center;
+ 	height:60px;
+ 	border-bottom:1px solid lightgray;
+ }
+  .mypage_right_box_table tr:first-child th:first-child{
+ 	width:10%; 
+ }
+ .mypage_right_box_table tr:first-child th:nth-child(2),
+ .mypage_right_box_table tr:first-child th:nth-child(4),
+  .mypage_right_box_table tr:first-child th:nth-child(5)
+ {
+ 	width:15%; 
+ }
+  .mypage_right_box_table tr:first-child th:nth-child(3){
+ 	width:45%;  
+ }
+ 
+.table_th_after{ 
+	margin-top:2px;  
+	float:right;  
+    width: 2px;
+    height: 16px;
+    background: #d7d7d7; 
+}
+.mypage_write_btn {
+	width: 50%;
+	margin: 30px auto  0 auto;	
+}
+.mypage_write_btn a:first-child{
+	float:left;
+	border:1px solid rgb(2,116,216);
+	border-radius:5px;
+	margin-right:6px;
+	padding: 6px 30px; 
+	color:white;
+	font-size:15px;
+	font-weight:600;
+	background-color:rgb(2,116,216); 
+}
+.mypage_write_btn a:last-child{
+	float:left;
+	border:1px solid lightgray;
+	border-radius:5px;
+	padding: 6px 45px; 
+	font-size:15px;
+	font-weight:600;
+	background-color:white; 
+}
+
+.mypage_btn {
+	
+	float:right;
+	margin-right:10px;
+	margin-top:10px;
+}
+.mypage_btn button{
+	border:1px solid lightgray;
+	border-radius:5px;
+	padding: 8px 35px; 
+	background-color:white; 
+}
+.mypage_cancel_btn {
+	background-color : white;
+	color:  red;
+	border:1px solid lightgray;
+	font-weight:600;
+	padding : 3px 20px;
+	border-radius:10px;
+	
+}
+
+
+
+/** 예약 현황 **/
+.bookings {
+	float: left;
+	height:110px;
+	width:400px;
+	margin-bottom:10px;
+	margin-right:10px;
+	border :1px solid lightgray;
+	border-radius:7px;
+}
+.bookings ul li{
+	margin-top:10px; 
+	margin-left : 30px;
+	list-style-type:circle;
+}
+.bookings ul{
+	margin-bottom:10px; 
+	
+}
+.bookings ul li a{
+	font-size : 18px; 
+	font-weight: 900; 
+}
+.bookings span:last-child{
+	margin-left:130px;
+}
+.bookings button{
+	margin-left:100px;
+}
+.bookings img{
+	margin-left:20px;
+}
+.bookings img:last-child{
+	margin-left:20px;
+}
+
+
+.bookings span{
+	font-size:14px;
+	font-weight:600;      
+}
+.bookings span:last-child{
+	font-size:17px;
+}
