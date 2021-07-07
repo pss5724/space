@@ -22,7 +22,7 @@ $(document).ready(function() {
 		if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data *") && !$(e.target).is("label input") 
 				&& !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
 			$("label").siblings("div").removeClass("open");
-			$('*[name=date]').handleDtpicker('hide');
+			//$('*[name=date]').handleDtpicker('hide');
 		}
 	});
 
@@ -31,10 +31,15 @@ $(document).ready(function() {
 		$(this).siblings("div").toggleClass("open");
 		
 		if($(this).siblings("div").hasClass("open")) {
-			$('*[name=date]').handleDtpicker('show');
+			//$('*[name=date]').handleDtpicker('show');
 		} else {
-			$('*[name=date]').handleDtpicker('hide');
+			//$('*[name=date]').handleDtpicker('hide');
 		}
+	});
+	
+	$(".icon-close").click(function() {
+		alert("닫자");	
+		//$(".select_data date").removeClass("open");
 	});
 	
 	$(".btn_search_reset").click(function() {
@@ -43,7 +48,6 @@ $(document).ready(function() {
 	
 	/* 날짜 선택 */
  	$('*[name=date]').appendDtpicker({
-		/* inline: true, */
 		locale:"ko",
 		futureOnly: true,
 		minuteInterval: 30,
@@ -114,6 +118,17 @@ $(document).ready(function() {
 		$(this).siblings("li").removeClass("on");
 		$(this).addClass("on");
 	});
+	
+	/* 지도 모달창 */
+	$("#map").click(function(){
+		$("#modal").show();
+		$("#overlay").css({"opacity":"1","pointer-events":"auto"});
+	});
+	$("#exit").click(function(){
+		$("#modal").hide();
+		$("#overlay").css({"opacity":"0","pointer-events":"none"});
+	});
+	
 
 });
 </script>
@@ -125,7 +140,7 @@ $(document).ready(function() {
 		<!-- 상단 검색바 -->
 		<div class="search_area_top">
 			<div class="search_box">
-				<h1 class="search_box_title">어떤 회의실을 찾고 있나요?</h1>
+				<p class="search_box_title">어떤 회의실을 찾고 있나요?</p>
 				<ul class="search_box_list">
 					<li>
 						<label>
@@ -250,7 +265,8 @@ $(document).ready(function() {
 		<div class="search_area_bottom">
 			<!-- 좌측 옵션 검색 -->
 			<div class="search_left_box">
-				<a href="http://localhost:9000/space/room_map.do" target="_blank" class="map">지도로 보기</a>
+				<!-- <a href="http://localhost:9000/space/room_map.do" target="" class="map" id="map">지도로 보기</a> -->
+				<a class="map" id="map">지도로 보기</a>
 				<div class="search_option_list">
 					<div class="search_option">
 						<p class="search_option_title">금액대(시간당)</p>
@@ -626,6 +642,7 @@ $(document).ready(function() {
 	<!-- container -->
 	
 	<jsp:include page="../footer.jsp"></jsp:include>	
+	<jsp:include page="room_map.jsp"></jsp:include>
 
 </body>
 </html>
