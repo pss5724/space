@@ -6,12 +6,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <style>
-html, body, #google-map {
-   width: 100%;
-   height: 100%;
-   margin: 0;
-   padding: 0
+html, body /* #google-map */ {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0
 }
+div.modal{
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding: 0;
+ 	top: 0;
+	left: 0;
+	background: white;
+	z-index: 999;
+}
+button.exit{
+	position: absolute;
+	display: inline-block;
+	width: 40px; 
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-radius: 2px;
+	margin: 10px; 
+	padding: 0;
+	top: 50px;
+	right: 0; 
+	font-size: 40px;
+	color: gray;
+	background: rgba(255,255,255,0.9);
+    box-shadow: darkgrey 1px 1px 1px 0px;
+	cursor: pointer;
+    z-index: 999;
+}
+#google-map {
+	width: 100%;
+	height: 100%;
+}
+
 .map_room_info {
 	width: 500px;
 	height: 200px;
@@ -39,6 +75,7 @@ html, body, #google-map {
 }
 .map_room_detail p {
 	margin: 5px;
+	text-align: left;
 }
 .map_room_name {
 	font-size: 22px;
@@ -81,11 +118,13 @@ html, body, #google-map {
 		</div>
 	</div> -->
 	
-    <div id="google-map">
-    </div>
+	<div class="modal" id="modal">
+		<button class="exit" id="exit">&times;</button>
+		<div id="google-map"></div>
+	</div>
  
     <!-- Google Map API -->
-    <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+    <!-- <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script> -->
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJE8peRXRO0ACfNfstLiSpXZv0lLoniEc&callback=initMap">
     </script>
