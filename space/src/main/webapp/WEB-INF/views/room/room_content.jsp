@@ -8,9 +8,8 @@
 <style>
 
 .content {
-	width: 1200px;
+	width: 800px;
 	margin: 0 auto;
-	padding-top: 120px;
 }
 
 .label {
@@ -31,7 +30,7 @@
 }
 
 .res_cond, .facilities, .room_inform, .caution, .review {
-	padding: 20px 0;
+	padding-top: 20px;
 	border-bottom: 1px solid lightgray;
 }
 
@@ -63,6 +62,7 @@
 }
 .room_name>div:last-child {
 	display: inline-block;
+	width: 500px;
 	margin-top: 25px;
 	margin-left: 20px;
 }
@@ -87,7 +87,7 @@
 	color: #666666;
 }
 .room_name>div:last-child>div:last-child {
-	width: 1080px;
+	width: 682px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -179,7 +179,6 @@
 	background: #f7f7f7;
 	display: flex;
 	justify-content: center;
-	
 }
 .nav>ul>li {
 	list-style-type: none;
@@ -193,7 +192,7 @@
 .nav>ul>li>a {
 	border-right: 1px solid lightgray;
 	text-align: center;
-	padding: 0 57.5px;
+	padding: 0 24.2px;
 }
 .nav>ul>li:last-child>a {
 	border: none;
@@ -219,13 +218,14 @@ ul>li>label {
 	font-weight: bold;
 	width: 170px;
 	display: inline-block;
+	vertical-align: top;
 }
 .f_inform #rate {
 	margin-right: 3px;
 }
 .f_inform>ul>li>div {
 	display: inline-block;
-	width: 980px;
+	width: 584px;
 }
 .f_inform>ul>li>div>ul>li {
 	text-align: center;
@@ -263,20 +263,29 @@ ul>li>label {
 .room_inform>div>div:last-child {
 	display: inline-block;
 	vertical-align: top;
-	width: 800px;
+	width: 450px;
 }
 .room_inform>div>div:last-child>ul>li {
 	padding: 10px 0;
 }
-.room_inform>div>div:last-child>ul>li>label>button {
+.room_inform>div>div:last-child>ul>li>div:first-child>label>button {
 	background-color: rgba( 255, 255, 255, 0.5 );
 	border: none;
 	font-size: 20px;
 	margin-left: 5px;
 	position: relative;
 }
-.room_inform>div>div:last-child>ul>li>label>button:hover {
+.room_inform>div>div:last-child>ul>li>div:first-child>label>button:hover {
 	cursor: pointer;
+}
+.room_inform>div>div>ul>li:nth-child(4)>div:first-child>span {
+	color: #f80d54;
+	font-size: 12px;
+	display: inline-block;
+}
+.room_inform>div>div>ul>li:nth-child(4)>div:first-child {
+	width: 170px;
+	display: inline-block;
 }
 .room_inform>div>div:last-child>div {
 	margin-bottom: 10px;
@@ -319,6 +328,46 @@ ul>li>label {
 .detail>ul>li>span {
 	padding: 10px 20px;
 }
+.room_inform>div>div>ul>li:nth-child(4)>div:last-child {
+	width: 270px;
+	display: inline-block;
+	vertical-align: top;
+}
+.room_inform>div>div>ul>li:nth-child(4)>div:first-child>label {
+	font-weight: bold;
+	width: 170px;
+	display: inline-block;
+}
+/* 회의실 안내 - 이미지 크게 보기 */
+.large_img {
+	display: inline-block;
+	position: relative;
+	bottom: 10px;
+	right: 45px;
+}
+.large_img>img:hover {
+	cursor: pointer;
+}
+.large_img>div {
+	padding: 30px;
+	background-color: white;
+	border-radius: 10px;
+	display: none;
+	position: absolute;
+	top: -290px;
+	left: -265px;
+	text-align: right;
+	z-index: 10;
+}
+.large_img>div>img:first-child {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.large_img>div>img:first-child:hover {
+	cursor: pointer;
+}
+
 
 /* 주의사항 */
 .caution>ul {
@@ -335,6 +384,7 @@ ul>li>label {
 }
 .caution>ul>li>div {
 	display: inline-block;
+	width: 584px;
 }
 
 /* 이용후기 */
@@ -349,8 +399,9 @@ ul>li>label {
 }
 .review>div>div#total {
 	border-right: 1px solid lightgray;
-	padding: 0 70px 0 30px;
+	padding: 0 30px 0 0;
 	text-align: center;
+	vertical-align: middle;
 }
 .review>div>div#total>span {
 	font-size: 20px;
@@ -363,17 +414,21 @@ ul>li>label {
 	color: #006be0;
 }
 #satis {
-	padding-left: 70px;
+	padding-left: 20px;
 	text-align: left;
+	width: 500px;
+	vertical-align: middle;
 }
 #satis>img {
 	padding-left: 5px;
+	vertical-align: -3px;
 }
-#satis>img {
-	margin-right: 70px;
+#satis>img:nth-child(2), #satis>img:nth-child(7) {
+	margin-right: 13px;
 }
 #satis>span {
 	font-weight: bold;
+	font-size: 14px;
 }
 .review>ul>li>div {
 	padding: 20px 0;
@@ -384,6 +439,60 @@ ul>li>label {
 	border-bottom: 1px solid lightgray;
 	border-top: 1px solid lightgray;
 }
+.review>ul>li>div>div:nth-child(2) {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.review>ul>li>div>div:nth-child(2)>span {
+	font-size: 14px;
+}
+.review>ul>li>div>div:nth-child(2)>div>img {
+	vertical-align: middle;
+}
+.review>ul>li>div>div:nth-child(2)>div>span {
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 14px;
+}
+.review>ul>li>div>span {
+	font-size: 14px;
+}
+.review>ul>li:last-child>div {
+	border: none;
+}
+#user_id {
+	padding-left: 3px;
+	font-weight: bold;
+}
+#ampaginationsm {
+	text-align: center;
+}
+.pager-prev>a {
+	background: url("http://localhost:9000/space/images/cus_calendar_top_leftbtn.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	padding: 10px;
+}
+.pager-next>a {
+	background: url("http://localhost:9000/space/images/cus_calendar_top_rightbtn.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+  	padding: 10px;
+}
+.am-pagination-default-sm > li > a,
+.am-pagination-default-sm > li > span {
+}
 
 /* 오시는 길 */
 .map {
@@ -393,13 +502,11 @@ ul>li>label {
 	height: 400px;
 	margin: 0 20px;
 }
-
 .oblique {
 	height: 10px;
 	width: 100%;
 	background-image: url("http://localhost:9000/space/images/item_viewbox_bottom_bar.png");
 }
-
 /* 비슷한 회의실 */
 .similar {
 	padding: 20px 0;
@@ -409,27 +516,27 @@ ul>li>label {
 	border-radius: 10px;
 }
 .s_room>div {
-	padding: 10px;
+	padding: 7px;
 }
 .s_room>div>div>img, .s_room>div>img {
 	display: inline-block;
 }
 .s_room>div>span:first-child {
-	font-size: 15px;
+	font-size: 11px;
 	color: #3875e6;
 	font-weight: bold;
 	display: block;
 }
 .s_room>div>span:nth-child(2) {
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: bold;
 	display: block;
 }
 .s_room>div>div:nth-child(3) {
-	margin-top: 25px;
+	margin-top: 15px;
 }
 .s_room>div>div:nth-child(3)>span,.s_room>div>span:nth-child(5) {
-	font-size: 14px;
+	font-size: 11px;
 	margin-left: 2px;
 	color: #444444;
 	font-weight: bold;
@@ -442,22 +549,23 @@ ul>li>label {
 }
 .s_room>div>div:last-child>span:first-child {
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 15px;
 }
 .s_room>div>div:last-child>span:nth-child(2) {
 	margin-left: -7px;
-	font-size: 14px;
+	font-size: 11px;
 	color: #444444;
 }
 .s_room>div>div:last-child>img {
-	width: 74px;
-	margin-left: 35px;
+	width: 55px;
+	vertical-align: middle;
 }
 .s_room>div>div:last-child>span:last-child {
 	margin-left: 5px;
-	font-size: 14px;
+	font-size: 11px;
 	color: #666666;
 	font-weight: bold;
+	vertical-align: middle;
 }
 
 
@@ -529,6 +637,36 @@ ul>li>label {
 	margin-left: -25px;
 }
 
+/* 예약하기 버튼 */
+.r_button {
+	text-align: right;
+	padding: 0 10px 20px 10px;
+	display: flex;
+	justify-content: space-between;
+}
+#btn_next {
+	padding: 10px;
+	width: 100px;
+	border: 1px solid #104ebc;
+	background: #104ebc;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 14px;
+}
+#btn_golist {
+	padding: 10px;
+	width: 100px;
+	border: 1px solid #2d2d2e;
+	background: #2d2d2e;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 14px;
+}
+#btn_next:hover, #btn_golist:hover {
+	cursor: pointer;
+}
 
 </style>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
@@ -536,17 +674,34 @@ ul>li>label {
 <link rel="stylesheet" href="http://localhost:9000/space/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick-theme.css"/>
+<link rel="stylesheet" href="http://localhost:9000/space/css/am-pagination.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyBmLyB6XJqHVUN1U86gHoIahlUtr1uHkGw"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
+<script src="http://localhost:9000/space/js/am-pagination.js"></script>
 
 <script>
 $(document).ready(function() {
 	
+	var mapContainer = document.getElementById('g_map');
+	var mapOptions = {
+		center: new google.maps.LatLng(37.51312106734197, 127.0597625707216),
+		zoom: 15
+	};
+	var map = new google.maps.Map(mapContainer, mapOptions);	
+	var title = "서울 강남구 영동대로 517";
+	var marker = new google.maps.Marker({position: {lat:37.51312106734197, lng:127.0597625707216}, map: map, label:{
+	      fontSize: "12px",
+	      fontWeight: "bold",
+	}
+	});
+	var infowindow = new google.maps.InfoWindow({zIndex:1});
+    infowindow.setContent('<div style="font-size:12px;">' + title + '</div>');
+    infowindow.open(map, marker);
+    
 	$('.slider').slick({
   	  slidesToShow: 3, //한 화면에 보여줄 아이템수
   	  slidesToScroll: 3 // 한번에 슬라이드 시킬 아이템 개수
@@ -569,15 +724,50 @@ $(document).ready(function() {
 
 	$("#datepicker").datepicker().datepicker("setDate", new Date());
 	
+var pager = jQuery('#ampaginationsm').pagination({
+		
+	    maxSize: 7,	    		// max page size
+	    totals: 5,	// total pages	
+	    page: 1,		// initial page		
+	    pageSize: 2,	// max number items per page
+		
+	    //totals: ${dbcount},	// total pages	
+	    //page: ${rpage},		// initial page		
+	    //pageSize: ${pageSize},	// max number items per page
+	    
+	    
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: ' ',		
+	    nextText: ' ',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
+	});
+	
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
+		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+           $(location).attr('href', "http://localhost:9000/space/room_content.do?rpage="+e.page);         
+    });
+	
 	$(".select_btn").click(function(){
 			$(this).css('background','#006be0').css('color','white');
 			$(".room_inform>div:last-child").css('border', '1px solid #006be0')
 	});
 	
     $("#btn_detail").click(function(){
-    	console.log('클릭');
     	$("#detail").toggle();
     });
+    
+    $(".large_img>img").click(function(){
+    	$(".large_img>div").show();
+    	$(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
+    });
+    
+    $(".large_img>div>img:first-child").click(function(){
+    	$(".large_img>div").hide();
+    });
+    
     
     
 });
@@ -731,23 +921,23 @@ $(document).ready(function() {
 				<ul>
 					<li>
 						<label>영업시간</label>
-						<span>09:00 ~ 22:00</span>
+						<div><span>09:00 ~ 22:00</span></div>
 					</li>
 					<li>
 						<label>휴무일</label>
-						<span>주말 및 공휴일</span>
+						<div><span>주말 및 공휴일</span></div>
 					</li>
 					<li>
 						<label>입, 퇴실 시간</label>
-						<span>예약시간 10분 전 입실 / 정시 퇴실</span>
+						<div><span>예약시간 10분 전 입실 / 정시 퇴실</span></div>
 					</li>
 					<li>
 						<label>결제구분</label>
-						<span>현장결제</span>
+						<div><span>현장결제</span></div>
 					</li>
 					<li>
 						<label>현장결제 선금</label>
-						<span>0%</span>
+						<div><span>0%</span></div>
 					</li>
 					<li>
 						<label>평점</label>
@@ -808,19 +998,19 @@ $(document).ready(function() {
 					</li>
 					<li>
 						<label>식음료 안내사항</label>
-						<span>코로나로 인해 케이터링 주문 불가하며, 외부 간단한 다과류도 반입 금지 (물과 음료 종류만 가능)</span>
+						<div><span>코로나로 인해 케이터링 주문 불가하며, 외부 간단한 다과류도 반입 금지 (물과 음료 종류만 가능)</span></div>
 					</li>
 					<li>
 						<label>사전수화물접수</label>
-						<span>일부가능(행사 당일만 보관 가능)</span>
+						<div><span>일부가능(행사 당일만 보관 가능)</span>
 					</li>
 					<li>
 						<label>주차안내</label>
-						<span>지하 주차장, 3,300원/시간(회의실결제-컨시어지에서 행사당일 차량번호 등록), 4,800원/시간(별도 주차장결제)</span>
+						<div><span>지하 주차장, 3,300원/시간(회의실결제-컨시어지에서 행사당일 차량번호 등록), 4,800원/시간(별도 주차장결제)</span></div>
 					</li>
 					<li>
 						<label>회의명 안내</label>
-						<span>인포데스크 옆 TV(png파일 세로형-미전달시 기재x), 30F, 37F 엘리베이터 앞 안내</span>
+						<div><span>인포데스크 옆 TV(png파일 세로형-미전달시 기재x), 30F, 37F 엘리베이터 앞 안내</span></div>
 					</li>
 				</ul>
 			</div>
@@ -831,6 +1021,13 @@ $(document).ready(function() {
 			<div class="label"><div class="l_line"></div><label>회의실 안내</label></div>
 			<div>
 				<img src="http://localhost:9000/space/images/carousel1.jpg" width="250px" height="220px">
+				<div class="large_img">
+					<img src="http://localhost:9000/space/images/thum_more_icon.png">
+					<div>
+						<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
+						<img src="http://localhost:9000/space/images/carousel1.jpg">
+					</div>
+				</div>
 				<div>
 					<div>
 						<label>30층 노스</label>
@@ -851,7 +1048,8 @@ $(document).ready(function() {
 							<span>U자형 6명</span>
 						</li>
 						<li>
-							<label>부가서비스<button type="button" title="세부사항 보기" id="btn_detail">+</button></label>
+							<div><label>부가서비스<button type="button" title="세부사항 보기" id="btn_detail">+</button></label>
+							<span>(세부사항 보기)</span></div>
 							<div class="detail" id="detail">
 								<ul>
 									<li>
@@ -880,8 +1078,7 @@ $(document).ready(function() {
 									</li>
 								</ul>
 							</div>
-							<span>TV, 화이트보드, 컨퍼런스콜, 에어컨, 난방기, 유선인터넷</span>
-							<span>(세부사항 보기)</span>
+							<div><span>TV, 화이트보드, 컨퍼런스콜, 에어컨, 난방기, 유선인터넷</span></div>
 						</li>
 						<li>
 							<label>레이아웃</label>
@@ -954,9 +1151,11 @@ $(document).ready(function() {
 					<div>
 						<div id="user_id">woo*****</div>
 						<div>
-							<img src="http://localhost:9000/space/images/list_star50.png">
-							<span>5</span>
-							<span>강남구 7호점</span>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
 						</div>
 						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
 					</div>
@@ -965,13 +1164,55 @@ $(document).ready(function() {
 					<div>
 						<div id="user_id">woo*****</div>
 						<div>
-							<img src="http://localhost:9000/space/images/list_star50.png">
-							<span>5</span>
-							<span>강남구 7호점</span>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
 						</div>
 						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
 					</div>
 				</li>
+				<li>
+					<div>
+						<div id="user_id">woo*****</div>
+						<div>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
+						</div>
+						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div id="user_id">woo*****</div>
+						<div>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
+						</div>
+						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div id="user_id">woo*****</div>
+						<div>
+							<div>
+								<img src="http://localhost:9000/space/images/list_star50.png">
+								<span>5</span>
+							</div>
+							<span>강남구 7호점 | 2020.11.02</span>
+						</div>
+						<span>깨끗하고 넓은 회의실이었습니다. 급한 회의나 미팅에서 활용도가 좋을 것 같습니다. 만족스럽게 이용했습니다.</span>
+					</div>
+				</li>
+				<li><div id="ampaginationsm"></div></li>
 			</ul>
 		</div>
 		
@@ -989,7 +1230,7 @@ $(document).ready(function() {
 			<div class="label"><div class="l_line"></div><label>비슷한 회의실</label></div>
 			<div data-slick='{"slidesToShow": 4, "slidesToScroll": 4}' class="slider">
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="280px">
+			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
@@ -1002,12 +1243,12 @@ $(document).ready(function() {
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/list_star50.png"><span>0</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
 			  	</div>
 			  </div>
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel2.jpg" width="280px">
+			  	<img src="http://localhost:9000/space/images/carousel2.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
@@ -1020,12 +1261,12 @@ $(document).ready(function() {
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/list_star50.png"><span>0</span>
+			  			<img src="http://localhost:9000/space/images/star40.png"><span>0</span>
 			  		</div>
 			  	</div>
 			  </div>
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel3.jpg" width="280px">
+			  	<img src="http://localhost:9000/space/images/carousel3.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
@@ -1038,12 +1279,12 @@ $(document).ready(function() {
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/list_star50.png"><span>0</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
 			  	</div>
 			  </div>
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="280px">
+			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
@@ -1056,12 +1297,12 @@ $(document).ready(function() {
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/list_star50.png"><span>0</span>
+			  			<img src="http://localhost:9000/space/images/star40.png"><span>0</span>
 			  		</div>
 			  	</div>
 			  </div>
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel2.jpg" width="280px">
+			  	<img src="http://localhost:9000/space/images/carousel2.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
@@ -1074,12 +1315,12 @@ $(document).ready(function() {
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/list_star50.png"><span>0</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
 			  	</div>
 			  </div>
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel3.jpg" width="280px">
+			  	<img src="http://localhost:9000/space/images/carousel3.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
@@ -1092,14 +1333,18 @@ $(document).ready(function() {
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/list_star50.png"><span>0</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
 			  	</div>
 			  </div>
 			</div>
 		</div>
 		
-		
+		<!-- 버튼 -->
+		<div class="r_button">
+			<a href="room_list.do"><input type="button" value="목록으로" id="btn_golist"></a>
+			<a href="room_reserve.do"><input type="submit" value="예약하기" id="btn_next"></a>
+		</div>
 		
 	</div>
 	
@@ -1107,18 +1352,9 @@ $(document).ready(function() {
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 <script>
-	var mapContainer = document.getElementById('g_map');
-	var mapOptions = {
-		center: new google.maps.LatLng(37.51312106734197, 127.0597625707216),
-		zoom: 15
-	};
-	var map = new google.maps.Map(mapContainer, mapOptions);	
-	var title = "서울 강남구 영동대로 517";
-	var marker = new google.maps.Marker({position: {lat:37.51312106734197, lng:127.0597625707216}, map: map, label:{
-	      text: title,
-	      fontSize: "12px",
-	      fontWeight: "bold",
-	}
-	});
+	
+
+	
+	
 </script>
 </html>

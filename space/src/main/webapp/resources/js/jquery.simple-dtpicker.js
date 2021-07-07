@@ -158,6 +158,7 @@
 	PickerHandler.prototype._relocate = function() {
 		var $picker = this.$pickerObject;
 		var $input = $("#search_date");
+		var $body = $("body");
 		//var $input = this.$inputObject;
 
 		if ($input != null && $picker.data('isInline') === false) { // Float mode
@@ -175,8 +176,9 @@
 				picker_outer_height = $picker.outerHeight();
 			}
 			
-			//$picker.css("top","-"+$input.offset().top+"px");  //수정
-			$picker.css("left",$input.offset().left-48+"px");  //수정
+			//alert($body.offset().top);
+			//$picker.css("top",$body.offset().top+"px");  //수정
+			//$picker.css("left",$input.offset().left-55+"px");  //수정
 
 /*
 			// Set width to assure date and time are side by side
@@ -1337,13 +1339,15 @@
 				options.current = $(input).val();
 			}
 
-			/* Make parent-div for picker */
+			/* Make parent-div for picker */  //수정
 			var $d = $('<div>');
 			if (options.inline) { // Inline mode
 				$d.insertAfter(input);
 			} else { // Float mode
 				$d.css("position", "absolute");
-				$('body').append($d);
+				//$('body').append($d);
+				//$('.select_data date').append($d);
+				$('.select_data.date').html($d);
 			}
 
 			/* Initialize picker */
@@ -1400,8 +1404,8 @@
 				$picker_parent.css({
 					"zIndex": 100
 				});
-				$picker.css("width", "450px"); //수정
-				//$picker.css("top", $("#search_date").offset().top+"px");
+				$picker.css("width", "440px"); //수정
+				//$picker.css("top", $(".search_date_label").offset().top+"px");
 				//$picker.css("left", "910px");
 
 				/* Hide this picker */

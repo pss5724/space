@@ -11,28 +11,41 @@
 <script>
 $(document).ready(function() {
 	
-	function print() {
-		var p = window.open("", "_blank", "left=0, top=0, width=0, height=0");
-		var style = "<head> <link rel='stylesheet' href='http://localhost:9000/space/css/room.css'>"
-			+ "<style> ul{list-style-type: none; padding: 0; display: inline-block;} ul span{box-sizing: border-box;}</style> </head>";
+/*   	function print() {  //새창에서 프린트
+		var p = window.open(window.location.href, "_blank", "left=0, top=0, width=0, height=0");
+ 		var style = "<link rel='stylesheet' href='http://localhost:9000/space/css/room.css'>"
+			+ "<style> ul{list-style-type: none; padding: 0; display: inline-block;} ul span{box-sizing: border-box;}</style>";
 		
 		p.document.write(style);	
 		p.document.write($(".payment_wrap").html());
 		p.document.close();
-		p.focus();
+ 		p.focus();
 		p.print();
 		p.close();
+	} */
+
+  	function print() {  //프린트 후 페이지 새로고침
+		var init = $("body").html();
+
+		window.onbeforeprint = function() {
+			var print_area = $("#print_area").html();
+			$("body").html(print_area);
+			$("body").css({"max-width":"800px", "min-width":"800px"});
+		};
+		window.onafterprint = function() {
+			location.reload();
+		};
+		window.print();
 	}
-	
-	
+
 	$(".btn_print").click(function() {
 		print();
 	});
-	
+
 	$(".btn_payment").click(function() {
 		alert("결제");
 	});
-	
+
 });
 </script>
 </head>

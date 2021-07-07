@@ -41,13 +41,14 @@ $(document).ready(function() {
 	});
 	
 	/* 날짜 선택 */
-	$('*[name=date]').appendDtpicker({
+ 	$('*[name=date]').appendDtpicker({
+		/* inline: true, */
 		locale:"ko",
 		futureOnly: true,
 		minuteInterval: 30,
 		dateFormat:"YYYY.MM.DD 일 hh:mm"
     });
-	
+   
 	/* 지역 선택 */
 	$(".main_location").click(function() {
 		$("#search_location").val($(this).text());	
@@ -117,7 +118,6 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<div class="container">
@@ -172,7 +172,7 @@ $(document).ready(function() {
 						</div>
 					</li>
 					<li>
-						<label>
+						<label class="search_date_label">
 							<span><img src="http://localhost:9000/space/images/search_icon_date.png"></span>
 							<input type="text" name="date" id="search_date" placeholder="날짜/시간" readonly>
 						</label>
@@ -249,7 +249,7 @@ $(document).ready(function() {
 		<div class="search_area_bottom">
 			<!-- 좌측 옵션 검색 -->
 			<div class="search_left_box">
-				<a href="#" class="map">지도로 보기</a>
+				<a href="http://localhost:9000/space/room_map.do" target="_blank" class="map">지도로 보기</a>
 				<div class="search_option_list">
 					<div class="search_option">
 						<p class="search_option_title">금액대(시간당)</p>
@@ -413,6 +413,208 @@ $(document).ready(function() {
 								</div>
 							</a>
 						</li>
+						
+	<!-- 추가 예제 -->					
+												<li class="room_info">
+							<a href="#">
+								<div class="info_image"
+									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
+											<span class="payment_online">온라인 결제</span>
+											<span class="payment_offline">현장 결제</span>
+										</P>
+										<P class="room_price"><span>38,500원</span>부터(시간)</P>
+									</div>
+								</div>
+							</a>
+						</li>						<li class="room_info">
+							<a href="#">
+								<div class="info_image"
+									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
+											<span class="payment_online">온라인 결제</span>
+											<span class="payment_offline">현장 결제</span>
+										</P>
+										<P class="room_price"><span>38,500원</span>부터(시간)</P>
+									</div>
+								</div>
+							</a>
+						</li>						<li class="room_info">
+							<a href="#">
+								<div class="info_image"
+									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
+											<span class="payment_online">온라인 결제</span>
+											<span class="payment_offline">현장 결제</span>
+										</P>
+										<P class="room_price"><span>38,500원</span>부터(시간)</P>
+									</div>
+								</div>
+							</a>
+						</li><li class="room_info">
+							<a href="#">
+								<div class="info_image"
+									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
+											<span class="payment_online">온라인 결제</span>
+											<span class="payment_offline">현장 결제</span>
+										</P>
+										<P class="room_price"><span>38,500원</span>부터(시간)</P>
+									</div>
+								</div>
+							</a>
+						</li><li class="room_info">
+							<a href="#">
+								<div class="info_image"
+									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
+											<span class="payment_online">온라인 결제</span>
+											<span class="payment_offline">현장 결제</span>
+										</P>
+										<P class="room_price"><span>38,500원</span>부터(시간)</P>
+									</div>
+								</div>
+							</a>
+						</li><li class="room_info">
+							<a href="#">
+								<div class="info_image"
+									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
+											<span class="payment_online">온라인 결제</span>
+											<span class="payment_offline">현장 결제</span>
+										</P>
+										<P class="room_price"><span>38,500원</span>부터(시간)</P>
+									</div>
+								</div>
+							</a>
+						</li> 
+						
 					</ul>
 				</div>
 			</div>

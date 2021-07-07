@@ -17,7 +17,7 @@ body {
 }
 .container {
 	margin: 0;
-	padding-top: 100px;
+	/*padding-top: 100px;*/
 }
 .search_area_top {
 	margin: auto;
@@ -94,7 +94,7 @@ body {
 	box-shadow: 7px 7px 7px 0 rgba(0, 0, 0, 0.1);
 }
 .date {
-	height: 300px;
+	height: 310px;
 }
 .open {
 	display: block;
@@ -472,7 +472,7 @@ li.room_info a, li.room_info a:active {
 /********** payment **********/
 .container {
 	margin: 0;
-	padding: 100px 0;
+	/* padding: 100px 0; */
 }
 .container.payment h1 {
 	text-align: center;
