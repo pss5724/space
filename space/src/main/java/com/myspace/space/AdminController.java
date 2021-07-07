@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AdminController {
+public class AdminController { 
 	@RequestMapping(value="/member_list.do", method=RequestMethod.GET)
 	public String member_list() {
 		return "admin/member_list"; 
