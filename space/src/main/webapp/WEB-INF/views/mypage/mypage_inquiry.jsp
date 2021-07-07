@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
 .mypage_left_box ul li:nth-child(2) a{
 	text-decoration: none;
@@ -14,7 +15,7 @@
 	font-weight:bold;
 	color:black;
 }
-.mypage_right_box_title p{
+.mypage_right_box_title p{ 
 	margin-bottom:20px;
 }
 </style>

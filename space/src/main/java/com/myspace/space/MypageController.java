@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MypageController {
 	@RequestMapping(value="/mypage_inquiry_write.do", method=RequestMethod.GET)
 	public String mypage_inquiry_write() {
-		return "mypage/mypage_inquiry_write";
+		return "mypage/mypage_inquiry_write"; 
 	}
 	
 	@RequestMapping(value="/mypage_info.do", method=RequestMethod.GET)

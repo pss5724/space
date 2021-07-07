@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
 .mypage_left_box ul li:first-child a{
 	text-decoration: none;
@@ -53,7 +54,7 @@
 					</li>
 						<li>
 						<a href="corppage_info.do">회원정보 수정</a>
-					</li>
+					</li> 
 					
 				</ul>
 			</div>

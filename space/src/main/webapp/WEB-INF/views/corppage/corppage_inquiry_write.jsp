@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
 .mypage_left_box ul li:nth-child(3) a{
 	text-decoration: none;
@@ -56,7 +57,7 @@
 	border-radius:6px;
 	border: 1px solid lightgray; 
  }
- .input_content{
+ .input_content{ 
  	margin:4px 0;
  	width:100%;
  	height:250px;

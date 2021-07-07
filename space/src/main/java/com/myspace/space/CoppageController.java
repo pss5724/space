@@ -10,7 +10,7 @@ public class CoppageController {
 
 	@RequestMapping(value="/corppage.do", method=RequestMethod.GET)
 	public String corppage() {
-		return "corppage/corppage";
+		return "corppage/corppage"; 
 	}
 	
 	@RequestMapping(value="/corppage_inquiry.do", method=RequestMethod.GET)

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
 .mypage_left_box ul li:last-child a{
 	text-decoration: none;
@@ -16,7 +17,7 @@
 }
 .mypage_right_box_title p{
 	margin-bottom:20px;
-}
+} 
 
 .mypage_right_box_table_info {
  margin-top:20px;
