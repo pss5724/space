@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/jquery-ui.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
-<script src="http://localhost:9000/space/js/jquery-ui.js"></script>
 
 <script>
 $(document).ready(function() {
