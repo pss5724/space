@@ -1,0 +1,231 @@
+body, button, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, table, td, th, tr, ul {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.container{
+	padding-top: 100px
+}
+
+.container:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.hidden {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.center_section_join {
+    padding: 60px 0 150px;
+}
+
+.center_box{
+	width: 1200px;
+    margin: 0 auto;
+}
+
+.join_box{
+	width:560px;
+	margin: 0 auto;
+	border-bottom: 1px solid #dddddd;
+}
+
+.join_tit_box{
+	padding-bottom: 20px;
+	border-bottom: 2px solid #181818;
+	font-weight: 700;
+}
+
+.join_tit {
+    font-size: 28px;
+    line-height: 24px;
+    color: #222222;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.join_stit {
+    margin-top: 13px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #444444;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.join_content_box{
+	padding: 20px;
+}
+
+.join_naver_btn {
+    display: block;
+    font-size: 16px;
+    line-height: 48px;
+    color: #ffffff;
+    letter-spacing: -1px;
+    text-align: center;
+    border: 1px solid #03cf5d;
+    border-radius: 3px;
+    background: #03cf5d;
+}
+
+.join_content_box + .join_content_box {
+    border-top: 1px solid #dddddd;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.join_write_list li{
+	padding-bottom: 10px;
+}
+
+.join_write_list li >div{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.join_write_list_f {
+    width: 130px;
+    padding-right: 10px;
+    font-size: 14px;
+    line-height: 40px;
+    color: #252626;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.join_write_list_f > span{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 2px;
+    color: #db022b;
+}
+
+.join_write_list_s .normal_ipt_box input {
+    position: relative;
+    height: 38px;
+    padding: 10px;
+}
+
+.join_write_list_s {
+    width: calc(100% - 150px);
+    font-size: 0;
+}
+
+.join_write_list_s .normal_ipt_box {
+    position: relative;
+    border: 1px solid #d7d7d7;
+    border-radius: 0;
+    
+}
+
+.normal_ipt_box {
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.normal_ipt_box > input {
+    vertical-align: top;
+    box-sizing: border-box;
+    width: 100%;
+    height: 43px;
+    padding: 12px 10px;
+    border: none;
+    background: none;
+}
+
+.join_write_list_s .join_write_hp, .join_write_addr {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 117px);
+    margin-right: 5px;
+}
+
+.join_write_list_s .join_write_addr_margin {
+    margin-top: 10px;
+}
+
+.btn_hp, .join_address_btn, .join_file_btn {
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 110px;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    background: none;
+    font-family: "nanumsquare-r";
+    font-size: 14px;
+    line-height: 38px;
+    color: #252626;
+    letter-spacing: -1px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.join_content_check_list button {
+    position: relative;
+    vertical-align: top;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border: 2px solid #d7d7d7;
+    background: none;
+}
+
+.join_cont_check_list_text {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 15px;
+    color: #252626;
+    letter-spacing: -1px;
+}
+
+.join_content_check_list .red {
+    color: #f60348;
+}
+
+.join_content_check_list span {
+    font-size: 14px;
+    line-height: 15px;
+    color: #252626;
+    letter-spacing: -1px;
+}
+
+.join_btn_box {
+    margin-top: 20px;
+}
+
+.join_btn_box button {
+    display: block;
+    box-sizing: border-box;
+    width: 200px;
+    margin: 0 auto;
+    font-family: nanumsquare-r;
+    font-size: 16px;
+    line-height: 48px;
+    color: #fff;
+    letter-spacing: -1px;
+    text-align: center;
+    border: 1px solid #0274d8;
+    border-radius: 3px;
+    background: #0274d8;
+}
+
+
