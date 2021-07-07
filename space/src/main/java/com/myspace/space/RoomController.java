@@ -31,4 +31,9 @@ public class RoomController {
 	public String room_map() {
 		return "room/room_map";
 	}
+	
+	@RequestMapping(value="/room_reserve_confirm.do", method=RequestMethod.GET)
+	public String room_reserve_confirm() {
+		return "room/room_reserve_confirm";
+	}
 }

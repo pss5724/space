@@ -33,9 +33,10 @@ body {
 .search_box_title {
 	display: inline-block;
 	width: 1000px;
-	margin-top: 40px;
+	margin-top: 50px;
 	margin-bottom: 10px;
 	color: white;
+	font-size: 27px;
 	font-weight: bold;
 	text-align: left;
 	text-indent: 30px;
@@ -230,6 +231,9 @@ a.map {
 	color: white;
 	border-radius: 3px;
 	background: url("http://localhost:9000/space/images/map_icon.png") #3c5087 85px no-repeat;
+}
+a.map:hover {
+	cursor: pointer;
 }
 .search_left_box {
 	width: 300px;
@@ -474,14 +478,17 @@ li.room_info a, li.room_info a:active {
 	margin: 0;
 	/* padding: 100px 0; */
 }
-.container.payment h1 {
+.container.payment {
+	padding-bottom: 100px;	
+}
+.container h1 {
 	text-align: center;
 	padding: 38px;
 	background-color: #f9f9f9;
 }
 .payment_wrap {
 	width: 600px;
-	margin: 50px auto;
+	margin: 70px auto;
     border: 1px solid darkgray;
 }
 .payment_title {
