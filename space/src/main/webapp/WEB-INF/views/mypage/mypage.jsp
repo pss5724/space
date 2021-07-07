@@ -73,7 +73,7 @@
 						<img src="http://localhost:9000/space/images/cal_btn_img01.png">
 						<span>2021.07.02</span>
 						<br>
-						<img src="http://localhost:9000/space/images/">
+						<img src="http://localhost:9000/space/images/mypage01_list_bottom_sect_icon02.png">
 						<span>22시~24시[2시간]</span>
 						<span class="price">132,000원</span>
 						
@@ -87,7 +87,7 @@
 						<img src="http://localhost:9000/space/images/cal_btn_img01.png">
 						<span>2021.07.02</span>
 						<br>
-						<img src="http://localhost:9000/space/images/">
+						<img src="http://localhost:9000/space/images/mypage01_list_bottom_sect_icon02.png">
 						<span>22시~24시[2시간]</span>
 						<span class="price">132,000원</span>
 						
@@ -101,7 +101,7 @@
 						<img src="http://localhost:9000/space/images/cal_btn_img01.png">
 						<span>2021.07.02</span>
 						<br>
-						<img src="http://localhost:9000/space/images/">
+						<img src="http://localhost:9000/space/images/mypage01_list_bottom_sect_icon02.png">
 						<span>22시~24시[2시간]</span>
 						<span class="price">132,000원</span>
 						

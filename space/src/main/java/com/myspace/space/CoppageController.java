@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CoppageController {
 	
+	@RequestMapping(value="/corppage_insert.do", method=RequestMethod.GET)
+	public String corppage_insert() {
+		return "corppage/corppage_insert";
+	}
 
 	@RequestMapping(value="/corppage.do", method=RequestMethod.GET)
 	public String corppage() {

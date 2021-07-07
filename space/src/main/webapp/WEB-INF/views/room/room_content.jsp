@@ -7,671 +7,10 @@
 <title>Insert title here</title>
 <style>
 
-.content {
-	width: 800px;
-	margin: 0 auto;
-}
-
-.label {
-	padding-bottom: 20px;
-}
-.l_line {
-	width: 6px;
-	height: 20px;
-	border-radius: 3px;
-	background: #97ccff;
-	display: inline-block;
-}
-.l_line + label {
-	font-weight: bold;
-	margin-left: 10px;
-	font-size: 20px;
-	color: #444444;
-}
-
-.res_cond, .facilities, .room_inform, .caution, .review {
-	padding-top: 20px;
-	border-bottom: 1px solid lightgray;
-}
-
-
-
-/* 회의실 이름 */
-.room_name {
-	height: 120px;
-	border-bottom: 1px solid lightgray;
-}
-.room_name>div:first-child {
-	width: 90px;
-	height: 90px;
-	display: inline-block;
-	background: linear-gradient(to right, #5043e1 , #174dc0);
-	text-align: center;
-	padding-top: 35px;
-}
-.room_name>div:first-child>span {
-	color: white;
-	font-size: 26px;
-	position: relative;
-	bottom: 15px;
-}
-.room_name>div:first-child>img {
-	width: 72px;
-	position: relative;
-	bottom: 15px;
-}
-.room_name>div:last-child {
-	display: inline-block;
-	width: 500px;
-	margin-top: 25px;
-	margin-left: 20px;
-}
-.room_name>div:last-child>img, .room_name>div:last-child>div>span{
-	vertical-align: middle;
-	font-weight: bold;
-	line-height: 20px;
-}
-.room_name>div:last-child>div:first-child>span {
-	font-size: 28px;
-}
-.room_name>div:last-child>div:nth-child(2) {
-	margin: 5px 0 10px 0;
-}
-.room_name>div:last-child>div:nth-child(2)>span {
-	color: #006be0;
-}
-.room_name>div:last-child>span:nth-child(5), .room_name>div:last-child>span:nth-child(6) {
-	bottom: 0;
-}
-.room_name>div:last-child>span:nth-child(6) {
-	color: #666666;
-}
-.room_name>div:last-child>div:last-child {
-	width: 682px;
-	display: flex;
-	justify-content: space-between;
-}
-.room_name>div:last-child>div:last-child>div>span,.room_name>div:last-child>div:last-child>span {
-	font-weight: bold;
-	font-size: 14px;
-	vertical-align: top;
-	color: #444444;
-}
-.room_name>div:last-child>div:last-child>span>span {
-	color: #006be0;
-	font-weight: bold;
-}
-
-/* 캐러셀 */
-.carousel_slide {
-	margin-top: 50px;
-	padding-bottom: 150px;
-	border-bottom: 1px solid lightgray;
-}
-.carousel-inner img {
-    width: 100%;
-    height: 100%;
-}
-#custCarousel .carousel-indicators {
-    position: static;
-    margin-top: 20px;
-}
-#custCarousel .carousel-indicators>li {
-    width: 100%;
-}
-#custCarousel .carousel-indicators li img {
-    display: block;
-    opacity: 0.5;
-    height: 130px;
-}
-#custCarousel .carousel-indicators li.active img {
-    opacity: 1;
-}
-#custCarousel .carousel-indicators li:hover img {
-    opacity: 0.75;
-}
-.carousel-item img {
-    width: 100%;
-}
-
-/* 예약현황 */
-.res_cond table {
-	width: 100%;
-	border: 1px solid lightgray;
-	border-collapse: collapse;
-	font-size: 14px;
-}
-.res_cond th {
-	background: #5e40e9;
-	padding: 10px 0;
-	color: white;
-}
-.res_cond th:first-child {
-	text-align: left;
-	padding-left: 10px;
-}
-.res_cond td {
-	font-weight: bold;
-	padding: 5px 0 5px 10px;
-}
-.end_box {
-	width: 16px;
-	height: 16px;
-	background: #97ccff;
-	display: inline-block;
-	margin-right: 5px;
-}
-.end {
-	text-align: right;
-	padding: 10px 20px;
-}
-#res_date_cond {
-	display: flex;
-	justify-content: space-between;
-	padding: 0 20px;
-}
-/* 네비게이션바 */
-.nav {
-	margin-top: 20px;
-}
-.nav>ul {
-	width: 100%;
-	background: #f7f7f7;
-	display: flex;
-	justify-content: center;
-}
-.nav>ul>li {
-	list-style-type: none;
-	display: inline;
-	background: #f7f7f7;
-	padding: 20px 0;
-}
-.nav>ul>li:hover {
-	cursor: pointer;
-}
-.nav>ul>li>a {
-	border-right: 1px solid lightgray;
-	text-align: center;
-	padding: 0 24.2px;
-}
-.nav>ul>li:last-child>a {
-	border: none;
-}
-.nav>ul>li:hover {
-	background: #008aff;
-	color: white;
-}
-
-/* 시설안내 */
-.facilities>div:first-child>div:last-child, .f_inform {
-	padding: 0 20px;
-}
-.facilities>div:first-child {
-	border-bottom: 1px solid lightgray;
-	padding-bottom: 20px;
-	margin-bottom: 10px;
-}
-.f_inform>ul>li {
-	padding: 10px 0;
-}
-ul>li>label {
-	font-weight: bold;
-	width: 170px;
-	display: inline-block;
-	vertical-align: top;
-}
-.f_inform #rate {
-	margin-right: 3px;
-}
-.f_inform>ul>li>div {
-	display: inline-block;
-	width: 584px;
-}
-.f_inform>ul>li>div>ul>li {
-	text-align: center;
-	float: left;
-	margin-right: 20px;
-}
-.f_inform>ul>li>div>ul>li>img {
-	display: block;
-	margin: 0 auto;
-}
-.f_inform>ul>li>div>ul>li>span {
-	color: #888888;
-	font-size: 12px;
-}
-.f_inform>ul>li:nth-child(9)>div>ul>li>span {
-	color: #888888;
-	font-size: 12px;
-	width: 50px;
-	display: inline-block;
-}
-
-
-/* 회의실 안내 */
-.room_inform>div:first-child {
-	padding: 20px 0;
-}
-.room_inform>div:last-child {
-	padding: 20px;
-}
-.room_inform>div>img {
-	display: inline-block;
-	margin-right: 10px;
-	border-radius: 10px;
-}
-.room_inform>div>div:last-child {
-	display: inline-block;
-	vertical-align: top;
-	width: 450px;
-}
-.room_inform>div>div:last-child>ul>li {
-	padding: 10px 0;
-}
-.room_inform>div>div:last-child>ul>li>div:first-child>label>button {
-	background-color: rgba( 255, 255, 255, 0.5 );
-	border: none;
-	font-size: 20px;
-	margin-left: 5px;
-	position: relative;
-}
-.room_inform>div>div:last-child>ul>li>div:first-child>label>button:hover {
-	cursor: pointer;
-}
-.room_inform>div>div>ul>li:nth-child(4)>div:first-child>span {
-	color: #f80d54;
-	font-size: 12px;
-	display: inline-block;
-}
-.room_inform>div>div>ul>li:nth-child(4)>div:first-child {
-	width: 170px;
-	display: inline-block;
-}
-.room_inform>div>div:last-child>div {
-	margin-bottom: 10px;
-	display: flex;
-	justify-content: space-between;
-}
-.room_inform>div>div:last-child>div>label {
-	font-size: 20px;
-	color: #006be0;
-	font-weight: bold;
-}
-.room_inform>div>div:last-child>div>input {
-	background-color: rgba( 255, 255, 255, 0.5 );
-	border: 1px solid lightgray;
-	padding: 5px 20px;
-	font-size: 14px;
-}
-.room_inform>div>div:last-child>div>input:hover {
-	cursor: pointer;
-}
-.detail {
-	display: none;
-	position: absolute;
-}
-.detail>ul {
-	width: 400px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-	background: white;
-}
-.detail>ul>li{
-	font-size: 14px;
-	font-weight: bold;
-}
-.detail>ul>li>label{
-	color: white;
-	padding: 10px 20px;
-	background: #006be0;
-}
-.detail>ul>li>span {
-	padding: 10px 20px;
-}
-.room_inform>div>div>ul>li:nth-child(4)>div:last-child {
-	width: 270px;
-	display: inline-block;
-	vertical-align: top;
-}
-.room_inform>div>div>ul>li:nth-child(4)>div:first-child>label {
-	font-weight: bold;
-	width: 170px;
-	display: inline-block;
-}
-/* 회의실 안내 - 이미지 크게 보기 */
-.large_img {
-	display: inline-block;
-	position: relative;
-	bottom: 10px;
-	right: 45px;
-}
-.large_img>img:hover {
-	cursor: pointer;
-}
-.large_img>div {
-	padding: 30px;
-	background-color: white;
-	border-radius: 10px;
-	display: none;
-	position: absolute;
-	top: -290px;
-	left: -265px;
-	text-align: right;
-	z-index: 10;
-}
-.large_img>div>img:first-child {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-.large_img>div>img:first-child:hover {
-	cursor: pointer;
-}
-
-
-/* 주의사항 */
-.caution>ul {
-	padding: 0 20px;
-}
-.caution>ul>li {
-	padding-bottom: 20px;
-}
-.caution>ul>li>label{
-	vertical-align: top;
-}
-.caution>ul>li>label>img {
-	margin-right: 5px;
-}
-.caution>ul>li>div {
-	display: inline-block;
-	width: 584px;
-}
-
-/* 이용후기 */
-.review>div:nth-child(2) {
-	padding: 20px 0;
-	border: 3px solid lightgray;
-	text-align: center;
-	margin: 0 20px 20px 20px;
-}
-.review>div>div {
-	display: inline-block;
-}
-.review>div>div#total {
-	border-right: 1px solid lightgray;
-	padding: 0 30px 0 0;
-	text-align: center;
-	vertical-align: middle;
-}
-.review>div>div#total>span {
-	font-size: 20px;
-	background: #fff9ea;
-	border: 1px solid #fff9ea;
-	border-radius: 10px;
-	font-weight: bold;
-}
-#total>span>span {
-	color: #006be0;
-}
-#satis {
-	padding-left: 20px;
-	text-align: left;
-	width: 500px;
-	vertical-align: middle;
-}
-#satis>img {
-	padding-left: 5px;
-	vertical-align: -3px;
-}
-#satis>img:nth-child(2), #satis>img:nth-child(7) {
-	margin-right: 13px;
-}
-#satis>span {
-	font-weight: bold;
-	font-size: 14px;
-}
-.review>ul>li>div {
-	padding: 20px 0;
-	margin: 0 20px;
-	border-bottom: 1px solid lightgray;
-}
-.review>ul>li:first-child>div {
-	border-bottom: 1px solid lightgray;
-	border-top: 1px solid lightgray;
-}
-.review>ul>li>div>div:nth-child(2) {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 10px;
-}
-.review>ul>li>div>div:nth-child(2)>span {
-	font-size: 14px;
-}
-.review>ul>li>div>div:nth-child(2)>div>img {
-	vertical-align: middle;
-}
-.review>ul>li>div>div:nth-child(2)>div>span {
-	vertical-align: middle;
-	font-weight: bold;
-	font-size: 14px;
-}
-.review>ul>li>div>span {
-	font-size: 14px;
-}
-.review>ul>li:last-child>div {
-	border: none;
-}
-#user_id {
-	padding-left: 3px;
-	font-weight: bold;
-}
-#ampaginationsm {
-	text-align: center;
-}
-.pager-prev>a {
-	background: url("http://localhost:9000/space/images/cus_calendar_top_leftbtn.png");
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 35px;
-	height: 35px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 50%;
-	padding: 10px;
-}
-.pager-next>a {
-	background: url("http://localhost:9000/space/images/cus_calendar_top_rightbtn.png");
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 35px;
-	height: 35px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 50%;
-  	padding: 10px;
-}
-.am-pagination-default-sm > li > a,
-.am-pagination-default-sm > li > span {
-}
-
-/* 오시는 길 */
-.map {
-	padding: 20px 0;
-}
-#g_map {
-	height: 400px;
-	margin: 0 20px;
-}
-.oblique {
-	height: 10px;
-	width: 100%;
-	background-image: url("http://localhost:9000/space/images/item_viewbox_bottom_bar.png");
-}
-/* 비슷한 회의실 */
-.similar {
-	padding: 20px 0;
-}
-.s_room {
-	border: 1px solid lightgray;
-	border-radius: 10px;
-}
-.s_room>div {
-	padding: 7px;
-}
-.s_room>div>div>img, .s_room>div>img {
-	display: inline-block;
-}
-.s_room>div>span:first-child {
-	font-size: 11px;
-	color: #3875e6;
-	font-weight: bold;
-	display: block;
-}
-.s_room>div>span:nth-child(2) {
-	font-size: 15px;
-	font-weight: bold;
-	display: block;
-}
-.s_room>div>div:nth-child(3) {
-	margin-top: 15px;
-}
-.s_room>div>div:nth-child(3)>span,.s_room>div>span:nth-child(5) {
-	font-size: 11px;
-	margin-left: 2px;
-	color: #444444;
-	font-weight: bold;
-}
-.s_room>div>span:nth-child(5) {
-	margin-left: -3px;
-}
-.s_room>div>div:last-child {
-	margin-top: 10px;
-}
-.s_room>div>div:last-child>span:first-child {
-	font-weight: bold;
-	font-size: 15px;
-}
-.s_room>div>div:last-child>span:nth-child(2) {
-	margin-left: -7px;
-	font-size: 11px;
-	color: #444444;
-}
-.s_room>div>div:last-child>img {
-	width: 55px;
-	vertical-align: middle;
-}
-.s_room>div>div:last-child>span:last-child {
-	margin-left: 5px;
-	font-size: 11px;
-	color: #666666;
-	font-weight: bold;
-	vertical-align: middle;
-}
-
-
-/* 데이트피커 */
-#datepicker {
-	border: none;
-	border-bottom: 1px solid #bfbfbf;
-	padding: 10px;
-	margin-left: 10px;
-	vertical-align: middle;
-	width: 210px;
-}
-.ui-datepicker {
-	background-color: white;
-	width: 210px;
-	padding: 10px;
-	display: none;
-	box-shadow: -1px 3px 5px 1px lightgray;
-}
-.ui-icon {
-	position: absolute;
-}
-.ui-icon:hover{
-	cursor: pointer;
-}
-.ui-icon-circle-triangle-w {
-	left: 20px;
-	width: 10px;
-	height: 20px;
-	background: url("http://localhost:9000/space/images/cus_calendar_top_leftbtn.png");
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.ui-icon-circle-triangle-e {
-	right: 20px;
-	width: 10px;
-	height: 20px;
-	background: url("http://localhost:9000/space/images/cus_calendar_top_rightbtn.png");
-	background-repeat: no-repeat;
-	background-position: center;
-	
-}
-.ui-datepicker-header {
-	border-bottom: 1px solid #bfbfbf;
-	padding-bottom: 10px;
-}
-.ui-datepicker-title {
-	text-align: center;
-}
-.ui-datepicker-title>span {
-	font-weight: bold;
-}
-.ui-datepicker th.ui-datepicker-week-end:first-child {
-	color: #d30000;
-}
-.ui-datepicker th {
-	height: 20px;
-	font-size: 12px;
-}
-.ui-datepicker td {
-	text-align: center;
-	padding: 5.7px;
-	font-size: 12px;
-	color: #bfbfbf;
-}
-.ui-datepicker-trigger {
-	border: none;
-	background: none;
-	vertical-align: middle;
-	margin-left: -25px;
-}
-
-/* 예약하기 버튼 */
-.r_button {
-	text-align: right;
-	padding: 0 10px 20px 10px;
-	display: flex;
-	justify-content: space-between;
-}
-#btn_next {
-	padding: 10px;
-	width: 100px;
-	border: 1px solid #104ebc;
-	background: #104ebc;
-	color: white;
-	font-weight: bold;
-	border-radius: 5px;
-	font-size: 14px;
-}
-#btn_golist {
-	padding: 10px;
-	width: 100px;
-	border: 1px solid #2d2d2e;
-	background: #2d2d2e;
-	color: white;
-	font-weight: bold;
-	border-radius: 5px;
-	font-size: 14px;
-}
-#btn_next:hover, #btn_golist:hover {
-	cursor: pointer;
-}
-
 </style>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/c_carousel.css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/room_reserve.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick-theme.css"/>
@@ -778,7 +117,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
-	<div class="content">
+	<div class="room_content">
 		<!-- 회의실 이름 -->
 		<div class="room_name">
 			<div>
@@ -790,7 +129,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				<div><span>실내 인테리어가 고급스러운 회의실</span></div>
 				<div>
 					<div><img src="http://localhost:9000/space/images/map_icon01.png">
-					<span>서울 강남구 영동대로 517 30층, 37층 / 삼성역</span></div>
+					<span>서울 강남구 영동대로 517 30층, 37층</span></div>
 					<span><span>5</span>개의 이용후기</span>
 				</div>
 			</div>
@@ -914,7 +253,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				<div>
 					<span>
 						*코로나 기간동안 회의내내 반드시 마스크 착용필수 입니다.<br>
-						서울 지하철 환승 구간 (접근인원이 많은 2호선, 9호선)으로 접근성이 뛰어나며, 국내에 유일하게 VIP고객들을 위한 호텔, 승무원 출신 등의 비서진 컨시어지 서비스가 가능하고 주변 제휴업체를 통한 케이터릴 서비스, 최첨단 프레젠테이션 보유 및 다양한 회의 목적에 맞는 수입가구 완비, Conference call 기능이 내장된 전화기가 제공되어 국내외 기업과의 교류 형태의 행사진행, 교육, 세미나, 임원회의 등에 용의합니다.
+						국내에 유일하게 VIP고객들을 위한 호텔, 승무원 출신 등의 비서진 컨시어지 서비스가 가능하고 주변 제휴업체를 통한 케이터릴 서비스, 최첨단 프레젠테이션 보유 및 다양한 회의 목적에 맞는 수입가구 완비, Conference call 기능이 내장된 전화기가 제공되어 국내외 기업과의 교류 형태의 행사진행, 교육, 세미나, 임원회의 등에 용의합니다.
 					</span>
 				</div>
 			</div>
@@ -935,10 +274,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 					<li>
 						<label>결제구분</label>
 						<div><span>현장결제</span></div>
-					</li>
-					<li>
-						<label>현장결제 선금</label>
-						<div><span>0%</span></div>
 					</li>
 					<li>
 						<label>평점</label>
@@ -996,22 +331,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 								</li>
 							</ul>
 						</div>
-					</li>
-					<li>
-						<label>식음료 안내사항</label>
-						<div><span>코로나로 인해 케이터링 주문 불가하며, 외부 간단한 다과류도 반입 금지 (물과 음료 종류만 가능)</span></div>
-					</li>
-					<li>
-						<label>사전수화물접수</label>
-						<div><span>일부가능(행사 당일만 보관 가능)</span>
-					</li>
-					<li>
-						<label>주차안내</label>
-						<div><span>지하 주차장, 3,300원/시간(회의실결제-컨시어지에서 행사당일 차량번호 등록), 4,800원/시간(별도 주차장결제)</span></div>
-					</li>
-					<li>
-						<label>회의명 안내</label>
-						<div><span>인포데스크 옆 TV(png파일 세로형-미전달시 기재x), 30F, 37F 엘리베이터 앞 안내</span></div>
 					</li>
 				</ul>
 			</div>
@@ -1080,10 +399,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 								</ul>
 							</div>
 							<div><span>TV, 화이트보드, 컨퍼런스콜, 에어컨, 난방기, 유선인터넷</span></div>
-						</li>
-						<li>
-							<label>레이아웃</label>
-							<span>고정형</span>
 						</li>
 					</ul>
 				</div>
@@ -1237,7 +552,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info02.png"><span>잠실역</span>
 			  		</div>
 			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
 			  		<span>240인실, 135인실, 100인실...</span>
@@ -1255,7 +569,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info02.png"><span>잠실역</span>
 			  		</div>
 			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
 			  		<span>240인실, 135인실, 100인실...</span>
@@ -1273,7 +586,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info02.png"><span>잠실역</span>
 			  		</div>
 			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
 			  		<span>240인실, 135인실, 100인실...</span>
@@ -1291,7 +603,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info02.png"><span>잠실역</span>
 			  		</div>
 			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
 			  		<span>240인실, 135인실, 100인실...</span>
@@ -1309,7 +620,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info02.png"><span>잠실역</span>
 			  		</div>
 			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
 			  		<span>240인실, 135인실, 100인실...</span>
@@ -1327,7 +637,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info02.png"><span>잠실역</span>
 			  		</div>
 			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
 			  		<span>240인실, 135인실, 100인실...</span>
@@ -1343,8 +652,13 @@ var pager = jQuery('#ampaginationsm').pagination({
 		
 		<!-- 버튼 -->
 		<div class="r_button">
-			<a href="room_list.do"><input type="button" value="목록으로" id="btn_golist"></a>
-			<a href="room_reserve.do"><input type="submit" value="예약하기" id="btn_next"></a>
+			<a href="http://localhost:9000/space/room_list.do"><input type="button" value="목록으로" id="btn_golist"></a>
+			<a href="http://localhost:9000/space/room_reserve.do"><input type="submit" value="예약하기" id="btn_reserve"></a>
+		</div>
+		<div class="c_button">
+			<a href="http://localhost:9000/space/corppage.do"><input type="button" value="목록으로" id="btn_golist"></a>
+			<div><a href="http://localhost:9000/space/corppage_update.do"><input type="button" value="수정" id="btn_update"></a>
+			<input type="button" value="삭제" id="btn_delete"></div>
 		</div>
 		
 	</div>

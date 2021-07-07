@@ -25,6 +25,53 @@
 }
 
 
+.my_room {
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	width: 400px;
+	height: 110px;
+	text-align: left;
+	overflow: hidden;
+	display: inline-block;
+	margin: 0 5px 7px 0;
+}
+.my_room>img {
+	height: 110px;
+	width: 150px;
+}
+.my_room>div {
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: top;
+}
+.my_room>div>p:first-child {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 8px 0 3px 0;
+}
+.my_room>div>p:nth-child(2) {
+	font-size: 14px;
+	font-weight: bold;
+	color: #006be0;
+	padding-bottom: 5px;
+}
+.my_room>div>div {
+	width: 150px;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 15px;
+}
+.my_room>div>div>div{
+	width: 1px;
+	height: 16px;
+	background: lightgray;
+}
+.my_room>div>div>span {
+	font-size: 14px;
+}
+.my_room>div>div>span>img {
+	margin-right: 2px;
+}
 </style>
 </head>
 <body>
@@ -39,7 +86,7 @@
 			<!-- left_box  -->
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
-					<img src="http://localhost:9000/space/images/little_logo.jpg"/>
+					<img src="http://localhost:9000/space/images/little_logo.png"/>
 					<span>나의 회의실</span>
 				</p>
 				<ul>
@@ -67,17 +114,49 @@
 					<div class="title_deco"></div>
 					<p class="mypage_right_tit">회의실 관리</p>
 					
-					<a href="http://loaclhost/space/corppage_insert.do">등록하기</a>
+					<a href="http://localhost:9000/space/corppage_insert.do">등록하기</a>
 					
 				</div>
 				<br>
 				<br>
 				<hr color="lightgray">
 				<br>
-				<!-- 여러개 반복 -->
 				
-		
-		
+				<!-- 여러개 반복 -->
+				<div class="my_room">
+					<img src="http://localhost:9000/space/images/carousel1.jpg">
+					<div>
+						<p><a href="http://localhost:9000/space/room_content.do">종로구 1호점/컨퍼런스룸</a></p>
+						<p>접근성 및 회의실 컨디션 최상</p>
+						<div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">세종로</span><div></div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">54인실</span>
+						</div>
+					</div>
+				</div>
+				<div class="my_room">
+					<img src="http://localhost:9000/space/images/carousel1.jpg">
+					<div>
+						<p><a href="http://localhost:9000/space/room_content.do">종로구 1호점/컨퍼런스룸</a></p>
+						<p>접근성 및 회의실 컨디션 최상</p>
+						<div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">세종로</span><div></div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">54인실</span>
+						</div>
+					</div>
+				</div>
+				<div class="my_room">
+					<img src="http://localhost:9000/space/images/carousel1.jpg">
+					<div>
+						<p><a href="http://localhost:9000/space/room_content.do">종로구 1호점/컨퍼런스룸</a></p>
+						<p>접근성 및 회의실 컨디션 최상</p>
+						<div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">세종로</span><div></div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">54인실</span>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			<!-- right box end -->
 			
