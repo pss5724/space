@@ -12,7 +12,6 @@
 	width: 800px;
 	margin: 100px auto;
 	text-align: left;
-	border: 1px solid red;
 }
 .confirm_wrap ul {
 	list-style-type: none;
