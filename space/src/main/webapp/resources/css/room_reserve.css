@@ -764,6 +764,10 @@
 	margin-right: 15px;
 	width: 660px;
 }
+.room_reserve_content .room_inform>ul>li:last-child>div {
+	border: none;
+	padding: 0 20px;
+}
 .room_reserve_content .room_inform>ul>li>div>div {
 	display: inline-block;
 }

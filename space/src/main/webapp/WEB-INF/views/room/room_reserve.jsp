@@ -102,7 +102,7 @@ $(document).ready(function() {
 				<img src="http://localhost:9000/space/images/thum_more_icon.png">
 				<div>
 					<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
-					<img src="http://localhost:9000/space/images/carousel1.jpg">
+					<img src="http://localhost:9000/space/images/carousel2.jpg">
 				</div>
 			</div>
 		</div>
@@ -110,10 +110,6 @@ $(document).ready(function() {
 		<!-- 회의실 정보2 -->
 		<div class="room_inform">
 			<ul>
-				<li>
-					<label>면적㎡</label>
-					<span>13㎡</span>
-				</li>
 				<li>
 					<label>최저 이용시간</label>
 					<span>1시간</span>
@@ -165,10 +161,6 @@ $(document).ready(function() {
 							</li>
 						</ul>
 					</div>
-				</li>
-				<li>
-					<label>세부사항</label>
-					<span>TV 72인치, 화이트보드 가능, 컨퍼런스콜 Polycom 가능, 에어컨 가능, 난방기 가능, 유선인터넷 가능</span>
 				</li>
 			</ul>
 		</div>
