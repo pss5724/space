@@ -21,19 +21,31 @@ public class RoomController {
 	public String room_reserve() {
 		return "room/room_reserve";
 	}
-
-	@RequestMapping(value="/room_payment.do", method=RequestMethod.GET)
-	public String room_payment() {
-		return "room/room_payment";
-	}
-	
-	@RequestMapping(value="/room_map.do", method=RequestMethod.GET)
-	public String room_map() {
-		return "room/room_map";
-	}
 	
 	@RequestMapping(value="/room_reserve_confirm.do", method=RequestMethod.GET)
 	public String room_reserve_confirm() {
 		return "room/room_reserve_confirm";
 	}
+	
+	@RequestMapping(value="/room_payment.do", method=RequestMethod.GET)
+	public String room_payment() {
+		return "room/room_payment";
+	}
+	
+	@RequestMapping(value="/room_payment_proc.do", method=RequestMethod.GET)
+	public String room_payment_proc() {
+		return "room/room_payment_proc";
+	}
+	
+	@RequestMapping(value="/room_payment_success.do", method=RequestMethod.GET)
+	public String room_payment_success() {
+		return "room/room_payment_success";
+	}
+
+	@RequestMapping(value="/room_map.do", method=RequestMethod.GET)
+	public String room_map() {
+		return "room/room_map";
+	}
+
+	
 }

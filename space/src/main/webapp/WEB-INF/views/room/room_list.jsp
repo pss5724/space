@@ -13,13 +13,14 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/jquery-ui.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
+<script src="http://localhost:9000/space/js/jquery-ui.js"></script>
 
 <script>
 $(document).ready(function() {
 	
 	$("html").click(function(e) { 
-		if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data *") && !$(e.target).is("label input") 
-				&& !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
+		if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data ul") && !$(e.target).is("label input") 
+				&& !$(e.target).is(".select_data.type *") && !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
 			$("label").siblings("div").removeClass("open");
 			//$('*[name=date]').handleDtpicker('hide');
 		}
@@ -29,16 +30,11 @@ $(document).ready(function() {
 		$(this).parent("li").siblings().children("div").removeClass("open");
 		$(this).siblings("div").toggleClass("open");
 		
-		if($(this).siblings("div").hasClass("open")) {
-			//$('*[name=date]').handleDtpicker('show');
+		/* if($(this).siblings("div").hasClass("open")) {
+			$('*[name=date]').handleDtpicker('show');
 		} else {
-			//$('*[name=date]').handleDtpicker('hide');
-		}
-	});
-	
-	$(".icon-close").click(function() {
-		alert("닫자");	
-		//$(".select_data date").removeClass("open");
+			$('*[name=date]').handleDtpicker('hide');
+		} */
 	});
 	
 	$(".btn_search_reset").click(function() {
@@ -112,6 +108,19 @@ $(document).ready(function() {
 		$(this).toggleClass("on");
 	});
 	
+	/* 옵션 검색 더보기 */
+	$(".btn_more").click(function() {
+		$(this).siblings("ul").toggleClass("more");
+		
+		if($(this).siblings("ul").hasClass("more")) {
+			$(this).children("span").text("접기");
+			$(this).children("img").attr("src", "http://localhost:9000/space/images/btn_less_img.png");
+		} else {
+			$(this).children("span").text("더보기");
+			$(this).children("img").attr("src", "http://localhost:9000/space/images/btn_more_img.png");
+		}
+	});
+	
 	/* 정렬 선택 */
 	$(".sort_type li").click(function() {
 		$(this).siblings("li").removeClass("on");
@@ -131,6 +140,30 @@ $(document).ready(function() {
 
 });
 </script>
+<style>
+.search_option ul {
+	max-height: 83px;
+	overflow: hidden;
+}
+.btn_more {
+	margin-bottom: 5px;
+}
+.btn_more:hover {
+	cursor: pointer;
+}
+.btn_more img {
+	vertical-align: middle;
+}
+.btn_more span {
+	padding-right: 3px;
+	color: #3492e6;
+	font-size: 13px;
+	font-weight: bold;
+}
+.search_option ul.more {
+	max-height: 1000px;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -306,6 +339,10 @@ $(document).ready(function() {
 							<li><button type="button" class="convenience">정수기</button></li>
 							<li><button type="button" class="convenience">KTX, SRT 인근</button></li>
 						</ul>
+						<div class="btn_more">
+							<span>더보기</span>
+							<img src="http://localhost:9000/space/images/btn_more_img.png" class="btn_img">
+						</div>
 					</div>
 					<div class="search_option">
 						<p class="search_option_title">부가서비스</p>
@@ -327,6 +364,10 @@ $(document).ready(function() {
 							<li><button type="button" class="service">유선인터넷</button></li>
 							<li><button type="button" class="service">영상스튜디오</button></li>
 						</ul>
+						<div class="btn_more">
+							<span>더보기</span>
+							<img src="http://localhost:9000/space/images/btn_more_img.png" class="btn_img">
+						</div>
 					</div>
 					<div class="search_option">
 						<p class="search_option_title">식음료</p>

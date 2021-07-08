@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <style>
-html, body /* #google-map */ {
+html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -106,18 +106,6 @@ button.exit{
 <title></title>
 </head>
 <body>
-<!-- 	<div class='map_room_info'>
-		<div class='map_room_img'>
-			<img src='http://localhost:9000/space/images/room1.jpg'>
-		</div>
-		<div class='map_room_detail'>
-			<p class='map_room_name'>dd</p>	
-			<p class='map_room_msg'>dd</p>	
-			<p class='map_room_addr'>22</p>	
-			<p class='map_room_price'>11<a href="">상세 정보</a></p>
-		</div>
-	</div> -->
-	
 	<div class="modal" id="modal">
 		<button class="exit" id="exit">&times;</button>
 		<div id="google-map"></div>

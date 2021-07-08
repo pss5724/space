@@ -7,131 +7,22 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/room.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
-<style>
-.confirm_wrap {
-	width: 800px;
-	margin: 100px auto;
-	text-align: left;
-}
-.confirm_wrap ul {
-	list-style-type: none;
-	padding: 20px;
-}
-.confirm_item_box {
-	margin-bottom: 40px;
-}
-.confirm_title {
-	position: relative;
-	display: inline-block;
-	padding-left: 20px;
-	font-size: 20px;
-	font-weight: bold;
-}
-.confirm_title:before {
-	content: "";
-	position: absolute;
-	display: block;
-	width: 5px;
-	height: 20px;
-	top: 2px;
-	left: 0;
-	border-radius: 3px;
-	background: #97ccff;
-}
-.confirm_sub_title {
-	padding-left: 15px;
-    margin-top: 15px;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #006be0;
-}
-.confirm_sub_title:before {
-	content: "";
-	display: inline-block;
-	margin-right: 5px;
-	width: 16px;
-	height: 16px;
-	top: 0;
-	left: 0;
-	background: url("http://localhost:9000/space/images/up.png") left top no-repeat;
-	background-size: cover;
-	vertical-align: middle;
-}
-.confirm_wrap table, th, td {
-	border: 1px solid darkgray;
-	border-collapse: collapse;
-}
-.confirm_item_box table {
-	width: 100%;
-	margin-top: 15px;
-	font-size: 14px;
-}
-.confirm_item_box table th {
-	background: #f8f8f8;
-	text-align: center;
-	width: 100px;
-	border-right: hidden;
-}
-.confirm_item_box table td {
-	width: 200px;
-}
-.confirm_item_box table th, .confirm_item_box table td {
-	padding: 20px 10px;
-}
-.confirm_item_box.caution {
-	margin-top: 10px;
-	font-size: 14px;
-}
-.confirm_item_box.caution div {
-	display: inline-block;
-	vertical-align: top;
-}
-.confirm_item_box.caution li {
-	width: 100%;
-	margin: 15px 0;
-}
-.caution_sub_title {
-	width: 150px;
-	padding: 0 20px;
-	font-weight: bold;
-	position: relative;
-}
-.caution_sub_title:before {
-	content: "";
-	display: inline-block;
-	position: absolute;
-	width: 15px;
-	height: 15px;
-	top: 0;
-	left: 0;
-	margin-right: 5px;
-	background: url("http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png")
-				left top no-repeat;
-	background-size: cover;
-}
-.caution_content {
-	width: 600px;
-	line-height: 25px;
-}
-.reservation_number, .reservation_print {
-	padding: 5px 15px;
-	border: 1px solid darkgray;
-	border-radius: 30px;
-	font-size: 14px;
-}
-.reservation_number {
-	margin-left: 420px;
-}
-
-</style>
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+	$(".reservation_print").click(function() {
+		window.print();
+	});
+});
+</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- container -->
 	<div class="container">
-		<h1>예약확인</h1>
+		<h1 class="no_print">예약확인</h1>
+		<p class="print_area title">예 약 확 인 서</p>
 		<div class="confirm_wrap">
 			<div class="confirm_item_box">
 				<span class="confirm_title">회의실 예약 내용</span>
@@ -192,6 +83,17 @@
 					</tr>
 				</table>
 			</div>
+			<div class="confirm_item_box">
+				<p class="confirm_title">결제 정보</p>
+				<table>
+					<tr>
+						<th>결제 금액</th>
+						<td>215,000원</td>
+						<th>결제 수단</th>
+						<td>KAKAO PAY</td>
+					</tr>
+				</table>
+			</div>
 			<div class="confirm_item_box caution">
 				<p class="confirm_title">예약 시 주의사항</p>
 				<ul>
@@ -224,9 +126,9 @@
 				</ul>
 			</div>
 		</div>
-
-	
 	</div>
+	<p class="print_area">㈜회의실닷컴</p>
+	
 	
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>

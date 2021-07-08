@@ -583,3 +583,246 @@ ul.payment_item_price .item_price, span.payment_item_price {
 .btn_print {
 	background: #333333;
 }
+
+
+/********** reserve_confirm **********/
+/********** reserve_confirm **********/
+.confirm_wrap {
+	width: 800px;
+	margin: 100px auto;
+	text-align: left;
+}
+.confirm_wrap ul {
+	list-style-type: none;
+	padding: 20px;
+}
+.confirm_item_box {
+	margin-bottom: 40px;
+}
+.confirm_title {
+	position: relative;
+	display: inline-block;
+	padding-left: 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+.confirm_title:before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 5px;
+	height: 20px;
+	top: 2px;
+	left: 0;
+	border-radius: 3px;
+	background: #97ccff;
+}
+.confirm_sub_title {
+	padding-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #006be0;
+}
+.confirm_sub_title:before {
+	content: "";
+	display: inline-block;
+	margin-right: 5px;
+	width: 16px;
+	height: 16px;
+	top: 0;
+	left: 0;
+	background: url("http://localhost:9000/space/images/up.png") left top no-repeat;
+	background-size: cover;
+	vertical-align: middle;
+}
+.confirm_wrap table, th, td {
+	border: 1px solid darkgray;
+	border-collapse: collapse;
+}
+.confirm_item_box table {
+	width: 100%;
+	margin-top: 15px;
+	font-size: 14px;
+}
+.confirm_item_box table th {
+	background: #f8f8f8;
+	text-align: center;
+	width: 20%;
+	border-right: hidden;
+}
+.confirm_item_box table td {
+	width: 200px;
+}
+.confirm_item_box table th, .confirm_item_box table td {
+	padding: 20px 10px;
+}
+.confirm_item_box.caution {
+	margin-top: 10px;
+	font-size: 14px;
+}
+.confirm_item_box.caution div {
+	display: inline-block;
+	vertical-align: top;
+}
+.confirm_item_box.caution li {
+	width: 100%;
+	margin: 15px 0;
+}
+.caution_sub_title {
+	width: 150px;
+	padding: 0 20px;
+	font-weight: bold;
+	position: relative;
+}
+.caution_sub_title:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top: 0;
+	left: 0;
+	margin-right: 5px;
+	background: url("http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png")
+				left top no-repeat;
+	background-size: cover;
+}
+.caution_content {
+	width: 600px;
+	line-height: 25px;
+}
+.reservation_number, .reservation_print {
+	padding: 5px 15px;
+	border: 1px solid darkgray;
+	border-radius: 30px;
+	font-size: 14px;
+}
+.reservation_number {
+	margin-left: 420px;
+}
+.reservation_print:hover {
+	cursor: pointer;
+}
+
+
+
+/********** map **********/
+/********** map **********/
+div.modal{
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding: 0;
+ 	top: 0;
+	left: 0;
+	background: white;
+	z-index: 999;
+}
+button.exit{
+	position: absolute;
+	display: inline-block;
+	width: 40px; 
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	border-radius: 2px;
+	margin: 10px; 
+	padding: 0;
+	top: 50px;
+	right: 0; 
+	font-size: 40px;
+	color: gray;
+	background: rgba(255,255,255,0.9);
+    box-shadow: darkgrey 1px 1px 1px 0px;
+	cursor: pointer;
+    z-index: 999;
+}
+#google-map {
+	width: 100%;
+	height: 100%;
+}
+
+.map_room_info {
+	width: 500px;
+	height: 200px;
+	box-sizing: border-box;
+}
+.map_room_info div {
+	float: left;
+	display: inline-block;
+	box-sizing: border-box;
+}
+.map_room_img {
+	width: 200px;
+	height: 100%;
+	overflow: hidden;
+}
+.map_room_img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.map_room_detail {
+	padding: 10px 15px;
+	width: calc(100% - 200px);
+	height: 100%;
+}
+.map_room_detail p {
+	margin: 5px;
+	text-align: left;
+}
+.map_room_name {
+	font-size: 22px;
+	font-weight: bold;
+}
+.map_room_msg {
+	font-size: 17px;
+	font-weight: bold;
+	color: royalblue;
+}
+.map_room_price {
+	font-weight: bold;
+	font-size: 17px;
+	padding-top: 50px;
+}
+.map_room_detail a {
+	display: inline-block;
+	padding: 3px 13px;
+	text-decoration: none;
+	color: white;
+	background: steelblue;
+	border-radius: 20px;
+	font-size: 13px;
+	margin-left: 50px;
+}
+
+
+/********** 프린트 영역 설정 **********/
+/********** 프린트 영역 설정 **********/
+.print_area {
+	display: none;
+}
+@media print {
+	#header, #footer, .no_print {
+		display: none;
+	}
+	.print_area {
+		display: block;
+		font-size: 25px;
+	}
+	.print_area.title {
+		font-size: 35px;
+	}
+	.payment_wrap {
+		border: none;
+		width: 1000px;
+		font-size: 18px;
+	}
+	@page {
+		margin: 0;
+	}
+}
