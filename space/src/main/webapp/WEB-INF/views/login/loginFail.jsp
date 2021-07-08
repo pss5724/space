@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/mycgv/css/mycgv.css">
-<script src="http://localhost:9000/mycgv/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/mycgv/js/mycgv.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/login.css">
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/space/js/space.js"></script>
 
 </head>
 <body>
