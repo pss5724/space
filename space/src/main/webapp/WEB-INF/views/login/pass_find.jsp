@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,28 +21,22 @@
 		<!-- center_section_login -->
 		<div class="center_section_login">
 			<div class="center_box">
-				<form name="login_form" action="login_check.do" method="post" class="content_layout">
+				<form name="passwordForm" action="pass_find_check.do" method="post" class="content_layout">
 					<div class="login_box">
-						<p class="login_tit">로그인</p>
+						<p class="login_tit">비밀번호 찾기</p>
 						<ul class="login_top">
 							<li class="id">
 								<input type="email" name="email" placeholder="이메일" value title="이메일 입력">
 							</li>
-							<li class="pass">
-								<input type="password" name="password" placeholder="비밀번호" value title="비밀번호 입력">
-							</li>
 						</ul>
-						<div class="login_middle">
-							<div class="login_middle_left">
-								<a href="http://localhost:9000/space/join_main.do">회원가입</a>
-							</div>
-							<div class="login_middle_right">
-								<a href="http://localhost:9000/space/pass_find.do">비밀번호 찾기</a>
-							</div>
-						</div>
-						<a id="loginEmail" class="login_btn" href="#">이메일로 로그인</a>
-						<a id="loginNaver" class="naver_login_btn" href="#"><img src="http://localhost:9000/space/images/naver_btn_text.png">로그인</a>
-						<p class="login_comment">*기업, 파트너스 회원가입은 일반 회원가입으로 진행해주시길 바랍니다.</p>
+						<%-- <c:choose>
+						<c:when>
+						<a id="loginEmail" class="login_btn" onclick="alert('이메일을 입력해주세요.')">비밀번호 찾기</a>
+						</c:when>
+						<c:otherwise> --%>
+						<a id="loginEmail" class="login_btn" onclick="alert('임시 비밀번호를 이메일로 보냈습니다.')">비밀번호 찾기</a>
+						<%-- </c:otherwise>
+						</c:choose>	 --%>					
 					</div>
 				</form>
 			</div>		

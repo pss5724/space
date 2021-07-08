@@ -38,7 +38,7 @@
 								</div>
 								<div class="join_write_list_s">
 									<div class="normal_ipt_box">
-										<input type="text" name="id" class="i1" id="id">
+										<input type="text" name="name" placeholder="이름" class="i1" id="name">
 									</div>
 								</div>
 							</li>
@@ -49,7 +49,7 @@
 								</div>
 								<div class="join_write_list_s">
 									<div class="normal_ipt_box">
-										<input type="text" name="email" class="i1" id="email">
+										<input type="text" name="id" placeholder="이메일" class="i1" id="id">
 									</div>
 								</div>
 							</li>
@@ -60,7 +60,7 @@
 								</div>
 								<div class="join_write_list_s">
 									<div class="normal_ipt_box">
-										<input type="password" name="pass" class="i1" id="pass">
+										<input type="password" name="pass" placeholder="비밀번호" class="i1" id="pass">
 									</div>
 								</div>
 							</li>
@@ -71,7 +71,7 @@
 								</div>
 								<div class="join_write_list_s">
 									<div class="normal_ipt_box">
-										<input type="password" name="cpass" class="i1" id="cpass" onblur="passCheck()">
+										<input type="password" name="cpass" placeholder="비밀번호 확인" class="i1" id="cpass" onblur="passCheck()">
 										<div id="msg"></div>
 									</div>
 								</div>
@@ -83,7 +83,7 @@
 								</div>
 								<div class="join_write_list_s">
 									<div class="normal_ipt_box join_write_hp">
-										<input type="text" name="hp" class="i1" id="hp" >
+										<input type="text" name="hp" placeholder="휴대폰 번호" class="i1" id="hp" >
 									</div>
 										<button type="button" class="btn_hp" id="hpcheck">휴대폰 인증</button>
 								</div>

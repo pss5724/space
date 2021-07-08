@@ -31,11 +31,11 @@
 							<ul class="join_write_list">
 								<li>
 									<div class="join_write_list_f">
-										<span>*</span> 아이디
+										<span>*</span> 이름
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="id" class="i1" id="id">
+											<input type="text" name="name" placeholder="이름" class="i1" id="name">
 										</div>
 									</div>
 								</li>
@@ -45,7 +45,7 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="email" class="i1" id="email">
+											<input type="text" name="id" placeholder="이메일" class="i1" id="id">
 										</div>
 									</div>
 								</li>
@@ -55,7 +55,7 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="password" name="pass" class="i1" id="pass">
+											<input type="password" name="pass" placeholder="비밀번호" class="i1" id="pass">
 										</div>
 									</div>
 								</li>
@@ -65,7 +65,7 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="password" name="cpass" class="i1" id="cpass"
+											<input type="password" name="cpass" placeholder="비밀번호 확인" class="i1" id="cpass"
 												onblur="passCheck()">
 											<div id="msg"></div>
 										</div>
@@ -77,7 +77,7 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box join_write_hp">
-											<input type="text" name="hp" class="i1" id="hp">
+											<input type="text" name="hp" placeholder="휴대폰 번호" class="i1" id="hp">
 										</div>
 										<button type="button" class="btn_hp" id="hpcheck">휴대폰
 											인증</button>
@@ -93,7 +93,7 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="president" class="i1" id="president">
+											<input type="text" name="president" placeholder="대표자명" class="i1" id="president">
 										</div>
 									</div>
 								</li>
@@ -103,7 +103,7 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="cname" class="i1" id="cname">
+											<input type="text" name="cname" placeholder="상호명" class="i1" id="cname">
 										</div>
 									</div>
 								</li>
@@ -123,7 +123,7 @@
 									<div class="join_write_list_f">사업자주소</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box join_write_addr">
-											<input type="text" name="address1" class="i1" id="address1"
+											<input type="text" name="address1" placeholder="주소" class="i1" id="address1"
 												title="주소">
 										</div>
 										<button class="join_address_btn" type="button"
@@ -142,7 +142,7 @@
 									<div class="join_write_list_f">대표번호</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="tel" id="tel">
+											<input type="text" name="tel" placeholder="대표번호 입력" id="tel">
 										</div>
 									</div>
 								</li>

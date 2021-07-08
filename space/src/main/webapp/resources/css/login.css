@@ -27,10 +27,6 @@ body {
     color: #222222;
 }
 
-.container{
-	padding-top: 100px
-}
-
 .container:after {
     content: '';
     display: block;

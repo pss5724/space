@@ -10,9 +10,6 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     border: none;
 }
 
-.container{
-	padding-top: 100px
-}
 
 .container:after {
     content: '';
