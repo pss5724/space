@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script>
 //gnb
 $(function(){
