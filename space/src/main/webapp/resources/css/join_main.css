@@ -1,0 +1,226 @@
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body, button, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, table, td, th, tr, ul {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+}
+
+div {
+    display: block;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+body {
+    font-size: 16px;
+    color: #222222;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.hidden {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.container{
+	padding-top: 100px
+}
+
+
+.container:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: 400;
+}
+
+.center_section_join {
+    padding: 140px 0 160px;
+}
+
+.center_box {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.join_box {
+    width: 720px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    border-bottom: 1px solid #dddddd;
+}
+
+.join_tit_box {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #181818;
+    font-weight: bold;
+}
+
+.join_tit {
+    font-size: 28px;
+    line-height: 24px;
+    color: #222222;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.join_stit {
+    margin-top: 13px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #444444;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.join_list {
+    width: 420px;
+    margin: 40px auto 0;
+    font-weight: bold;
+}
+
+.join_list:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.join_list li {
+    float: left;
+}
+
+.join_list li + li + li {
+    margin-top: 20px;
+}
+
+.join_list01 {
+    width: calc(50% - 10px);
+}
+
+.join_list02 {
+    width: calc(50% - 10px);
+    margin-left: 20px;
+}
+
+.join_list03 {
+    width: 100%;
+}
+
+.join_list li a {
+    display: block;
+    box-sizing: border-box;
+    border: 10px solid #f4f4f4;
+    border-radius: 10px;
+}
+.join_list01 a {
+    height: 200px;
+    padding-top: 41px;
+}
+
+.join_list02 a {
+    height: 200px;
+    padding-top: 41px;
+}
+
+.join_list03 a {
+    height: 120px;
+    padding-top: 26px;
+    font-size: 0;
+    text-align: center;
+}
+
+.join_list li a p {
+    font-size: 16px;
+    line-height: 20px;
+    color: #909090;
+    letter-spacing: -1px;
+}
+.join_list01 a p {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.join_list02 a p {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.join_list03 a p {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px 0 0 15px;
+    text-align: left;
+}
+
+.join_list li a p span {
+    display: block;
+    font-family: "nanumsquare-r";
+    font-size: 14px;
+}
+
+.join_list01 a:before {
+    content: '';
+    display: block;
+    height: 51px;
+    background: url(http://localhost:9000/space/images/join_list01_off.png) no-repeat center;
+}
+
+.join_list02 a:before {
+    content: '';
+    display: block;
+    height: 51px;
+    background: url(http://localhost:9000/space/images/join_list02_off.png) no-repeat center;
+}
+
+.join_list03 a:before {
+    content: '';
+    display: inline-block;
+    vertical-align: top;
+    width: 58px;
+    height: 51px;
+    background: url(http://localhost:9000/space/images/join_list03_off.png) no-repeat center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

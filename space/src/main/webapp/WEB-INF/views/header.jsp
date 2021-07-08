@@ -132,8 +132,8 @@ $(function(){
 			
 			
 			<ul class="gnb_etc">
-					<li><a href="#">회원가입</a></li>
-					<li><a href="#">로그인</a></li>
+					<li><a href="http://localhost:9000/space/join_main.do">회원가입</a></li>
+					<li><a href="http://localhost:9000/space/login.do">로그인</a></li>
 					<li><a href="#">나의 회의실</a></li>
 			</ul>
 
