@@ -635,11 +635,11 @@
 }
 
 /* 예약하기 버튼 */
-.room_content .r_button, .room_content .c_button {
-	text-align: right;
+.room_content .r_button {
 	padding: 0 10px 20px 10px;
 	display: flex;
 	justify-content: space-between;
+	display: none;
 }
 .room_content #btn_reserve, .room_content #btn_update {
 	padding: 10px;
@@ -665,7 +665,12 @@
 	cursor: pointer;
 }
 .room_content .c_button {
-	display: none;
+	display: block;
+	padding: 0 10px 20px 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.room_content .r_button {
 }
 .room_content .c_button>div{
 	display: inline-block;
