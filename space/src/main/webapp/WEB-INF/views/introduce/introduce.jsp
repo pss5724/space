@@ -17,6 +17,44 @@
 
 </style>
 <script>
+$(function(){
+	var initViewTop = $(window).scrollTop(),
+		initViewHeight = $(window).outerHeight(true),
+		initViewBottom = initViewTop + initViewHeight;
+
+	$('.s_obj').each(function(){
+		var initElementTop = $(this).offset().top,
+			initElementHeight = $(this).outerHeight(),
+			initElementBottom = initElementTop + initElementHeight;
+
+		if(((initElementTop <= initViewBottom) && (initElementBottom >= initViewTop))) {
+			$(this).removeClass('active');
+		} else {
+			$(this).addClass('active');
+		}
+	});
+
+	$(window).on("mousewheel scroll", function(){
+		var viewTop = $(this).scrollTop(),
+			viewHeight = $(this).outerHeight(true),
+			viewBottom = viewTop + viewHeight;
+
+		$('.s_obj').each(function(){
+			var elementTop = $(this).offset().top,
+				elementHeight = $(this).outerHeight(),
+				elementBottom = elementTop + elementHeight;
+
+			if(((elementTop <= viewBottom) && (elementBottom >= viewTop))) {
+				$(this).removeClass('active');
+			}
+			// else {
+			// 	$(this).addClass('active');
+			// }
+		});
+	});
+});
+
+
 	$(function(){
 		var count01 = $('#count01').html(),
 			count02 = $('#count02').html(),
@@ -61,7 +99,7 @@
 	<div class="container">
 		<h2 id="content" class="hidden">콘텐츠 영역</h2>
 			<div class="sub_visual introduce">
-			<h3>회의실닷컴은
+			<h3>스페이스닷컴은
 				<span>회의실 운영 전문가들이 파트너사를 대신하여 회의시설 보유자와 <br>
                     이용고객을 이어주는 국내 최초 회의실 매칭 플랫폼입니다.</span>
 			</h3>
@@ -71,7 +109,7 @@
 		<!-- s sub_tab -->
 		<div class="sub_tab_box">
 			<ul class="sub_tab">
-				<li class="on"><a href="#">회의실닷컴 소개</a></li>
+				<li class="on"><a href="#">스페이스닷컴 소개</a></li>
 				<li><a href="http://localhost:9000/space/guide.do">이용안내</a></li>
 				<li><a href="http://localhost:9000/space/partner.do">파트너 등록 안내</a></li>
 			</ul>
@@ -84,7 +122,7 @@
 				<div class="sub_section_introduce01_img_box motion s_obj opa_obj01 active"><img src="http://localhost:9000/space/images/sub_section_introduce01_img01.jpg" alt=""></div>
 				<p class="sub_section_introduce01_tit motion s_obj bottom_obj01 active">저희는 고객이 원하는 니즈에 맞춰 <br>
 					<span>최적의 조건을 갖춘 회의실</span>을 찾고자 노력합니다.</p>
-				<p class="sub_section_introduce01_text">회의실닷컴은 어느 지역에서나 회의실을 검색하고 예약할 수 있는 국내 최대의 회의실 예약 플랫폼으로 <br>
+				<p class="sub_section_introduce01_text">스페이스닷컴은 어느 지역에서나 회의실을 검색하고 예약할 수 있는 국내 최대의 회의실 예약 플랫폼으로 <br>
 					2019년 2월 서비스를 시작으로 매년 성장을 지속하고 있습니다. 다년간 회의실을 직접 운영한 전문가들이 <br>
 					선정한 회의실을 고객의 요구에 맞추어 파트너사와 직접 연결 시켜주는 새로운 형태의 플랫폼입니다.</p>
 			</div>
@@ -133,7 +171,7 @@
 		<!-- s sub_section -->
 		<div class="sub_section sub_section_introduce03">
 			<div class="center_box motion s_obj bottom_obj01 active">
-				<p class="sub_section_introduce03_tit">회의실닷컴과 직접 <span class="sub_section_introduce03_tit_bold"><span>회의실 예약 시 비교</span></span></p>
+				<p class="sub_section_introduce03_tit">스페이스닷컴과 직접 <span class="sub_section_introduce03_tit_bold"><span>회의실 예약 시 비교</span></span></p>
 				<div class="sub_section_introduce03_img_box"><img src="http://localhost:9000/space/images/sub_section_introduce03_img01.png"></div>
 			</div>
 		</div>

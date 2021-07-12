@@ -11,7 +11,44 @@
 <script src="http://localhost:9000/space/js/space_javascript.js"></script>
 <script src="http://localhost:9000/space/js/jquery.countup.min.js"></script>
 <script src="http://localhost:9000/space/js/jquery.countup.js"></script>
+<script>
+$(function(){
+	var initViewTop = $(window).scrollTop(),
+		initViewHeight = $(window).outerHeight(true),
+		initViewBottom = initViewTop + initViewHeight;
 
+	$('.s_obj').each(function(){
+		var initElementTop = $(this).offset().top,
+			initElementHeight = $(this).outerHeight(),
+			initElementBottom = initElementTop + initElementHeight;
+
+		if(((initElementTop <= initViewBottom) && (initElementBottom >= initViewTop))) {
+			$(this).removeClass('active');
+		} else {
+			$(this).addClass('active');
+		}
+	});
+
+	$(window).on("mousewheel scroll", function(){
+		var viewTop = $(this).scrollTop(),
+			viewHeight = $(this).outerHeight(true),
+			viewBottom = viewTop + viewHeight;
+
+		$('.s_obj').each(function(){
+			var elementTop = $(this).offset().top,
+				elementHeight = $(this).outerHeight(),
+				elementBottom = elementTop + elementHeight;
+
+			if(((elementTop <= viewBottom) && (elementBottom >= viewTop))) {
+				$(this).removeClass('active');
+			}
+			// else {
+			// 	$(this).addClass('active');
+			// }
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -23,7 +60,7 @@
 		<h2 id="content" class="hidden">콘텐츠 영역</h2>
 				<!-- s sub_visual -->
 		<div class="sub_visual introduce">
-			<h3>회의실닷컴은
+			<h3>스페이스닷컴은
 				<span>회의실 운영 전문가들이 파트너사를 대신하여 회의시설 보유자와 <br>
                     이용고객을 이어주는 국내 최초 회의실 매칭 플랫폼입니다.</span>
 			</h3>
@@ -33,7 +70,7 @@
 		<!-- s sub_tab -->
 		<div class="sub_tab_box">
 			<ul class="sub_tab">
-				<li><a href="http://localhost:9000/space/introduce.do">회의실닷컴 소개</a></li>
+				<li><a href="http://localhost:9000/space/introduce.do">스페이스닷컴 소개</a></li>
 				<li class="on"><a href="#">이용안내</a></li>
 				<li><a href="http://localhost:9000/space/partner.do">파트너 등록 안내</a></li>
 			</ul>
@@ -43,7 +80,7 @@
 		<!-- s sub_section -->
 		<div class="sub_section sub_section_useguide01">
 			<div class="center_box">
-				<p class="sub_section_useguide01_tit motion s_obj right_obj02 active">회의실닷컴 <span>이용안내</span></p>
+				<p class="sub_section_useguide01_tit motion s_obj right_obj02 active">스페이스닷컴 <span>이용안내</span></p>
 				<p class="sub_section_useguide01_text motion02 s_obj opa_obj01 active">스마트폰 앱을 설치하면 더욱 편리하게 회의실 예약을 이용할 수 있습니다.</p>
 				<div class="sub_section_useguide01_list_box">
 					<ul class="sub_section_useguide01_list">

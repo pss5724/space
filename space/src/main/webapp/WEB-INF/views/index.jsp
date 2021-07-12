@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/carousel.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/jquery.simple-dtpicker.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:9000/space/css/slick-theme.css"/>
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -15,7 +17,8 @@
 <script src="http://localhost:9000/space/js/jquery.countup.min.js"></script>
 <script src="http://localhost:9000/space/js/jquery.countup.js"></script>
 <script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
-<script src="http://localhost:9000/space/js/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
 <script>
 </script>
 <style>
@@ -42,9 +45,13 @@ header {
 	margin-bottom:30px;
 	font-size:0;
 }
-.main_visual_text_box_logo {
+.main_visual_text_box_logo{
 	display:inline-block;
-	vertical-align:top;
+}
+.main_visual_text_box_logo span{
+	font-size:42px;
+	font-weight:bold;
+	color:#ffffff;
 }
 .main_visual_text_box_text {
 	position:relative;
@@ -52,7 +59,6 @@ header {
 	vertical-align:top;
 	padding-left:19px;
 	margin-left:18px;
-	font-family:"nanumsquare-r";
 	font-size:18px;
 	line-height:26px;
 	color:#ffffff;
@@ -83,14 +89,6 @@ header {
 	font-size:0;
 }
 
-.main_visual_search_text {
-	width:calc(100% - 33px);
-	height:18px;
-	margin-left:15px;
-	vertical-align:top;
-	border:none;
-	background:none;
-}
 
 
 /* } */
@@ -134,13 +132,28 @@ header {
 	text-align:center;
 }
 /* }  */
+/* { */
 
+.section  {
+	width:100%;
+	min-width:1280px;
+	position:relative;
+	display:inline-block;
+}
+.section_center_box, .sub_section {
+	width:1200px;
+	margin:0 auto;
+}
+.section01 .section_center_box{
+	height:300px;
+	}
+/* }  */
 /************************* carousel *****************************************/
-#demo, .section  {
+#demo {
 	width:100%;
 	min-width:1280px;
 }
-#demo, .section_center_box, .center_box {
+#demo {
 	width:1200px;
 	margin:0 auto;
 	}
@@ -150,34 +163,32 @@ header {
 }
 .carousel-inner img {
 	border-radius:7px;
-
 }
-
 /********************************end carousel *********************************/
 
-/* 02 */
 
+/*02 { */
 .section.section02 {
 	padding:95px 0 100px;
 	background:#ffffff;
 }
-/*02*/
+/* } 02 */
 
-/*03*/
+/* 03 { */
 .section.section03 {
 	padding:75px 0 80px;
 	background:url('http://localhost:9000/space/images/main_section03_bg.jpg') no-repeat center;
-}
-/* 03*/
 
-/* 04*/
+}
+/* }03 */
+
+/*  { */
 .section.section04 {
 	padding:75px 0 25px;
 }
+/* }04 */
 
-/*04 */
-
-/* 05*/
+/* 05 { */
 .section.section05 {
 	position:relative;
 	height:340px;
@@ -224,9 +235,9 @@ header {
 	background:none;
 	border:4px solid #413f3f;
 }
-/* 05 */
+/* } 05 */
 
-/*06 */
+/* 06 { */
 .section.section06 {
 	padding:55px 0 65px;
 }
@@ -249,7 +260,6 @@ header {
 .main_section06_content_box_tit {
 	padding-top:90px;
 	padding-left:70px;
-	font-family:"nanumsquare-r";
 	font-size:42px;
 	line-height:52px;
 	color:#252626;
@@ -268,7 +278,7 @@ header {
 	display:block;
 	width:29px;
 	height:41px;
-	background:url('http:/localhost:9000/space/images/main_section06_content_box_tit_mark.png') no-repeat left top;
+	background:url('http://localhost:9000/space/images/main_section06_content_box_tit_mark.png') no-repeat left top;
 	position:absolute;
 	top:3px;
 	right:-34px;
@@ -308,6 +318,7 @@ header {
 }
 .main_section06_content_box_list_num {
 	display:block;
+	font-family:"nanumsquare-l";
 	font-size:55px;
 	line-height:55px;
 	color:#3a7fb9;
@@ -317,334 +328,14 @@ header {
 .main_section06_content_box_list_text {
 	display:block;
 	margin-top:10px;
+	font-family:"nanumsquare-b";
 	font-size:18px;
 	line-height:18px;
 	color:#252626;
 	letter-spacing:-2px;
 	text-align:center;
 }
-
-/* 리스트 { */
-.cont_list:after {
-	content:'';
-	display:block;
-	clear:both;
-}
-.cont_list > li {
-	float:left;
-	width:285px;
-	height:400px;
-	margin-left:20px;
-}
-.cont_list > li:nth-of-type(4n + 1) {
-	margin-left:0;
-}
-.cont_list.type02 > li {
-	width:283px;
-	height:400px;
-	margin-left:20px;
-}
-.cont_list.type02 > li:nth-of-type(3n + 1) {
-	margin-left:0;
-}
-.cont_list.type02 > li + li + li + li {
-	margin-top:20px;
-}
-
-.move_box {
-	overflow:hidden;
-	display:block;
-	border-radius:15px;
-	transition:transform 0.5s;
-	width:300px;
-	
-}
-.cont_list > li.on .move_box {
-	-webkit-transform:translateY(-10px);
-	-moz-transform:translateY(-10px);
-	-ms-transform:translateY(-10px);
-	-o-transform:translateY(-10px);
-	transform:translateY(-10px);
-	-webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.05);
-	-moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.05);
-	box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.05);
-}
-
-.cont_list_thum {
-	position:relative;
-	z-index:1;
-	width:100%;
-	height:200px;
-}
-.cont_list_thum_cover {
-	box-sizing:border-box;
-	display:block;
-	position:absolute;
-	width:200px;
-	height:40px;
-	padding:4px 0;
-	font-family:"nanumsquare-r";
-	font-size:12px;
-	line-height:15px;
-	color:#ffffff;
-	text-align:center;
-	-webkit-transform:rotate(-45deg);
-	-moz-transform:rotate(-45deg);
-	-ms-transform:rotate(-45deg);
-	-o-transform:rotate(-45deg);
-	transform:rotate(-45deg);
-	left:-50px;
-	top:32px;
-	background:url('http://localhost:9000/space/images/cont_list_thum_cover_bg.jpg') repeat-y left top;
-}
-.cont_list_thum .heart_btn {
-	width:30px;
-	height:30px;
-	position:absolute;
-	right:10px;
-	bottom:10px;
-	border:none;
-	background:url('http://localhost:9000/space/images/heart_off.png') no-repeat left top;
-}
-.cont_list_thum .heart_btn.on {
-	background:url('http://localhost:9000/space/images/heart_on.png') no-repeat left top;
-}
-
-.cont_list_detail {
-	position:relative;
-	z-index:0;
-	box-sizing:border-box;
-	height:215px;
-	padding:32px 17px 17px;
-	margin-top:-15px;
-	border-radius:15px;
-	border:1px solid #ebebeb;
-	background:#ffffff;
-	font-weight:bold;
-}
-.cont_list_detail_tit {
-	width:100%;
-	font-size:20px;
-	line-height:20px;
-	color:#252626;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-}
-.cont_list_detail_stit {
-	width:100%;
-	margin-bottom:8px;
-	font-size:15px;
-	line-height:15px;
-	color:#3875e6;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-	letter-spacing:-1px;
-}
-
-.cont_list_detail_info {
-	margin-top:38px;
-}
-.cont_list_detail_info_l {
-}
-.cont_list_detail_info_l li {
-	position:relative;
-	display:inline-block;
-	padding-left:14px;
-	margin-right:32px;
-	font-size:14px;
-	line-height:14px;
-	color:#444444;
-	vertical-align:top;
-}
-.cont_list_detail_info_l .mark:before {
-	content:'';
-	display:block;
-	width:11px;
-	height:15px;
-	position:absolute;
-	left:0;
-	top:0;
-	background:url('http://localhost:9000/space/images/cont_list_detail_info01.png') no-repeat left top;
-}
-.cont_list_detail_info_l .subway:before {
-	content:'';
-	display:block;
-	width:12px;
-	height:14px;
-	position:absolute;
-	left:0;
-	top:0;
-	background:url('http://localhost:9000/space/images/images/cont_list_detail_info02.png') no-repeat left top;
-}
-.cont_list_detail_info_m {
-	box-sizing:border-box;
-	width:100%;
-	position:relative;
-	padding-left:14px;
-	font-family:"nanumsquare-b";
-	font-size:14px;
-	line-height:14px;
-	color:#444444;
-	vertical-align:top;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-}
-.cont_list_detail_info_m:before {
-	content:'';
-	display:block;
-	width:12px;
-	height:14px;
-	position:absolute;
-	left:0;
-	top:0;
-	background:url('http://localhost:9000/space/images/cont_list_detail_info03.png') no-repeat left top;
-}
-
-.cont_list_detail_ps {
-	width:calc(100% - 34px);
-	display:table;
-	position:absolute;
-	left:17px;
-	bottom:16px;
-}
-.cont_list_detail_ps p {
-	display:table-cell;
-	width:50%;
-	vertical-align:middle;
-}
-.cont_list_detail_ps_p {
-	font-size:18px;
-	line-height:18px;
-	color:#222222;
-}
-.cont_list_detail_ps_p span {
-	font-size:14px;
-	line-height:18px;
-	color:#444444;
-	vertical-align:middle;
-}
-.cont_list_detail_ps_s {
-	text-align:right;
-	padding-bottom:5px;
-}
-.cont_list_detail_ps_s span {
-	font-size:14px;
-	line-height:18px;
-	color:#666666;
-	vertical-align:middle;
-}
-.cont_list_detail_ps_s img {
-	vertical-align:middle;
-}
-.cont_list_div_wrap {
-	position:relative;
-}
-.cont_list_div .slick-list {
-	padding-top:10px;
-	margin-top:-10px;
-}
-.cont_list_div > div > div > div {
-	float:left;
-	width:100px;
-	height:400px;
-	margin-left:20px;
-}
-.cont_list_div > div > div > div.on .move_box {
-	-webkit-transform:translateY(-10px);
-	-moz-transform:translateY(-10px);
-	-ms-transform:translateY(-10px);
-	-o-transform:translateY(-10px);
-	transform:translateY(-10px);
-	-webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.05);
-	-moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.05);
-	box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.05);
-}
-.cont_list_div > div > div > div img {
-	display:inline-block;
-}
-
-.cont_list_div_wrap .left, .cont_list_div_wrap .right {
-	box-sizing:border-box;
-	display:block;
-	width:40px;
-	height:40px;
-	margin-top:-20px;
-	border:none;
-	position:absolute;
-	top:50%;
-	z-index:1;
-	border-radius:20px;
-	border:1px solid #c6c6c6;
-}
-.cont_list_div_wrap .left {
-	left:-60px;
-	background:url('http://localhost:9000/space/images/item_viewbox_top_slide_left.png') no-repeat center;
-}
-.cont_list_div_wrap .right {
-	right:-60px;
-	background:url('http://localhost:9000/space/images/item_viewbox_top_slide_right.png') no-repeat center;
-}
-
-/* } 리스트 */
-
-/* 효과 { */
-.s_obj.active.left_obj01 {
-	-webkit-transform: translateX(-30%) translateY(50px);
-	-ms-transform: translateX(-30%) translateY(50px);
-	-o-transform: translateX(-30%) translateY(50px);
-	transform: translateX(-30%) translateY(50px);
-}
-.s_obj.active.right_obj01 {
-	-webkit-transform: translateX(30%) translateY(50px);
-	-ms-transform: translateX(30%) translateY(50px);
-	-o-transform: translateX(30%) translateY(50px);
-	transform: translateX(30%) translateY(50px);
-}
-.s_obj.active.left_obj02 {
-	-webkit-transform: translateX(-30%);
-	-ms-transform: translateX(-30%);
-	-o-transform: translateX(-30%);
-	transform: translateX(-30%);
-}
-.s_obj.active.right_obj02 {
-	-webkit-transform: translateX(30%);
-	-ms-transform: translateX(30%);
-	-o-transform: translateX(30%);
-	transform: translateX(30%);
-}
-.s_obj.active.top_obj01 {
-	-webkit-transform:translateY(-50%);
-	-ms-transform:translateY(-50%);
-	-o-transform:translateY(-50%);
-	transform:translateY(-50%);
-	opacity:0.5;
-}
-.s_obj.active.bottom_obj01 {
-	-webkit-transform:translateY(30px);
-	-ms-transform:translateY(30px);
-	-o-transform:translateY(30px);
-	transform:translateY(30px);
-	opacity:0.5;
-}
-.s_obj.active.opa_obj01 {
-	opacity:0.1;
-}
-.motion {
-	-webkit-transition: all .5s ease-in-out;
-	-ms-transition: all .5s ease-in-out;
-	-o-transition: all .5s ease-in-out;
-	transition: all .5s ease-in-out;
-}
-.motion02 {
-	-webkit-transition: all 1s ease-in-out;
-	-ms-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
-}
-/* } 효과 */
+/* }06 */
 .sub_section.sub_section_videoconference01 {
 	padding:100px 0 150px;
 }
@@ -662,7 +353,6 @@ header {
 	padding:120px 0 0 60px;
 }
 .sub_section_videoconference01_contentbox_tit {
-	font-family:"nanumsquare-l";
 	font-size:42px;
 	line-height:54px;
 	color:#252626;
@@ -676,7 +366,6 @@ header {
 	width:200px;
 	margin-top:32px;
 	border-radius:50px;
-	font-family:"nanumsquare-b";
 	font-size:15px;
 	line-height:50px;
 	color:#ffffff;
@@ -877,7 +566,46 @@ button.up {
 /* } 검색 상자 */
 </style>
 <script>
-function section01Slider() {
+//Animation 활성화
+$(function(){
+	var initViewTop = $(window).scrollTop(),
+		initViewHeight = $(window).outerHeight(true),
+		initViewBottom = initViewTop + initViewHeight;
+
+	$('.s_obj').each(function(){
+		var initElementTop = $(this).offset().top,
+			initElementHeight = $(this).outerHeight(),
+			initElementBottom = initElementTop + initElementHeight;
+
+		if(((initElementTop <= initViewBottom) && (initElementBottom >= initViewTop))) {
+			$(this).removeClass('active');
+		} else {
+			$(this).addClass('active');
+		}
+	});
+
+	$(window).on("mousewheel scroll", function(){
+		var viewTop = $(this).scrollTop(),
+			viewHeight = $(this).outerHeight(true),
+			viewBottom = viewTop + viewHeight;
+
+		$('.s_obj').each(function(){
+			var elementTop = $(this).offset().top,
+				elementHeight = $(this).outerHeight(),
+				elementBottom = elementTop + elementHeight;
+
+			if(((elementTop <= viewBottom) && (elementBottom >= viewTop))) {
+				$(this).removeClass('active');
+			}
+			// else {
+			// 	$(this).addClass('active');
+			// }
+		});
+	});
+});
+
+//슬라이더 기능
+$(function(){
 	$('.main_section01_slide_box').slick({
 		dots:true,
 		arrows:false,
@@ -885,24 +613,10 @@ function section01Slider() {
 		slidesToShow:1,
 		slidesToScroll:1,
 		speed:300,
-		autoplay:true,
+		autoplay: true,
 		autoplaySpeed: 6000
 	});
-}
-function section05Slider() {
-	$('.main_section05_slide_box').slick({
-		dots:true,
-		arrows:false,
-		infinite:true,
-		slidesToShow:1,
-		slidesToScroll:1,
-		speed:300,
-		autoplay:true,
-		autoplaySpeed: 5000
-	});
-}
 
-function mainSlider01() {
 	$('.md_slider').slick({
 		dots:false,
 		arrows:true,
@@ -918,8 +632,6 @@ function mainSlider01() {
 		variableWidth:true,
 		focusOnSelect:true
 	});
-}
-function mainSlider02() {
 	$('.popularity_slider').slick({
 		dots:false,
 		arrows:true,
@@ -935,8 +647,6 @@ function mainSlider02() {
 		variableWidth:true,
 		focusOnSelect:true
 	});
-}
-function mainSlider03() {
 	$('.discount_slider').slick({
 		dots:false,
 		arrows:true,
@@ -952,10 +662,12 @@ function mainSlider03() {
 		variableWidth:true,
 		focusOnSelect:true
 	});
-}
+});
+
+
 
 //숫자 카운트 
- $(function(){
+$(function(){
 		var count01 = $('#count01').html(),
 		count02 = $('#count02').html(),
 		count03 = $('#count03').html();
@@ -985,46 +697,8 @@ function mainSlider03() {
 	});
 
 });
- $(function(){
-		var initViewTop = $(window).scrollTop(),
-			initViewHeight = $(window).outerHeight(true),
-			initViewBottom = initViewTop + initViewHeight;
-
-		$('.s_obj').each(function(){
-			var initElementTop = $(this).offset().top,
-				initElementHeight = $(this).outerHeight(),
-				initElementBottom = initElementTop + initElementHeight;
-
-			if(((initElementTop <= initViewBottom) && (initElementBottom >= initViewTop))) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');
-			}
-		});
-
-		$(window).on("mousewheel scroll", function(){
-			var viewTop = $(this).scrollTop(),
-				viewHeight = $(this).outerHeight(true),
-				viewBottom = viewTop + viewHeight;
-
-			$('.s_obj').each(function(){
-				var elementTop = $(this).offset().top,
-					elementHeight = $(this).outerHeight(),
-					elementBottom = elementTop + elementHeight;
-
-				if(((elementTop <= viewBottom) && (elementBottom >= viewTop))) {
-					$(this).removeClass('active');
-				}
-				// else {
-				// 	$(this).addClass('active');
-				// }
-			});
-		});
-	});
- 
  // 검색 기능
  $(document).ready(function() {
-		
 		$("html").click(function(e) { 
 			if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data *") && !$(e.target).is("label input") 
 					&& !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
@@ -1114,7 +788,7 @@ function mainSlider03() {
 	<div class="visual">
 		<div class="visual_box">
 			<div class="main_visual_text_box">
-				<div class="main_visual_text_box_logo"><img src="http://localhost:9000/space/images/main_visual_logo.png" width=133px; height=27px; alt="회의실닷컴"></div>
+				<div class="main_visual_text_box_logo"><span>스페이스닷컴</span></div>
 				<p class="main_visual_text_box_text"><span>회의실의 모든 것. 비즈니스 모임공간 최저가로 한번에 비교! <br>
                         국내 최초 회의실 매칭 플랫폼</span></p>
 			</div>
@@ -1242,7 +916,7 @@ function mainSlider03() {
 	</div>
 	<!-- e main_visual -->
 	
-			<!-- 캐러셀 시작 -->
+				<!-- 캐러셀 시작 -->
 		<div id="demo" class="carousel slide" data-ride="carousel">
 		
 		<!-- Indicators -->
@@ -1287,6 +961,7 @@ function mainSlider03() {
 	<!-- 캐러셀종료 -->
 
 
+
 	<!-- s main_section02 -->
 	<div class="section section02">
 		<div class="section_center_box">
@@ -1299,7 +974,7 @@ function mainSlider03() {
 				<button class="left" type="button" title="이전"></button>
 				<div class="md_slider cont_list_div hf_effect02">
 
-						<div>
+						<div class="slick-list draggable">
 							<a class="move_box" href="#">
 								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/gwodlXqFzuM2InkKSQTzNMqO0qcKmhhQsys43rQM.jpg') no-repeat center;background-size:cover;">
 									<span class="cont_list_thum_cover">7월<br />10% 할인 프로모션</span>
@@ -1335,14 +1010,16 @@ function mainSlider03() {
 	<div class="section section03">
 		<div class="section_center_box">
 			<div class="main_tit_box">
-				<p class="main_tit01"><span>회의실닷컴</span> MD 추천</p>
+				<p class="main_tit01"><span>스페이스닷컴</span> MD 추천</p>
 				<p class="main_stit01">예약률, 평점, 재이용률 등 상위 랭킹에 등록된 센터 입니다.</p>
 			</div>
-			<div class="cont_list_div_wrap popularity_slider_wrap">
+			
+			<div class="cont_list_div_wrap popularity_slider_wrap slider">
 				<button class="right" type="button" title="다음"></button>
 				<button class="left" type="button" title="이전"></button>
-				<div class="popularity_slider cont_list_div hf_effect02">
 				
+				<div class="slick-list draggable">
+				<div class="popularity_slider cont_list_div hf_effect02">
 						<div>
 							<a class="move_box" href="#">
 								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
@@ -1368,6 +1045,132 @@ function mainSlider03() {
 								</div>
 							</a>
 						</div>
+						<div>
+							<a class="move_box" href="#">
+								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
+									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
+								</div>
+								<div class="cont_list_detail">
+									<p class="cont_list_detail_stit">안양역 1번출구 1분거리. 안양1번가 입구</p>
+									<p class="cont_list_detail_tit">경기 안양 1호점 (안양동)</p>
+
+									<div class="cont_list_detail_info">
+										<ul class="cont_list_detail_info_l">
+											<li class="mark">안양동</li>
+											<li class="subway">안양역</li>
+										</ul>
+										<p class="cont_list_detail_info_m">20인실, 9인실, 4인실...</p>
+									</div>
+
+									<div class="cont_list_detail_ps">
+										<p class="cont_list_detail_ps_p">17,500원<span>부터</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div>
+							<a class="move_box" href="#">
+								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
+									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
+								</div>
+								<div class="cont_list_detail">
+									<p class="cont_list_detail_stit">안양역 1번출구 1분거리. 안양1번가 입구</p>
+									<p class="cont_list_detail_tit">경기 안양 1호점 (안양동)</p>
+
+									<div class="cont_list_detail_info">
+										<ul class="cont_list_detail_info_l">
+											<li class="mark">안양동</li>
+											<li class="subway">안양역</li>
+										</ul>
+										<p class="cont_list_detail_info_m">20인실, 9인실, 4인실...</p>
+									</div>
+
+									<div class="cont_list_detail_ps">
+										<p class="cont_list_detail_ps_p">17,500원<span>부터</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div>
+							<a class="move_box" href="#">
+								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
+									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
+								</div>
+								<div class="cont_list_detail">
+									<p class="cont_list_detail_stit">안양역 1번출구 1분거리. 안양1번가 입구</p>
+									<p class="cont_list_detail_tit">경기 안양 1호점 (안양동)</p>
+
+									<div class="cont_list_detail_info">
+										<ul class="cont_list_detail_info_l">
+											<li class="mark">안양동</li>
+											<li class="subway">안양역</li>
+										</ul>
+										<p class="cont_list_detail_info_m">20인실, 9인실, 4인실...</p>
+									</div>
+
+									<div class="cont_list_detail_ps">
+										<p class="cont_list_detail_ps_p">17,500원<span>부터</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div>
+							<a class="move_box" href="#">
+								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
+									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
+								</div>
+								<div class="cont_list_detail">
+									<p class="cont_list_detail_stit">안양역 1번출구 1분거리. 안양1번가 입구</p>
+									<p class="cont_list_detail_tit">경기 안양 1호점 (안양동)</p>
+
+									<div class="cont_list_detail_info">
+										<ul class="cont_list_detail_info_l">
+											<li class="mark">안양동</li>
+											<li class="subway">안양역</li>
+										</ul>
+										<p class="cont_list_detail_info_m">20인실, 9인실, 4인실...</p>
+									</div>
+
+									<div class="cont_list_detail_ps">
+										<p class="cont_list_detail_ps_p">17,500원<span>부터</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div>
+							<a class="move_box" href="#">
+								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/KZOYr0tUXBiUWuUFVzDAHp3NFvnuceNakY8vChG3.jpg') no-repeat center;background-size:cover;">
+									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
+								</div>
+								<div class="cont_list_detail">
+									<p class="cont_list_detail_stit">안양역 1번출구 1분거리. 안양1번가 입구</p>
+									<p class="cont_list_detail_tit">경기 안양 1호점 (안양동)</p>
+
+									<div class="cont_list_detail_info">
+										<ul class="cont_list_detail_info_l">
+											<li class="mark">안양동</li>
+											<li class="subway">안양역</li>
+										</ul>
+										<p class="cont_list_detail_info_m">20인실, 9인실, 4인실...</p>
+									</div>
+
+									<div class="cont_list_detail_ps">
+										<p class="cont_list_detail_ps_p">17,500원<span>부터</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						</div>
 			</div>
 		</div>
 	</div>
@@ -1386,7 +1189,7 @@ function mainSlider03() {
 				<button class="left" type="button" title="이전"></button>
 				<div class="discount_slider cont_list_div hf_effect02">
 				
-					<div>
+					<div class="">
 						<a class="move_box" href="#">
 							<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/WLA7dDyQKpnOB8rHD19ZG1UiJTczyuTIXWV4CoTl.jpg') no-repeat center;background-size:cover;">
 								<span class="cont_list_thum_cover">7월 <br />20% 할인 프로모션</span>
@@ -1467,7 +1270,7 @@ function mainSlider03() {
 					<p class="main_section06_content_box_tit"><span>국내 최초의</span><br>
 						회의실 전문 매칭 플랫폼
 					</p>
-					<p class="main_section06_content_box_stit">회의실닷컴은 좋은 회의실을 원하는 지역에서 <br>
+					<p class="main_section06_content_box_stit">스페이스닷컴은 좋은 회의실을 원하는 지역에서 <br>
 						누구나 이용할 수 있도록 연결합니다.
 					</p>
 					<ul class="main_section06_content_box_list">

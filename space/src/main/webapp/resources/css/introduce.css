@@ -102,61 +102,6 @@ header{
 	font-family:"nanumsquare-b";
 	color:#252626;
 }
-/* /* 효과 {
-.s_obj.active.left_obj01 {
-	-webkit-transform: translateX(-30%) translateY(50px);
-	-ms-transform: translateX(-30%) translateY(50px);
-	-o-transform: translateX(-30%) translateY(50px);
-	transform: translateX(-30%) translateY(50px);
-}
-.s_obj.active.right_obj01 {
-	-webkit-transform: translateX(30%) translateY(50px);
-	-ms-transform: translateX(30%) translateY(50px);
-	-o-transform: translateX(30%) translateY(50px);
-	transform: translateX(30%) translateY(50px);
-}
-.s_obj.active.left_obj02 {
-	-webkit-transform: translateX(-30%);
-	-ms-transform: translateX(-30%);
-	-o-transform: translateX(-30%);
-	transform: translateX(-30%);
-}
-.s_obj.active.right_obj02 {
-	-webkit-transform: translateX(30%);
-	-ms-transform: translateX(30%);
-	-o-transform: translateX(30%);
-	transform: translateX(30%);
-}
-.s_obj.active.top_obj01 {
-	-webkit-transform:translateY(-50%);
-	-ms-transform:translateY(-50%);
-	-o-transform:translateY(-50%);
-	transform:translateY(-50%);
-	opacity:0.5;
-}
-.s_obj.active.bottom_obj01 {
-	-webkit-transform:translateY(30px);
-	-ms-transform:translateY(30px);
-	-o-transform:translateY(30px);
-	transform:translateY(30px);
-	opacity:0.5;
-}
-.s_obj.active.opa_obj01 {
-	opacity:0.1;
-}
-.motion {
-	-webkit-transition: all .5s ease-in-out;
-	-ms-transition: all .5s ease-in-out;
-	-o-transition: all .5s ease-in-out;
-	transition: all .5s ease-in-out;
-}
-.motion02 {
-	-webkit-transition: all 1s ease-in-out;
-	-ms-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
-}
-} 효과 */ */
 /* 소개 { */
 
 .sub_section.sub_section_introduce01 {

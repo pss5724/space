@@ -119,7 +119,6 @@
 			}
 			.cus_slectbox_list a {
 				display:block;
-				font-family:"nanumsquare-r";
 				font-size:14px;
 				line-height:14px;
 				color:#111111;
@@ -138,7 +137,6 @@
 				display:block;
 				width:100%;
 				padding:24px 50px 24px 75px;
-				font-family:"nanumsquare-b";
 				font-size:18px;
 				line-height:26px;
 				color:#030303;
@@ -154,7 +152,6 @@
 				height:34px;
 				margin-top:-17px;
 				border-radius:50%;
-				font-family:"nanumsquare-eb";
 				font-size:20px;
 				line-height:34px;
 				color:#ffffff;
@@ -202,7 +199,6 @@
 				width:34px;
 				height:34px;
 				border-radius:50%;
-				font-family:"nanumsquare-eb";
 				font-size:20px;
 				line-height:34px;
 				color:#ffffff;
@@ -234,8 +230,8 @@
 		<!-- s sub_tab -->
 	<div class="sub_tab_box">
 		<ul class="sub_tab">
-			<li><a href="https://www.kmeetingroom.com/notices">공지사항</a></li>
-			<li class="on"><a href="https://www.kmeetingroom.com/faq">자주묻는 질문</a></li>
+			<li><a href="http://localhost:9000/space/notice.do">공지사항</a></li>
+			<li class="on"><a href="#">자주묻는 질문</a></li>
 		</ul>
 	</div>
 		<!-- e sub_tab -->
@@ -257,16 +253,16 @@
 															<option value="14" >회원 관련</option>
 															<option value="15" >기타</option>
 													</select>
-						<p class="cus_slectbox_tit"><a href="javascript:void(0);">전체</a></p>
+						<p class="cus_slectbox_tit"><a href="#">전체</a></p>
 						<ul class="cus_slectbox_list">
-							<li><a href="javascript:void(0);">전체</a></li>
-															<li><a href="javascript:void(0);">공통</a></li>
-															<li><a href="javascript:void(0);">이용관련</a></li>
-															<li><a href="javascript:void(0);">예약/결제</a></li>
-															<li><a href="javascript:void(0);">취소/환불</a></li>
-															<li><a href="javascript:void(0);">적립금</a></li>
-															<li><a href="javascript:void(0);">회원 관련</a></li>
-															<li><a href="javascript:void(0);">기타</a></li>
+							<li><a href="#">전체</a></li>
+															<li><a href="#">공통</a></li>
+															<li><a href="#">이용관련</a></li>
+															<li><a href="#">예약/결제</a></li>
+															<li><a href="#">취소/환불</a></li>
+															<li><a href="#">적립금</a></li>
+															<li><a href="#">회원 관련</a></li>
+															<li><a href="#">기타</a></li>
 													</ul>
 					</div>
 					<div class="board_search_box_text"><input type="text" name="q" placeholder="검색어를 입력해주세요." title="검색어 입력" value=""><button type="submit"></button></div>
@@ -285,8 +281,9 @@
 </div>
 						</div>
 											<div class="faq_content">
-							<button class="faq_content_btn" type="button">회의실닷컴 이용에 문의가 있어요.</button>
-							<div class="faq_content_text"><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: none; line-height: 1.5em;"><span style="font-size: 1rem;">회의실닷컴 이용에 대한 자세한 문의는 회원가입 후<b> </b></span><span style="font-size: 1rem; margin: 0px; padding: 0px; border: none; font-family: noto-sans-scott-m;"><b>1:1 문의</b></span><span style="font-size: 1rem;">를 통해 남겨주시면 신속하게 답변드리도록 하겠습니다.</span><br><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: none; line-height: 1.5em;"><br style="color: rgb(72, 72, 72); letter-spacing: -1px; white-space: pre-line; font-family: dotum, 돋움 !important;"></p><p>*고객센터 운영시간 : 평일 오전 9시 ~ 오후 6시 (점심시간 11:30 ~ 12:30)</p><p></p></p>
+							<button class="faq_content_btn" type="button">스페이스닷컴 이용에 문의가 있어요.</button><span class="img"></span>
+							<div class="faq_content_text"><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: none; line-height: 1.5em;"><span style="font-size: 1rem;">회의실닷컴 이용에 대한 자세한 문의는 회원가입 후<b> </b></span>
+							<span style="font-size: 1rem; margin: 0px; padding: 0px; border: none; font-family: noto-sans-scott-m;"><b>1:1 문의</b></span><span style="font-size: 1rem;">를 통해 남겨주시면 신속하게 답변드리도록 하겠습니다.</span><br><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: none; line-height: 1.5em;"><br style="color: rgb(72, 72, 72); letter-spacing: -1px; white-space: pre-line; font-family: dotum, 돋움 !important;"></p><p>*고객센터 운영시간 : 평일 오전 9시 ~ 오후 6시 (점심시간 11:30 ~ 12:30)</p><p></p></p>
 </div>
 						</div>
 											<div class="faq_content">
