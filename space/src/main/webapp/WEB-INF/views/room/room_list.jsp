@@ -22,19 +22,12 @@ $(document).ready(function() {
 		if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data ul") && !$(e.target).is("label input") 
 				&& !$(e.target).is(".select_data.type *") && !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
 			$("label").siblings("div").removeClass("open");
-			//$('*[name=date]').handleDtpicker('hide');
 		}
 	});
 
 	$("label").click(function() {
 		$(this).parent("li").siblings().children("div").removeClass("open");
 		$(this).siblings("div").toggleClass("open");
-		
-		/* if($(this).siblings("div").hasClass("open")) {
-			$('*[name=date]').handleDtpicker('show');
-		} else {
-			$('*[name=date]').handleDtpicker('hide');
-		} */
 	});
 	
 	$(".btn_search_reset").click(function() {
@@ -102,10 +95,36 @@ $(document).ready(function() {
 		}
 	});
 	$( "#amount" ).val( + $( "#slider-range" ).slider( "values", 0 ) + "원 ~ " + $( "#slider-range" ).slider( "values", 1 ) + "원");
+
 	
 	/* 옵션 버튼 선택 */
+	var convenience_list = [], service_list = [], food_list = [], payment_list = [];
+	
 	$(".search_option button").click(function() {
 		$(this).toggleClass("on");
+		
+		if($(this).hasClass("on")) {
+			if($(this).hasClass("convenience")) {
+				convenience_list.push($(this).text());
+			} else if($(this).hasClass("service")) {
+				service_list.push($(this).text());
+			} else if($(this).hasClass("food")) {
+				food_list.push($(this).text());
+			} else if($(this).hasClass("payment")) {
+				payment_list.push($(this).text());
+			}
+		} else {
+			if($(this).hasClass("convenience")) {
+				convenience_list.pop($(this).text());
+			} else if($(this).hasClass("service")) {
+				service_list.pop($(this).text());
+			} else if($(this).hasClass("food")) {
+				food_list.pop($(this).text());
+			} else if($(this).hasClass("payment")) {
+				payment_list.pop($(this).text());
+			}
+		}	
+		alert("clist>>" + convenience_list + "\nslist>>" + service_list + "\nflist>>" + food_list + "\npayment>>" + payment_list);
 	});
 	
 	/* 옵션 검색 더보기 */
@@ -121,11 +140,24 @@ $(document).ready(function() {
 		}
 	});
 	
+	/* 옵션 검색 평점 체크 */
+	$("input[name=star]").click(function() {
+		
+		$(this).prop("checked", true);
+		$(this).prevAll("input[name=star]").prop("checked", true);
+		$(this).nextAll("input[name=star]").prop("checked", false);
+
+		$("#grade").val("1점 ~ " + $("input[name=star]:checked").length + "점");
+	});	
+
 	/* 정렬 선택 */
 	$(".sort_type li").click(function() {
 		$(this).siblings("li").removeClass("on");
 		$(this).addClass("on");
+		alert($(".sort_type li.on").text());
 	});
+	
+	
 	
 	/* 지도 모달창 */
 	$("#map").click(function(){
@@ -136,6 +168,8 @@ $(document).ready(function() {
 		$("#modal").hide();
 		$("#overlay").css({"opacity":"0","pointer-events":"none"});
 	});
+	
+	
 	
 
 });
@@ -309,18 +343,18 @@ $(document).ready(function() {
 					<div class="search_option">
 						<p class="search_option_title">평점</p>
 						<span class="stars_text">
-							<span>1점</span> ~ <span>5점</span>
+							<input type="text" id="grade" name="grade" value="1점 ~ 5점" readonly>
 						</span>
 						<div class="stars">
-							<input type="checkbox" id="star1" name="star" value="1" checked="checked">
+							<input type="checkbox" id="star1" name="star" value="1" checked>
 							<label for="star1"></label>
-							<input type="checkbox" id="star2" name="star" value="2" checked="checked">
+							<input type="checkbox" id="star2" name="star" value="2" checked>
 							<label for="star2"></label>
-							<input type="checkbox" id="star3" name="star" value="3" checked="checked">
+							<input type="checkbox" id="star3" name="star" value="3" checked>
 							<label for="star3"></label>
-							<input type="checkbox" id="star4" name="star" value="4" checked="checked">
+							<input type="checkbox" id="star4" name="star" value="4" checked>
 							<label for="star4"></label>
-							<input type="checkbox" id="star5" name="star" value="5" checked="checked">
+							<input type="checkbox" id="star5" name="star" value="5" checked>
 							<label for="star5"></label>
 						</div>
 					</div>
@@ -337,7 +371,7 @@ $(document).ready(function() {
 							<li><button type="button" class="convenience">장애인 화장실</button></li>
 							<li><button type="button" class="convenience">화장실</button></li>
 							<li><button type="button" class="convenience">정수기</button></li>
-							<li><button type="button" class="convenience">KTX, SRT 인근</button></li>
+							<li><button type="button" class="convenience">KTX/SRT 인근</button></li>
 						</ul>
 						<div class="btn_more">
 							<span>더보기</span>

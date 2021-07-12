@@ -285,7 +285,7 @@ p.search_option_title {
 	text-align: left;
 	text-indent: 5px;
 }
-input#amount {
+input#amount, input#grade {
 	width: 255px;
 	padding: 7px 0;
 	border: 0; 
@@ -300,7 +300,10 @@ div.stars label {
 	display: inline-block;
 	width: 38px;
 	height: 36px;
-	margin: 10px 5px;
+	margin: 0 5px 10px 5px;
+}
+div.stars label:hover {
+	cursor: pointer;	
 }
 div.stars input[type="checkbox"] {
 	display: none;
@@ -637,7 +640,7 @@ ul.payment_item_price .item_price, span.payment_item_price {
 	background-size: cover;
 	vertical-align: middle;
 }
-.confirm_wrap table, th, td {
+.confirm_wrap table, .confirm_wrap table th, .confirm_wrap table td {
 	border: 1px solid darkgray;
 	border-collapse: collapse;
 }

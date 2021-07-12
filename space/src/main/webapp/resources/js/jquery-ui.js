@@ -15185,7 +15185,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			this._slide( event, index, newVal );
 		},
 		keyup: function( event ) {
-			var index = $( event.target ).data( "ui-slider-handle-index" );
+			var index = $( event.target ).data( "ui--handle-index" );
 
 			if ( this._keySliding ) {
 				this._keySliding = false;
