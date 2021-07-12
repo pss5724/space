@@ -998,6 +998,13 @@
 	border: 1px solid lightgray;
 	border-radius: 3px;
 }
+.room_reserve_content #online, .room_reserve_content #onsite {
+	margin-right: 5px;	
+}
+.room_reserve_content #online+span {
+	width: 100px;
+	display: inline-block;
+}
 
 /* 주의사항 */
 .room_reserve_content .caution>ul {

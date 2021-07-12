@@ -307,7 +307,7 @@ $(document).ready(function() {
 					</li>
 					<li>
 						<label>이메일<span>*</span></label>
-						<input type="text" id="email">
+						<input type="text" id="email" disabled>
 					</li>
 					<li>
 						<label>회사명<span>*</span></label>
@@ -320,6 +320,11 @@ $(document).ready(function() {
 					<li>
 						<label>기타 요청사항</label>
 						<input type="text" id="etc">
+					</li>
+					<li>
+						<label>결제 방식<span>*</span></label>
+						<input type="radio" id="online" name="pay_type" class="chk" value="온라인결제"><span>온라인결제</span>
+						<input type="radio" id="onsite" name="pay_type" class="chk" value="현장결제"><span>현장결제</span>
 					</li>
 				</ul>
 			</div>
