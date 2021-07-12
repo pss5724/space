@@ -15,6 +15,43 @@
 <script>
 
 $(function(){
+	var initViewTop = $(window).scrollTop(),
+		initViewHeight = $(window).outerHeight(true),
+		initViewBottom = initViewTop + initViewHeight;
+
+	$('.s_obj').each(function(){
+		var initElementTop = $(this).offset().top,
+			initElementHeight = $(this).outerHeight(),
+			initElementBottom = initElementTop + initElementHeight;
+
+		if(((initElementTop <= initViewBottom) && (initElementBottom >= initViewTop))) {
+			$(this).removeClass('active');
+		} else {
+			$(this).addClass('active');
+		}
+	});
+
+	$(window).on("mousewheel scroll", function(){
+		var viewTop = $(this).scrollTop(),
+			viewHeight = $(this).outerHeight(true),
+			viewBottom = viewTop + viewHeight;
+
+		$('.s_obj').each(function(){
+			var elementTop = $(this).offset().top,
+				elementHeight = $(this).outerHeight(),
+				elementBottom = elementTop + elementHeight;
+
+			if(((elementTop <= viewBottom) && (elementBottom >= viewTop))) {
+				$(this).removeClass('active');
+			}
+			// else {
+			// 	$(this).addClass('active');
+			// }
+		});
+	});
+});
+
+$(function(){
 	$('.sub_placeholder').on('click', function(){
 		$(this).prev('span').hide();
 	});
@@ -81,7 +118,7 @@ $(function(){
 		<h2 id="content" class="hidden">콘텐츠 영역</h2>
 				<!-- s sub_visual -->
 		<div class="sub_visual introduce">
-			<h3>회의실닷컴은
+			<h3>스페이스닷컴은
 				<span>회의실 운영 전문가들이 파트너사를 대신하여 회의시설 보유자와 <br>
                     이용고객을 이어주는 국내 최초 회의실 매칭 플랫폼입니다.</span>
 			</h3>
@@ -91,7 +128,7 @@ $(function(){
 		<!-- s sub_tab -->
 		<div class="sub_tab_box">
 			<ul class="sub_tab">
-				<li><a href="http://localhost:9000/space/introduce.do">회의실닷컴 소개</a></li>
+				<li><a href="http://localhost:9000/space/introduce.do">스페이스닷컴 소개</a></li>
 				<li><a href="http://localhost:9000/space/guide.do">이용안내</a></li>
 				<li class="on"><a href="#">파트너 등록 안내</a></li>
 			</ul>
@@ -114,19 +151,19 @@ $(function(){
 		<!-- s sub_section -->
 		<div class="sub_section sub_section_partnerguide02">
 			<div class="center_box">
-				<p class="sub_section_partnerguide02_tit motion s_obj bottom_obj01 active">회의실닷컴과 함께 하세요!</p>
+				<p class="sub_section_partnerguide02_tit motion s_obj bottom_obj01 active">스페이스닷컴과 함께 하세요!</p>
 				<ul class="sub_section_partnerguide02_list">
 					<li class="sub_section_partnerguide02_list_li sub_section_partnerguide02_list_li01 motion s_obj left_obj02 active"><div class="sub_section_partnerguide02_list_num"><span class="sub_section_partnerguide02_list_num01"><span>01</span></span></div>
 						<span class="sub_section_partnerguide02_list_tit">무료등록</span>
 						<p class="sub_section_partnerguide02_list_text">별도의 등록(가입)비가 없으며 카드사 및 간편결제 수수료,  <br>
-							부가가치세를 회의실닷컴에서 부담합니다.
+							부가가치세를 스페이스닷컴에서 부담합니다.
 						</p>
 					</li>
 					<li class="sub_section_partnerguide02_list_li sub_section_partnerguide02_list_li02 motion s_obj right_obj02 active"><div class="sub_section_partnerguide02_list_num"><span class="sub_section_partnerguide02_list_num01"><span>02</span></span></div>
 						<span class="sub_section_partnerguide02_list_tit">마케팅 지원</span>
 						<p class="sub_section_partnerguide02_list_text">막대한 비용이 드는 키워드 광고를 <br>
 							더 이상 독자적으로 진행하실 필요가 없습니다. <br>
-							회의실닷컴의 홈페이지에 무료로 회의실이 노출 됩니다.
+							스페이스닷컴의 홈페이지에 무료로 회의실이 노출 됩니다.
 						</p>
 					</li>
 					<li class="sub_section_partnerguide02_list_li sub_section_partnerguide02_list_li03 motion s_obj left_obj02 active"><div class="sub_section_partnerguide02_list_num"><span class="sub_section_partnerguide02_list_num01"><span>03</span></span></div>
@@ -166,15 +203,15 @@ $(function(){
 				</ul>
 
 				<div class="sub_section_partnerguide03_content">
-					<p class="sub_section_partnerguide03_content_tit motion02 s_obj opa_obj01 active">회의실닷컴 파트너</p>
+					<p class="sub_section_partnerguide03_content_tit motion02 s_obj opa_obj01 active">스페이스닷컴 파트너</p>
 					<p class="sub_section_partnerguide03_content_text motion s_obj bottom_obj01 active">효율적인 회의실 운영을 할 수 있도록 다양한 서비스를 제공합니다. <br>
-						누구나 회의실닷컴의 파트너사가 될 수 있습니다.</p>
+						누구나 스페이스닷컴의 파트너사가 될 수 있습니다.</p>
 					<div class="sub_section_partnerguide03_content_inner_box">
 
 						<!-- s sub_section_partnerguide03_content_inner -->
 						<div class="sub_section_partnerguide03_content_inner">
 							<p class="sub_section_partnerguide03_content_inner_tit motion s_obj right_obj02 active">파트너 등록</p>
-							<p class="sub_section_partnerguide03_content_inner_text">회의실닷컴의 운영 인력이 위탁자가 보유한 회의실 및 기타공간을 온라인 및 오프라인을 통하여 홍보 및 판매 대행</p>
+							<p class="sub_section_partnerguide03_content_inner_text">스페이스닷컴의 운영 인력이 위탁자가 보유한 회의실 및 기타공간을 온라인 및 오프라인을 통하여 홍보 및 판매 대행</p>
 							<ul class="sub_section_partnerguide03_content_inner_list">
 								<li>
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>01</span></span>
@@ -208,7 +245,7 @@ $(function(){
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>05</span></span>
 									<div class="sub_section_partnerguide03_content_inner_list_text_box">
 										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">첫 예약 받기</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">회의실닷컴을 통하여 더 많은 예약과 수익을 창출합니다.</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">스페이스닷컴을 통하여 더 많은 예약과 수익을 창출합니다.</span>
 									</div>
 								</li>
 							</ul>
@@ -218,7 +255,7 @@ $(function(){
 						<!-- s sub_section_partnerguide03_content_inner -->
 						<div class="sub_section_partnerguide03_content_inner">
 							<p class="sub_section_partnerguide03_content_inner_tit motion s_obj right_obj02 active">종합 위탁운영</p>
-							<p class="sub_section_partnerguide03_content_inner_text">회의실닷컴의 운영 인력이 위탁자가 보유한 회의실 및 기타 공간에 상주하며 위탁자를 대신하여 회의실 및 공간을 직접 홍보, 판매, 관리 운영</p>
+							<p class="sub_section_partnerguide03_content_inner_text">스페이스닷컴의 운영 인력이 위탁자가 보유한 회의실 및 기타 공간에 상주하며 위탁자를 대신하여 회의실 및 공간을 직접 홍보, 판매, 관리 운영</p>
 							<ul class="sub_section_partnerguide03_content_inner_list">
 								<li>
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>01</span></span>
@@ -252,7 +289,7 @@ $(function(){
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>05</span></span>
 									<div class="sub_section_partnerguide03_content_inner_list_text_box">
 										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">첫 예약 받기</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">회의실닷컴을 통하여 더 많은 예약과 수익을 창출합니다.</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">스페이스닷컴을 통하여 더 많은 예약과 수익을 창출합니다.</span>
 									</div>
 								</li>
 							</ul>
@@ -273,7 +310,7 @@ $(function(){
 					<li>
 						<div class="sub_section_partnerguide04_list_f motion02 s_obj opa_obj01 active"><span>01</span></div>
 						<div class="sub_section_partnerguide04_list_s">
-							<p class="sub_section_partnerguide04_list_s_tit"><span>회의실닷컴 파트너가 되려면 어떠한 자격이 필요한가요?</span></p>
+							<p class="sub_section_partnerguide04_list_s_tit"><span>스페이스닷컴 파트너가 되려면 어떠한 자격이 필요한가요?</span></p>
 							<p class="sub_section_partnerguide04_list_s_text">사업자등록증(고유번호증)을 보유한 파트너로, 사업자 자격이 없는 개인의 경우 파트너 등록이 불가합니다.</p>
 						</div>
 					</li>
@@ -282,9 +319,9 @@ $(function(){
 						<div class="sub_section_partnerguide04_list_s">
 							<p class="sub_section_partnerguide04_list_s_tit"><span>인터뷰 및 현장답사는 어떻게 진행되며 인터뷰를 하는 이유는 무엇인가요?</span></p>
 							<p class="sub_section_partnerguide04_list_s_text">가맹점 등록을 하기 위해서는 인터뷰 및 현장답사가 진행되며 아래 내용으로 진행됩니다. <br>
-								1) 회의실닷컴 가맹점에 등록하기에 적합한지 여부 <br>
+								1) 스페이스닷컴 가맹점에 등록하기에 적합한지 여부 <br>
 								2) 판매할 회의실 관련 문의 및 피드백 안내 <br>
-								3) 회의실닷컴 파트너 운영 방법 안내
+								3) 스페이스닷컴 파트너 운영 방법 안내
 							</p>
 							<p class="sub_section_partnerguide04_list_s_text">인터뷰를 통해 판매를 희망하는 회의실에 대한 정보를 보완하고 고객에게 정확한 정보를 제공하기 위해 필수적으로 진행하고 있습니다.</p>
 						</div>
@@ -301,7 +338,7 @@ $(function(){
 						<div class="sub_section_partnerguide04_list_s">
 							<p class="sub_section_partnerguide04_list_s_tit"><span>가맹점 가입비나 별도의 수수료는 없나요?</span></p>
 							<p class="sub_section_partnerguide04_list_s_text">회의실닷컴의 가맹점 등록시 별도의 등록(가입)비는 발생되지 않습니다. <br>
-								매출 건에 대한 수수료는 부과되며 카드사 및 간편결제 수수료, 부가가치세를 회의실닷컴에서 부담합니다.
+								매출 건에 대한 수수료는 부과되며 카드사 및 간편결제 수수료, 부가가치세를 스페이스닷컴에서 부담합니다.
 							</p>
 						</div>
 					</li>
@@ -310,7 +347,7 @@ $(function(){
 						<div class="sub_section_partnerguide04_list_s">
 							<p class="sub_section_partnerguide04_list_s_tit"><span>가맹점 등록과 위탁 운영의 차이점은 무엇인가요?</span></p>
 							<p class="sub_section_partnerguide04_list_s_text">가맹점 등록은 센터가 보유한 회의실 및 기타 공간을 온/오프라인을 통하여 홍보 및 판매를 대행하는 서비스를 의미합니다. <br>
-								위탁 운영은 회의실닷컴의 인력이 위탁자가 보유한 회의실 및 기타 공간에 상주하며 위탁자를 대신하여 회의실 및 공간을 <br>
+								위탁 운영은 스페이스닷컴의 인력이 위탁자가 보유한 회의실 및 기타 공간에 상주하며 위탁자를 대신하여 회의실 및 공간을 <br>
 								직접 운영, 홍보, 판매하는 서비스입니다.
 							</p>
 						</div>

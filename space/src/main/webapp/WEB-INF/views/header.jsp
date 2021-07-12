@@ -14,10 +14,12 @@ $(document).ready(function(){
 	depth02 = $('.depth2'),
 	depth02li = $('.depth2 li'),
 	gnbBg = $('.header_bg_box'),
-	gnbEtc = $('.gnb_etc');
+	gnbEtc = $('.gnb_etc');logot = $('.logo'),
+	logot = $('.logo'),
 	gnb.addClass('on');
 	gnbBg.addClass('on');
 	gnbEtc.addClass('on');
+	logot.addClass('on');
 });
 //gnb
 $(function(){
@@ -95,14 +97,14 @@ $(function(){
 		<!-- s header -->
 	<div id="header">
 		<div class="header_inner">
-			<h1 class="logo"><a href="http://localhost:9000/space/index.do"><img src="http://localhost:9000/space/images/logo_on.png" width=133px; height=27px;></a></h1>
+			<h1 class="logo"><a href="http://localhost:9000/space/index.do"><img src="http://localhost:9000/space/images/logo_on.png" width=30px; height=27px;>스페이스닷컴</a></h1>
 		
 			
 			<ul id="gnb">
 			
-				<li class="depth1"><h3><a href="#">회의실닷컴<span class="gnb_bar"></span></a></h3>
+				<li class="depth1"><h3><a href="#">스페이스닷컴<span class="gnb_bar"></span></a></h3>
 					<ul class="depth2">
-						<li><h4><a href="http://localhost:9000/space/introduce.do">회의실닷컴 소개</a></h4></li>
+						<li><h4><a href="http://localhost:9000/space/introduce.do">스페이스닷컴 소개</a></h4></li>
 						<li><h4><a href="http://localhost:9000/space/guide.do">이용 안내</a></h4></li>
 						<li><h4><a href="http://localhost:9000/space/partner.do">파트너 등록 안내</a></h4></li>
 					</ul>

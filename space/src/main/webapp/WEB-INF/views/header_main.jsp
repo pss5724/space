@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script>
 //gnb
 $(function(){
@@ -17,11 +18,13 @@ $(function(){
 		gnbBg = $('.header_bg_box'),
 		gnbSpeed = 250,
 		logo = $('.logo a img'),
+		logot = $('.logo'),
 		logoSrc,
 		gnbEtc = $('.gnb_etc');
 
 	gnb.on('mouseenter', function(){
 		gnb.addClass('on');
+		logot.addClass('on');
 		gnbBg.addClass('on');
 		gnbEtc.addClass('on');
 		logoSrc = logo.attr('src');
@@ -30,6 +33,7 @@ $(function(){
 	});
 	gnb.on('mouseleave', function(){
 		gnb.removeClass('on');
+		logot.removeClass('on');
 		gnbBg.removeClass('on');
 		gnbEtc.removeClass('on');
 		depth01.removeClass('focus');
@@ -86,14 +90,14 @@ $(function(){
 		<!-- s header -->
 	<div id="header">
 		<div class="header_inner">
-			<h1 class="logo"><a href="http://localhost:9000/space/index.do"><img src="http://localhost:9000/space/images/logo_off.png" width=133px; height=27px;></a></h1>
+				<h1 class="logo"><a href="http://localhost:9000/space/index.do"><img src="http://localhost:9000/space/images/logo_off.png" width=30px; height=27px;>스페이스닷컴</a></h1>
 		
 			
 			<ul id="gnb">
 			
-				<li class="depth1"><h3><a href="#">회의실닷컴<span class="gnb_bar"></span></a></h3>
+				<li class="depth1"><h3><a href="#">스페이스닷컴<span class="gnb_bar"></span></a></h3>
 					<ul class="depth2">
-						<li><h4><a href="http://localhost:9000/space/introduce.do">회의실닷컴 소개</a></h4></li>
+						<li><h4><a href="http://localhost:9000/space/introduce.do">스페이스닷컴 소개</a></h4></li>
 						<li><h4><a href="http://localhost:9000/space/guide.do">이용 안내</a></h4></li>
 						<li><h4><a href="http://localhost:9000/space/partner.do">파트너 등록 안내</a></h4></li>
 					</ul>

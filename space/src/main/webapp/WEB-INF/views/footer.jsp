@@ -21,14 +21,14 @@
 		<div class="footer_logo"><img src="http://localhost:9000/space/images/footer_logo.png" alt="회의실닷컴"></div>
 		<div class="footer_info">
 			<ul>
-				<li><span>회사명</span><span class="line">㈜회의실닷컴</span> <span class="line_before">대표</span><span class="line">김지현</span></li>
+				<li><span>회사명</span><span class="line">㈜스페이스닷컴</span> <span class="line_before">대표</span><span class="line">쌍용3조</span></li>
 				<li><span>사업자등록번호</span><span class="line">508-88-01739</span> <a class="ftc_btn footer_info_btn" href="#" target="_blank">사업자정보 확인</a> <span>통신판매업</span><span class="line">2020-서울강남-03444</span></li>
 				<li><address><span>주소</span><span class="line">서울특별시 강남구 테헤란로 425, 신일빌딩 4층 4800호 (삼성동)</span></address></li>
 				<li>마케팅/제휴 문의 info@kmeetingroom.com</li>
 			</ul>
 		</div>
 		<div class="footer_etc">
-			<p>회의실닷컴은 통신판매중개자이며 통신판매의 당사자가 아닙니다. </p>
+			<p>스페이스닷컴은 통신판매중개자이며 통신판매의 당사자가 아닙니다. </p>
 			<p>따라서 상품/거래정보 및 거래에 대하여 책임을 지지 않습니다.</p>
 			<ul class="footer_etc_sns">
 				<li><a target="_blank" href="https://www.instagram.com/kmeetingroom/"><img src="http://localhost:9000/space/images/footer_etc_sns01.png" alt="인스타"></a></li>
