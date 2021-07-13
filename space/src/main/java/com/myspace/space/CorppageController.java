@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class CoppageController {
+public class CorppageController {
 	
 	@RequestMapping(value="/corppage_insert.do", method=RequestMethod.GET)
 	public String corppage_insert() {
@@ -22,6 +22,12 @@ public class CoppageController {
 		return "corppage/corppage_inquiry";
 	}
 	
+	@RequestMapping(value="/corppage_inquiry_content.do", method=RequestMethod.GET)
+	public String corppage_inquiry_content() {
+		return "corppage/corppage_inquiry_content";
+	}
+	
+	
 	@RequestMapping(value="/corppage_inquiry_write.do", method=RequestMethod.GET)
 	public String corppage_inquiry_write() {
 		return "corppage/corppage_inquiry_write";
@@ -37,4 +43,8 @@ public class CoppageController {
 		return "corppage/corppage_booked";
 	}
 
+	@RequestMapping(value="/corppage_update.do", method=RequestMethod.GET)
+	public String corppage_update() {
+		return "corppage/corppage_update";
+	}
 }
