@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.room">
+
+
+	<!-- 
+	전체 로우수
+	<select id="count" resultType="int">
+		select count(*) from MYCGV_NOTICE
+	</select>
+	
+	nsfile 파일명 가져오기
+	<select id="nsfile" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT NSFILE FROM MYCGV_NOTICE WHERE NID = #{nid}
+	</select>
+	
+	삭제
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM MYCGV_NOTICE WHERE NID = #{nid}
+	</delete>
+	
+	수정: 기존 파일 유지
+	<update id="updatenofile" parameterType="com.mycgv.vo.NoticeVO">
+		UPDATE MYCGV_NOTICE SET NTITLE=#{ntitle}, NCONTENT=#{ncontent} WHERE NID = #{nid}
+	</update>
+
+	수정: 새로운 파일 선택
+	<update id="updatefile" parameterType="com.mycgv.vo.NoticeVO">
+		UPDATE MYCGV_NOTICE SET NTITLE=#{ntitle}, NCONTENT=#{ncontent}, NFILE=#{nfile}, NSFILE=#{nsfile} WHERE NID=#{nid}
+	</update>
+
+	조회수 업데이트
+	<update id="updatehit" parameterType="java.lang.String">
+		UPDATE MYCGV_NOTICE SET NHIT = NHIT + 1 WHERE NID=#{nid}
+	</update>
+
+	게시판 상세정보
+	<select id="content" parameterType="java.lang.String" resultType="com.mycgv.vo.NoticeVO">
+		SELECT NID, NTITLE, NCONTENT, NFILE, NSFILE, NHIT, TO_CHAR(NDATE, 'YYYY-MM-DD') NDATE FROM MYCGV_NOTICE WHERE NID = #{nid}
+	</select>
+	
+	전체 리스트 (페이징)
+	<select id="list" parameterType="map" resultType="com.mycgv.vo.NoticeVO">
+		SELECT RNO, NID, NTITLE, NHIT, NDATE
+				FROM (SELECT ROWNUM RNO, NID, NTITLE, NHIT, TO_CHAR(NDATE, 'YYYY-MM-DD') NDATE
+				FROM (SELECT NID, NTITLE, NFILE, NSFILE, NHIT, NDATE FROM MYCGV_NOTICE ORDER BY NDATE DESC ))
+				WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
+	글쓰기
+	<insert id="insert" parameterType="com.mycgv.vo.NoticeVO">
+		<choose>
+			<when test="nfile != null">
+				insert into mycgv_notice values('n_'||sequ_mycgv_notice.nextval, #{ntitle}, #{ncontent}, #{nfile}, #{nsfile}, 0, sysdate)
+			</when>
+			<otherwise>
+				insert into mycgv_notice values('n_'||sequ_mycgv_notice.nextval, #{ntitle}, #{ncontent}, null, null, 0, sysdate)
+			</otherwise>
+		</choose>
+	</insert>
+-->
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
