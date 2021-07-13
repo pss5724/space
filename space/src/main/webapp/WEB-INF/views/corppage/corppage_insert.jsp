@@ -370,7 +370,7 @@ $(document).ready(function() {
       </table>
 
    <div class="mypage_write_btn">
-      <input type="button" value="등록" class="blue" id="insert_room">
+      <input type="submit" value="등록" class="blue" id="insert_room">
       <a href="http://localhost:9000/space/corppage.do" class="cancel">취소</a>
    </div>
 
