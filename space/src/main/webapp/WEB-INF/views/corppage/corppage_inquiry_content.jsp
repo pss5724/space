@@ -9,57 +9,23 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
-.mypage_left_box ul li:last-child a{
+.mypage_left_box ul li:nth-child(3) a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
 	color:black;
 }
-.mypage_right_box_title p{
+.mypage_right_box_title p{ 
 	margin-bottom:20px;
-} 
-
-.mypage_right_box_table_info {
- margin-top:20px;
- width:100%;
- border-spacing:0;
- border-collapse:collapse;
- }
- .mypage_right_box_table_info tr{
- 	
-  	
-   	font-size :14px;
- 	font-weight:600; 
- 	height:60px;
- 	border-top:1px solid lightgray;	
- 	border-bottom:1px solid lightgray;
- }
-  .mypage_right_box_table_info tr th{
-  	padding-left:12px;
-  	text-align:left;
-  	width:150px;
-   	background-color: rgb(248,248,248);
- 	font-weight:600;   
- 	height:60px;
- 	border-top:1px solid lightgray;	
- 	border-bottom:1px solid lightgray;
- } .mypage_right_box_table_info tr td{
-  	padding-left:12px;
-  	text-align:left;
- 	font-weight:600;   
- 	height:60px;
- }
- .mypage_btn a{
- 	font-size:14px;
- 	font-weight:600;
- 	color : rgb(190,192,200);
- }
- .pass_change_btn{
- 	border:1px solid lightgray;
- 	border-radius:6px;
- 	padding : 10px 25px;
- 	background-color : white;
- }
+}
+.mypage_right_box_table th:nth-child(2) {
+	text-align : right;
+	padding-right:10px;
+}
+.mypage_right_box_table th:first-child {
+	text-align : left;
+	padding-left:10px;
+}
 
 </style>
 </head>
@@ -80,7 +46,7 @@
 					<span>나의 회의실</span>
 				</p>
 				<ul>
-					<li>
+						<li>
 						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
@@ -101,49 +67,41 @@
 					
 				<div class="mypage_right_box_title">
 					<div class="title_deco"></div>
-					<p class="mypage_right_tit">회원정보 수정</p>
+					<p class="mypage_right_tit">1:1 문의</p>
 					
 				</div>
 				
 		
 			
-			<table class="mypage_right_box_table_info">
+			<table class="mypage_right_box_table">
 				<tr>
-					<th>이름</th>
-					<td>홍길동</td>
+					<th>회의실 추가 등록 문의</th>
+					<th>2021-07-08</th>
 				</tr>
 				<tr>
-					<th>이메일</th>
-					<td>hong@naver.com</td>
+					<td colspan="2"><br><br><br><br>회의실 추가 등록은 제한이 없나요?<br><br><br><br><br><br><br></td>
 				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><button type="button" class="pass_change_btn">변경하기</button></td>
-				</tr>
-				<tr>
-					<th>핸드폰</th>
-					<td>010-1111-2222</td>
-				</tr>
-				<tr>
-					<th>대표자명</th>
-					<td>홍길순</td>
-				</tr>
-				<tr>
-					<th>상호명</th>
-					<td>아무거나</td>
-				</tr>
-				<tr>
-					<th>사업자 번호</th>
-					<td>111-22-33333</td>
-				</tr>
-				
-				
-				
 				
 			</table>
-		<div class="mypage_btn">
-			<a href="#">회원탈퇴하기</a>
-		</div>
+			<br><br>
+				<div class="mypage_right_box_title">
+					<div class="title_deco"></div>
+					<p class="mypage_right_tit">문의 답변</p>
+					
+				</div>
+				
+		
+			
+			<table class="mypage_right_box_table">
+				<tr>
+					<th>안녕하세요. 스페이스닷컴입니다.</th>
+				</tr>
+				<tr>
+					<td><br><br><br><br>회의실 추가 등록은 제한이 없습니다^^<br><br><br><br><br><br><br></td>
+				</tr>
+				
+			</table>
+		
 			</div>
 			<!-- right box end -->
 			

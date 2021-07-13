@@ -41,7 +41,7 @@
 						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
-						<a href="corppage_booked.do">예약된 회의실</a>
+						<a href="corppage_booked.do">예약 내역</a>
 					</li>
 						<li>
 						<a href="corppage_inquiry.do">1:1 문의</a>
@@ -73,7 +73,11 @@
 					<th>답변상태</th>
 				</tr>
 				<tr>
-					<td colspan="5">1:1 문의 내역이 없습니다.</td>
+					<td>1</td>
+					<td>기타 문의</td>
+					<td><a href="corppage_inquiry_content.do">회의실 추가 등록 문의</a></td>
+					<td>2021-07-08</td> 
+					<td>답변완료</td>
 				</tr>
 				
 			</table>

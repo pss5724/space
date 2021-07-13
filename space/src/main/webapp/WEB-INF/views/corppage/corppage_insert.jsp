@@ -145,7 +145,7 @@ $(document).ready(function() {
 			<!-- left_box  -->
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
-					<img src="http://localhost:9000/space/images/little_logo.png"/>
+					<img src="http://localhost:9000/space/images/little_logo.jpg"/>
 					<span>나의 회의실</span>
 				</p>
 				<ul>
@@ -153,7 +153,7 @@ $(document).ready(function() {
 						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
-						<a href="corppage_booked.do">예약된 회의실</a>
+						<a href="corppage_booked.do">예약 내역</a>
 					</li>
 						<li>
 						<a href="corppage_inquiry.do">1:1 문의</a>

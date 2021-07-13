@@ -140,7 +140,7 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<input type="text" name="content" class="input_content" title="내용작성">
+					<textarea name="content" class="input_content" title="내용작성"></textarea>
 				</td>
 			</tr>
 			<tr>

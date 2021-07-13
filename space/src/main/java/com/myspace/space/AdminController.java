@@ -25,5 +25,15 @@ public class AdminController {
 	public String admin_inquiry() {
 		return "admin/admin_inquiry";
 	}
+	
+	@RequestMapping(value="/admin_inquiry_content.do", method=RequestMethod.GET)
+	public String admin_inquiry_content() {
+		return "admin/admin_inquiry_content";
+	}
+	
+	@RequestMapping(value="/admin_inquiry_write.do", method=RequestMethod.GET)
+	public String admin_inquiry_write() {
+		return "admin/admin_inquiry_write";
+	}
 
 }

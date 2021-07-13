@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
-.mypage_left_box ul li:last-child a{
+.mypage_left_box ul li:nth-child(3) a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
@@ -17,15 +17,16 @@
 }
 .mypage_right_box_title p{
 	margin-bottom:20px;
-} 
-
-.mypage_right_box_table_info {
- margin-top:20px;
- width:100%;
+}
+.inquiry_write_table {
+	margin-top:80px;
+	margin-right:100px;
+ width:90%;
  border-spacing:0;
  border-collapse:collapse;
- }
- .mypage_right_box_table_info tr{
+}
+
+ .inquiry_write_table tr{
  	
   	
    	font-size :14px;
@@ -34,7 +35,7 @@
  	border-top:1px solid lightgray;	
  	border-bottom:1px solid lightgray;
  }
-  .mypage_right_box_table_info tr th{
+  .inquiry_write_table tr th{
   	padding-left:12px;
   	text-align:left;
   	width:150px;
@@ -43,22 +44,31 @@
  	height:60px;
  	border-top:1px solid lightgray;	
  	border-bottom:1px solid lightgray;
- } .mypage_right_box_table_info tr td{
+ } 
+ .inquiry_write_table tr td{
   	padding-left:12px;
   	text-align:left;
  	font-weight:600;   
  	height:60px;
  }
- .mypage_btn a{
- 	font-size:14px;
- 	font-weight:600;
- 	color : rgb(190,192,200);
+ .input_subject {
+	width:100%;
+	height:45px;
+	border-radius:6px;
+	border: 1px solid lightgray; 
  }
- .pass_change_btn{
- 	border:1px solid lightgray;
+ .input_content{ 
+ 	margin:4px 0;
+ 	width:100%;
+ 	height:250px;
  	border-radius:6px;
- 	padding : 10px 25px;
- 	background-color : white;
+ 	border: 1px solid lightgray;
+ }
+ .inquiry_category {
+ 	width :45%;
+ 	height:45px;
+ 	border-radius:6px;
+	border: 1px solid lightgray; 
  }
 
 </style>
@@ -70,27 +80,26 @@
  
 	<!-- content -->
 	<div class="mypage_container">
-	<div class="mypage_content">
 	
-		
+			<div class="mypage_content">
 			<!-- left_box  -->
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
 					<img src="http://localhost:9000/space/images/little_logo.jpg"/>
-					<span>나의 회의실</span>
+					<span>관리 메뉴</span>
 				</p>
 				<ul>
 					<li>
-						<a href="corppage.do">회의실 관리</a>
+						<a href="member_list.do">개인회원 관리</a>
 					</li>
 					<li>
-						<a href="corppage_booked.do">예약 내역</a>
+						<a href="corp_list.do">기업회원 관리</a>
 					</li>
 						<li>
-						<a href="corppage_inquiry.do">1:1 문의</a>
+						<a href="admin_booked.do">예약 내역</a>
 					</li>
-						<li>
-						<a href="corppage_info.do">회원정보 수정</a>
+					<li>
+						<a href="admin_inquiry.do">문의 답변</a>
 					</li>
 				</ul>
 			</div>
@@ -101,54 +110,50 @@
 					
 				<div class="mypage_right_box_title">
 					<div class="title_deco"></div>
-					<p class="mypage_right_tit">회원정보 수정</p>
+					<p class="mypage_right_tit">1:1 문의</p>
 					
 				</div>
 				
 		
 			
-			<table class="mypage_right_box_table_info">
-				<tr>
-					<th>이름</th>
-					<td>홍길동</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>hong@naver.com</td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><button type="button" class="pass_change_btn">변경하기</button></td>
-				</tr>
-				<tr>
-					<th>핸드폰</th>
-					<td>010-1111-2222</td>
-				</tr>
-				<tr>
-					<th>대표자명</th>
-					<td>홍길순</td>
-				</tr>
-				<tr>
-					<th>상호명</th>
-					<td>아무거나</td>
-				</tr>
-				<tr>
-					<th>사업자 번호</th>
-					<td>111-22-33333</td>
-				</tr>
-				
-				
-				
-				
-			</table>
-		<div class="mypage_btn">
-			<a href="#">회원탈퇴하기</a>
-		</div>
+		<form id="inquiry_write" action="#" method="POST" enctype="multipart/form-data">
+
+		<table class="inquiry_write_table">
+	
+			
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" name="subject" class="input_subject" title="제목작성" required>
+				</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>
+					<input type="text" name="content" class="input_content" title="내용작성">
+				</td>
+			</tr>
+			<tr>
+				<th>파일첨부</th>
+				<td>
+					<input name="file" type="file">
+				</td>
+			</tr>
+			
+		</table>
+
+	<div class="mypage_write_btn">
+		<a id="writeInquiry" class="blue" href="#">답변하기</a>
+		<a href="admin_inquiry.do">취소</a>
+	</div>
+
+	</form>
+
 			</div>
 			<!-- right box end -->
 			
 		
-	</div>
+		</div>
 	
 	</div>
 	

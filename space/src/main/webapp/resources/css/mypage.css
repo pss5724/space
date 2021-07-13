@@ -21,7 +21,7 @@
  .mypage_ltitle{
  	background-color : rgb(78,66,226);
  	color:white;
- }
+ } 
  .mypage_ltitle span {
     font-family: "nanumsquare-b";
     font-weight: 900;
@@ -86,7 +86,8 @@
  }
  
 /*  Å×ÀÌºí  */
- .mypage_right_box_table {
+ .mypage_right_box_table
+  {
  margin-top:20px;
  width:100%;
  border-spacing:0;

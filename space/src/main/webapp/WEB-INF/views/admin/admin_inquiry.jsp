@@ -9,15 +9,62 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
-.mypage_left_box ul li:nth-child(2) a{
+.mypage_left_box ul li:last-child a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
 	color:black;
 }
-.mypage_right_box_title p{ 
+.mypage_right_box_atable{
+	 margin-top:20px;
+ width:100%;
+ border-spacing:0;
+ border-collapse:collapse;
+}
+  .mypage_right_box_atable tr{
+ 	font-size:14px; 
+ 	font-weight:520;   
+ 	text-align:center;
+ 	height:60px;
+ 	border-bottom:1px solid lightgray;
+ }
+   .mypage_right_box_atable tr button{
+   	padding: 5px 10px;
+   	background-color:white;
+   	border:1px solid lightgray;
+   	border-radius:5px;
+   	color:red;
+   }
+ .mypage_right_box_atable tr:first-child{
+ 	background-color: rgb(251,251,251);
+ 	font-size:16px;
+ 	font-weight:700; 
+ 	text-align:center;
+ 	height:60px;
+ 	border-top:1px solid lightgray;	
+ 	border-bottom:1px solid lightgray;
+ }
+.mypage_right_box_title p{
 	margin-bottom:20px;
 }
+  .mypage_right_box_atable tr th:first-child{
+ 	width:8%;
+ }
+   .mypage_right_box_atable tr th:nth-child(2){
+ 	width:10%;
+ }
+   .mypage_right_box_atable tr th:nth-child(3){
+ 	width:17%;
+ }
+   .mypage_right_box_atable tr th:nth-child(4){
+ 	width:40%;
+ }
+    .mypage_right_box_atable tr th:nth-child(5){
+ 	width:15%;
+ }
+    .mypage_right_box_atable tr th:last-child{
+ 	width:10%;
+ }
 </style>
 </head>
 <body>
@@ -34,17 +81,20 @@
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
 					<img src="http://localhost:9000/space/images/little_logo.jpg"/>
-					<span>나의 회의실</span>
+					<span>관리 메뉴</span>
 				</p>
 				<ul>
 					<li>
-						<a href="mypage.do">예약한 회의실</a>
+						<a href="member_list.do">개인회원 관리</a>
 					</li>
 					<li>
-						<a href="mypage_inquiry.do">1:1 문의</a>
+						<a href="corp_list.do">기업회원 관리</a>
+					</li>
+						<li>
+						<a href="admin_booked.do">예약 내역</a>
 					</li>
 					<li>
-						<a href="mypage_info.do">회원정보 수정</a>
+						<a href="admin_inquiry.do">문의 답변</a>
 					</li>
 				</ul>
 			</div>
@@ -61,9 +111,10 @@
 				
 		
 			
-			<table class="mypage_right_box_table">
+			<table class="mypage_right_box_atable">
 				<tr>
 					<th>NO<div class="table_th_after"></div></th>
+					<th>작성자<div class="table_th_after"></div></th>
 					<th>카테고리<div class="table_th_after"></div></th>
 					<th>제목<div class="table_th_after"></div></th>
 					<th>작성일<div class="table_th_after"></div></th>
@@ -71,16 +122,15 @@
 				</tr>
 				<tr>
 					<td>1</td>
+					<td>홍길동</td>
 					<td>방문 답사관련</td>
-					<td><a href="mypage_inquiry_content.do">예약하기 전에 방문 답사 가능한가요?</a></td>
+					<td><a href="admin_inquiry_content.do">예약하기 전에 방문 답사 가능한가요?</a></td>
 					<td>2021-07-08</td>
 					<td>답변대기중</td>
 				</tr>
 				
 			</table>
-		<div class="mypage_btn">
-			<button type="button"><a href="mypage_inquiry_write.do">글쓰기</a></button>
-		</div>
+	
 			</div>
 			<!-- right box end -->
 			

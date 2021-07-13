@@ -18,6 +18,15 @@
 .mypage_right_box_title p{ 
 	margin-bottom:20px;
 }
+.mypage_right_box_table th:nth-child(2) {
+	text-align : right;
+	padding-right:10px;
+}
+.mypage_right_box_table th:first-child {
+	text-align : left;
+	padding-left:10px;
+}
+
 </style>
 </head>
 <body>
@@ -34,17 +43,20 @@
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
 					<img src="http://localhost:9000/space/images/little_logo.jpg"/>
-					<span>나의 회의실</span>
+					<span>관리 메뉴</span>
 				</p>
 				<ul>
 					<li>
-						<a href="mypage.do">예약한 회의실</a>
+						<a href="member_list.do">개인회원 관리</a>
 					</li>
 					<li>
-						<a href="mypage_inquiry.do">1:1 문의</a>
+						<a href="corp_list.do">기업회원 관리</a>
+					</li>
+						<li>
+						<a href="admin_booked.do">예약 내역</a>
 					</li>
 					<li>
-						<a href="mypage_info.do">회원정보 수정</a>
+						<a href="admin_inquiry.do">문의 답변</a>
 					</li>
 				</ul>
 			</div>
@@ -63,24 +75,19 @@
 			
 			<table class="mypage_right_box_table">
 				<tr>
-					<th>NO<div class="table_th_after"></div></th>
-					<th>카테고리<div class="table_th_after"></div></th>
-					<th>제목<div class="table_th_after"></div></th>
-					<th>작성일<div class="table_th_after"></div></th>
-					<th>답변상태</th>
+					<th>예약하기 전에 방문 답사 가능한가요?</th>
+					<th>2021-07-08</th>
 				</tr>
 				<tr>
-					<td>1</td>
-					<td>방문 답사관련</td>
-					<td><a href="mypage_inquiry_content.do">예약하기 전에 방문 답사 가능한가요?</a></td>
-					<td>2021-07-08</td>
-					<td>답변대기중</td>
+					<td colspan="2"><br><br><br><br>안녕하세요. 예약하기전에 방문 가능할까요?<br><br><br><br><br><br><br></td>
 				</tr>
 				
 			</table>
-		<div class="mypage_btn">
-			<button type="button"><a href="mypage_inquiry_write.do">글쓰기</a></button>
+			<br>
+				<div class="mypage_btn">
+			<button type="button"><a href="admin_inquiry_write.do">답변하기</a></button>
 		</div>
+		
 			</div>
 			<!-- right box end -->
 			

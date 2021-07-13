@@ -23,8 +23,35 @@
 	border-radius:4px;
 	padding : 4px 15px;
 }
-
-
+.mypage_right_box_booked_table{
+	 margin-top:20px;
+ width:100%;
+ border-spacing:0;
+ border-collapse:collapse;
+}
+  .mypage_right_box_booked_table tr{
+ 	font-size:14px; 
+ 	font-weight:520;   
+ 	text-align:center;
+ 	height:60px;
+ 	border-bottom:1px solid lightgray;
+ }
+   .mypage_right_box_booked_table tr button{
+   	padding: 5px 10px;
+   	background-color:white;
+   	border:1px solid lightgray;
+   	border-radius:5px;
+   	color:red;
+   }
+ .mypage_right_box_booked_table tr:first-child{
+ 	background-color: rgb(251,251,251);
+ 	font-size:16px;
+ 	font-weight:700; 
+ 	text-align:center;
+ 	height:60px;
+ 	border-top:1px solid lightgray;	
+ 	border-bottom:1px solid lightgray;
+ }
 </style>
 </head>
 <body>
@@ -50,9 +77,9 @@
 						<a href="corp_list.do">기업회원 관리</a>
 					</li>
 						<li>
-						<a href="admin_booked.do">예약된 회의실</a>
+						<a href="admin_booked.do">예약 내역</a>
 					</li>
-						<li>
+					<li>
 						<a href="admin_inquiry.do">문의 답변</a>
 					</li>
 					
@@ -73,7 +100,23 @@
 				<br>
 				<hr color="lightgray">
 				<br>
-				<!-- 여러개 반복 -->
+			<table class="mypage_right_box_booked_table">
+				<tr>
+					<th>NO<div class="table_th_after"></div></th>
+					<th>회원명<div class="table_th_after"></div></th>
+					<th>이메일<div class="table_th_after"></div></th>
+					<th>전화번호<div class="table_th_after"></div></th>
+					<th>탈퇴승인</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>홍길동</td>
+					<td>hong@naver.com</td>
+					<td>010-1111-2222</td>
+					<td><button type="button">승인</button></td>
+				</tr>
+				
+			</table>
 				
 		
 		

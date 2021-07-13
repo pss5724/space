@@ -18,6 +18,15 @@
 .mypage_right_box_title p{ 
 	margin-bottom:20px;
 }
+.mypage_right_box_table th:nth-child(2) {
+	text-align : right;
+	padding-right:10px;
+}
+.mypage_right_box_table th:first-child {
+	text-align : left;
+	padding-left:10px;
+}
+
 </style>
 </head>
 <body>
@@ -63,24 +72,33 @@
 			
 			<table class="mypage_right_box_table">
 				<tr>
-					<th>NO<div class="table_th_after"></div></th>
-					<th>카테고리<div class="table_th_after"></div></th>
-					<th>제목<div class="table_th_after"></div></th>
-					<th>작성일<div class="table_th_after"></div></th>
-					<th>답변상태</th>
+					<th>예약하기 전에 방문 답사 가능한가요?</th>
+					<th>2021-07-08</th>
 				</tr>
 				<tr>
-					<td>1</td>
-					<td>방문 답사관련</td>
-					<td><a href="mypage_inquiry_content.do">예약하기 전에 방문 답사 가능한가요?</a></td>
-					<td>2021-07-08</td>
-					<td>답변대기중</td>
+					<td colspan="2"><br><br><br><br>안녕하세요. 예약하기전에 방문 가능할까요?<br><br><br><br><br><br><br></td>
 				</tr>
 				
 			</table>
-		<div class="mypage_btn">
-			<button type="button"><a href="mypage_inquiry_write.do">글쓰기</a></button>
-		</div>
+			<br><br>
+				<div class="mypage_right_box_title">
+					<div class="title_deco"></div>
+					<p class="mypage_right_tit">문의 답변</p>
+					
+				</div>
+				
+		
+			
+			<table class="mypage_right_box_table">
+				<tr>
+					<th>답변대기 중입니다.</th>
+				</tr>
+				<tr>
+					<td><br><br><br><br>문의주신 내용은 꼼꼼히 확인하여 답변드리겠습니다.<br><br><br><br><br><br><br></td>
+				</tr>
+				
+			</table>
+		
 			</div>
 			<!-- right box end -->
 			
