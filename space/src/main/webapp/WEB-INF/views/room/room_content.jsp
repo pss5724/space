@@ -153,7 +153,7 @@ var pager = jQuery('#ampaginationsm').pagination({
     
     $("#btn_reserve").click(function(){
     	if($(".select_btn").data('clicked') == true){
-    		location.replace('http://localhost:9000/space/room_reserve.do');
+    		location.replace('http://localhost:9000/space/room_reserve.do?rid=<c:out value='${vo.rid}'/>');
     	}else {
     		alert("회의실을 선택해주세요");
     		$(".select_btn").focus();
