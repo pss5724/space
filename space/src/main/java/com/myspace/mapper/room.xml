@@ -74,7 +74,7 @@
     
     <!-- 회의실 예약 - 부가서비스 -->
     <select id="roomservice" parameterType="java.lang.String" resultType="com.myspace.vo.ServiceVO">
-            select * from space_reserve_service where rid=#{rid}
+            select * from space_service where rid=#{rid}
     </select>
     
     <!-- 회의실 예약 시간 조회 -->
@@ -84,11 +84,7 @@
     
     <!-- 회의실 예약 -->
     <!-- <insert id="roomreserve" parameterType="com.myspace.vo.ReservatioinVO">
-            <choose>
-                    <when test="convenience1_num != null">
-                            insert into space_reserve values('rs_'||sequ_space_room.nextval, #{name}, #{hp}, #{email}, #{rid}, #{branch_name}, #{room_name}, #{headcount}, #{type}, #{reserve_date}, #{checkin_time}, #{checkout_time}, #{used_hours}, #{convenience1_num},#{convenience2_num},#{convenience3_num},#{beverage1_num},#{beverage2_num},#{beverage3_num}, #{corp_name}, #{event_name}, #{amount}, #{pay_type}, #{etc_request})
-                    </when>
-            </choose>
+    		insert into space_reserve values('rs_'||sequ_space_room.nextval, #{name}, #{hp}, #{email}, #{rid}, #{branch_name}, #{room_name}, #{headcount}, #{type}, #{reserve_date}, #{checkin_time}, #{checkout_time}, #{used_hours}, #{convenience1_num},#{convenience2_num},#{convenience3_num},#{beverage1_num},#{beverage2_num},#{beverage3_num}, #{corp_name}, #{event_name}, #{amount}, #{pay_type}, #{etc_request})
     </insert> -->	
 
 </mapper>
