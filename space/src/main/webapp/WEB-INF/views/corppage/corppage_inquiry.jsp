@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,13 +73,15 @@
 					<th>작성일<div class="table_th_after"></div></th>
 					<th>답변상태</th>
 				</tr>
+				<c:forEach var="vo" items="${list}">
 				<tr>
-					<td>1</td>
-					<td>기타 문의</td>
-					<td><a href="corppage_inquiry_content.do">회의실 추가 등록 문의</a></td>
-					<td>2021-07-08</td> 
-					<td>답변완료</td>
+					<td>${vo.rno }</td>
+					<td>${vo.qtype } </td>
+					<td><a href="corppage_inquiry_content.do?qid=${vo.qid }">${vo.qtitle } </a></td>
+					<td>${vo.qdate } </td>
+					<td>${vo.qstate} </td>
 				</tr>
+				</c:forEach>
 				
 			</table>
 		<div class="mypage_btn">

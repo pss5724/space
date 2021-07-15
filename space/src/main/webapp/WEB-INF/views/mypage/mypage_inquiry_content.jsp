@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,11 +73,18 @@
 			
 			<table class="mypage_right_box_table">
 				<tr>
-					<th>예약하기 전에 방문 답사 가능한가요?</th>
-					<th>2021-07-08</th>
+					<th>${vo.qtitle }</th>
+					<th>${vo.qdate }</th>
 				</tr>
 				<tr>
-					<td colspan="2"><br><br><br><br>안녕하세요. 예약하기전에 방문 가능할까요?<br><br><br><br><br><br><br></td>
+					<td colspan="2"><br><br><br><br>
+					
+					${vo.qcontent }
+					<br><br><br><br><br>
+						<c:if test="${vo.qsfile ne null }">
+							<img src="http://localhost:9000/space/upload/${vo.qsfile }" width="200px" height="200px">
+						</c:if>
+					<br><br></td>
 				</tr>
 				
 			</table>
@@ -91,10 +99,21 @@
 			
 			<table class="mypage_right_box_table">
 				<tr>
-					<th>답변대기 중입니다.</th>
+					<th>${vo.qstate }</th>
 				</tr>
 				<tr>
-					<td><br><br><br><br>문의주신 내용은 꼼꼼히 확인하여 답변드리겠습니다.<br><br><br><br><br><br><br></td>
+					<td><br><br><br><br>
+					
+						<c:choose>
+						<c:when test="${vo.acontent != null}">
+						${vo.acontent }
+						</c:when>
+						<c:otherwise>
+						문의주신 내용을 꼼꼼히 확인하여 답변드리겠습니다.
+						</c:otherwise>
+					
+					</c:choose>
+					<br><br><br><br><br><br><br></td>
 				</tr>
 				
 			</table>

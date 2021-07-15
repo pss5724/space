@@ -8,8 +8,26 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$("#writeInquiry").click(function(){
+		if($(".input_content").val() == ""){
+			alert("내용을 입력해주세요");
+			$(".input_content").focus();
+			return false;
+		}else{
+			inquiry_write.submit();
+		}
+		
+	});
+	
+		
+		
+});
+</script>
 <style>
-.mypage_left_box ul li:nth-child(3) a{
+.mypage_left_box ul li:last-child a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
@@ -116,34 +134,21 @@
 				
 		
 			
-		<form id="inquiry_write" action="#" method="POST" enctype="multipart/form-data">
-
+		<form id="inquiry_write" action="admin_inquiry_write_proc.do" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="qid" value="${qid }">
 		<table class="inquiry_write_table">
 	
-			
-			<tr>
-				<th>제목</th>
-				<td>
-					<input type="text" name="subject" class="input_subject" title="제목작성" required>
-				</td>
-			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<input type="text" name="content" class="input_content" title="내용작성">
-				</td>
-			</tr>
-			<tr>
-				<th>파일첨부</th>
-				<td>
-					<input name="file" type="file">
+					<input type="text" name="acontent" class="input_content" title="내용작성">
 				</td>
 			</tr>
 			
 		</table>
 
 	<div class="mypage_write_btn">
-		<a id="writeInquiry" class="blue" href="#">답변하기</a>
+		<button type="button" id="writeInquiry" class="blue" >답변하기</button>
 		<a href="admin_inquiry.do">취소</a>
 	</div>
 

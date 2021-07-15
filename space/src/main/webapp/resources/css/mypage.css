@@ -133,7 +133,7 @@
 	width: 50%;
 	margin: 30px auto  0 auto;	
 }
-.mypage_write_btn a:first-child{
+.mypage_write_btn button{
 	float:left;
 	border:1px solid rgb(2,116,216);
 	border-radius:5px;
@@ -144,7 +144,7 @@
 	font-weight:600;
 	background-color:rgb(2,116,216); 
 }
-.mypage_write_btn a:last-child{
+.mypage_write_btn a{
 	float:left;
 	border:1px solid lightgray;
 	border-radius:5px;
