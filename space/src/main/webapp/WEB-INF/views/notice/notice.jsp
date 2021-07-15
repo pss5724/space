@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,26 +17,30 @@
 	$(document).ready(function(){
 		
 		var pager = jQuery('#ampaginationsm').pagination({
-		
+			
 		    maxSize: 5,	    		// max page size
-		    totals: ${dbcount},	// total pages	
-		    page: ${rpage},		// initial page		
-		    pageSize: ${pagesize},			// max number items per page
-		
+		    totals:${dbcount},	// total pages	
+		    page:${rpage},		// initial page		
+		    pageSize: 2,	// max number items per page
+			
+		    //totals: ${dbcount},	// total pages	
+		    //page: ${rpage},		// initial page		
+		    //pageSize: ${pageSize},	// max number items per page
+		    
+		    
 		    // custom labels		
 		    lastText: '&raquo;&raquo;', 		
 		    firstText: '&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
+		    prevText: ' ',		
+		    nextText: ' ',
 				     
 		    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
 		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 	           $(location).attr('href', "http://localhost:9000/space/notice.do?rpage="+e.page);         
 	    });
-		
  	});
 </script>
 </head>
@@ -92,47 +97,48 @@
 						</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="board_fix"><img src="http://localhost:9000/space/images/notice_board_fix_icon01.png" alt="공지"></td>
-								<td class="al_left board_fix"><a class="over_link" href="http://localhost:9000/space/notice_content.do">[안내] 왕초보도 가능! 촬영부터 편집까지 가능한 영상 녹화 스튜디오를 소개합니다.</a></td>
-								<td class="board_fix">관리자</td>
-								<td class="board_fix">253</td>
-								<td class="board_fix">2021.03.31</td>
-							</tr>
-
-							<tr>
-								<td>120</td>
-								<td class="al_left"><a class="over_link" href="http://localhost:9000/space/notice_content.do">[안내] 신규 가맹점 금천구 1호점을 소개합니다.</a></td>
-								<td class="">관리자</td>
-								<td class="">14</td>
-								<td class="">2021.06.25</td>
-							</tr>
-
+								
+						<c:forEach var="vo" items="${list}">
+							<c:choose>
+								<c:when test="${vo.important != 'NORMAL'}">
+								<tr>
+									<td class="board_fix"><img src="http://localhost:9000/space/images/notice_board_fix_icon01.png" alt="공지"></td>
+									<td class="al_left board_fix"><a class="over_link" href="http://localhost:9000/space/notice_content.do?nid=${vo.nid}&rno=${vo.rno}">${vo.ntitle }</a></td>
+									<td class="board_fix">관리자</td>
+									<td class="board_fix">${vo.nhit }</td>
+									<td class="board_fix">${vo.ndate }</td>
+								</tr>
+								</c:when>
+								
+								<c:otherwise>
+								<tr>
+									<td>${vo.rno} </td>
+									<td class="al_left"><a class="over_link" href="http://localhost:9000/space/notice_content.do?nid=${vo.nid}&rno=${vo.rno}">${vo.ntitle }</a></td>
+									<td class="">관리자</td>
+									<td class="">${vo.nhit }</td>
+									<td class="">${vo.ndate }</td>
+								</tr>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+								
+								
 						</tbody>
 					</table>
 				</div>
 					<div class="notice_write">
 					<a href="http://localhost:9000/space/notice_write.do"><button type="button" >글 작성</button></a>
 					</div>
+					
 				<div class="content_paging">
-				<a class="content_paging_prev" href="javascript:void(0);"><img src="http://localhost:9000/space/images/content_paging_left.png" alt="이전"></a>
-				<ul class="content_paging_list hf_effect03">
-							<li class="on "><a href="#">1</a></li>
-							<li class=" "><a href="#">2</a></li>
-							<li class=" "><a href="#">3</a></li>
-							<li class=" "><a href="#">4</a></li>
-							<li class=" "><a href="#">5</a></li>
-					</ul>
-							<a class="content_paging_next" href="#"><img src="http://localhost:9000/space/images/content_paging_right.png" alt="다음"></a>
+				<a class="content_paging_prev" href="#"><img src="http://localhost:9000/space/images/content_paging_left.png" alt="이전"></a>
+					
+					<div id="ampaginationsm"></div>		
+				
+					<a class="content_paging_next" href="#"><img src="http://localhost:9000/space/images/content_paging_right.png" alt="다음"></a>
 				</div>
 
 			</div>
 		</div>
 		<!-- e sub_section -->
 	</div>
-	<!-- e container -->
-	<!-- footer -->
-	<jsp:include page="../footer.jsp"></jsp:include>
-
-</body>
-</html>
