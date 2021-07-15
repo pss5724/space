@@ -14,7 +14,7 @@ import com.myspace.vo.RoomVO;
 import com.myspace.vo.ServiceVO;
 
 @Repository
-public class RoomDAO extends DBConn{
+public class RoomDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;

@@ -110,11 +110,6 @@ public class RoomController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/room_reserve.do", method=RequestMethod.GET)
-	public String room_reserve() {
-		return "room/room_reserve";
-	}
-	
 	@RequestMapping(value="/room_reserve_confirm.do", method=RequestMethod.GET)
 	public String room_reserve_confirm() {
 		return "room/room_reserve_confirm";
