@@ -230,7 +230,7 @@
 		<!-- s sub_tab -->
 	<div class="sub_tab_box">
 		<ul class="sub_tab">
-			<li><a href="http://localhost:9000/space/notice.do">공지사항</a></li>
+			<li><a href="http://localhost:9000/space/notice.do?rpage=1">공지사항</a></li>
 			<li class="on"><a href="#">자주묻는 질문</a></li>
 		</ul>
 	</div>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+  <mapper namespace="mapper.notice">
+  
+  <!--  ns파일명 -->
+  <select id ="nsfile" parameterType="java.lang.String" resultType="java.lang.String">
+  	select nsfile from space_notice where nid=#{nid}
+  </select> 
+  
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="java.lang.String">
+  	delete from space_notice where nid=#{nid}
+  </delete>
+  
+  <!-- 기존파일유지 업데이트 -->
+  <update id="updatenofile" parameterType="com.myspace.vo.NoticeVO">
+  	update space_notice set ntitle=#{ntitle}, ncontent=#{ncontent} where nid =#{nid}
+  </update>
+  
+  <!-- 새파일 업데이트 --> 
+  <update id="updatefile" parameterType="com.myspace.vo.NoticeVO">
+  	update space_notice set ntitle=#{ntitle}, ncontent=#{ncontent}, nfile=#{nfile}, nsfile=#{nsfile} where nid = #{nid}
+  </update>
+  
+  <!-- 조회수 업데이트 -->
+  <update id="updatehit" parameterType="java.lang.String">
+  	update space_notice set nhit= nhit + 1 where nid=#{nid}
+  </update>
+  
+  <!-- 공지사항상세정보 -->
+  <select id="content" parameterType="java.lang.String" resultType="com.myspace.vo.NoticeVO">
+ 	select rownum rno, nid, ntitle,ncontent, nhit, nsfile, to_char(ndate,'yyyy-mm-dd') ndate from space_notice where nid=#{nid}
+  </select>
+  
+  <!-- 전체 로우수 -->
+  <select id ="count" resultType="int">
+  	select count(*) from space_notice
+  </select>
+  
+  <!-- 전체리스트 출력 -->
+  <select id="list" parameterType="map" resultType="com.myspace.vo.NoticeVO">
+  	select rno, nid, ntitle, nhit, ndate , important from 
+				(select rownum rno, nid, ntitle, nhit, to_char(ndate,'yyyy-mm-dd') ndate , important
+				from (select nid, ntitle, nhit, ndate, important from space_notice order by important)) 
+				where rno between #{start} and #{end}
+  </select>
+  
+  <insert id="insert" parameterType="com.myspace.vo.NoticeVO">
+  	<choose>
+  		<when test="nfile != null">
+		  	insert into space_notice values('N_'||sequ_space_notice.nextval,#{ntitle},#{ncontent},'test',0,#{nfile},#{nsfile},sysdate,#{important})
+  		</when>
+  		<otherwise>
+		  	insert into space_notice values('N_'||sequ_space_notice.nextval,#{ntitle},#{ncontent},'test',0,null,null,sysdate,#{important})
+  		</otherwise>
+  	</choose>
+  </insert>
+  
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
