@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,16 +36,19 @@
 						</colgroup>
 						<thead>
 						<tr>
-							<th scope="col">[공지] 6월 후기이벤트 참여 회원, 다시 한번 축하드립니다.</th>
-							<th class="right" scope="col">조회 6 | 2021-07-05</th>
+							<th scope="col">${vo.ntitle} </th>
+							<th class="right" scope="col">${vo.nhit } | ${vo.ndate}</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
 							<td colspan="2">
 								<div class="board_view_content">
-									<p><img style="width: 1000px;" data-filename="6월.jpg" src="http://localhost:9000/space/images/f32IAekLtAHXo3odgiHPOd6OKTZWFPm1iKZuz6gJ.jpeg"><br></p>
-
+									<p>${content}
+									<c:if test="${vo.nsfile ne null }">
+									<img style="width: 1000px;" data-filename="6월.jpg" src="http://localhost:9000/space/images/${vo.nsfile}"><br>
+									</c:if>
+									</p>
 								</div>
 							</td>
 						</tr>
@@ -73,7 +77,8 @@
 				</ul>
 
 				<div class="common_btn_area right">
-					<a class="black_btn" href="http://localhost:9000/space/notice.do">목록보기</a>
+					<a class="black_btn" href="notice_delete.do?nid=${vo.nid }&rno=${rno }">삭제하기</a>
+					<a class="black_btn" href="http://localhost:9000/space/notice.do?rpage=1">목록보기</a>
 				</div>
 
 			</div>
