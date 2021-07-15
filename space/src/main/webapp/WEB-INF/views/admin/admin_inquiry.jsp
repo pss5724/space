@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,14 +121,16 @@
 					<th>작성일<div class="table_th_after"></div></th>
 					<th>답변상태</th>
 				</tr>
+				<c:forEach var="vo" items="${list}">
 				<tr>
-					<td>1</td>
-					<td>홍길동</td>
-					<td>방문 답사관련</td>
-					<td><a href="admin_inquiry_content.do">예약하기 전에 방문 답사 가능한가요?</a></td>
-					<td>2021-07-08</td>
-					<td>답변대기중</td>
+					<td>${vo.rno }</td>
+					<td>${vo.id }</td>
+					<td>${vo.qtype } </td>
+					<td><a href="admin_inquiry_content.do?qid=${vo.qid }">${vo.qtitle } </a></td>
+					<td>${vo.qdate } </td>
+					<td>${vo.qstate} </td>
 				</tr>
+				</c:forEach>
 				
 			</table>
 	

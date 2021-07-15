@@ -8,6 +8,32 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$("#writeInquiry").click(function(){
+		if($(".inquiry_category").val() =="choice"){
+			alert("카테고리를 선택해주세요");
+			$(".inquiry_category").focus();
+			return false;
+		}else if($(".input_subject").val() == ""){
+			alert("제목을 입력해주세요");
+			$(".input_subject").focus();
+			return false;
+		}else if($(".input_content").val() == ""){
+			alert("내용을 입력해주세요");
+			$(".input_content").focus();
+			return false;
+		}else{
+			inquiry_write.submit();
+		}
+		
+	});
+	
+		
+		
+});
+</script>
 <style>
 .mypage_left_box ul li:nth-child(2) a{
 	text-decoration: none;
@@ -113,48 +139,46 @@
 				
 		
 			
-		<form id="inquiry_write" action="#" method="POST" enctype="multipart/form-data">
+		<form name="inquiry_write" action="mypage_inquiry_write_proc.do" method="POST" enctype="multipart/form-data">
 
 		<table class="inquiry_write_table">
 	
 			<tr>
 				<th scope="row">문의유형</th>
 				<td>
-					<select class="inquiry_category" name="inquiry_category">
+					<select class="inquiry_category" name="qtype">
 						
 						<option value="choice" selected>선택</option>
-						<option value="book">예약관련</option>
-						<option value="cancel">취소관련</option>
-						<option value="saved">적립금관련</option>
-						<option value="visit">방문 답사관련</option>
-						<option value="other">기타문의</option>
+						<option value="예약관련">예약관련</option>
+						<option value="취소관련">취소관련</option>
+						<option value="기타문의">기타문의</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>제목</th>
 				<td>
-					<input type="text" name="subject" class="input_subject" title="제목작성" required>
+					<input type="text" name="qtitle" class="input_subject" title="제목작성" required>
 				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea name="content" class="input_content" title="내용작성"></textarea>
+					<textarea name="qcontent" class="input_content" title="내용작성"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>파일첨부</th>
 				<td>
-					<input name="file" type="file">
+					<input type="file" name="file1" >
 				</td>
 			</tr>
 			
 		</table>
 
 	<div class="mypage_write_btn">
-		<a id="writeInquiry" class="blue" href="#">문의하기</a>
-		<a href="https://www.kmeetingroom.com/me/inquiries">취소</a>
+		<button type="button" id="writeInquiry" class="blue" >문의하기</button>
+		<a href="mypage_inquiry.do">취소</a>
 	</div>
 
 	</form>

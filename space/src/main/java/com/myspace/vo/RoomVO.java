@@ -1,10 +1,14 @@
 package com.myspace.vo;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class RoomVO {
 	String rid,	id,	branch_name, room_name, intro, closed_day, check_info, type, 
-			address, rfile1, rsfile1, rfile2, rsfile2, rfile3, rsfile3;
+			address, rfile1, rsfile1, rfile2, rsfile2, rfile3, rsfile3, rdate;
 	double opening_time, closing_time;
 	int capacity, charge;
+	CommonsMultipartFile file1, file2, file3;
+	
 	public String getRid() {
 		return rid;
 	}
@@ -119,6 +123,31 @@ public class RoomVO {
 	public void setCharge(int charge) {
 		this.charge = charge;
 	}
+	public CommonsMultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(CommonsMultipartFile file1) {
+		this.file1 = file1;
+	}
+	public CommonsMultipartFile getFile2() {
+		return file2;
+	}
+	public void setFile2(CommonsMultipartFile file2) {
+		this.file2 = file2;
+	}
+	public CommonsMultipartFile getFile3() {
+		return file3;
+	}
+	public void setFile3(CommonsMultipartFile file3) {
+		this.file3 = file3;
+	}
+	public String getRdate() {
+		return rdate;
+	}
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
+	}
+	
 
 	
 }
