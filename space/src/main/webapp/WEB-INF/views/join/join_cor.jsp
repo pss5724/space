@@ -9,6 +9,67 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/join.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/space.js"></script>
+<script>
+$(document).ready(function(){
+	$("#doResgister").click(function(){
+		if($("#name").val()==""){
+			alert("성함을 입력해주세요");
+			$("#name").focus();
+			return false;
+		}else if($("#id").val()==""){
+			alert("이메일을 선택해주세요");
+			$("#id").focus();
+			return false;
+		}else if($("#pass").val()==""){
+			alert("비밀번호를 입력해주세요");
+			$("#pass").focus();
+			return false;
+		}else if($("#cpass").val()==""){
+			alert("비밀번호 확인을 선택해주세요");
+			$("#cpass").focus();
+			return false;
+		}else if($("#hp").val() == ""){
+			alert("휴대폰 번호를 입력해주세요");
+			$("#hp").focus();
+			return false;
+		}else if($("#tname").val() == ""){
+			alert("대표자명을 입력해주세요");
+			$("#tname").focus();
+			return false;
+		}else if($("#cname").val() == ""){
+			alert("상호명을 입력해주세요");
+			$("#cname").focus();
+			return false;
+		}else if($("#cnum1").val() == ""){
+			alert("사업자 번호를 입력해주세요");
+			$("#cnum1").focus();
+			return false;
+		}else if($("#cnum2").val() == ""){
+			alert("사업자 번호를 입력해주세요");
+			$("#cnum2").focus();
+			return false;
+		}else if($("#cnum3").val() == ""){
+			alert("사업자 번호를 입력해주세요");
+			$("#cnum3").focus();
+			return false;
+		}else if($("#address1").val() == ""){
+			alert("사업자 주소를 입력해주세요");
+			$("#address1").focus();
+			return false;
+		}else if($("#address2").val() == ""){
+			alert("사업자 주소를 입력해주세요");
+			$("#address2").focus();
+			return false;
+		}else if($("#chp").val() == ""){
+			alert("대표번호를 입력해주세요");
+			$("#chp").focus();
+			return false;
+		}else{
+			join_form.submit();
+		}
+	});
+}
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -20,7 +81,7 @@
 		<!-- center_section_join -->
 		<div class="center_section_join">
 			<div class="center_box">
-				<form name="join_form" action="join_proc.do" method="post"
+				<form name="join_form" action="join_cor_proc.do" method="post"
 					class="content_layout">
 					<div class="join_box">
 						<div class="join_tit_box">
@@ -113,9 +174,9 @@
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="crn1" id="crn1"> - <input
-												type="text" name="crn2" id="crn2"> - <input
-												type="text" name="crn3" id="crn3">
+											<input type="text" name="cnum1" id="cnum1"> - <input
+												type="text" name="cnum2" id="cnum2"> - <input
+												type="text" name="cnum3" id="cnum3">
 										</div>
 									</div>
 								</li>
@@ -142,7 +203,7 @@
 									<div class="join_write_list_f">대표번호</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
-											<input type="text" name="tel" placeholder="대표번호 입력" id="tel">
+											<input type="text" name="chp" placeholder="대표번호 입력" id="chp">
 										</div>
 									</div>
 								</li>

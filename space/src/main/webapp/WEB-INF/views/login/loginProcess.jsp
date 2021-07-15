@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.space.dao.*, com.space.vo.*" %>
-<jsp:useBean id="vo" class="com.space.vo.MemberVO" />
+<%@ page import="com.myspace.dao.*, com.myspace.vo.*" %>
+<jsp:useBean id="vo" class="com.myspace.vo.MemberVO" />
 <jsp:setProperty name="vo" property="*" />
 <% 
 	//로그인 폼에서 넘어오는 데이터 받기

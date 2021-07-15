@@ -9,6 +9,35 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/join.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/space.js"></script>
+<script>
+$(document).ready(function(){
+	$("#doResgister").click(function(){
+		if($("#name").val()==""){
+			alert("성함을 입력해주세요");
+			$("#name").focus();
+			return false;
+		}else if($("#id").val()==""){
+			alert("이메일을 선택해주세요");
+			$("#id").focus();
+			return false;
+		}else if($("#pass").val()==""){
+			alert("비밀번호를 입력해주세요");
+			$("#pass").focus();
+			return false;
+		}else if($("#cpass").val()==""){
+			alert("비밀번호 확인을 선택해주세요");
+			$("#cpass").focus();
+			return false;
+		}else if($("#hp").val() == ""){
+			alert("휴대폰 번호를 입력해주세요");
+			$("#hp").focus();
+			return false;
+		}else{
+			join_form.submit();
+		}
+	});
+}
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -20,7 +49,7 @@
 		<!-- center_section_join -->
 		<div class="center_section_join">
 			<div class="center_box">
-				<form name="join_form" action="join_proc.do" method="post" class="content_layout">
+				<form name="join_form" action="join_per_proc.do" method="post" class="content_layout">
 				<div class="join_box">
 					<div class="join_tit_box">
 						<p class="join_tit">회원가입</p>

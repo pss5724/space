@@ -9,6 +9,24 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/login.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/space.js"></script>
+<script>
+$(document).ready(function(){
+	$("#loginEmail").click(function() {
+		if($("#id").val() == "") {
+			alert("아이디를 입력해주세요.");
+			$("#id").focus();
+			return false;
+		} else if($("#pass").val() == "") {
+			alert("비밀번호를 입력해주세요.");
+			$("#pass").focus();
+			return false;
+		} else {
+			login_form.submit();
+		}
+		
+	});
+}
+</script>
 </head>
 <body>
 	<!-- header -->

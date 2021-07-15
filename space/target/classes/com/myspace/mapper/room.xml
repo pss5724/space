@@ -64,22 +64,22 @@
 	
 	<!-- 회의실 상세 -->
     <select id="roomcontent" parameterType="java.lang.String" resultType="com.myspace.vo.RoomVO">
-            select * from space_room where rid='r_2'
+            select * from space_room where rid=#{rid}
     </select>
     
     <!-- 회의실 옵션 -->
     <select id="roomoption" parameterType="java.lang.String" resultType="com.myspace.vo.OptionVO">
-            select * from space_option where rid='r_2'
+            select * from space_option where rid=#{rid}
     </select>
     
     <!-- 회의실 예약 - 부가서비스 -->
     <select id="roomservice" parameterType="java.lang.String" resultType="com.myspace.vo.ServiceVO">
-            select * from space_reserve_service where rid='r_2'
+            select * from space_reserve_service where rid=#{rid}
     </select>
     
     <!-- 회의실 예약 시간 조회 -->
     <select id="availabletime" parameterType="map" resultType="com.myspace.vo.ReservationVO">
-            select checkin_time, checkout_time, reserve_date, rid from space_reserve where rid='r_2'
+            select checkin_time, checkout_time, reserve_date, rid from space_reserve where rid=#{rid}
     </select>
     
     <!-- 회의실 예약 -->
