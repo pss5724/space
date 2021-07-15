@@ -412,34 +412,28 @@ header{
 	margin-top:50px;
 	text-align:center;
 	font-size:0;
+	
 }
 .content_paging a {
 	display:inline-block;
 	margin-top:15px;
+		
 }
 .content_paging div{
 	display:inline-block;
 	vertical-align:top;
+	
+}
+.content_paging_prev, .content_paging_next {
+	margin:0 20px;
 }
 .content_paging_list {
 	display:inline-block;
+
+	
 }
-.content_paging_list li {
-	display:inline-block;
-	vertical-align:top;
-	width:30px;
-	text-align:center;
-}
-.content_paging_list li + li {
-	margin-left:10px;
-}
-.content_paging_list li a {
-	font-size:16px;
-	line-height:32px;
-	color:#111111;
-}
+
 .content_paging_list li.on a, .content_paging_list li.focus a {
-	font-family:"nanumsquare-b";
 	color:#006be0;
 }
 
