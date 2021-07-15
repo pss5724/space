@@ -14804,6 +14804,8 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		} else {
 			this.value( newVal );
 		}
+		//console.log(newValues[ 0 ], newValues[ 1 ]);
+		
 	},
 
 	_stop: function( event, index ) {

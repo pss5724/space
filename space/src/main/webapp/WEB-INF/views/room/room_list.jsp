@@ -1,7 +1,7 @@
 <%-- <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,28 +12,12 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/jquery.simple-dtpicker.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/jquery-ui.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/space/js/room.js"></script>
 <script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
 <script src="http://localhost:9000/space/js/jquery-ui.js"></script>
 
 <script>
 $(document).ready(function() {
-	
-	$("html").click(function(e) { 
-		if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data ul") && !$(e.target).is("label input") 
-				&& !$(e.target).is(".select_data.type *") && !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
-			$("label").siblings("div").removeClass("open");
-		}
-	});
-
-	$("label").click(function() {
-		$(this).parent("li").siblings().children("div").removeClass("open");
-		$(this).siblings("div").toggleClass("open");
-	});
-	
-	$(".btn_search_reset").click(function() {
-		$(this).siblings("label").children("input").val("");
-	});
-	
 	/* 날짜 선택 */
  	$('*[name=date]').appendDtpicker({
 		locale:"ko",
@@ -49,7 +33,7 @@ $(document).ready(function() {
 	});
 	
 	$(".sub_location").click(function() {
-		var location = $(this).parent().parent().siblings("span").text() + " > " + $(this).text()
+		var location = $(this).parent().parent().siblings("span").text() + " > " + $(this).text();
 		$("#search_location").val(location);
 		$(".location").removeClass("on");
 	});
@@ -85,46 +69,39 @@ $(document).ready(function() {
 	});
 	
 	/* 금액 슬라이더 */
-	$( "#slider-range" ).slider({
+	var min=0, max=1000000;
+	$("#slider-range").slider({
 		range: true,
 		min: 0,
 		max: 1000000,
 		values: [ 0, 1000000 ],
 		slide: function( event, ui ) {
-		  $( "#amount" ).val( ui.values[ 0 ] + "원 ~ " + ui.values[ 1 ] + "원");
+			$("#pay1").html(number_format(ui.values[0]));
+			$("#pay2").html(number_format(ui.values[1]));
 		}
 	});
-	$( "#amount" ).val( + $( "#slider-range" ).slider( "values", 0 ) + "원 ~ " + $( "#slider-range" ).slider( "values", 1 ) + "원");
-
+	
+	$("#pay1").html(number_format($( "#slider-range" ).slider( "values", 0 )));
+	$("#pay2").html(number_format($( "#slider-range" ).slider( "values", 1 )));
+	
+ 	$(".ui-slider-handle, ui-slider-range, #slider-range").on("mouseup mousedown click mouseleave mouseenter", function(){
+		ajax_list($("#pay1").text(), $("#pay2").text());
+	});
 	
 	/* 옵션 버튼 선택 */
-	var convenience_list = [], service_list = [], food_list = [], payment_list = [];
+	//var convenience_list = [], service_list = [], food_list = [], payment_list = [];
+	var option_list = ["default"];  //ajax에서 배열을 받아야해서 기본 값 하나 삽입
 	
 	$(".search_option button").click(function() {
 		$(this).toggleClass("on");
 		
 		if($(this).hasClass("on")) {
-			if($(this).hasClass("convenience")) {
-				convenience_list.push($(this).text());
-			} else if($(this).hasClass("service")) {
-				service_list.push($(this).text());
-			} else if($(this).hasClass("food")) {
-				food_list.push($(this).text());
-			} else if($(this).hasClass("payment")) {
-				payment_list.push($(this).text());
-			}
+			option_list.push($(this).val());
 		} else {
-			if($(this).hasClass("convenience")) {
-				convenience_list.pop($(this).text());
-			} else if($(this).hasClass("service")) {
-				service_list.pop($(this).text());
-			} else if($(this).hasClass("food")) {
-				food_list.pop($(this).text());
-			} else if($(this).hasClass("payment")) {
-				payment_list.pop($(this).text());
-			}
-		}	
-		alert("clist>>" + convenience_list + "\nslist>>" + service_list + "\nflist>>" + food_list + "\npayment>>" + payment_list);
+			var idx = option_list.indexOf($(this).val());
+			option_list.splice(idx, 1);
+		}
+		
 	});
 	
 	/* 옵션 검색 더보기 */
@@ -156,9 +133,7 @@ $(document).ready(function() {
 		$(this).addClass("on");
 		alert($(".sort_type li.on").text());
 	});
-	
-	
-	
+
 	/* 지도 모달창 */
 	$("#map").click(function(){
 		$("#modal").show();
@@ -169,35 +144,48 @@ $(document).ready(function() {
 		$("#overlay").css({"opacity":"0","pointer-events":"none"});
 	});
 	
+	/* 금액 콤마 표시하기 */
+	function number_format(numstr) {
+		var numstr = String(numstr);
+		var re0 = /(\d+)(\d{3})($|\..*)/;
+		if (re0.test(numstr)) {
+			return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
+		} else {
+			return numstr;
+		}
+	}
 	
-	
+	/* 리스트 출력 function */
+ 	function ajax_list(min, max) {
+		console.log("도착");
+		console.log("최소"+min);
+		console.log("최대"+max);
+		//JSON.stringify(
+		var params = {
+       			"location": ($("#search_location").val()!="") ? $("#search_location").val() :"null",
+   	        	"date": ($("#search_date").val()!="") ? $("#search_date").val() : "null",
+   	        	"type": ($("#search_type").val()!="") ? $("#search_type").val() : "null",
+   	        	"min": min,
+   	        	"max": max,
+   	        	"stars": $('input[name=star]:checked').length,
+   	        	"option_list": option_list
+		};
+    	        
+		$.ajax({
+			url: "get_list.do",
+			data: params,
+			type: "POST",
+			success: function(result) {
+				console.log(result);
+				//$(".search_result li").remove();
+				//$(".search_result ul").append("");
+			}//success
+		});//ajax
+	} //ajax_list function
 
 });
 </script>
-<style>
-.search_option ul {
-	max-height: 83px;
-	overflow: hidden;
-}
-.btn_more {
-	margin-bottom: 5px;
-}
-.btn_more:hover {
-	cursor: pointer;
-}
-.btn_more img {
-	vertical-align: middle;
-}
-.btn_more span {
-	padding-right: 3px;
-	color: #3492e6;
-	font-size: 13px;
-	font-weight: bold;
-}
-.search_option ul.more {
-	max-height: 1000px;
-}
-</style>
+
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -336,8 +324,9 @@ $(document).ready(function() {
 				<div class="search_option_list">
 					<div class="search_option">
 						<p class="search_option_title">금액대(시간당)</p>
-						<label for="amount"></label> 
-						<input type="text" id="amount" readonly">
+						<span class="search_charge">
+							<span id="pay1"></span> ~ <span id="pay2"></span><span>원</span>
+						</span>
 						<div id="slider-range"></div>
 					</div>
 					<div class="search_option">
@@ -361,17 +350,17 @@ $(document).ready(function() {
 					<div class="search_option">
 						<p class="search_option_title">편의시설</p>
 						<ul>
-							<li><button type="button" class="convenience">공용라운지</button></li>
-							<li><button type="button" class="convenience">흡연실</button></li>
-							<li><button type="button" class="convenience">주차장</button></li>
-							<li><button type="button" class="convenience">승강기</button></li>
-							<li><button type="button" class="convenience">화물승강기</button></li>
-							<li><button type="button" class="convenience">자판기</button></li>
-							<li><button type="button" class="convenience">Wi-Fi</button></li>
-							<li><button type="button" class="convenience">장애인 화장실</button></li>
-							<li><button type="button" class="convenience">화장실</button></li>
-							<li><button type="button" class="convenience">정수기</button></li>
-							<li><button type="button" class="convenience">KTX/SRT 인근</button></li>
+							<li><button type="button" class="convenience" value="lounge">공용라운지</button></li>
+							<li><button type="button" class="convenience" value="smoking_room">흡연실</button></li>
+							<li><button type="button" class="convenience" value="parking_lot">주차장</button></li>
+							<li><button type="button" class="convenience" value="elevator">승강기</button></li>
+							<li><button type="button" class="convenience" value="freight_elevator">화물승강기</button></li>
+							<li><button type="button" class="convenience" value="vending_machine">자판기</button></li>
+							<li><button type="button" class="convenience" value="wifi">Wi-Fi</button></li>
+							<li><button type="button" class="convenience" value="accessible_toilet">장애인 화장실</button></li>
+							<li><button type="button" class="convenience" value="toilet">화장실</button></li>
+							<li><button type="button" class="convenience" value="water_dispenser">정수기</button></li>
+							<li><button type="button" class="convenience" value="ktx">KTX/SRT 인근</button></li>
 						</ul>
 						<div class="btn_more">
 							<span>더보기</span>
@@ -381,22 +370,22 @@ $(document).ready(function() {
 					<div class="search_option">
 						<p class="search_option_title">부가서비스</p>
 						<ul>
-							<li><button type="button" class="service">빔프로젝터</button></li>
-							<li><button type="button" class="service">화상회의장비</button></li>
-							<li><button type="button" class="service">마이크</button></li>
-							<li><button type="button" class="service">강연대</button></li>
-							<li><button type="button" class="service">TV</button></li>
-							<li><button type="button" class="service">스피커</button></li>
-							<li><button type="button" class="service">PC/노트북</button></li>
-							<li><button type="button" class="service">포인터</button></li>
-							<li><button type="button" class="service">현수막</button></li>
-							<li><button type="button" class="service">화이트보드</button></li>
-							<li><button type="button" class="service">단상</button></li>
-							<li><button type="button" class="service">컨퍼런스콜</button></li>
-							<li><button type="button" class="service">에어컨</button></li>
-							<li><button type="button" class="service">난방기</button></li>
-							<li><button type="button" class="service">유선인터넷</button></li>
-							<li><button type="button" class="service">영상스튜디오</button></li>
+							<li><button type="button" class="service" value="beam">빔프로젝터</button></li>
+							<li><button type="button" class="service" value="video_device">화상회의장비</button></li>
+							<li><button type="button" class="service" value="mic">마이크</button></li>
+							<li><button type="button" class="service" value="lectern">강연대</button></li>
+							<li><button type="button" class="service" value="tv">TV</button></li>
+							<li><button type="button" class="service" value="speaker">스피커</button></li>
+							<li><button type="button" class="service" value="pc">PC/노트북</button></li>
+							<li><button type="button" class="service" value="pointer">포인터</button></li>
+							<li><button type="button" class="service" value="banner">현수막</button></li>
+							<li><button type="button" class="service" value="whiteboard">화이트보드</button></li>
+							<li><button type="button" class="service" value="dais">단상</button></li>
+							<li><button type="button" class="service" value="conference_call">컨퍼런스콜</button></li>
+							<li><button type="button" class="service" value="air_conditional">에어컨</button></li>
+							<li><button type="button" class="service" value="heater">난방기</button></li>
+							<li><button type="button" class="service" value="internet">유선인터넷</button></li>
+							<li><button type="button" class="service" value="studio">영상스튜디오</button></li>
 						</ul>
 						<div class="btn_more">
 							<span>더보기</span>
@@ -406,17 +395,17 @@ $(document).ready(function() {
 					<div class="search_option">
 						<p class="search_option_title">식음료</p>
 						<ul>
-							<li><button type="button" class="food">다과류 반입가능</button></li>
-							<li><button type="button" class="food">다과류 별도판매</button></li>
-							<li><button type="button" class="food">식사류 반입가능</button></li>
-							<li><button type="button" class="food">식사류 별도판매</button></li>
+							<li><button type="button" class="food" value="snack_carry">다과류 반입가능</button></li>
+							<li><button type="button" class="food" value="snack_sale">다과류 별도판매</button></li>
+							<li><button type="button" class="food" value="meal_carry">식사류 반입가능</button></li>
+							<li><button type="button" class="food" value="meal_sale">식사류 별도판매</button></li>
 						</ul>
 					</div>
 					<div class="search_option">
 						<p class="search_option_title">결제구분</p>
 						<ul>
-							<li><button type="button" class="payment">온라인 결제</button></li>
-							<li><button type="button" class="payment">현장 결제</button></li>
+							<li><button type="button" class="payment" value="online_payment">온라인 결제</button></li>
+							<li><button type="button" class="payment" value="offline_payment">현장 결제</button></li>
 						</ul>
 					</div>				
 				</div>
@@ -434,34 +423,146 @@ $(document).ready(function() {
 				</ul>
 				<div class="search_result">
 					<ul>
+					<c:forEach var="rvo" items="${rlist}" varStatus="status">
 						<li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room1.jpg') center top no-repeat; background-size: cover"></div>
+							<a href="http://localhost:9000/space/room_content.do?rid=${rvo.rid}">
+								<div class="info_image">
+									<img src="http://localhost:9000/space/upload/${rvo.rsfile1}">
+								</div>
 								<div class="info_text">
 									<div class="info_left">
-										<p class="room_title">종로구 1호점</p>
-										<p class="room_sub_title">접근성 및 회의실 컨디션 최상</p>
-										<p class="room_location">세종로</p>
-										<p class="room_capacity">54인실, 36인실, 22인실, 16인실</p>
+										<p class="room_title">${rvo.branch_name}</p>
+										<p class="room_sub_title">${rvo.intro}</p>
+										<p class="room_location">${rvo.address}</p>
+										<p class="room_capacity">${rvo.capacity}인실</p>
 										<ul>
-											<li>다과류 별도판매</li>
-											<li>식사류 별도판매</li>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
+											<c:if test="${olist[status.index].lounge == 1}">
+												<li>공용 라운지</li>										
+											</c:if>
+											<c:if test="${olist[status.index].smoking_room == 1}">
+												<li>흡연실</li>										
+											</c:if>
+											<c:if test="${olist[status.index].parking_lot == 1}">
+												<li>주차장</li>										
+											</c:if>
+											<c:if test="${olist[status.index].elevator == 1}">
+												<li>승강기</li>										
+											</c:if>
+											<c:if test="${olist[status.index].freight_elevator == 1}">
+												<li>화물승강기</li>										
+											</c:if>
+											<c:if test="${olist[status.index].vending_machine == 1}">
+												<li>자판기</li>										
+											</c:if>
+											<c:if test="${olist[status.index].wifi == 1}">
+												<li>Wi-Fi</li>										
+											</c:if>
+											<c:if test="${olist[status.index].accessible_toilet == 1}">
+												<li>장애인 화장실</li>										
+											</c:if>
+											<c:if test="${olist[status.index].toilet == 1}">
+												<li>화장실</li>										
+											</c:if>
+											<c:if test="${olist[status.index].water_dispenser == 1}">
+												<li>정수기</li>										
+											</c:if>
+											<c:if test="${olist[status.index].ktx == 1}">
+												<li>KTX/SRT 인근</li>										
+											</c:if>
+											<c:if test="${olist[status.index].beam == 1}">
+												<li>빔프로젝터</li>										
+											</c:if>
+											<c:if test="${olist[status.index].video_device == 1}">
+												<li>화상회의장비</li>										
+											</c:if>
+											<c:if test="${olist[status.index].mic == 1}">
+												<li>마이크</li>										
+											</c:if>
+											<c:if test="${olist[status.index].tv == 1}">
+												<li>TV</li>										
+											</c:if>
+											<c:if test="${olist[status.index].speaker == 1}">
+												<li>스피커</li>										
+											</c:if>
+											<c:if test="${olist[status.index].pc == 1}">
+												<li>PC</li>										
+											</c:if>
+											<c:if test="${olist[status.index].pointer == 1}">
+												<li>포인터</li>										
+											</c:if>
+											<c:if test="${olist[status.index].banner == 1}">
+												<li>현수막</li>										
+											</c:if>
+											<c:if test="${olist[status.index].whiteboard == 1}">
+												<li>화이트보드</li>										
+											</c:if>
+											<c:if test="${olist[status.index].dais == 1}">
+												<li>단상</li>										
+											</c:if>
+											<c:if test="${olist[status.index].conference_call == 1}">
+												<li>컨퍼런스콜</li>										
+											</c:if>
+											<c:if test="${olist[status.index].air_conditional == 1}">
+												<li>에어컨</li>										
+											</c:if>
+											<c:if test="${olist[status.index].heater == 1}">
+												<li>난방기</li>										
+											</c:if>
+											<c:if test="${olist[status.index].internet == 1}">
+												<li>유선인터넷</li>										
+											</c:if>
+											<c:if test="${olist[status.index].studio == 1}">
+												<li>영상스튜디오</li>										
+											</c:if>
+										
 										</ul>
 									</div>
 									<div class="info_right">
 										<p class="room_star"><img src="http://localhost:9000/space/images/list_star5.png">4.5점</p>
 										<p class="room_review"><span>16</span>개의 이용후기</p>
 										<P class="room_payment">
+										<c:if test="${olist[status.index].online_payment == 1}">
+											<span class="payment_online">온라인 결제</span>
+										</c:if>
+										<c:if test="${olist[status.index].offline_payment == 1}">
+											<span class="payment_offline">현장 결제</span>
+										</c:if>
+										</P>
+										<P class="room_price">
+											<span>${rvo.charge}</span>부터(시간)
+										</P>
+									</div>
+								</div>
+							</a>
+						</li>
+					</c:forEach>
+<!-- 						<li class="room_info">
+							<a href="#">
+								<div class="info_image">
+									<img src="http://localhost:9000/space/images/room2.jpg">
+								</div>
+								<div class="info_text">
+									<div class="info_left">
+										<p class="room_title">강남구2 1호점</p>
+										<p class="room_sub_title">강남역 도보 2분 거리</p>
+										<p class="room_location">강남구</p>
+										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
+										<ul>
+											<li>공용 라운지</li>
+											<li>흡연실</li>
+											<li>주차장</li>
+											<li>승강기</li>
+											<li>화물승강기</li>
+											<li>자판기</li>
+											<li>Wi-Fi</li>
+											<li>화장실</li>
+											<li>정수기</li>
+										</ul>
+									</div>
+									<div class="info_right">
+										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
+										<p class="room_review"><span>5</span>개의 이용후기</p>
+										<P class="room_payment">
 											<span class="payment_online">온라인 결제</span>
 											<span class="payment_offline">현장 결제</span>
 										</P>
@@ -470,242 +571,7 @@ $(document).ready(function() {
 								</div>
 							</a>
 						</li>
-						<li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<!-- <span class="payment_online">온라인 결제</span> -->
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li>
-						
-	<!-- 추가 예제 -->					
-												<li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li>						<li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li>						<li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li><li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li><li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li><li class="room_info">
-							<a href="#">
-								<div class="info_image"
-									style="background: url('http://localhost:9000/space/images/room2.jpg') center top no-repeat; background-size: cover"></div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li> 
-						
+-->
 					</ul>
 				</div>
 			</div>
