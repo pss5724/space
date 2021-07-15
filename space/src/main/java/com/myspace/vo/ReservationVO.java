@@ -1,21 +1,21 @@
 package com.myspace.vo;
 
 public class ReservationVO {
-	int rsid, rid, headcount, convenience1_num, convenience2_num, convenience3_num, beverage1_num, beverage2_num, beverage3_num, amount;
-	String name, hp, email, branch_name, room_name, type, corp_name, event_name, pay_type, etc_request;
+	int headcount, convenience1_num, convenience2_num, convenience3_num, beverage1_num, beverage2_num, beverage3_num, amount;
+	String rsid, rid, name, hp, email, branch_name, room_name, type, corp_name, event_name, pay_type, etc_request;
 	double checkin_time, checkout_time, used_hours;
 	
 	
-	public int getRsid() {
+	public String getRsid() {
 		return rsid;
 	}
-	public void setRsid(int rsid) {
+	public void setRsid(String rsid) {
 		this.rsid = rsid;
 	}
-	public int getRid() {
+	public String getRid() {
 		return rid;
 	}
-	public void setRid(int rid) {
+	public void setRid(String rid) {
 		this.rid = rid;
 	}
 	public int getHeadcount() {

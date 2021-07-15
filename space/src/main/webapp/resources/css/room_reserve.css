@@ -203,7 +203,6 @@
 	padding: 0 20px;
 }
 .room_content .facilities>div:first-child {
-	border-bottom: 1px solid lightgray;
 	padding-bottom: 20px;
 	margin-bottom: 10px;
 }
@@ -226,7 +225,7 @@
 .room_content .f_inform>ul>li>div>ul>li {
 	text-align: center;
 	float: left;
-	margin-right: 20px;
+	margin: 0 20px 10px 0;
 }
 .room_content .f_inform>ul>li>div>ul>li>img {
 	display: block;
@@ -277,12 +276,12 @@
 .room_content .room_inform>div>div:last-child>ul>li>div:first-child>label>button:hover {
 	cursor: pointer;
 }
-.room_content .room_inform>div>div>ul>li:nth-child(4)>div:first-child>span {
+.room_content .room_inform>div>div>ul>li:nth-child(3)>div:first-child>span {
 	color: #f80d54;
 	font-size: 12px;
 	display: inline-block;
 }
-.room_content .room_inform>div>div>ul>li:nth-child(4)>div:first-child {
+.room_content .room_inform>div>div>ul>li:nth-child(3)>div:first-child {
 	width: 170px;
 	display: inline-block;
 }
@@ -290,6 +289,12 @@
 	margin-bottom: 10px;
 	display: flex;
 	justify-content: space-between;
+}
+.room_content .room_inform>div>div:last-child>span {
+	font-weight: bold;
+	width: 170px;
+	display: inline-block;
+	vertical-align: top;
 }
 .room_content .room_inform>div>div:last-child>div>label {
 	font-size: 20px;
@@ -305,34 +310,18 @@
 .room_content .room_inform>div>div:last-child>div>input:hover {
 	cursor: pointer;
 }
-.room_content .detail {
-	display: none;
-	position: absolute;
-}
-.room_content .detail>ul {
-	width: 400px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-	background: white;
-}
-.room_content .detail>ul>li{
-	font-size: 14px;
+.room_content .room_inform>div>div>ul>li>label {
 	font-weight: bold;
-}
-.room_content .detail>ul>li>label{
-	color: white;
-	padding: 10px 20px;
-	background: #006be0;
-}
-.room_content .detail>ul>li>span {
-	padding: 10px 20px;
-}
-.room_content .room_inform>div>div>ul>li:nth-child(4)>div:last-child {
-	width: 270px;
+	width: 120px;
 	display: inline-block;
 	vertical-align: top;
 }
-.room_content .room_inform>div>div>ul>li:nth-child(4)>div:first-child>label {
+.room_content .room_inform>div>div>ul>li:nth-child(3)>div:last-child {
+	width: 320px;
+	display: inline-block;
+	vertical-align: top;
+}
+.room_content .room_inform>div>div>ul>li:nth-child(3)>div:first-child>label {
 	font-weight: bold;
 	width: 170px;
 	display: inline-block;
@@ -516,6 +505,7 @@
 }
 .room_content .s_room>div>div>img, .s_room>div>img {
 	display: inline-block;
+	vertical-align: middle;
 }
 .room_content .s_room>div>span:first-child {
 	font-size: 11px;
@@ -531,14 +521,14 @@
 .room_content .s_room>div>div:nth-child(3) {
 	margin-top: 15px;
 }
-.room_content .s_room>div>div:nth-child(3)>span,.s_room>div>span:nth-child(5) {
+.room_content .s_room>div>div:nth-child(3)>span {
 	font-size: 11px;
 	margin-left: 2px;
 	color: #444444;
 	font-weight: bold;
 }
-.room_content .s_room>div>span:nth-child(5) {
-	margin-left: -3px;
+.room_content .s_room>div>div:nth-child(3)>span:nth-child(2) {
+	margin-right: 10px;	
 }
 .room_content .s_room>div>div:last-child {
 	margin-top: 10px;
@@ -639,7 +629,6 @@
 	padding: 0 10px 20px 10px;
 	display: flex;
 	justify-content: space-between;
-	display: none;
 }
 .room_content #btn_reserve, .room_content #btn_update {
 	padding: 10px;
@@ -711,10 +700,6 @@
 .room_reserve_content #image {
 	width: 100%;
 	height: 300px;
-	background: url("http://localhost:9000/space/images/carousel2.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: 45%;
 	margin-top: 10px;
 }
 /* 이미지 크게 보기 */
@@ -829,6 +814,9 @@
 	font-weight: bold;
 	width: 90px;
 }
+.room_reserve_content .res_inform>div:last-child>ul>li>span {
+	margin-left: 10px;
+}
 
 
 /* 이용일자 */
@@ -843,7 +831,12 @@
 
 /* 데이트피커-이용일자 */
 .ui-datepicker-current-day {
-	border: 1px solid blue;
+	background: #428bca;
+	border-radius: 50%;
+	background-size: 25px 25px;
+}
+.ui-state-active {
+	color: white;
 }
 .room_reserve_content th {
 	height: 20px;
@@ -986,7 +979,7 @@
 	border: 1px solid lightgray;
 	border-radius: 3px;
 }
-.room_reserve_content #phone {
+.room_reserve_content #phone1,.room_reserve_content #phone2,.room_reserve_content #phone3 {
 	width: 90px;
 	padding: 10px;
 	border: 1px solid lightgray;

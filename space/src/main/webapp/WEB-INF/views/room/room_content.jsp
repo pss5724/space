@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,23 +28,62 @@ $(document).ready(function() {
 	
 	var mapContainer = document.getElementById('g_map');
 	var mapOptions = {
-		center: new google.maps.LatLng(37.51312106734197, 127.0597625707216),
-		zoom: 15
+		center: new google.maps.LatLng(37.55539849783088, 126.98713113288264),
+		zoom: 10
 	};
-	var map = new google.maps.Map(mapContainer, mapOptions);	
-	var title = "서울 강남구 영동대로 517";
-	var marker = new google.maps.Marker({position: {lat:37.51312106734197, lng:127.0597625707216}, map: map, label:{
-	      fontSize: "12px",
-	      fontWeight: "bold",
-	}
-	});
-	var infowindow = new google.maps.InfoWindow({zIndex:1});
-    infowindow.setContent('<div style="font-size:12px;">' + title + '</div>');
-    infowindow.open(map, marker);
+	var map = new google.maps.Map(mapContainer, mapOptions);
+	
+	var geocoder = new google.maps.Geocoder();
+	
+	geocodeAddress(geocoder, map);
+
+	function geocodeAddress(geocoder, resultMap) {
+        console.log('geocodeAddress 함수 실행');
+
+        // 주소 설정
+        var address = "<c:out value='${vo.address}'/>";
+
+        /**
+         * 입력받은 주소로 좌표에 맵 마커를 찍는다.
+         * 1번째 파라미터 : 주소 등 여러가지. 
+         *      ㄴ 참고 : https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingRequests
+         * 
+         * 2번째 파라미터의 함수
+         *      ㄴ result : 결과값
+         *      ㄴ status : 상태. OK가 나오면 정상.
+         */
+        geocoder.geocode({'address': address}, function(result, status) {
+            console.log(result);
+            console.log(status);
+
+            if (status === 'OK') {
+                // 맵의 중심 좌표를 설정한다.
+                resultMap.setCenter(result[0].geometry.location);
+                // 맵의 확대 정도를 설정한다.
+                resultMap.setZoom(16);
+                // 맵 마커
+                var marker = new google.maps.Marker({
+                    map: resultMap,
+                    position: result[0].geometry.location
+                });
+                
+                var title = "<c:out value='${vo.address}'/>";
+                
+            	var infowindow = new google.maps.InfoWindow({zIndex:1});
+                infowindow.setContent('<div style="font-size:12px;">' + title + '</div>');
+                infowindow.open(map, marker);
+                
+            } else {
+                alert('지오코드가 다음의 이유로 성공하지 못했습니다 : ' + status);
+            }
+        });
+    }
+	
+	
     
 	$('.slider').slick({
-  	  slidesToShow: 3, //한 화면에 보여줄 아이템수
-  	  slidesToScroll: 3 // 한번에 슬라이드 시킬 아이템 개수
+  	  slidesToShow: 4, //한 화면에 보여줄 아이템수
+  	  slidesToScroll: 4 // 한번에 슬라이드 시킬 아이템 개수
   });
 	
 	$('#datepicker').datepicker({
@@ -107,6 +147,19 @@ var pager = jQuery('#ampaginationsm').pagination({
     	$(".large_img>div").hide();
     });
     
+    $(".select_btn").click(function(){
+    	$(this).data('clicked', true);
+    });
+    
+    $("#btn_reserve").click(function(){
+    	if($(".select_btn").data('clicked') == true){
+    		location.replace('http://localhost:9000/space/room_reserve.do');
+    	}else {
+    		alert("회의실을 선택해주세요");
+    		$(".select_btn").focus();
+    		return false;
+    	}
+    });
     
     
 });
@@ -124,11 +177,11 @@ var pager = jQuery('#ampaginationsm').pagination({
 				<img src="http://localhost:9000/space/images/list_star50.png">
 			</div>
 			<div>
-				<div><span>강남구 7호점</span><br></div>
-				<div><span>실내 인테리어가 고급스러운 회의실</span></div>
+				<div><span>${vo.branch_name }</span><br></div>
+				<div><span>${vo.intro }</span></div>
 				<div>
 					<div><img src="http://localhost:9000/space/images/map_icon01.png">
-					<span>서울 강남구 영동대로 517 30층, 37층</span></div>
+					<span>${vo.address }</span></div>
 					<span><span>5</span>개의 이용후기</span>
 				</div>
 			</div>
@@ -141,14 +194,18 @@ var pager = jQuery('#ampaginationsm').pagination({
 		            <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
 		                <!-- slides -->
 		                <div class="carousel-inner">
-		                    <div class="carousel-item active"> <img src="http://localhost:9000/space/images/carousel1.jpg" alt="Hills"> </div>
-		                    <div class="carousel-item"> <img src="http://localhost:9000/space/images/carousel2.jpg" alt="Hills"> </div>
-		                    <div class="carousel-item"> <img src="http://localhost:9000/space/images/carousel3.jpg" alt="Hills"> </div>
+		                    <div class="carousel-item active"> <img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg" alt="Hills"> </div>
+		                    <c:if test="${vo.rfile2 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/images/${vo.rfile2 }.jpg" alt="Hills"> </div> </c:if> 
+		                    <c:if test="${vo.rfile3 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/images/${vo.rfile3 }.jpg" alt="Hills"> </div> </c:if>
 		                </div> <!-- Left right --> <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
 		                <ol class="carousel-indicators list-inline">
-		                    <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/carousel1.jpg" class="img-fluid"> </a> </li>
-		                    <li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/carousel2.jpg" class="img-fluid"> </a> </li>
-		                    <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/carousel3.jpg" class="img-fluid"> </a> </li>
+		                    <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg" class="img-fluid"> </a> </li>
+		                    <c:if test="${vo.rfile2 != null }">
+		                   		<li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/${vo.rfile2 }.jpg" class="img-fluid"> </a> </li>
+		                    </c:if>
+		                    <c:if test="${vo.rfile3 != null }">
+		                    	<li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/${vo.rfile2 }.jpg" class="img-fluid"> </a> </li>
+		                    </c:if>
 		                </ol>
 		            </div>
 		        </div>
@@ -184,7 +241,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 					<th colspan="2">22</th>
 				</tr>
 				<tr>
-					<td colspan="5">30층 노스</td>
+					<td colspan="5">${vo.room_name }</td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -247,32 +304,38 @@ var pager = jQuery('#ampaginationsm').pagination({
 		
 		<!-- 시설안내 -->
 		<div class="facilities" id="facilities">
-			<div>
-				<div class="label"><div class="l_line"></div><label>시설안내</label></div>
-				<div>
-					<span>
-						*코로나 기간동안 회의내내 반드시 마스크 착용필수 입니다.<br>
-						국내에 유일하게 VIP고객들을 위한 호텔, 승무원 출신 등의 비서진 컨시어지 서비스가 가능하고 주변 제휴업체를 통한 케이터릴 서비스, 최첨단 프레젠테이션 보유 및 다양한 회의 목적에 맞는 수입가구 완비, Conference call 기능이 내장된 전화기가 제공되어 국내외 기업과의 교류 형태의 행사진행, 교육, 세미나, 임원회의 등에 용의합니다.
-					</span>
-				</div>
-			</div>
+			<div class="label"><div class="l_line"></div><label>시설안내</label></div>
 			<div class="f_inform">
 				<ul>
 					<li>
 						<label>영업시간</label>
-						<div><span>09:00 ~ 22:00</span></div>
+						<div>
+							<span>
+								09:00 ~ 22:00
+							</span>
+						</div>
 					</li>
 					<li>
 						<label>휴무일</label>
-						<div><span>주말 및 공휴일</span></div>
+						<div><span>${vo.closed_day }</span></div>
 					</li>
 					<li>
 						<label>입, 퇴실 시간</label>
-						<div><span>예약시간 10분 전 입실 / 정시 퇴실</span></div>
+						<div><span>${vo.check_info }</span></div>
 					</li>
 					<li>
 						<label>결제구분</label>
-						<div><span>현장결제</span></div>
+						<c:choose>
+							<c:when test="${ovo.online_payment == 1 && ovo.offline_payment == 0}">
+								<div><span>온라인결제</span></div>
+							</c:when>
+							<c:when test="${ovo.online_payment == 1 && ovo.offline_payment == 1}">
+								<div><span>온라인결제, 현장결제</span></div>
+							</c:when>
+							<c:otherwise>
+								<div><span>현장결제</span></div>
+							</c:otherwise>
+						</c:choose>
 					</li>
 					<li>
 						<label>평점</label>
@@ -283,12 +346,21 @@ var pager = jQuery('#ampaginationsm').pagination({
 						<div>
 							<ul>
 								<li>
-									<img src="http://localhost:9000/space/images/shape_icon03.png">
-									<span>U자형</span>
-								</li>
-								<li>
-									<img src="http://localhost:9000/space/images/shape_icon04.png">
-									<span>ㅁ자형</span>
+									<c:choose>
+										<c:when test="${vo.type == '강의식' }">
+											<img src="http://localhost:9000/space/images/shape_icon01.png">
+										</c:when>
+										<c:when test="${vo.type == '분임식' }">
+											<img src="http://localhost:9000/space/images/shape_icon02.png">
+										</c:when>
+										<c:when test="${vo.type == 'U자형' }">
+											<img src="http://localhost:9000/space/images/shape_icon03.png">
+										</c:when>
+										<c:when test="${vo.type == 'ㅁ자형' }">
+											<img src="http://localhost:9000/space/images/shape_icon04.png">
+										</c:when>
+									</c:choose>
+									<span>${vo.type }</span>
 								</li>
 							</ul>
 						</div>
@@ -297,22 +369,168 @@ var pager = jQuery('#ampaginationsm').pagination({
 						<label>편의시설</label>
 						<div>
 							<ul>
-								<li>
-									<img src="http://localhost:9000/space/images/convenience_icon01.png">
-									<span>공용 라운지</span>
-								</li>
-								<li>
-									<img src="http://localhost:9000/space/images/convenience_icon02.png">
-									<span>흡연실</span>
-								</li>
-								<li>
-									<img src="http://localhost:9000/space/images/convenience_icon03.png">
-									<span>주차장</span>
-								</li>
-								<li>
-									<img src="http://localhost:9000/space/images/convenience_icon04.png">
-									<span>승강기</span>
-								</li>
+								<c:if test="${ovo.lounge == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon01.png">
+										<span>공용 라운지</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.smoking_room == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon02.png">
+										<span>흡연실</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.parking_lot == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon03.png">
+										<span>주차장</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.elevator == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon04.png">
+										<span>승강기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.freight_elevator == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon05.png">
+										<span>화물승강기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.vending_machine == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon06.png">
+										<span>자판기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.wifi == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon07.png">
+										<span>WI-FI</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.accessible_toilet == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon08.png">
+										<span>장애인 화장실</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.toilet == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon09.png">
+										<span>화장실</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.water_dispenser == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon10.png">
+										<span>정수기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.ktx == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon26.png">
+										<span>KTX, SRT 인근</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.beam == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon11.png">
+										<span>빔프로젝터</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.video_device == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon24.png">
+										<span>화상회의장비</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.mic == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon14.png">
+										<span>마이크</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.lectern == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon19.png">
+										<span>강연대</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.tv == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon12.png">
+										<span>TV</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.speaker == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon13.png">
+										<span>스피커</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.pc == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon15.png">
+										<span>PC/노트북</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.pointer == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon16.png">
+										<span>포인터</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.banner == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon17.png">
+										<span>현수막</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.whiteboard == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon18.png">
+										<span>화이트보드</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.dais == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon20.png">
+										<span>단상</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.conference_call == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon21.png">
+										<span>컨퍼런스콜</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.air_conditional == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon22.png">
+										<span>에어컨</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.heater == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon23.png">
+										<span>난방기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.internet == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon25.png">
+										<span>유선인터넷</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.studio == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon27.png">
+										<span>영상스튜디오</span>
+									</li>
+								</c:if>
 							</ul>
 						</div>
 					</li>
@@ -320,14 +538,32 @@ var pager = jQuery('#ampaginationsm').pagination({
 						<label>식음료</label>
 						<div>
 							<ul>
-								<li>
-									<img src="http://localhost:9000/space/images/fab_icon01.png">
-									<span>다과류 반입가능</span>
-								</li>
-								<li>
-									<img src="http://localhost:9000/space/images/fab_icon01.png">
-									<span>다과류 별도판매</span>
-								</li>
+								<c:choose>
+									<c:when test="${ovo.snack_carry == 1}">
+										<li>
+											<img src="http://localhost:9000/space/images/fab_icon01.png">
+											<span>다과류 반입가능</span>
+										</li>
+									</c:when>
+									<c:when test="${ovo.snack_sale == 1}">
+										<li>
+											<img src="http://localhost:9000/space/images/fab_icon02.png">
+											<span>다과류 별도판매</span>
+										</li>
+									</c:when>
+									<c:when test="${ovo.meal_carry == 1}">
+										<li>
+											<img src="http://localhost:9000/space/images/fab_icon01.png">
+											<span>식사류 반입가능</span>
+										</li>
+									</c:when>
+									<c:when test="${ovo.meal_sale == 1}">
+										<li>
+											<img src="http://localhost:9000/space/images/fab_icon02.png">
+											<span>식사류 별도판매</span>
+										</li>
+									</c:when>
+								</c:choose>
 							</ul>
 						</div>
 					</li>
@@ -339,7 +575,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 		<div class="room_inform" id="room_inform">
 			<div class="label"><div class="l_line"></div><label>회의실 안내</label></div>
 			<div>
-				<img src="http://localhost:9000/space/images/carousel1.jpg" width="250px" height="220px">
+				<img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg" width="250px" height="220px">
 				<div class="large_img">
 					<img src="http://localhost:9000/space/images/thum_more_icon.png">
 					<div>
@@ -349,55 +585,106 @@ var pager = jQuery('#ampaginationsm').pagination({
 				</div>
 				<div>
 					<div>
-						<label>30층 노스</label>
+						<label>${vo.room_name }</label>
 						<input type="button" value="선택" class="select_btn">
 					</div> 
-					<span>88,000원 / 시간</span>
+					<span>${vo.charge } / 시간</span>
 					<ul>
-						<li>
-							<label>면적(㎡)</label>
-							<span>13㎡</span>
-						</li>
 						<li>
 							<label>최저 이용시간</label>
 							<span>1시간</span>
 						</li>
 						<li>
 							<label>수용형태</label>
-							<span>U자형 6명</span>
+							<span>${vo.type } ${vo.capacity }명</span>
 						</li>
 						<li>
-							<div><label>부가서비스<button type="button" title="세부사항 보기" id="btn_detail">+</button></label>
-							<span>(세부사항 보기)</span></div>
-							<div class="detail" id="detail">
-								<ul>
-									<li>
-										<label>TV</label>
-										<span>72인치</span>
-									</li>
-									<li>
-										<label>화이트보드</label>
-										<span>가능</span>
-									</li>
-									<li>
-										<label>컨퍼런스콜</label>
-										<span>Polycom 가능</span>
-									</li>
-									<li>
-										<label>에어컨</label>
-										<span>가능</span>
-									</li>
-									<li>
-										<label>난방기</label>
-										<span>가능</span>
-									</li>
-									<li>
-										<label>유선인터넷</label>
-										<span>가능</span>
-									</li>
-								</ul>
+							<label>부가서비스</label>
+							<div>
+								<span>
+									<c:if test="${ovo.lounge == 1}">
+											공용 라운지, 
+									</c:if>
+									<c:if test="${ovo.smoking_room == 1}">
+											흡연실, 
+									</c:if>
+									<c:if test="${ovo.parking_lot == 1}">
+											주차장, 
+									</c:if>
+									<c:if test="${ovo.elevator == 1}">
+											승강기, 
+									</c:if>
+									<c:if test="${ovo.freight_elevator == 1}">
+											화물승강기, 
+									</c:if>
+									<c:if test="${ovo.vending_machine == 1}">
+											자판기, 
+									</c:if>
+									<c:if test="${ovo.wifi == 1}">
+											WI-FI, 
+									</c:if>
+									<c:if test="${ovo.accessible_toilet == 1}">
+											장애인 화장실, 
+									</c:if>
+									<c:if test="${ovo.toilet == 1}">
+											화장실, 
+									</c:if>
+									<c:if test="${ovo.water_dispenser == 1}">
+											정수기, 
+									</c:if>
+									<c:if test="${ovo.ktx == 1}">
+											KTX/SRT 인근, 
+									</c:if>
+									<c:if test="${ovo.beam == 1}">
+											빔프로젝터, 
+									</c:if>
+									<c:if test="${ovo.video_device == 1}">
+											화상회의장비, 
+									</c:if>
+									<c:if test="${ovo.mic == 1}">
+											마이크, 
+									</c:if>
+									<c:if test="${ovo.lectern == 1}">
+											강연대, 
+									</c:if>
+									<c:if test="${ovo.tv == 1}">
+											TV, 
+									</c:if>
+									<c:if test="${ovo.speaker == 1}">
+											스피커, 
+									</c:if>
+									<c:if test="${ovo.pc == 1}">
+											PC/노트북, 
+									</c:if>
+									<c:if test="${ovo.pointer == 1}">
+											포인터, 
+									</c:if>
+									<c:if test="${ovo.banner == 1}">
+											현수막, 
+									</c:if>
+									<c:if test="${ovo.whiteboard == 1}">
+											화이트보드, 
+									</c:if>
+									<c:if test="${ovo.dais == 1}">
+											단상, 
+									</c:if>
+									<c:if test="${ovo.conference_call == 1}">
+											컨퍼런스콜, 
+									</c:if>
+									<c:if test="${ovo.air_conditional == 1}">
+											에어컨, 
+									</c:if>
+									<c:if test="${ovo.heater == 1}">
+											난방기, 
+									</c:if>
+									<c:if test="${ovo.internet == 1}">
+											유선인터넷, 
+									</c:if>
+									<c:if test="${ovo.studio == 1}">
+											영상스튜디오, 
+									</c:if>					
+								</span>
 							</div>
-							<div><span>TV, 화이트보드, 컨퍼런스콜, 에어컨, 난방기, 유선인터넷</span></div>
 						</li>
 					</ul>
 				</div>
@@ -442,7 +729,11 @@ var pager = jQuery('#ampaginationsm').pagination({
 			<div class="label"><div class="l_line"></div><label>이용후기</label></div>
 			<div>
 				<div id="total">
-					<span>총 평점 <span>4.7</span></span>
+					<span>총 평점 
+						<span>
+							4.7
+						</span>
+					</span>
 					<br>
 					<img src="http://localhost:9000/space/images/list_star50.png">
 				</div>
@@ -551,43 +842,8 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
+				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
-			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
-			  		<span>240인실, 135인실, 100인실...</span>
-			  		<div>
-			  			<span>101,000원</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel2.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  		</div>
-			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
-			  		<span>240인실, 135인실, 100인실...</span>
-			  		<div>
-			  			<span>101,000원</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star40.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel3.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  		</div>
-			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
-			  		<span>240인실, 135인실, 100인실...</span>
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
@@ -602,26 +858,8 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
+				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
-			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
-			  		<span>240인실, 135인실, 100인실...</span>
-			  		<div>
-			  			<span>101,000원</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star40.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel2.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-			  		</div>
-			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
-			  		<span>240인실, 135인실, 100인실...</span>
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
@@ -630,15 +868,62 @@ var pager = jQuery('#ampaginationsm').pagination({
 			  	</div>
 			  </div>
 			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel3.jpg" width="178px">
+			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
 			  	<div>
 			  		<span>롯데월드타워에 위치한 컨벤션</span>
 			  		<span>송파구 2호점 (신천동)</span>
 			  		<div>
 			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
+				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
-			  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png">
-			  		<span>240인실, 135인실, 100인실...</span>
+			  		<div>
+			  			<span>101,000원</span>
+			  			<span>부터</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
+			  		</div>
+			  	</div>
+			  </div>
+			  <div class="s_room">
+			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
+			  	<div>
+			  		<span>롯데월드타워에 위치한 컨벤션</span>
+			  		<span>송파구 2호점 (신천동)</span>
+			  		<div>
+			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
+				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
+			  		</div>
+			  		<div>
+			  			<span>101,000원</span>
+			  			<span>부터</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
+			  		</div>
+			  	</div>
+			  </div>
+			  <div class="s_room">
+			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
+			  	<div>
+			  		<span>롯데월드타워에 위치한 컨벤션</span>
+			  		<span>송파구 2호점 (신천동)</span>
+			  		<div>
+			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
+				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
+			  		</div>
+			  		<div>
+			  			<span>101,000원</span>
+			  			<span>부터</span>
+			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
+			  		</div>
+			  	</div>
+			  </div>
+			  <div class="s_room">
+			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
+			  	<div>
+			  		<span>롯데월드타워에 위치한 컨벤션</span>
+			  		<span>송파구 2호점 (신천동)</span>
+			  		<div>
+			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
+				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
+			  		</div>
 			  		<div>
 			  			<span>101,000원</span>
 			  			<span>부터</span>
@@ -650,16 +935,19 @@ var pager = jQuery('#ampaginationsm').pagination({
 		</div>
 		
 		<!-- 버튼 -->
-		<div class="r_button">
-			<a href="http://localhost:9000/space/room_list.do"><input type="button" value="목록으로" id="btn_golist"></a>
-			<a href="http://localhost:9000/space/room_reserve.do"><input type="submit" value="예약하기" id="btn_reserve"></a>
-		</div>
-		<div class="c_button">
-			<a href="http://localhost:9000/space/corppage.do"><input type="button" value="목록으로" id="btn_golist"></a>
-			<div><a href="http://localhost:9000/space/corppage_update.do"><input type="button" value="수정" id="btn_update"></a>
-			<input type="button" value="삭제" id="btn_delete"></div>
-		</div>
-		
+		<%-- <c:if test="${}"> --%>
+			<div class="r_button">
+				<a href="http://localhost:9000/space/room_list.do"><input type="button" value="목록으로" id="btn_golist"></a>
+				<input type="submit" value="예약하기" id="btn_reserve">
+			</div>
+		<%-- </c:if> --%><%-- 
+		<c:if test="${}">
+			<div class="c_button">
+				<a href="http://localhost:9000/space/corppage.do"><input type="button" value="목록으로" id="btn_golist"></a>
+				<div><a href="http://localhost:9000/space/room_reserve.do"><input type="button" value="수정" id="btn_update"></a>
+				<input type="button" value="삭제" id="btn_delete"></div>
+			</div>
+		</c:if> --%>
 	</div>
 	
 	<!-- footer -->

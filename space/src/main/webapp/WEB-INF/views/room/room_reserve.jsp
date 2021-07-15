@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,70 @@
 </style>
 <script>
 $(document).ready(function() {
+	$(".ui-corner-all").click(function() {
+		console.log('ddd');
+	});
+	
+	$("#btn_reserve").click(function(){
+		/* 영업시간 숫자로 변환 */
+	    $("input[id^=time]").each(function() { 
+	       var tlist = $(this).val().split(":");
+	       var time = 0;
+
+	       if (tlist[0] < 10) { //시간
+	          time += Number(tlist[0].substr(1, 1))
+	       } else {
+	          time += Number(tlist[0]);
+	       }
+
+	       if (tlist[1] == 30) { //분
+	          time += 0.5;
+	       }
+
+	       $(this).val(time);
+	    });
+		console.log($("#time1").val());
+		console.log($("#time2").val());
+		console.log($("#datepicker").val());
+		$(".form-control").each(function(){
+			console.log($(this).val());
+		});
+		console.log($("#r_name").val());
+		
+		if($("#r_name").val() == ""){
+			alert("예약자를 입력해주세요");
+			$("#r_name").focus();
+		}else if($("#phone1").val() == ""){
+			alert("연락처를 입력해주세요");
+			$("#phone1").focus();
+		}else if($("#phone2").val() == ""){
+			alert("연락처를 입력해주세요");
+			$("#phone2").focus();
+		}else if($("#phone3").val() == ""){
+			alert("연락처를 입력해주세요");
+			$("#phone3").focus();
+		}else if($("#c_name").val() == ""){
+			alert("회사명을 입력해주세요");
+			$("#c_name").focus();
+		}else if($("#event_name").val() == ""){
+			alert("행사명을 입력해주세요");
+			$("#event_name").focus();
+		}else if($("#online").is(":checked")==false && $("#onsite").is(":checked")==false){
+			alert("결제방식을 선택해주세요");
+			$("#online").focus();
+		}else {
+			if($("#online").is(":checked")==true){
+				console.log('온라인');
+				$("form").attr("action", "room_reserve_confirm.do");
+			}
+			if($("#onsite").is(":checked")==true){
+				console.log('현장');
+				$("form").attr("action", "room_payment.do");
+			}
+			
+		}
+		
+	});
 	
 	$('#datepicker').datepicker({
 		dateFormat: 'yy.mm.dd',
@@ -59,9 +124,10 @@ $(document).ready(function() {
         scrollbar: true        
     });
 	
-	$(".number-spinner button").click(function(){   
+	
+/* 	$(".number-spinner input").click(function(){   
 		var btn = $(this),
-			oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+			oldValue = btn.closest('.number-spinner').find('input[type="text"]').val().trim(),
 			newVal = 0;
 		
 		if (btn.attr('data-dir') == 'up') {
@@ -73,7 +139,7 @@ $(document).ready(function() {
 				newVal = 0;
 			}
 		}
-		btn.closest('.number-spinner').find('input').val(newVal);
+		btn.closest('.number-spinner').find('input[type="text"]').val(newVal);
 	});
 	
 	$(".large_img>img").click(function(){
@@ -83,7 +149,9 @@ $(document).ready(function() {
     
     $(".large_img>div>img:first-child").click(function(){
     	$(".large_img>div").hide();
-    });
+    }); */
+    
+    
 });
 </script>
 </head>
@@ -92,283 +160,437 @@ $(document).ready(function() {
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<div class="title"><h1>예약하기</h1></div>
-	<div class="room_reserve_content">
-		
-		<!-- 회의실 정보1 -->
-		<div class="name">
-			<div class="label"><div class="l_line"></div><label>강남구 7호점</label><div></div><label>30층 노스</label></div>
-			<div id="image"></div>
-			<div class="large_img">
-				<img src="http://localhost:9000/space/images/thum_more_icon.png">
-				<div>
-					<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
-					<img src="http://localhost:9000/space/images/carousel2.jpg">
+	<form name="room_reserve" action="room_payment.do" method="get">
+		<div class="room_reserve_content">
+			
+			<!-- 회의실 정보1 -->
+			<div class="name">
+				<div class="label"><div class="l_line"></div><label>${vo.branch_name }</label><div></div><label>${vo.room_name }</label></div>
+				<div id="image" style="background:url('http://localhost:9000/space/images/${vo.rfile1 }.jpg'); background-size: cover; background-repeat: no-repeat; background-position: 50%;"></div>
+				<div class="large_img">
+					<img src="http://localhost:9000/space/images/thum_more_icon.png">
+					<div>
+						<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
+						<img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg">
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!-- 회의실 정보2 -->
-		<div class="room_inform">
-			<ul>
-				<li>
-					<label>최저 이용시간</label>
-					<span>1시간</span>
-				</li>
-				<li>
-					<label>수용형태</label>
-					<div>
-						<div>
-							<ul>
-								<li>
-									<img src="http://localhost:9000/space/images/shape_icon03.png">
-									<span>U자형 6명</span>
-								</li>
-								<li>
-									<img src="http://localhost:9000/space/images/shape_icon04.png">
-									<span>ㅁ자형 10명</span>
-								</li>
-							</ul>
-							<span id="limit">*최대 수용 인원으로 초과시 대관이 제한됩니다.</span>
-						</div>
-					</div>
-				</li>
-				<li>
-					<label>편의시설</label>
-					<div>
-						<ul>
-							<li>
-								<img src="http://localhost:9000/space/images/convenience_icon01.png">
-								<span>공용 라운지</span>
-							</li>
-							<li>
-								<img src="http://localhost:9000/space/images/convenience_icon02.png">
-								<span>흡연실</span>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<label>부가서비스</label>
-					<div>
-						<ul>
-							<li>
-								<img src="http://localhost:9000/space/images/convenience_icon12.png">
-								<span>TV</span>
-							</li>
-							<li>
-								<img src="http://localhost:9000/space/images/convenience_icon18.png">
-								<span>화이드보드</span>
-							</li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
-		
-		<!-- 예약정보 -->
-		<div class="res_inform">
-			<div class="inform_label">
-				<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
-				<label>예약정보</label>
-			</div>
-			<div>
+			
+			<!-- 회의실 정보2 -->
+			<div class="room_inform">
 				<ul>
 					<li>
-						<label>이용일자</label>
-						<input id="datepicker">
-					</li>
-					<li>
-						<label>이용시간</label>
-						<input type="text" id="time1" name="time1">~<input type="text" id="time2" name="time2">
-					</li>
-					<li>
-						<label>이용인원</label>
-						<div class="input-group number-spinner" id="people">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-							</span>
-							<input type="text" class="form-control text-center" value="0">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-							</span>
-						</div>
+						<label>최저 이용시간</label>
+						<span>1시간</span>
 					</li>
 					<li>
 						<label>수용형태</label>
-						<select id="selectbox">
-							<option value="U자형">U자형</option>
-							<option value="ㅁ자형">ㅁ자형</option>
-						</select>
+						<div>
+							<div>
+								<ul>
+									<li>
+										<c:choose>
+											<c:when test="${vo.type == '강의식' }">
+												<img src="http://localhost:9000/space/images/shape_icon01.png">
+											</c:when>
+											<c:when test="${vo.type == '분임식' }">
+												<img src="http://localhost:9000/space/images/shape_icon02.png">
+											</c:when>
+											<c:when test="${vo.type == 'U자형' }">
+												<img src="http://localhost:9000/space/images/shape_icon03.png">
+											</c:when>
+											<c:when test="${vo.type == 'ㅁ자형' }">
+												<img src="http://localhost:9000/space/images/shape_icon04.png">
+											</c:when>
+										</c:choose>
+										<span>${vo.type } ${vo.capacity }명</span>
+									</li>
+								</ul>
+								<span id="limit">*최대 수용 인원으로 초과시 대관이 제한됩니다.</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<label>편의시설</label>
+						<div>
+							<ul>
+								<c:if test="${ovo.lounge == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon01.png">
+										<span>공용 라운지</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.smoking_room == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon02.png">
+										<span>흡연실</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.parking_lot == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon03.png">
+										<span>주차장</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.elevator == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon04.png">
+										<span>승강기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.freight_elevator == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon05.png">
+										<span>화물승강기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.vending_machine == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon06.png">
+										<span>자판기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.wifi == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon07.png">
+										<span>WI-FI</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.accessible_toilet == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon08.png">
+										<span>장애인 화장실</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.toilet == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon09.png">
+										<span>화장실</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.water_dispenser == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon10.png">
+										<span>정수기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.ktx == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon26.png">
+										<span>KTX, SRT 인근</span>
+									</li>
+								</c:if>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<label>부가서비스</label>
+						<div>
+							<ul>
+								<c:if test="${ovo.beam == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon11.png">
+										<span>빔프로젝터</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.video_device == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon24.png">
+										<span>화상회의장비</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.mic == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon14.png">
+										<span>마이크</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.lectern == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon19.png">
+										<span>강연대</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.tv == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon12.png">
+										<span>TV</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.speaker == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon13.png">
+										<span>스피커</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.pc == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon15.png">
+										<span>PC/노트북</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.pointer == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon16.png">
+										<span>포인터</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.banner == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon17.png">
+										<span>현수막</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.whiteboard == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon18.png">
+										<span>화이트보드</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.dais == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon20.png">
+										<span>단상</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.conference_call == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon21.png">
+										<span>컨퍼런스콜</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.air_conditional == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon22.png">
+										<span>에어컨</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.heater == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon23.png">
+										<span>난방기</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.internet == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon25.png">
+										<span>유선인터넷</span>
+									</li>
+								</c:if>
+								<c:if test="${ovo.studio == 1}">
+									<li>
+										<img src="http://localhost:9000/space/images/convenience_icon27.png">
+										<span>영상스튜디오</span>
+									</li>
+								</c:if>
+							</ul>
+						</div>
 					</li>
 				</ul>
 			</div>
-		</div>
-		
-		<!-- 부가서비스 -->
-		<div class="a_service">
-			<div class="inform_label">
-				<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
-				<label>부가서비스</label>
+			
+			<!-- 예약정보 -->
+			<div class="res_inform">
+				<div class="inform_label">
+					<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
+					<label>예약정보</label>
+				</div>
+				<div>
+					<ul>
+						<li>
+							<label>이용일자</label>
+							<input id="datepicker">
+						</li>
+						<li>
+							<label>이용시간</label>
+							<input type="text" id="time1" name="time1" autocomplete="off">~<input type="text" id="time2" name="time2" autocomplete="off">
+						</li>
+						<li>
+							<label>이용인원</label>
+							<div class="input-group number-spinner" id="people">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="headcount">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+						<li>
+							<label>수용형태</label>
+							<span>${vo.type }</span>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div>
+			
+			<!-- 부가서비스 -->
+			<div class="a_service">
+				<div class="inform_label">
+					<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
+					<label>부가서비스</label>
+				</div>
+				<div>
+					<ul>
+						<li>
+							<div class="s_label"><div class="required"></div><label>편의사항</label></div>
+							<div id="s_content">
+								<span>라커룸 1개/종일<br>11,000원/일<br>11,000원</span>
+							</div>
+							<div class="input-group number-spinner">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="conv1">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+						<li>
+							<div id="s_content">
+								<span>18시 이후 직원 stand by 비용<br>33,000원/시간(19시 이후 대관시 18~19시 stand by 비용)<br>33,000원</span>
+							</div>
+							<div class="input-group number-spinner">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="conv2">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="s_label"><div class="required"></div><label>식음료</label></div>
+							<div id="s_content">
+								<span>음료/잔<br>(coffee, tea, juices 선택)7,700원/잔<br>7,700원</span>
+							</div>
+							<div class="input-group number-spinner">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="bev1">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+						<li>
+							<div id="s_content">
+								<span>COFFEE 10인 set<br>33,000원/pot(1회 리필 포함)<br>33,000원</span>
+							</div>
+							<div class="input-group number-spinner">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="bev2">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+						<li>
+							<div id="s_content">
+								<span>케이터링 SET<br>(커피 1POT, 쿠키, 빵 임의구성 10인분) 132,000원<br>132,000원</span>
+							</div>
+							<div class="input-group number-spinner">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="bev3">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 예약자 정보 -->
+			<div class="p_inform">
+				<div class="inform_label">
+					<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
+					<label>예약자 정보</label>
+				</div>
+				<div><span>* 필수입력</span></div>
+				<div>
+					<ul>
+						<li>
+							<label>예약자<span>*</span></label>
+							<input type="text" id="r_name" name="name">
+						</li>
+						<li>
+							<label>연락처<span>*</span></label>
+							<input type="text" id="phone1" name="ph1"> - <input type="text" id="phone2" name="ph2"> - <input type="text" id="phone3" name="ph3">
+						</li>
+						<li>
+							<label>이메일<span>*</span></label>
+							<input type="text" id="email" value="${vo.id }" disabled>
+						</li>
+						<li>
+							<label>회사명<span>*</span></label>
+							<input type="text" id="c_name">
+						</li>
+						<li>
+							<label>행사명<span>*</span></label>
+							<input type="text" id="event_name">
+						</li>
+						<li>
+							<label>기타 요청사항</label>
+							<input type="text" id="etc">
+						</li>
+						<li>
+							<label>결제 방식<span>*</span></label>
+							<input type="radio" id="online" name="pay_type" class="chk" value="온라인결제"><span>온라인결제</span>
+							<input type="radio" id="onsite" name="pay_type" class="chk" value="현장결제"><span>현장결제</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 예약 시 주의사항 -->
+			<div class="caution" id="caution">
+				<div class="label"><div class="l_line"></div><label>예약 시 주의사항</label></div>
 				<ul>
 					<li>
-						<div class="s_label"><div class="required"></div><label>편의사항</label></div>
-						<div id="s_content">
-							<span>라커룸 1개/종일<br>11,000원/일<br>11,000원</span>
-						</div>
-						<div class="input-group number-spinner">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-							</span>
-							<input type="text" class="form-control text-center" value="0">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-							</span>
+						<label><img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png">주의사항</label>
+						<div>
+							실내 흡연 금지<br>
+							사전 승인되지 않은 음식물 반입 금지 (간단 다과 반입 시 수거 필수)<br>
+							각종 노트북 젠더 미제공<br>
+							1F 인포메이션 게이트에서 일일카드 발급<br>
+							(신분증/명함 맡겨야함, 담당자가 행사 일주일 전까지 참석자 사전 전달 시 신분증 제출 필요 없음)
 						</div>
 					</li>
 					<li>
-						<div id="s_content">
-							<span>18시 이후 직원 stand by 비용<br>33,000원/시간(19시 이후 대관시 18~19시 stand by 비용)<br>33,000원</span>
-						</div>
-						<div class="input-group number-spinner">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-							</span>
-							<input type="text" class="form-control text-center" value="0">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-							</span>
+						<label><img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png">예약정책</label>
+						<div>
+							계약금 없음, 카드사본 대체<br>
+							결제수단 : 계좌이체(세금계산서발행), 방문 카드결제<br>
+							(취소위약금 : 예약시 고객이 첨부한 카드사본으로 위약금 결제 진행)
 						</div>
 					</li>
 					<li>
-						<div class="s_label"><div class="required"></div><label>식음료</label></div>
-						<div id="s_content">
-							<span>음료/잔<br>(coffee, tea, juices 선택)7,700원/잔<br>7,700원</span>
-						</div>
-						<div class="input-group number-spinner">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-							</span>
-							<input type="text" class="form-control text-center" value="0">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-							</span>
-						</div>
-					</li>
-					<li>
-						<div id="s_content">
-							<span>COFFEE 10인 set<br>33,000원/pot(1회 리필 포함)<br>33,000원</span>
-						</div>
-						<div class="input-group number-spinner">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-							</span>
-							<input type="text" class="form-control text-center" value="0">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-							</span>
-						</div>
-					</li>
-					<li>
-						<div id="s_content">
-							<span>케이터링 SET<br>(커피 1POT, 쿠키, 빵 임의구성 10인분) 132,000원<br>132,000원</span>
-						</div>
-						<div class="input-group number-spinner">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-							</span>
-							<input type="text" class="form-control text-center" value="0">
-							<span class="input-group-btn">
-								<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-							</span>
+						<label><img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png">취소/환불 정책</label>
+						<div>
+							아래 취소 가능 기간은 평일 9~18시 기준입니다. *주말/공휴일 미포함*<br>
+							사용 48시간전~사용 24시간전 : 총 합계 금액의 50% 부과<br>
+							사용 24시간전~행사 당일 : 총 합계 금액의 100% 부과
 						</div>
 					</li>
 				</ul>
 			</div>
-		</div>
 		
-		<!-- 예약자 정보 -->
-		<div class="p_inform">
-			<div class="inform_label">
-				<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
-				<label>예약자 정보</label>
-			</div>
-			<div><span>* 필수입력</span></div>
-			<div>
-				<ul>
-					<li>
-						<label>예약자<span>*</span></label>
-						<input type="text" id="r_name">
-					</li>
-					<li>
-						<label>연락처<span>*</span></label>
-						<input type="text" id="phone"> - <input type="text" id="phone"> - <input type="text" id="phone">
-					</li>
-					<li>
-						<label>이메일<span>*</span></label>
-						<input type="text" id="email" disabled>
-					</li>
-					<li>
-						<label>회사명<span>*</span></label>
-						<input type="text" id="c_name">
-					</li>
-					<li>
-						<label>행사명<span>*</span></label>
-						<input type="text" id="event_name">
-					</li>
-					<li>
-						<label>기타 요청사항</label>
-						<input type="text" id="etc">
-					</li>
-					<li>
-						<label>결제 방식<span>*</span></label>
-						<input type="radio" id="online" name="pay_type" class="chk" value="온라인결제"><span>온라인결제</span>
-						<input type="radio" id="onsite" name="pay_type" class="chk" value="현장결제"><span>현장결제</span>
-					</li>
-				</ul>
+			<!-- 예약하기 버튼 -->
+			<div class="r_button">
+				<input type="button" value="예약신청" id="btn_reserve">
+				<a href="room_list.do"><input type="button" value="취소" id="btn_reset"></a>
 			</div>
 		</div>
-		
-		<!-- 예약 시 주의사항 -->
-		<div class="caution" id="caution">
-			<div class="label"><div class="l_line"></div><label>예약 시 주의사항</label></div>
-			<ul>
-				<li>
-					<label><img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png">주의사항</label>
-					<div>
-						실내 흡연 금지<br>
-						사전 승인되지 않은 음식물 반입 금지 (간단 다과 반입 시 수거 필수)<br>
-						각종 노트북 젠더 미제공<br>
-						1F 인포메이션 게이트에서 일일카드 발급<br>
-						(신분증/명함 맡겨야함, 담당자가 행사 일주일 전까지 참석자 사전 전달 시 신분증 제출 필요 없음)
-					</div>
-				</li>
-				<li>
-					<label><img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png">예약정책</label>
-					<div>
-						계약금 없음, 카드사본 대체<br>
-						결제수단 : 계좌이체(세금계산서발행), 방문 카드결제<br>
-						(취소위약금 : 예약시 고객이 첨부한 카드사본으로 위약금 결제 진행)
-					</div>
-				</li>
-				<li>
-					<label><img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box03_content_box_list_bul.png">취소/환불 정책</label>
-					<div>
-						아래 취소 가능 기간은 평일 9~18시 기준입니다. *주말/공휴일 미포함*<br>
-						사용 48시간전~사용 24시간전 : 총 합계 금액의 50% 부과<br>
-						사용 24시간전~행사 당일 : 총 합계 금액의 100% 부과
-					</div>
-				</li>
-			</ul>
-		</div>
-	
-		<!-- 예약하기 버튼 -->
-		<div class="r_button">
-			<a href="room_payment.do"><input type="button" value="예약신청" id="btn_reserve"></a>
-			<a href="room_list.do"><input type="reset" value="취소" id="btn_reset"></a>
-		</div>
-	</div>
+	</form>
 	
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
