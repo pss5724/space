@@ -194,17 +194,17 @@ var pager = jQuery('#ampaginationsm').pagination({
 		            <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
 		                <!-- slides -->
 		                <div class="carousel-inner">
-		                    <div class="carousel-item active"> <img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg" alt="Hills"> </div>
-		                    <c:if test="${vo.rfile2 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/images/${vo.rfile2 }.jpg" alt="Hills"> </div> </c:if> 
-		                    <c:if test="${vo.rfile3 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/images/${vo.rfile3 }.jpg" alt="Hills"> </div> </c:if>
+		                    <div class="carousel-item active"> <img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg" alt="Hills"> </div>
+		                    <c:if test="${vo.rfile2 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/upload/${vo.rfile2 }.jpg" alt="Hills"> </div> </c:if> 
+		                    <c:if test="${vo.rfile3 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/upload/${vo.rfile3 }.jpg" alt="Hills"> </div> </c:if>
 		                </div> <!-- Left right --> <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
 		                <ol class="carousel-indicators list-inline">
-		                    <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg" class="img-fluid"> </a> </li>
+		                    <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg" class="img-fluid"> </a> </li>
 		                    <c:if test="${vo.rfile2 != null }">
-		                   		<li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/${vo.rfile2 }.jpg" class="img-fluid"> </a> </li>
+		                   		<li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile2 }.jpg" class="img-fluid"> </a> </li>
 		                    </c:if>
 		                    <c:if test="${vo.rfile3 != null }">
-		                    	<li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="http://localhost:9000/space/images/${vo.rfile2 }.jpg" class="img-fluid"> </a> </li>
+		                    	<li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile3 }.jpg" class="img-fluid"> </a> </li>
 		                    </c:if>
 		                </ol>
 		            </div>
@@ -575,12 +575,12 @@ var pager = jQuery('#ampaginationsm').pagination({
 		<div class="room_inform" id="room_inform">
 			<div class="label"><div class="l_line"></div><label>회의실 안내</label></div>
 			<div>
-				<img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg" width="250px" height="220px">
+				<img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg" width="250px" height="220px">
 				<div class="large_img">
 					<img src="http://localhost:9000/space/images/thum_more_icon.png">
 					<div>
 						<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
-						<img src="http://localhost:9000/space/images/carousel1.jpg">
+						<img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg">
 					</div>
 				</div>
 				<div>

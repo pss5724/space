@@ -209,7 +209,7 @@ ol, ul {
     margin-top: 20px;
 }
 
-.join_btn_box button {
+.join_btn_box #doResgister {
     display: block;
     box-sizing: border-box;
     width: 200px;

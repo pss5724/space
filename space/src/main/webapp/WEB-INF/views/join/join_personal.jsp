@@ -122,14 +122,12 @@ $(document).ready(function(){
 					<div class="join_content_box">
 						<ul class="join_content_check_list">
 							<li>
-								<input type="checkbox" name="agree_privacy" value="1" class="hidden check_box_input" title="이용약관 및 개인정보 처리방침 동의 체크" required>
-								<button class="check_box_btn" type="button" title="이용약관 및 개인정보 처리방침 동의 체크"></button>
+								<input type="checkbox" name="agree_privacy" value="1" class="check_box_btn" title="이용약관 및 개인정보 처리방침 동의 체크" required>
 								<a class="join_cont_check_list_text" href="#">이용약관 및 개인정보 처리방침 동의</a>
 								<span class="red">(필수)</span>
 							</li>
 							<li>
-								<input type="checkbox" name="agree_notify" value="1" class="hidden check_box_input" title="이용약관 및 개인정보 처리방침 동의 체크" required>
-								<button class="check_box_btn" type="button" title="이용약관 및 개인정보 처리방침 동의 체크"></button>
+								<input type="checkbox" class="check_box_btn" title="이용약관 및 개인정보 처리방침 동의 체크" value="1" title="이용약관 및 개인정보 처리방침 동의 체크">
 								<p class="join_cont_check_list_text" href="#">이벤트 등 프로모션 알림</p>
 								<span>(선택)</span>
 								<p style="color:red;font-size:14px;line-height:20px; letter-spacing: -1px;padding-left: 25px;">※ 동의해주신 회원님들께는 다양한 이벤트와 혜택이 제공됩니다.</p>
@@ -138,7 +136,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 					<div class="join_btn_box">
-						<button id="doResgister" type="button">회원가입</button>
+						<input id="doResgister" type="submit" value="회원가입">
 					</div>
 				</form>
 			</div>

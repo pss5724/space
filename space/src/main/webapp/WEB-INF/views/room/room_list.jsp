@@ -427,7 +427,7 @@ $(document).ready(function() {
 						<li class="room_info">
 							<a href="http://localhost:9000/space/room_content.do?rid=${rvo.rid}">
 								<div class="info_image">
-									<img src="http://localhost:9000/space/upload/${rvo.rsfile1}">
+									<img src="http://localhost:9000/space/upload/${rvo.rsfile1}.jpg">
 								</div>
 								<div class="info_text">
 									<div class="info_left">
