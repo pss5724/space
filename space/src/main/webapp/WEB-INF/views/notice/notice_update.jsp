@@ -103,17 +103,11 @@
 
 </style>
 <script>
-function noticeFormCheck(){
-	var ntitle = document.getElementById("ntitle");
-	
-	if(ntitle.value == ""){
-		alert("제목을 입력해주세요");
-		ntitle.focus();
-		return false;
-	}else{
-		notice_write.submit();
+	function clickDel(formName) {
+		formName.action = "/notice/contentDelAsk";
+		formName.method = "post";
+		formName.submit();
 	}
-}
 </script>
 </head>
 <body>
@@ -124,9 +118,9 @@ function noticeFormCheck(){
 	<div class="notice_container">
 	
 			<div class="notice_content">
-			<h1>공지사항 등록</h1>
+			<h1>공지사항 수정/삭제</h1>
 			
-		<form name="notice_write" id="notice_write" action="notice_write_proc.do" method="post" enctype="multipart/form-data">
+		<form id="notice_write" name="notice_write" action="notice_write_proc.do" method="POST" enctype="multipart/form-data">
 			<table class="notice_write_table">
 				<tr>
 					<th scope="row">상단 고정</th>
@@ -134,38 +128,59 @@ function noticeFormCheck(){
 						<select class="notice_category" name="notice_category">
 							
 							<option value="choice" selected>선택</option>
-							<option value="IMPORTANT">중요</option>
-							<option value="NORMAL">기본</option>
+							<option value="important">중요</option>
+							<option value="normal">기본</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td>
-						<input type="text" name="ntitle" class="input_subject" id="ntitle" title="제목작성" required>
+						<input type="text" name="subject" class="input_subject" title="제목작성" required>
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>
-						<input type="text" name="content ncontent" class="input_content" title="내용작성">
+						<input type="text" name="content" class="input_content" title="내용작성">
 					</td>
 				</tr>
 				<tr>
 					<th>파일첨부</th>
 					<td>
-						<input type="file" name="file1"><span></span>
+						<input name="file" type="file"><span></span>
 					</td>
 				</tr>
 				
 			</table>
 	
 		<div class="notice_write_btn">
-			<button type="button" id="writeNotice" class="btn_style2" onclick="noticeFormCheck()">등록하기</button>
-			<button type="reset" class="btn_style2">취소</button>
+			<button type="submit" id="writeNotice" class="blue">수정하기</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">삭제</button>
 		</div>
-	
+		
 		</form>
+		
+		<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true"
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">게시물 삭제</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">게시물을 삭제하시겠습니까?</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" onclick="clickDel(notice_write)">삭제하기</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
 	</div>
 </div>
 		
