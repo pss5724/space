@@ -72,7 +72,13 @@ public class MemberVO {
 		this.cnum3 = cnum3;
 	}
 	public String getCnum() {
-		return cnum;
+		String str="";
+		if (cnum1 != null) { // 회원가입 시
+			str = cnum1 + "-" + cnum2 + "-" + cnum3;
+		} else { // 멤버리스트 출력 시 사용
+			str = cnum;
+		}
+		return str;
 	}
 	public void setCnum(String cnum) {
 		this.cnum = cnum;

@@ -43,13 +43,6 @@ public class MemberServiceImpl implements MemberService {
 		if(value != 0) result = true;
 		return result;
 	}
-	@Override
-	public boolean getInsertResult2(MemberVO vo) {
-		boolean result = false;
-		int value = memberDAO.getInsertResult2(vo);
-		if(value != 0) result = true;
-		return result;
-	}
 
 	@Override
 	public int execTotalCount() {

@@ -12,11 +12,13 @@
 	
 	<!-- 개인 회원가입 [position:0(개인), choicein: 1(바로 가입), choiceout(탈퇴): 0] -->
 	<insert id="join_per" parameterType="com.myspace.vo.MemberVO">
-		insert into space_member values(#{id},#{pass},#{name},#{hp},#{cname},#{tname},#{cnum},#{caddr1},#{caddr2},#{clic},#{chp},sysdate,0,1,0)
+		insert into space_member values(#{id},#{pass},#{name},#{hp},null,null,null,null,null,null,null,sysdate,0,1,0)
+		<!-- insert into space_per_member values(#{id},#{pass},#{name},#{hp},sysdate,0,1,0) -->
 	</insert>
 	<!-- 기업 회원가입 [position:1(기업), choicein: 0(가입 대기), choiceout: 0] -->
 	<insert id="join_cor" parameterType="com.myspace.vo.MemberVO">
-		insert into space_member values(#{id},#{pass},#{name},#{hp},#{cname},#{tname},#{cnum},#{caddr1},#{caddr2},#{clic},#{chp},sysdate,1,0,0)
+		<!-- insert into space_member values(#{id},#{pass},#{name},#{hp},#{tname},#{cname},#{cnum},#{caddr1},#{caddr2},null,#{chp},sysdate,1,0,0) -->
+		insert into space_member values(#{id},#{pass},#{name},#{hp},#{tname},#{cname},#{cnum},#{caddr1},#{caddr2},#{clic} ,#{chp},sysdate,1,0,0)
 	</insert>
 	
 	<!-- 가입승인 버튼 활성화 -->

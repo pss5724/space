@@ -17,13 +17,14 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     clear: both;
 }
 
-.hidden {
+/*.hidden {
     position: absolute;
     left: -9999px;
     width: 0;
     height: 0;
     overflow: hidden;
-}
+    cursor: pointer;
+}*/
 
 .center_section_join {
     padding: 60px 0 150px;
@@ -223,6 +224,92 @@ ol, ul {
     border: 1px solid #0274d8;
     border-radius: 3px;
     background: #0274d8;
+    cursor: pointer;
 }
 
+.normal_ipt_box.type02 {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(32.6% - 6px);
+}
 
+button, input[type=submit] {
+    cursor: pointer;
+}
+
+/****************************************/
+/* } Ã¼Å©¹Ú½º */
+/* ÆË¾÷ { */
+/*.more_pop {
+	display:none;
+	width:1200px;
+	position:fixed;
+	top:50%;
+	left:50%;
+	background:#ffffff;
+	-webkit-transform:translate(-50%,-50%);
+	-moz-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	-o-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+	z-index:999;
+}
+.more_pop_tit {
+	padding-left:45px;
+	font-family:"nanumsquare-l";
+	font-size:32px;
+	line-height:100px;
+	color:#ffffff;
+	background:#006be0;
+}
+.more_pop > div {
+	box-sizing:border-box;
+	height:490px;
+	padding:50px 0 50px 30px;
+
+}
+.more_pop > div > ul {
+	overflow-y:auto;
+	height:390px;
+}
+.more_pop > div > ul li + li {
+	padding-top:50px;
+}
+.more_pop_text_tit {
+	padding:0 12px 14px;
+	margin-bottom:28px;
+	font-family:"nanumsquare-b";
+	font-size:20px;
+	line-height:30px;
+	color:#111111;
+	border-bottom:2px solid #0056b7;
+}
+.more_pop_text {
+	font-family:"nanumsquare-r";
+	font-size:14px;
+	line-height:26px;
+	color:#111111;
+	letter-spacing:-1px;
+	white-space:pre-line;
+	word-break:break-all;
+}
+.more_pop_closebtn {
+	overflow:hidden;
+	display:block;
+	width:34px;
+	height:34px;
+	position:absolute;
+	top:33px;
+	right:20px;
+}
+.more_pop_bg {
+	display:none;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	background:#000000;
+	opacity:0.3;
+	z-index:998;
+}*/
+/* } ÆË¾÷ */

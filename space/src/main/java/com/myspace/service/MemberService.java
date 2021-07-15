@@ -15,7 +15,6 @@ public interface MemberService {
 	SessionVO getLoginResult(MemberVO vo);
 	boolean getInsertResult0(MemberVO vo);
 	boolean getInsertResult1(MemberVO vo);
-	boolean getInsertResult2(MemberVO vo);
 	int execTotalCount();
 	
 	

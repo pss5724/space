@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/join.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/space/js/space.js"></script>
 <script>
 $(document).ready(function(){
 	$("#doResgister").click(function(){
@@ -25,7 +24,7 @@ $(document).ready(function(){
 			$("#pass").focus();
 			return false;
 		}else if($("#cpass").val()==""){
-			alert("비밀번호 확인을 선택해주세요");
+			alert("비밀번호 확인을 입력해주세요");
 			$("#cpass").focus();
 			return false;
 		}else if($("#hp").val() == ""){

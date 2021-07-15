@@ -20,7 +20,7 @@
 		<section class="login">
 			<h1 class="title">회원가입 결과</h1>
 			<h3>회원가입에 성공하셨습니다.</h3>
-			<button type="button">로그인하기</button>
+			<a href="http://localhost:9000/space/login.do"><button type="button">로그인하기</button></a>
 		</section>
 	</div>		
 	

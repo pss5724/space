@@ -32,10 +32,6 @@ public class MemberDAO {
 	public int getInsertResult1(MemberVO vo) {
 		return sqlSession.insert(namespasce+".join_cor", vo);    
 	}
-	//파트너 회원가입
-	public int getInsertResult2(MemberVO vo) {
-		return sqlSession.insert(namespasce+".join_pat", vo);    
-	}
 
 	//로그인 처리 
 	public SessionVO getLoginResult(MemberVO vo) {

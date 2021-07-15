@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/login.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/space/js/space.js"></script>
 <script>
 $(document).ready(function(){
 	$("#loginEmail").click(function() {
@@ -27,7 +26,6 @@ $(document).ready(function(){
 	});
 }
 </script>
-</head>
 <body>
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -43,10 +41,10 @@ $(document).ready(function(){
 						<p class="login_tit">로그인</p>
 						<ul class="login_top">
 							<li class="id">
-								<input type="email" name="email" placeholder="이메일" value title="이메일 입력">
+								<input type="email" name="id" placeholder="이메일" value title="이메일 입력" id="id">
 							</li>
 							<li class="pass">
-								<input type="password" name="password" placeholder="비밀번호" value title="비밀번호 입력">
+								<input type="password" name="pass" placeholder="비밀번호" value title="비밀번호 입력" id="pass">
 							</li>
 						</ul>
 						<div class="login_middle">
@@ -57,7 +55,8 @@ $(document).ready(function(){
 								<a href="http://localhost:9000/space/pass_find.do">비밀번호 찾기</a>
 							</div>
 						</div>
-						<a id="loginEmail" class="login_btn" href="#">이메일로 로그인</a>
+						
+						<input type="submit" value="이메일로 로그인" class="login_btn" id="loginEmail">
 						<a id="loginNaver" class="naver_login_btn" href="#"><img src="http://localhost:9000/space/images/naver_btn_text.png">로그인</a>
 						<p class="login_comment">*기업, 파트너스 회원가입은 일반 회원가입으로 진행해주시길 바랍니다.</p>
 					</div>

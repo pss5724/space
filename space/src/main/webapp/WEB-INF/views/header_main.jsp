@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "com.myspace.vo.SessionVO" %>
+<%
+	SessionVO svo = (SessionVO)session.getAttribute("svo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,11 +130,32 @@ $(function(){
 			</ul>
 			
 			
-			<ul class="gnb_etc">
+			<% if(svo == null){ %>
+				<ul class="gnb_etc">
+					<li><a href="http://localhost:9000/space/login.do">로그인 </a></li>
+					<li><a href="http://localhost:9000/space/join_main.do">회원가입 </a></li>
+					<li><a href="#">나의 회의실</a></li>
+				</ul>
+			<% }else{ %>
+				<%if(svo.getId().equals("admin@naver.com")) {%>
+					<ul class="gnb_etc">
+						<li><a href="http://localhost:9000/space/logout.do">로그아웃 </a></li>
+						<li><a href="#">Admin </a></li>
+					</ul>
+				<%}else {%>
+					<ul class="gnb_etc">
+						<li><a href="http://localhost:9000/space/logout.do">로그아웃 </a></li>
+						<li><a href="#">나의 회의실</a></li>
+					</ul>
+				<% } %>
+			<% } %>
+			
+			
+			<!-- <ul class="gnb_etc">
 					<li><a href="http://localhost:9000/space/join_main.do">회원가입</a></li>
 					<li><a href="http://localhost:9000/space/login.do">로그인</a></li>
 					<li><a href="#">나의 회의실</a></li>
-			</ul>
+			</ul> -->
 
 			<form id="logout-form" action="#" method="POST" style="display: none;">
 				<input type="hidden" name="_token" value="JG5lgwlj2eG3zfWUYfpnf9hNuVbiZPMNDhRvYBQz">			</form>
