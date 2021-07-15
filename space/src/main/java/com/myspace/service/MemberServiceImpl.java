@@ -15,13 +15,13 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 
-	/*
-	 * @Override public MemberVO getContent(String id) { return
-	 * memberDAO.getContent(id); }
-	 * 
-	 * @Override public ArrayList<MemberVO> getList(int start, int end) { return
-	 * memberDAO.getList(start, end); }
-	 */
+	
+	 /* @Override public MemberVO getContent(String id) { return
+	  memberDAO.getContent(id); }*/
+	  
+	@Override public ArrayList<MemberVO> getList(int start, int end) { 
+		return memberDAO.getList(start, end); }
+	 
 
 	@Override
 	public SessionVO getLoginResult(MemberVO vo) {
@@ -48,5 +48,22 @@ public class MemberServiceImpl implements MemberService {
 	public int execTotalCount() {
 		return memberDAO.execTotalCount();
 	}
+	
+	@Override
+	public boolean getJoinIn(String id) {
+		return memberDAO.getJoinIn(id);
+	}
+	
+	@Override
+	public boolean getJoinOut(String id) {
+		return memberDAO.getJoinOut(id);
+	}
+	
+	@Override
+	public boolean getJoinDelete(String id) {
+		return memberDAO.getJoinDelete(id);
+	}
+	
+	
 
 }
