@@ -28,7 +28,7 @@ public class InquiryVO {
 	}
 
 	public void setAcontent(String acontent) {
-		this.acontent = acontent;
+		this.acontent = acontent.replace("\r\n", "<br>");
 	}
 
 	public String getId() {
@@ -56,7 +56,7 @@ public class InquiryVO {
 	}
 
 	public String getQcontent() {
-		return qcontent;
+		return qcontent.replace("\r\n", "<br>");
 	}
 
 	public void setQcontent(String qcontent) {
