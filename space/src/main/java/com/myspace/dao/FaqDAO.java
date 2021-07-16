@@ -7,9 +7,11 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.myspace.vo.NoticeVO;
+import com.myspace.vo.FaqVO;
 
+@Repository
 public class FaqDAO {
 	
 	@Autowired
@@ -17,25 +19,20 @@ public class FaqDAO {
 	
 	private String namespace = "mapper.faq";
 
-	//select --> 공지사항 상세정보
-	public NoticeVO getContent(String nid) {
-		return sqlSession.selectOne(namespace+".content", nid);
-	}
-	
 	
 	//select ---> 페이징을 위한 전체 로우수
 	public int execTotalCount() {
-		return sqlSession.selectOne(namespace+".count");
+		return sqlSession.selectOne(namespace+".faqcount");
 				
 	}
 
 	//select ---> 공지사항 전체리스트
 	public ArrayList<Object> getList(int start, int end){
 		Map param = new HashMap<String, String>();
-		param.put("start", start);
-		param.put("end", end);
+		param.put("start", String.valueOf(start));
+		param.put("end", String.valueOf(end));
 		
-		List<Object> list= sqlSession.selectList(namespace+".list",param); 
+		List<Object> list= sqlSession.selectList(namespace+".faqlist",param); 
 		
 		return (ArrayList<Object>)list;
 	}

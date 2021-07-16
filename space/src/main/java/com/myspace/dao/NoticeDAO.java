@@ -68,6 +68,12 @@ public class NoticeDAO {
 		return sqlSession.selectOne(namespace+".count");
 				
 	}
+	//select ---> 공지사항 상세페이지 이전글
+	public ArrayList<Object> getnextList(int rno){
+		List<Object> list= sqlSession.selectList(namespace+".nextlist", rno); 
+		
+		return (ArrayList<Object>)list;
+	}
 
 	//select ---> 공지사항 전체리스트
 	public ArrayList<Object> getList(int start, int end){

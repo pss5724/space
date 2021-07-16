@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +8,42 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/notice.css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/am-pagination.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/space_javascript.js"></script>
+<script src="http://localhost:9000/space/js/am-pagination.js"></script>
 <script>
+//페이징 처리
+$(document).ready(function(){
+	
+	var pager = jQuery('#ampaginationsm').pagination({
+		
+	    maxSize: 5,	    		// max page size
+	    totals: 4 ,	// total pages	
+	    page: ${rpage},		// initial page		
+	    pageSize: 2,	// max number items per page
+		
+	    //totals: ${dbcount},	// total pages	
+	    //page: ${rpage},		// initial page		
+	    //pageSize: 2,	// max number items per page
+	    
+	    
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: ' ',		
+	    nextText: ' ',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
+	});
+	
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
+		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+           $(location).attr('href', "http://localhost:9000/space/faq.do?rpage="+e.page);         
+    });
+	});
+	
+	//컨텐츠 BOX
 		$(function(){
 			var selectTit = '.cus_slectbox_tit',
 				selectList = '.cus_slectbox_list',
@@ -84,7 +118,7 @@
 				top:50%;
 				right:10px;
 				text-indent:-9999px;
-				background:url('http:localhost:9000/space/images/cus_slectbox_tit_off.png') no-repeat left top;
+				background:url('http://localhost:9000/space/images/cus_slectbox_tit_off.png') no-repeat left top;
 			}
 			.cus_slectbox_tit.on a:after {
 				content:'닫기';
@@ -168,15 +202,20 @@
 				text-indent:-9999px;
 				width:16px;
 				height:9px;
-				margin-top:-5px;
-				background:url('http:localhost:9000/space/images/faq_content_btn_off.png') no-repeat left top;
+				margin-top:-20px;
+				background:url('http://localhost:9000/space/images/faq_content_btn_off.png') no-repeat left top;
+				width: 35px;
+				height:25px;
 				position:absolute;
 				top:50%;
 				right:31px;
 			}
 			.faq_content_btn.on:after {
 				content:'닫기';
-				background:url('http:localhost:9000/space/images/faq_content_btn_on.png') no-repeat left top;
+				background:url('http://localhost:9000/space/images/faq_content_btn_on.png') no-repeat left top;
+				width: 35px;
+				height:25px;
+				margin-top:-20px;
 			}
 
 			.faq_content_text {
@@ -270,44 +309,19 @@
 				</div>
 
 				<div class="faq_box">
-											<div class="faq_content">
-							<button class="faq_content_btn" type="button">휴대폰 인증이 되지 않습니다.</button>
-							<div class="faq_content_text"><p>아래의 경우에는 휴대폰 인증이 불가할 수 있습니다.<p>+ 이미 인증된 다른 계정이 있다면 인증이 불가합니다.</p><p>+ 선블 휴대폰을 사용 중이신 경우 인증이 불가할 수 있습니다.</p><p>+ 휴대폰이 분실 또는 일시정시 (이용자의 요청/요금 미납) 상태인 경우</p><p>+ 이동통신사에 미등록된 휴대폰 (해지/미개통)인 경우</p><p>+ 인증을 시도한 휴대폰이 법인 명의로 개통된 경우 휴대폰 인증이 불가능합니다.<br>   (법인에서 이용하실 경우 관리 담당자의 실명 인증을 통해 이용해주시기 바랍니다.)</p><p>+ 본인인증 연동 모듈 사의 사정으로 인증이 불가능한 경우<br>   휴대폰 본인 인증은 24시간 가능하나, 간헐적으로 새벽시간 중 연동 모듈사의 서버 점검 등의 사요류 30분~1시간 정도 인증이 불가능한 경우가 발생할 수 있습니다.<br>   이 경우, 아래 채널로 문의하실 수 있습니다.<br>   - KCB 고객센터 : 02-708-1000</p><p><br></p><p></p></p>
-</div>
+				
+				<c:forEach var="vo" items="${list}">
+						<div class="faq_content">
+							<button class="faq_content_btn" type="button">${vo.ftitle}</button>
+							<div class="faq_content_text"> <p>${vo.fcontent}</p>
+							</div>
 						</div>
-											<div class="faq_content">
-							<button class="faq_content_btn" type="button">센터 방문답사는 어떻게 신청하나요?</button>
-							<div class="faq_content_text"><p>회의실 예약 신청을 완료 한 후,<p><나의 회의실> 메뉴의 <예약한 회의실>에서 예약 건을 클릭하시면</p><p>우측에 <방문답사 신청>버튼을 통해 신청이 가능합니다.</p><p></p></p>
-</div>
-						</div>
-											<div class="faq_content">
-							<button class="faq_content_btn" type="button">스페이스닷컴 이용에 문의가 있어요.</button><span class="img"></span>
-							<div class="faq_content_text"><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: none; line-height: 1.5em;"><span style="font-size: 1rem;">회의실닷컴 이용에 대한 자세한 문의는 회원가입 후<b> </b></span>
-							<span style="font-size: 1rem; margin: 0px; padding: 0px; border: none; font-family: noto-sans-scott-m;"><b>1:1 문의</b></span><span style="font-size: 1rem;">를 통해 남겨주시면 신속하게 답변드리도록 하겠습니다.</span><br><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: none; line-height: 1.5em;"><br style="color: rgb(72, 72, 72); letter-spacing: -1px; white-space: pre-line; font-family: dotum, 돋움 !important;"></p><p>*고객센터 운영시간 : 평일 오전 9시 ~ 오후 6시 (점심시간 11:30 ~ 12:30)</p><p></p></p>
-</div>
-						</div>
-											<div class="faq_content">
-							<button class="faq_content_btn" type="button">센터 측 취소/환불 정책은 어디서 확인할 수 있나요?</button>
-							<div class="faq_content_text"><p>"마이페이지 > 예약 회의실" 에서 확인하거나 회의실 찾기를 통해 센터의 세부정보를 확인할 수 있습니다.<p>규정에 명시된 취소 가능 기간은 평일 9~18시 기준입니다. *주말/공휴일 미포함*</p></p>
-</div>
-						</div>
-											<div class="faq_content">
-							<button class="faq_content_btn" type="button">예약취소 여부는 어떻게 확인할 수 있나요?</button>
-							<div class="faq_content_text"><p>예약 취소시 카카오톡 알림톡으로 해당 내용을 전송해드리며, "마이페이지 > 예약 회의실"에서 내역을 확인할 수 있습니다.<br></p>
-</div>
-						</div>
-
-									</div>
+						</c:forEach>
+											
 				<div class="content_paging">
-				<a class="content_paging_prev" href="javascript:void(0);"><img src="http://localhost:9000/space/images/content_paging_left.png" alt="이전"></a>
-				<ul class="content_paging_list hf_effect03">
-							<li class="on "><a href="#">1</a></li>
-							<li class=" "><a href="#">2</a></li>
-							<li class=" "><a href="#">3</a></li>
-							<li class=" "><a href="#">4</a></li>
-							<li class=" "><a href="#">5</a></li>
-					</ul>
-							<a class="content_paging_next" href="#"><img src="http://localhost:9000/space/images/content_paging_right.png" alt="다음"></a>
+					<a class="content_paging_prev" href="javascript:void(0);"><img src="http://localhost:9000/space/images/content_paging_left.png" alt="이전"></a>
+					<div id="ampaginationsm"></div>		
+					<a class="content_paging_next" href="#"><img src="http://localhost:9000/space/images/content_paging_right.png" alt="다음"></a>
 				</div>
 
 			</div>

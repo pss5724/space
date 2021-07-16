@@ -425,6 +425,7 @@ header{
 	
 }
 .content_paging_prev, .content_paging_next {
+	vertical-align:top;
 	margin:0 20px;
 }
 .content_paging_list {
