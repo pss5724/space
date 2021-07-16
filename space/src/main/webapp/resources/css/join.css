@@ -148,8 +148,13 @@ ol, ul {
     border: none;
     background: none;
 }
-
-.join_write_list_s .join_write_hp, .join_write_addr {
+.join_write_hp{
+	display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    margin-right: 5px;
+}
+.join_write_list_s .join_write_addr {
     display: inline-block;
     vertical-align: top;
     width: calc(100% - 117px);

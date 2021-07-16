@@ -35,13 +35,7 @@
 						<li class="join_list02"><a href="http://localhost:9000/space/join_cor.do">
 								<p>
 									기업회원 <br>
-									<span>(회의실 이용 고객)</span>
-								</p>
-						</a></li>
-						<li class="join_list03"><a href="http://localhost:9000/space/join_partner.do">
-								<p>
-									파트너 회원 <br>
-									<span>(가맹점)</span>
+									<span>(파트너)</span>
 								</p>
 						</a></li>
 					</ul>

@@ -126,7 +126,7 @@ $(document).ready(function(){
 								</li>
 								<li>
 									<div class="join_write_list_f">
-										<span>*</span> 비밀번호
+										<span>*</span> 비밀번호 확인
 									</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
@@ -145,8 +145,6 @@ $(document).ready(function(){
 											<input type="text" name="hp" placeholder="휴대폰 번호" class="i1"
 												id="hp">
 										</div>
-										<button type="button" class="btn_hp" id="hpcheck">휴대폰
-											인증</button>
 									</div>
 								</li>
 							</ul>
