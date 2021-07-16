@@ -22,11 +22,10 @@
 </style>
 <script>
 $(document).ready(function() {
-	$(".ui-corner-all").click(function() {
-		console.log('ddd');
-	});
-	
-	$("#btn_reserve").click(function(){
+
+	$("#r_name").click(function(){
+		console.log('하이');
+
 		/* 영업시간 숫자로 변환 */
 	    $("input[id^=time]").each(function() { 
 	       var tlist = $(this).val().split(":");
@@ -44,15 +43,59 @@ $(document).ready(function() {
 
 	       $(this).val(time);
 	    });
-		console.log($("#time1").val());
-		console.log($("#time2").val());
+	});
+	
+	$("#btn_reserve").click(function(){
+
+		var used_hours = Number($("#time2").val()) - Number($("#time1").val());
+		$("#amount").append('<input type="text" name="used_hours" id="uhours" style="display:none">')
+		$("#uhours").val(used_hours);
+		console.log('dgegwsd',$("#uhours").val());
+		console.log('1',$("#time1").val()==0);
+		console.log('2',$("#time2").val());
 		console.log($("#datepicker").val());
+
+		if("<c:out value='${svo.convenience1}'/>" == ""){
+			$("#slist").append('<li style="display:none"><input type="text" value="0" id="conv1" name="convenience1_num"></li>');
+		}
+		if("<c:out value='${svo.convenience2}'/>" == ""){
+			$("#slist").append('<li style="display:none"><input type="text" value="0" id="conv2" name="convenience2_num"></li>');
+		}
+		if("<c:out value='${svo.convenience3}'/>" == ""){
+			$("#slist").append('<li style="display:none"><input type="text" value="0" id="conv3" name="convenience3_num"></li>');
+		}
+		if("<c:out value='${svo.beverage1}'/>" == ""){
+			$("#slist").append('<li style="display:none"><input type="text" value="0" id="bev1" name="beverage1_num"></li>');
+		}
+		if("<c:out value='${svo.beverage2}'/>" == ""){
+			$("#slist").append('<li style="display:none"><input type="text" value="0" id="bev2" name="beverage2_num"></li>');
+		}
+		if("<c:out value='${svo.beverage3}'/>" == ""){
+			$("#slist").append('<li style="display:none"><input type="text" value="0" id="bev3" name="beverage3_num"></li>');
+		}
+
+		
+		var amount = (Number('${vo.charge}')*Number($("#uhours").val())) + (Number('${svo.convenience1_price}') * Number($("#conv1").val())) + (Number('${svo.convenience2_price}') * Number($("#conv2").val())) + (Number('${svo.convenience3_price}') * Number($("#conv3").val())) + (Number('${svo.beverage1_price}') * Number($("#bev1").val())) + (Number('${svo.beverage2_price}') * Number($("#bev2").val())) + (Number('${svo.beverage3_price}') * Number($("#bev3").val()));
+		$("#amount").append('<input type="text" name="amount" id="r_amount" style="display:none">')
+		$("#r_amount").val(amount);
+		
 		$(".form-control").each(function(){
 			console.log($(this).val());
 		});
 		console.log($("#r_name").val());
-		
-		if($("#r_name").val() == ""){
+		if($("#datepicker").val() == ""){
+			alert("이용일자를 선택해주세요");
+			$("#datepicker").focus();
+		}else if($("#time1").val()==0){
+			alert("입실시간을 선택해주세요");
+			$("#time1").focus();
+		}else if($("#time2").val()==0){
+			alert("퇴실시간을 선택해주세요");
+			$("#time2").focus();
+		}else if($("#headcount").val() == 0){
+			alert("이용인원을 입력해주세요");
+			$("#headcount").focus();
+		}else if($("#r_name").val() == ""){
 			alert("예약자를 입력해주세요");
 			$("#r_name").focus();
 		}else if($("#phone1").val() == ""){
@@ -64,6 +107,9 @@ $(document).ready(function() {
 		}else if($("#phone3").val() == ""){
 			alert("연락처를 입력해주세요");
 			$("#phone3").focus();
+		}else if($("#email").val() == ""){
+			alert("이메일을 입력해주세요");
+			$("#email").focus();
 		}else if($("#c_name").val() == ""){
 			alert("회사명을 입력해주세요");
 			$("#c_name").focus();
@@ -74,13 +120,20 @@ $(document).ready(function() {
 			alert("결제방식을 선택해주세요");
 			$("#online").focus();
 		}else {
+			var phone = $("#phone1").val() + "-" + $("#phone2").val() + "-" + $("#phone3").val();
+			$("#phone").append('<input type="text" name="hp" id="hp" style="display:none">');
+			$("#hp").val(phone);
+			
+			
 			if($("#online").is(":checked")==true){
 				console.log('온라인');
-				$("form").attr("action", "room_reserve_confirm.do");
+				$("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}");
+				room_reserve.submit();
 			}
 			if($("#onsite").is(":checked")==true){
 				console.log('현장');
-				$("form").attr("action", "room_payment.do");
+				$("form").attr("action", "room_reserve_offline_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}");
+				room_reserve.submit();
 			}
 			
 		}
@@ -125,7 +178,7 @@ $(document).ready(function() {
     });
 	
 	
-/* 	$(".number-spinner input").click(function(){   
+	$(".number-spinner input").click(function(){   
 		var btn = $(this),
 			oldValue = btn.closest('.number-spinner').find('input[type="text"]').val().trim(),
 			newVal = 0;
@@ -149,7 +202,7 @@ $(document).ready(function() {
     
     $(".large_img>div>img:first-child").click(function(){
     	$(".large_img>div").hide();
-    }); */
+    });
     
     
 });
@@ -160,18 +213,18 @@ $(document).ready(function() {
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<div class="title"><h1>예약하기</h1></div>
-	<form name="room_reserve" action="room_payment.do" method="get">
+	<form name="room_reserve" action="room_reserve_proc.do" method="POST">
 		<div class="room_reserve_content">
 			
 			<!-- 회의실 정보1 -->
 			<div class="name">
 				<div class="label"><div class="l_line"></div><label>${vo.branch_name }</label><div></div><label>${vo.room_name }</label></div>
-				<div id="image" style="background:url('http://localhost:9000/space/images/${vo.rfile1 }.jpg'); background-size: cover; background-repeat: no-repeat; background-position: 50%;"></div>
+				<div id="image" style="background:url('http://localhost:9000/space/upload/${vo.rfile1 }'); background-size: cover; background-repeat: no-repeat; background-position: 50%;"></div>
 				<div class="large_img">
 					<img src="http://localhost:9000/space/images/thum_more_icon.png">
 					<div>
 						<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
-						<img src="http://localhost:9000/space/images/${vo.rfile1 }.jpg">
+						<img src="http://localhost:9000/space/upload/${vo.rfile1 }">
 					</div>
 				</div>
 			</div>
@@ -396,14 +449,14 @@ $(document).ready(function() {
 					<label>예약정보</label>
 				</div>
 				<div>
-					<ul>
+					<ul id="r_info">
 						<li>
 							<label>이용일자</label>
-							<input id="datepicker">
+							<input id="datepicker" name="reserve_date">
 						</li>
 						<li>
 							<label>이용시간</label>
-							<input type="text" id="time1" name="time1" autocomplete="off">~<input type="text" id="time2" name="time2" autocomplete="off">
+							<input type="text" id="time1" name="checkin_time" autocomplete="off">~<input type="text" id="time2" name="checkout_time" autocomplete="off">
 						</li>
 						<li>
 							<label>이용인원</label>
@@ -411,7 +464,7 @@ $(document).ready(function() {
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
 								</span>
-								<input type="text" class="form-control text-center" value="0" id="headcount">
+								<input type="text" class="form-control text-center" value="0" id="headcount" name="headcount">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="up" value="+">
 								</span>
@@ -419,92 +472,118 @@ $(document).ready(function() {
 						</li>
 						<li>
 							<label>수용형태</label>
-							<span>${vo.type }</span>
+							<input type="text" name="type" id="type" value="${vo.type }" disabled>
 						</li>
 					</ul>
 				</div>
 			</div>
 			
 			<!-- 부가서비스 -->
-			<div class="a_service">
+			<div class="a_service" id="amount">
 				<div class="inform_label">
 					<img src="http://localhost:9000/space/images/item_common_reservation_round_box_content_tit_before_bg.png">
 					<label>부가서비스</label>
 				</div>
 				<div>
-					<ul>
+					<ul id="slist">
+						<c:if test="${svo.convenience1 != null }">
 						<li>
 							<div class="s_label"><div class="required"></div><label>편의사항</label></div>
 							<div id="s_content">
-								<span>라커룸 1개/종일<br>11,000원/일<br>11,000원</span>
+								<span>${svo.convenience1 }<br>${svo.convenience1_price }원</span>
 							</div>
 							<div class="input-group number-spinner">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
 								</span>
-								<input type="text" class="form-control text-center" value="0" id="conv1">
+								<input type="text" class="form-control text-center" value="0" id="conv1" name="convenience1_num">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="up" value="+">
 								</span>
 							</div>
 						</li>
+						</c:if>
+						<c:if test="${svo.convenience2 != null }">
 						<li>
 							<div id="s_content">
-								<span>18시 이후 직원 stand by 비용<br>33,000원/시간(19시 이후 대관시 18~19시 stand by 비용)<br>33,000원</span>
+								<span>${svo.convenience2 }<br>${svo.convenience2_price }원</span>
 							</div>
 							<div class="input-group number-spinner">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
 								</span>
-								<input type="text" class="form-control text-center" value="0" id="conv2">
+								<input type="text" class="form-control text-center" value="0" id="conv2" name="convenience2_num">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="up" value="+">
 								</span>
 							</div>
 						</li>
+						</c:if>
+						<c:if test="${svo.convenience3 != null }">
+						<li>
+							<div id="s_content">
+								<span>${svo.convenience3 }<br>${svo.convenience3_price }원</span>
+							</div>
+							<div class="input-group number-spinner">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
+								</span>
+								<input type="text" class="form-control text-center" value="0" id="conv3" name="convenience3_num">
+								<span class="input-group-btn">
+									<input type="button" class="btn btn-default" data-dir="up" value="+">
+								</span>
+							</div>
+						</li>
+						</c:if>
+						<c:if test="${svo.beverage1 != null }">
 						<li>
 							<div class="s_label"><div class="required"></div><label>식음료</label></div>
 							<div id="s_content">
-								<span>음료/잔<br>(coffee, tea, juices 선택)7,700원/잔<br>7,700원</span>
+								<span>${svo.beverage1 }<br>${svo.beverage1_price }원</span>
 							</div>
 							<div class="input-group number-spinner">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
 								</span>
-								<input type="text" class="form-control text-center" value="0" id="bev1">
+								<input type="text" class="form-control text-center" value="0" id="bev1" name="beverage1_num">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="up" value="+">
 								</span>
 							</div>
 						</li>
+						</c:if>
+						<c:if test="${svo.beverage2 != null }">
 						<li>
 							<div id="s_content">
-								<span>COFFEE 10인 set<br>33,000원/pot(1회 리필 포함)<br>33,000원</span>
+								<span>${svo.beverage2 }<br>${svo.beverage2_price }원</span>
 							</div>
 							<div class="input-group number-spinner">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
 								</span>
-								<input type="text" class="form-control text-center" value="0" id="bev2">
+								<input type="text" class="form-control text-center" value="0" id="bev2" name="beverage2_num">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="up" value="+">
 								</span>
 							</div>
 						</li>
+						</c:if>
+						<c:if test="${svo.beverage3 != null }">
 						<li>
 							<div id="s_content">
-								<span>케이터링 SET<br>(커피 1POT, 쿠키, 빵 임의구성 10인분) 132,000원<br>132,000원</span>
+								<span>${svo.beverage3 }<br>${svo.beverage3_price }원</span>
 							</div>
 							<div class="input-group number-spinner">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="dwn" value="-">
 								</span>
-								<input type="text" class="form-control text-center" value="0" id="bev3">
+								<input type="text" class="form-control text-center" value="0" id="bev3" name="beverage3_num">
 								<span class="input-group-btn">
 									<input type="button" class="btn btn-default" data-dir="up" value="+">
 								</span>
 							</div>
 						</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -522,30 +601,41 @@ $(document).ready(function() {
 							<label>예약자<span>*</span></label>
 							<input type="text" id="r_name" name="name">
 						</li>
-						<li>
+						<li id="phone">
 							<label>연락처<span>*</span></label>
 							<input type="text" id="phone1" name="ph1"> - <input type="text" id="phone2" name="ph2"> - <input type="text" id="phone3" name="ph3">
 						</li>
 						<li>
 							<label>이메일<span>*</span></label>
-							<input type="text" id="email" value="${vo.id }" disabled>
+							<input type="text" id="email" name="email">
 						</li>
 						<li>
 							<label>회사명<span>*</span></label>
-							<input type="text" id="c_name">
+							<input type="text" id="c_name" name="corp_name">
 						</li>
 						<li>
 							<label>행사명<span>*</span></label>
-							<input type="text" id="event_name">
+							<input type="text" id="event_name" name="event_name">
 						</li>
 						<li>
 							<label>기타 요청사항</label>
-							<input type="text" id="etc">
+							<input type="text" id="etc" name="etc_request">
 						</li>
 						<li>
 							<label>결제 방식<span>*</span></label>
-							<input type="radio" id="online" name="pay_type" class="chk" value="온라인결제"><span>온라인결제</span>
-							<input type="radio" id="onsite" name="pay_type" class="chk" value="현장결제"><span>현장결제</span>
+							<c:choose>
+								<c:when test="${ovo.online_payment == 1 && ovo.offline_payment ==1 }">
+									<input type="radio" id="online" name="pay_type" class="chk" value="온라인"><span>온라인결제</span>
+									<input type="radio" id="onsite" name="pay_type" class="chk" value="현장"><span>현장결제</span>
+								</c:when>
+								<c:when test="${ovo.online_payment == 1 && ovo.offline_payment == 0 }">
+									<input type="radio" id="online" name="pay_type" class="chk" value="온라인"><span>온라인결제</span>
+								</c:when>
+								<c:when test="${ovo.online_payment == 0 && ovo.offline_payment == 1 }">
+									<input type="radio" id="onsite" name="pay_type" class="chk" value="현장"><span>현장결제</span>
+								</c:when>
+							</c:choose>
+							
 						</li>
 					</ul>
 				</div>

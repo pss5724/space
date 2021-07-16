@@ -814,8 +814,12 @@
 	font-weight: bold;
 	width: 90px;
 }
-.room_reserve_content .res_inform>div:last-child>ul>li>span {
+.room_reserve_content .res_inform>div:last-child>ul>li:last-child>input {
 	margin-left: 10px;
+	width: 210px;
+	padding: 5px 10px;
+	background: none;
+	border: none;
 }
 
 
