@@ -3,11 +3,12 @@ package com.myspace.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.myspace.dao.NoticeDAO;
 import com.myspace.vo.NoticeVO;
 
-
+@Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired NoticeDAO noticeDAO;
@@ -52,6 +53,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.execTotalCount();
 	}
 	
+	@Override
+	public ArrayList<Object> getnextList(int rno){
+		return noticeDAO.getnextList(rno);
+	}
 	@Override
 	public ArrayList<Object> getList(int start, int end){
 		return noticeDAO.getList(start, end);

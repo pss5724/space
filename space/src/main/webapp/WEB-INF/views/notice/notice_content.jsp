@@ -46,7 +46,7 @@
 								<div class="board_view_content">
 									<p>${content}
 									<c:if test="${vo.nsfile ne null }">
-									<img style="width: 1000px;" data-filename="6월.jpg" src="http://localhost:9000/space/images/${vo.nsfile}"><br>
+										<img style="width: 1000px;" data-filename="" src="http://localhost:9000/space/upload/${vo.nsfile}"><br>
 									</c:if>
 									</p>
 								</div>
@@ -57,27 +57,51 @@
 				</div>
 
 				<ul class="view_board_table_control">
-					<li class="prev">
-						<span class="prev_f">
-                            <a href="#">이전글</a>
-                        </span>
-							<span class="prev_s">
-                             <a href="#">[안내] 신규 가맹점 금천구 1호점 을 소개합니다.</a>
-                        </span>
-					</li>
-					<li class="next">
-						<span class="next_f">
-                            <a href="#">다음글</a>
-                        </span>
-						<span class="next_s">
-                            <a href="#">다음글이 없습니다.</a>
-                        </span>
-						
-					</li>
+				<c:choose>
+					<c:when test="${list[1].rno ne null }">
+						<li class="prev">
+							<span class="prev_f">
+	                            <a href="#">이전글</a>
+	                        </span>
+								<span class="prev_s">
+	                             <a href="http://localhost:9000/space/notice_content.do?nid=${list[0].nid}&rno=${list[0].rno}">${list[0].ntitle}</a>
+	                        </span>
+						</li>
+					
+						<li class="next">
+							<span class="next_f">
+	                            <a href="#">다음글</a>
+	                        </span>
+							<span class="next_s">
+	                            <a href="http://localhost:9000/space/notice_content.do?nid=${list[1].nid}&rno=${list[1].rno}">${list[1].ntitle}</a>
+	                        </span>
+						</li>
+					</c:when>
+					
+					<c:otherwise>
+						<li class="prev">
+							<span class="prev_f">
+	                            <a href="#">이전글</a>
+	                        </span>
+								<span class="prev_s">
+	                             <a href="#">이전글이 존재하지 않습니다.</a>
+	                        </span>
+						</li>
+					
+						<li class="next">
+							<span class="next_f">
+	                            <a href="#">다음글</a>
+	                        </span>
+							<span class="next_s">
+	                            <a href="http://localhost:9000/space/notice_content.do?nid=${list[0].nid}&rno=${list[0].rno}">${list[0].ntitle}</a>
+	                        </span>
+						</li>
+					</c:otherwise>
+				</c:choose>
 				</ul>
 
 				<div class="common_btn_area right">
-					<a class="black_btn" href="notice_delete.do?nid=${vo.nid }&rno=${rno }">삭제하기</a>
+					<a class="black_btn" id="delete_btn" href="http://localhost:9000/space/notice_delete_proc.do?nid=${vo.nid }">삭제하기</a>
 					<a class="black_btn" href="http://localhost:9000/space/notice.do?rpage=1">목록보기</a>
 				</div>
 

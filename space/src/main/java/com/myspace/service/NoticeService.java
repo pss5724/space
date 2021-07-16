@@ -15,6 +15,7 @@ public interface NoticeService {
 	int execTotalCount();
 	boolean getInsertResult(Object vo);
 	ArrayList<Object> getList(int start, int end);
+	ArrayList<Object> getnextList(int rno);
 	
 	
 }

@@ -63,7 +63,7 @@
 		<div class="sub_tab_box">
 			<ul class="sub_tab">
 				<li class="on"><a href="#">공지사항</a></li>
-				<li><a href="http://localhost:9000/space/faq.do">자주묻는 질문</a></li>
+				<li><a href="http://localhost:9000/space/faq.do?rpage=1">자주묻는 질문</a></li>
 			</ul>
 		</div>
 		<!-- e sub_tab -->

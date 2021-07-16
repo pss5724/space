@@ -148,7 +148,7 @@ function noticeFormCheck(){
 				<tr>
 					<th>내용</th>
 					<td>
-						<input type="text" name="content ncontent" class="input_content" title="내용작성">
+						<textarea name="ncontent" class="input_content" title="내용작성"></textarea>
 					</td>
 				</tr>
 				<tr>

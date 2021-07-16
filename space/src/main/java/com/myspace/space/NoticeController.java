@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.NoticeService;
+import com.myspace.vo.FaqVO;
 import com.myspace.vo.NoticeVO;
 
 @Controller
@@ -44,7 +45,7 @@ public class NoticeController {
 			boolean result = noticeService.getInsertResult(vo);
 			
 			if(result){
-				mv.setViewName("redirect:/notice.do");
+				mv.setViewName("redirect:/notice.do?rpage=1");
 			
 				if(vo.getFile1().getSize() !=0) {
 					//4. DB 연동 성공 ---->upload 폴더에 저장
@@ -57,11 +58,27 @@ public class NoticeController {
 	}
 
 	/**
-	 *  notice_delete.do -->공지사항 삭제화면 출력
+	 * notice_delete_proc.do -->삭제 proc
 	 */
-	@RequestMapping(value="/notice_delete.do", method=RequestMethod.GET)
-	public String notice_delete() {
-		return "notice/notice_delete";
+	@RequestMapping(value="/notice_delete_proc.do", method=RequestMethod.GET)
+	public ModelAndView board_delete_proc(String nid, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		//BoardDAO dao = new BoardDAO();
+		String old_nsfile = noticeService.getFile(nid);
+		boolean result = noticeService.getDeleteResult(nid);
+		
+		if(result){
+			mv.setViewName("redirect:/notice.do?rpage=1");
+			
+			//기존 upload 폴더에 존재하는 파일 삭제
+			String root_path = request.getSession().getServletContext().getRealPath("/");
+			String attach_path="\\resources\\upload\\";
+			File old_file= new File(root_path+attach_path+old_nsfile);
+			if(old_file.exists()) {
+				old_file.delete();
+			}
+		}
+			return mv;
 	}
 	/**
 	 *  notice_update.do -->공지사항 업데이트화면 출력
@@ -81,18 +98,27 @@ public class NoticeController {
 	 *  notice_content.do -->공지사항 상세내용 출력
 	 */
 	@RequestMapping(value="/notice_content.do", method=RequestMethod.GET)
-	public ModelAndView notice_content(String nid, String rno) {
+	public ModelAndView notice_content(String nid, int rno) {
 		ModelAndView mv = new ModelAndView();
 		//NoticeDAO dao = new NoticeDAO();
 		NoticeVO vo = (NoticeVO)noticeService.getContent(nid);
 		if(vo !=null) noticeService.getUpdateHit(nid);
 		String content = vo.getNcontent().replace("\r\n","<br>");
 		
+		 ArrayList<Object> olist = noticeService.getnextList(rno);
+		 ArrayList<NoticeVO> list =new ArrayList<NoticeVO>();
+			 for(Object obj :olist) {
+				 NoticeVO vo2 = (NoticeVO)obj;
+				 list.add(vo2);
+			 }
+		
 		mv.setViewName("notice/notice_content");
 		mv.addObject("vo", vo);
 		mv.addObject("content", content);
+		mv.addObject("list", list);
 		return mv;
 	}
+
 	/**
 	 *  notice_list.do -->공지사항 리스트 출력
 	 */
@@ -120,12 +146,8 @@ public class NoticeController {
 			
 			return mv;
 	}
-		/**
-		 * faq.do --->자주 묻는 질문
-		 */
-		@RequestMapping(value="/faq.do", method=RequestMethod.GET)
-		public String faq() {
-			return "notice/faq";
-		}
+	
+
+
 			
 }

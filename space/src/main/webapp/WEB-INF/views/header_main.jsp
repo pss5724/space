@@ -122,7 +122,7 @@ $(function(){
 				<li class="depth1"><h3><a href="http://localhost:9000/space/notice.do?rpage=1">고객센터<span class="gnb_bar"></span></a></h3>
 					<ul class="depth2">
 						<li><h4><a href="http://localhost:9000/space/notice.do?rpage=1">공지사항</a></h4></li>
-						<li><h4><a href="http://localhost:9000/space/faq.do">자주묻는 질문</a></h4></li>
+						<li><h4><a href="http://localhost:9000/space/faq.do?rpage=1">자주묻는 질문</a></h4></li>
 						<li><h4><a href="http://localhost:9000/space/mypage_inquiry.do">1:1 문의</a></h4></li>
 					</ul>
 				</li>

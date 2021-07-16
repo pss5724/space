@@ -2,6 +2,7 @@ package com.myspace.space;
 
 import java.util.HashMap;
 
+import com.myspace.service.FaqService;
 import com.myspace.service.NoticeService;
 
 public class Commons {
@@ -13,7 +14,7 @@ public class Commons {
 	//페이징 처리 - startCount, endCount 구하기
 	int startCount = 0;
 	int endCount = 0;
-	int pageSize = 20;	//한페이지당 게시물 수
+	int pageSize = 15;	//한페이지당 게시물 수
 	int reqPage = 1;	//요청페이지	
 	int pageCount = 1;	//전체 페이지 수
 	int dbCount = 0;	//DB에서 가져온 전체 행수
@@ -21,7 +22,10 @@ public class Commons {
 	if(name.equals("notice")) {
 		NoticeService noticeService =(NoticeService)obj;
 		dbCount = noticeService.execTotalCount();
-
+	} 
+	else if(name.equals("faq")) {
+		FaqService faqService =(FaqService)obj;
+		dbCount = faqService.execTotalCount();
 	} 
 	
 	//총 페이지 수 계산
