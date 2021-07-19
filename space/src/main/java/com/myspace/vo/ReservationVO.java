@@ -2,10 +2,16 @@ package com.myspace.vo;
 
 public class ReservationVO {
 	int headcount, convenience1_num, convenience2_num, convenience3_num, beverage1_num, beverage2_num, beverage3_num, amount;
-	String rsid, rid, name, hp, email, branch_name, room_name, type, corp_name, event_name, pay_type, etc_request;
+	String rsid, rid, name, hp, email, branch_name, room_name, type, corp_name, event_name, pay_type, etc_request, reserve_date;
 	double checkin_time, checkout_time, used_hours;
 	
 	
+	public String getReserve_date() {
+		return reserve_date;
+	}
+	public void setReserve_date(String reserve_date) {
+		this.reserve_date = reserve_date;
+	}
 	public String getRsid() {
 		return rsid;
 	}

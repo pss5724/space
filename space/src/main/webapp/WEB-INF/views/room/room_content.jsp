@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +111,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 	    page: 1,		// initial page		
 	    pageSize: 2,	// max number items per page
 		
-	    //totals: ${dbcount},	// total pages	
+	    //totals: ${dbcount},	//total pages	
 	    //page: ${rpage},		// initial page		
 	    //pageSize: ${pageSize},	// max number items per page
 	    
@@ -160,8 +161,57 @@ var pager = jQuery('#ampaginationsm').pagination({
     		return false;
     	}
     });
+    var timelist = new Array();
+    <c:forEach var="rsvo" items="${list}">
+	    timelist.push("${rsvo.checkin_time}");
+	    timelist.push("${rsvo.checkout_time}");
+	</c:forEach>
+	for(var i=0;i<timelist.length;i++){
+		console.log('h1',timelist[i++]);
+		console.log('h2',timelist[i]);
+	}
     
+    var rlist = new Array();
+    <c:forEach var="rsvo" items="${list}">
+    	rlist.push("${rsvo.reserve_date}");
+    </c:forEach>
+    for(var i=0;i<rlist.length;i++){
+    	console.log('123',rlist[[i]]);
+    }
     
+    $("#datepicker").change(function(){
+    	$("td").each(function(){
+    		$(this).css("background-color","white");
+    	});
+    	console.log('111');
+    	console.log($("#datepicker").val());
+    	for(var i=0;i<rlist.length;i++){
+    		if(rlist[i]==$("#datepicker").val()){
+    			console.log('같음',i);
+    			var j=i*2;
+   				for(var k=Number(timelist[j++]);k<=Number(timelist[j]);k++){
+   					console.log('kkk',k);
+   					$("td").each(function(){
+   						console.log($(this).attr('id') == k+".5");
+    					if(($(this).attr('id') == k+".0") || ($(this).attr('id') == k+".5")){
+    						$(this).css("background-color","#97ccff");
+    					}else if(($(this).attr('id') == k)){
+    						$(this).css("background-color","#97ccff");
+    					}
+   					});
+   				}
+    		}
+    	}
+    });
+	console.log('ddd',$("#datepicker").val());
+	
+    $("#btn_delete").click(function() {
+        var con = confirm("회의실을 삭제하시겠습니까?");
+        if(con) {
+                $(location).attr('href', 'http://localhost:9000/space/room_delete_proc.do?rid=<c:out value='${vo.rid}'/>');
+        }
+	});
+	
 });
 </script>
 </head>
@@ -194,17 +244,17 @@ var pager = jQuery('#ampaginationsm').pagination({
 		            <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
 		                <!-- slides -->
 		                <div class="carousel-inner">
-		                    <div class="carousel-item active"> <img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg" alt="Hills"> </div>
-		                    <c:if test="${vo.rfile2 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/upload/${vo.rfile2 }.jpg" alt="Hills"> </div> </c:if> 
-		                    <c:if test="${vo.rfile3 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/upload/${vo.rfile3 }.jpg" alt="Hills"> </div> </c:if>
+		                    <div class="carousel-item active"> <img src="http://localhost:9000/space/upload/${vo.rfile1 }" alt="Hills"> </div>
+		                    <c:if test="${vo.rfile2 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/upload/${vo.rfile2 }" alt="Hills"> </div> </c:if> 
+		                    <c:if test="${vo.rfile3 != null }"> <div class="carousel-item"> <img src="http://localhost:9000/space/upload/${vo.rfile3 }" alt="Hills"> </div> </c:if>
 		                </div> <!-- Left right --> <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
 		                <ol class="carousel-indicators list-inline">
-		                    <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg" class="img-fluid"> </a> </li>
+		                    <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile1 }" class="img-fluid"> </a> </li>
 		                    <c:if test="${vo.rfile2 != null }">
-		                   		<li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile2 }.jpg" class="img-fluid"> </a> </li>
+		                   		<li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile2 }" class="img-fluid"> </a> </li>
 		                    </c:if>
 		                    <c:if test="${vo.rfile3 != null }">
-		                    	<li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile3 }.jpg" class="img-fluid"> </a> </li>
+		                    	<li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="http://localhost:9000/space/upload/${vo.rfile3 }" class="img-fluid"> </a> </li>
 		                    </c:if>
 		                </ol>
 		            </div>
@@ -220,62 +270,23 @@ var pager = jQuery('#ampaginationsm').pagination({
 				<div><input id="datepicker"></div>
 			</div>
 			<div class="end"><div class="end_box"></div><span>예약마감</span></div>
-			<table border="1">
-				<tr>
-					<th colspan="5">회의실명</th>
-					<th colspan="2">07</th>
-					<th colspan="2">08</th>
-					<th colspan="2">09</th>
-					<th colspan="2">10</th>
-					<th colspan="2">11</th>
-					<th colspan="2">12</th>
-					<th colspan="2">13</th>
-					<th colspan="2">14</th>
-					<th colspan="2">15</th>
-					<th colspan="2">16</th>
-					<th colspan="2">17</th>
-					<th colspan="2">18</th>
-					<th colspan="2">19</th>
-					<th colspan="2">20</th>
-					<th colspan="2">21</th>
-					<th colspan="2">22</th>
-				</tr>
-				<tr>
-					<td colspan="5">${vo.room_name }</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
+			<div class="r_table" style="width:100%; overflow-x:scroll">
+				<table border="1">
+					<tr>
+						<th>회의실명</th>
+						<c:forEach var="time" begin="${vo.opening_time }" end="${vo.closing_time }">
+							<th colspan="2" id="${time }">${time }</th>
+						</c:forEach>
+					</tr>
+					<tr>
+						<td>${vo.room_name }</td>
+						<c:forEach var="time" begin="${vo.opening_time }" end="${vo.closing_time }">
+							<td id="${time }.0"></td>
+							<td id="${time }.5"></td>
+						</c:forEach>
+					</tr>
+				</table>
+			</div>
 		</div>
 		
 		<!-- 네비게이션 바 -->
@@ -311,7 +322,58 @@ var pager = jQuery('#ampaginationsm').pagination({
 						<label>영업시간</label>
 						<div>
 							<span>
-								09:00 ~ 22:00
+								<c:set var="open" value="${fn:split(vo.opening_time,'.' )}"/>
+								<c:forEach var="open_time" items="${open}" varStatus="item">
+									<c:choose>
+										<c:when test="${item.index == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(open_time) == 1}">
+													0${open_time} :
+												</c:when>
+												<c:when test="${fn:length(open_time) == 2}">
+													${open_time} :
+												</c:when>
+											</c:choose>
+										</c:when>
+										<c:when test="${item.index == 1 }">
+											<c:choose>
+												<c:when test="${open_time == 5}">
+													30 ~
+												</c:when>
+												<c:when test="${open_time == 0}">
+													00 ~
+												</c:when>
+											</c:choose>
+										</c:when>
+									</c:choose>
+									<%-- ${vo.opening_time } ~ ${vo.closing_time } --%>
+								</c:forEach>
+								
+								<c:set var="close" value="${fn:split(vo.closing_time,'.' )}"/>
+								<c:forEach var="close_time" items="${close}" varStatus="item">
+									<c:choose>
+										<c:when test="${item.index == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(close_time) == 1}">
+													0${close_time} :
+												</c:when>
+												<c:when test="${fn:length(close_time) == 2}">
+													${close_time} :
+												</c:when>
+											</c:choose>
+										</c:when>
+										<c:when test="${item.index == 1 }">
+											<c:choose>
+												<c:when test="${close_time == 5}">
+													30
+												</c:when>
+												<c:when test="${close_time == 0}">
+													00
+												</c:when>
+											</c:choose>
+										</c:when>
+									</c:choose>
+								</c:forEach>
 							</span>
 						</div>
 					</li>
@@ -575,12 +637,12 @@ var pager = jQuery('#ampaginationsm').pagination({
 		<div class="room_inform" id="room_inform">
 			<div class="label"><div class="l_line"></div><label>회의실 안내</label></div>
 			<div>
-				<img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg" width="250px" height="220px">
+				<img src="http://localhost:9000/space/upload/${vo.rfile1 }" width="250px" height="220px">
 				<div class="large_img">
 					<img src="http://localhost:9000/space/images/thum_more_icon.png">
 					<div>
 						<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
-						<img src="http://localhost:9000/space/upload/${vo.rfile1 }.jpg">
+						<img src="http://localhost:9000/space/upload/${vo.rfile1 }">
 					</div>
 				</div>
 				<div>

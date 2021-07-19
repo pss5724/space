@@ -145,10 +145,19 @@
 .room_content .res_cond th:first-child {
 	text-align: left;
 	padding-left: 10px;
+	min-width: 319px;
+	position: sticky;
+	left: 0;
+}
+.room_content .res_cond td:first-child {
+	position: sticky;
+	left: 0;
+	padding: 5px 0 5px 10px;
 }
 .room_content .res_cond td {
 	font-weight: bold;
-	padding: 5px 0 5px 10px;
+	min-width:30px;
+	background-color: white;
 }
 .room_content .end_box {
 	width: 16px;
