@@ -1,5 +1,6 @@
 package com.myspace.space;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,11 @@ public class LoginController {
 	/**
 	 * login.do: 로그인 화면
 	 * **/
-	@RequestMapping(value="/login.do", method = RequestMethod.GET)
+	/*@RequestMapping(value="/login.do", method = RequestMethod.GET)
 	public String login() {
 		return "login/login";
-	}
+	}*/
+	
 	
 	/**
 	 * login_check.do: 로그인 처리
@@ -57,5 +59,6 @@ public class LoginController {
 	public String pass_find_check(MemberVO vo) {
 		return "login/login_find";
 	}
+	
 	
 }

@@ -32,10 +32,16 @@
   <update id="updatehit" parameterType="java.lang.String">
   	update space_notice set nhit= nhit + 1 where nid=#{nid}
   </update>
+    
+  <!-- 상세내용 다음 -->
+  <select id="nextlist" parameterType="int" resultType="com.myspace.vo.NoticeVO">
+  	 select rno, nid, ntitle from (select rownum rno, nid, ntitle
+				from (select nid , ntitle from space_notice order by important)) where rno=(#{rno}-1)  or rno=(#{rno}+1)
+  </select>
   
   <!-- 공지사항상세정보 -->
   <select id="content" parameterType="java.lang.String" resultType="com.myspace.vo.NoticeVO">
- 	select rownum rno, nid, ntitle,ncontent, nhit, nsfile, to_char(ndate,'yyyy-mm-dd') ndate from space_notice where nid=#{nid}
+ 	select rownum rno, nid, ntitle,ncontent, nhit, nsfile, to_char(ndate,'yyyy-mm-dd') ndate from space_notice where nid=#{nid} order by rno
   </select>
   
   <!-- 전체 로우수 -->
@@ -43,14 +49,27 @@
   	select count(*) from space_notice
   </select>
   
-  <!-- 전체리스트 출력 -->
+  <!-- 자주묻는 질문 전체 로우수 -->
+  <select id ="faqcount" resultType="int">
+  	select count(*) from space_faq
+  </select>
+  
+  <!-- notice 전체리스트 출력 -->
   <select id="list" parameterType="map" resultType="com.myspace.vo.NoticeVO">
   	select rno, nid, ntitle, nhit, ndate , important from 
 				(select rownum rno, nid, ntitle, nhit, to_char(ndate,'yyyy-mm-dd') ndate , important
 				from (select nid, ntitle, nhit, ndate, important from space_notice order by important)) 
 				where rno between #{start} and #{end}
   </select>
+  <!-- faq 전체리스트 출력 -->
+  <select id="faqlist" parameterType="map" resultType="com.myspace.vo.FaqVO">
+            	select rno,  fid, ftitle, fcontent, ftype from 
+				(select rownum rno, fid, ftitle, fcontent, ftype
+				from (select fid, ftitle, fcontent, ftype from space_faq order by fid))
+				where rno between #{start} and #{end}
+  </select>
   
+  <!-- 글작성 -->
   <insert id="insert" parameterType="com.myspace.vo.NoticeVO">
   	<choose>
   		<when test="nfile != null">

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+  <mapper namespace="mapper.faq">
+
+  
+  <!-- 자주묻는 질문 전체 로우수 -->
+  <select id ="faqcount" resultType="int">
+  	select count(*) from space_faq
+  </select>
+  
+
+  <!-- faq 전체리스트 출력 -->
+  <select id="faqlist" parameterType="map" resultType="com.myspace.vo.FaqVO">
+            	select rno,  fid, ftitle, fcontent, ftype from 
+				(select rownum rno, fid, ftitle, fcontent, ftype
+				from (select fid, ftitle, fcontent, ftype from space_faq order by fid))
+				where rno between #{start} and #{end}
+  </select>
+  
+  
+  
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

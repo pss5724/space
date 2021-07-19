@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +30,8 @@ $(document).ready(function(){
 }
 </script>
 <body>
+
+	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
@@ -57,7 +62,11 @@ $(document).ready(function(){
 						</div>
 						
 						<input type="submit" value="이메일로 로그인" class="login_btn" id="loginEmail">
-						<a id="loginNaver" class="naver_login_btn" href="#"><img src="http://localhost:9000/space/images/naver_btn_text.png">로그인</a>
+						
+						<!-- 네이버 로그인 -->
+						<a id="loginNaver" class="naver_login_btn" href="${url}"><img src="http://localhost:9000/space/images/naver_btn_text.png">로그인</a>
+						<!-- 네이버 로그인 END -->
+						
 						<p class="login_comment">*기업, 파트너스 회원가입은 일반 회원가입으로 진행해주시길 바랍니다.</p>
 					</div>
 				</form>
