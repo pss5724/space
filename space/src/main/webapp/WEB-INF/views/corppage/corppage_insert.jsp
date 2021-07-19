@@ -164,7 +164,8 @@ tr.form_explanation {
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
 
-                document.getElementById("address").value = data.jibunAddress;
+                //document.getElementById("address").value = data.jibunAddress;
+                document.getElementById("address").value = data.roadAddress;
                 
                 var guideTextBox = document.getElementById("guide");
                 
@@ -283,7 +284,7 @@ tr.form_explanation {
 			});
 			
 			
-			/* 편의사항, 식음료 미선택 시 -, 0 넣어주기 */
+			/* 편의사항, 식음료 미선택 시 null, 0 넣어주기 */
 			$(".service").each(function() {
 				if($(this).hasClass("price")) {
 					if($(this).val()=="") {
@@ -292,7 +293,7 @@ tr.form_explanation {
 					
 				} else {
 					if($(this).val()=="") {
-						$(this).val("-");
+						$(this).val("null");
 					}
 				}
 			});

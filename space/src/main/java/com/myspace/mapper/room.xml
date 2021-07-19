@@ -21,7 +21,7 @@
                                 #{rfile2}, #{rsfile2}, #{rfile3}, #{rsfile3},
                         </when>                
                 </choose>
-                 sysdate)
+                 sysdate, 0, 0)
         </insert>
 
         <!-- 회의실 등록(옵션) -->
