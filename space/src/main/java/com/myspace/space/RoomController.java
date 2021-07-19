@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,17 +17,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspace.service.MemberService;
 import com.myspace.service.RoomService;
+import com.myspace.vo.MemberVO;
 import com.myspace.vo.OptionVO;
 import com.myspace.vo.ReservationVO;
 import com.myspace.vo.RoomVO;
 import com.myspace.vo.ServiceVO;
+import com.myspace.vo.SessionVO;
 
 @Controller
 public class RoomController {
 	
 	@Autowired
 	private RoomService roomService;
+	
+	@Autowired
+	private MemberService memberService; 
 
     /* 회의실 지도 */
     @RequestMapping(value="/room_map.do", method=RequestMethod.GET)
@@ -119,7 +126,7 @@ public class RoomController {
     }
     
     /* 회의실 등록 처리 */
-    @RequestMapping(value="/rooom_insert_proc.do", method=RequestMethod.POST)
+    @RequestMapping(value="/room_insert_proc.do", method=RequestMethod.POST)
     public ModelAndView rooom_insert_proc(RoomVO rvo, OptionVO ovo, ServiceVO svo, HttpServletRequest request) throws Exception {
             ModelAndView mv = new ModelAndView();
             String root_path = request.getSession().getServletContext().getRealPath("/");
@@ -297,16 +304,23 @@ public class RoomController {
 	
 	/* 회의실 상세 */
     @RequestMapping(value="/room_content.do", method=RequestMethod.GET)
-    public ModelAndView room_content(String rid) {
+    public ModelAndView room_content(String rid, MemberVO mvo, HttpSession session) {
             ModelAndView mv = new ModelAndView();
             
             RoomVO vo = roomService.getRoomContent(rid);
             OptionVO ovo = roomService.getRoomOption(rid);
+            SessionVO svo = (SessionVO)session.getAttribute("svo");
+            
             ArrayList<ReservationVO> list = roomService.getAvailableTime(rid);
             mv.setViewName("room/room_content");
             mv.addObject("vo", vo);
             mv.addObject("ovo", ovo);
             mv.addObject("list", list);
+            
+            if(svo != null) {
+    			svo.setPosition(mvo.getPosition());
+    			session.setAttribute("svo", svo);
+    		}
             
             return mv;
     }

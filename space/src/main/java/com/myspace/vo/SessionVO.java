@@ -1,10 +1,16 @@
 package com.myspace.vo;
 
 public class SessionVO {
-	int result;
+	int result, position;
 	String name, id;
 	
 	
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
+	}
 	public String getId() {
 		return id;
 	}
