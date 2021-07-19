@@ -18,12 +18,13 @@
 
 <script>
 $(document).ready(function() {
+
 	/* 날짜 선택 */
  	$('*[name=date]').appendDtpicker({
 		locale:"ko",
 		futureOnly: true,
 		minuteInterval: 30,
-		dateFormat:"YYYY.MM.DD 일 hh:mm"
+		dateFormat:"YYYY.MM.DD hh:mm"
     });
    
 	/* 지역 선택 */
@@ -68,28 +69,12 @@ $(document).ready(function() {
 		}
 	});
 	
-	/* 금액 슬라이더 */
-	var min=0, max=1000000;
-	$("#slider-range").slider({
-		range: true,
-		min: 0,
-		max: 1000000,
-		values: [ 0, 1000000 ],
-		slide: function( event, ui ) {
-			$("#pay1").html(number_format(ui.values[0]));
-			$("#pay2").html(number_format(ui.values[1]));
-		}
+	/* 검색버튼 클릭 */
+	$(".btn_search").click(function() {
+		getList($("#pay1").text(), $("#pay2").text());
 	});
-	
-	$("#pay1").html(number_format($( "#slider-range" ).slider( "values", 0 )));
-	$("#pay2").html(number_format($( "#slider-range" ).slider( "values", 1 )));
-	
- 	$(".ui-slider-handle, ui-slider-range, #slider-range").on("mouseup mousedown click mouseleave mouseenter", function(){
-		ajax_list($("#pay1").text(), $("#pay2").text());
-	});
-	
+
 	/* 옵션 버튼 선택 */
-	//var convenience_list = [], service_list = [], food_list = [], payment_list = [];
 	var option_list = ["default"];  //ajax에서 배열을 받아야해서 기본 값 하나 삽입
 	
 	$(".search_option button").click(function() {
@@ -101,6 +86,8 @@ $(document).ready(function() {
 			var idx = option_list.indexOf($(this).val());
 			option_list.splice(idx, 1);
 		}
+		
+		getList($("#pay1").text(), $("#pay2").text());
 		
 	});
 	
@@ -125,13 +112,22 @@ $(document).ready(function() {
 		$(this).nextAll("input[name=star]").prop("checked", false);
 
 		$("#grade").val("1점 ~ " + $("input[name=star]:checked").length + "점");
+		
+		getList($("#pay1").text(), $("#pay2").text());
 	});	
 
+	var order = "";
 	/* 정렬 선택 */
 	$(".sort_type li").click(function() {
 		$(this).siblings("li").removeClass("on");
-		$(this).addClass("on");
-		alert($(".sort_type li.on").text());
+		$(this).toggleClass("on");
+		
+		if($(this).hasClass("on")) {
+			order = $(this).attr("data");
+		} else {
+			order = "";
+		}
+		getList($("#pay1").text(), $("#pay2").text());
 	});
 
 	/* 지도 모달창 */
@@ -155,33 +151,185 @@ $(document).ready(function() {
 		}
 	}
 	
+	/* 금액 슬라이더 */
+	$("#slider-range").slider({
+		range: true,
+		min: 0,
+		max: 1000000,
+		values: [ 0, 1000000 ],
+		slide: function( event, ui ) {
+			$("#pay1").html(number_format(ui.values[0]));
+			$("#pay2").html(number_format(ui.values[1]));
+		}
+	});
+	
+ 	$("#pay1").html(number_format($( "#slider-range" ).slider( "values", 0 )));
+	$("#pay2").html(number_format($( "#slider-range" ).slider( "values", 1 )));
+
+ 	$(".ui-slider-handle, ui-slider-range, #slider-range").on("mouseup mousedown click mouseleave mouseenter", function(){
+		getList($("#pay1").text(), $("#pay2").text());
+	});
+	
+	
+	/* 넘겨줄 데이터 정제 */
+	var location1, location2, date, time, type, capacity;
+	var stars;
+	
+	function getData() {	
+		if($("#search_location").val()!="") {
+			if($("#search_location").val().indexOf(">") != -1) {
+				var location_list = $("#search_location").val().split(" > ");
+				location1 = location_list[0];  //서울
+				location2 = location_list[1];  //강남구
+			} else {
+				location1 = $("#search_location").val();
+				location2 = "";
+			}
+		} else {
+			location1 = "";
+			location2 = "";
+		}
+	
+		if($("#search_date").val()!="") {
+			var date_list = $("#search_date").val().split(" ");
+			date = date_list[0];
+			time = 0;
+			
+			var time_list = date_list[1].split(":");
+			if (time_list[0] < 10) { //시간
+				time += parseInt(time_list[0].substr(1, 1))
+			} else {
+				time += parseInt(time_list[0]);
+			}
+	
+			if (time_list[1] >= 30) { //분
+				time += 0.5;
+			}
+		} else {
+			date = "";
+		}
+		
+		if($("#search_type").val()!="") {
+			var type_list = $("#search_type").val().split(" ");
+			type = type_list[0];
+			capacity = parseInt(type_list[1]);
+		} else {
+			type = "";
+			capacity = 0;
+		}
+		
+		stars = parseInt($('input[name=star]:checked').length);
+	}
+	
+	getList($("#pay1").text(), $("#pay2").text());
+
 	/* 리스트 출력 function */
- 	function ajax_list(min, max) {
-		console.log("도착");
-		console.log("최소"+min);
-		console.log("최대"+max);
-		//JSON.stringify(
+ 	function getList(min, max) {
+		getData();
+		
 		var params = {
-       			"location": ($("#search_location").val()!="") ? $("#search_location").val() :"null",
-   	        	"date": ($("#search_date").val()!="") ? $("#search_date").val() : "null",
-   	        	"type": ($("#search_type").val()!="") ? $("#search_type").val() : "null",
-   	        	"min": min,
-   	        	"max": max,
-   	        	"stars": $('input[name=star]:checked').length,
-   	        	"option_list": option_list
+				"location1": location1,
+				"location2": location2,
+		       	"date": date,
+		       	"time": parseFloat(time),
+		       	"type": type,
+		       	"capacity": capacity,
+		       	"min": parseInt(min.replace(/,/gi, "")),
+		       	"max": parseInt(max.replace(/,/gi, "")),
+		       	"stars": stars,
+		       	"option_list": option_list,
+		       	"order": order
 		};
     	        
 		$.ajax({
 			url: "get_list.do",
 			data: params,
 			type: "POST",
-			success: function(result) {
-				console.log(result);
-				//$(".search_result li").remove();
-				//$(".search_result ul").append("");
+			success: function(jdata) {
+/* 				var tmp = JSON.stringify(data);
+				var jdata = JSON.parse(tmp); */
+				
+				var output = "<ul>";
+				var count = "<span class='result_count'>검색된 센터 <span>0</span>개</span>";
+				
+				if(jdata.rlist.length == 0) {
+					output += "<br>검색된 데이터가 없습니다.";
+				} else {		
+					for(var i=0; i<jdata.rlist.length; i++) {
+						
+						var star_count = 0;
+						if(jdata.rlist[i].grade >= 1) {
+							star_count = Math.round(jdata.rlist[i].grade);
+						}
+			
+						output += "<li class='room_info'>";
+						output += "<a href='http://localhost:9000/space/room_content.do?rid=" + jdata.rlist[i].rid + "'>";
+						output += "<div class='info_image'>";
+						output += "<img src='http://localhost:9000/space/upload/" + jdata.rlist[i].rsfile1 + "'>";
+						output += "</div>";
+						output += "<div class='info_text'>";
+						output += "<div class='info_left'>";
+						output += "<p class='room_title'>" + jdata.rlist[i].branch_name + "</p>";
+						output += "<p class='room_sub_title'>"+ jdata.rlist[i].intro + "</p>";
+						output += "<p class='room_location'>"+ jdata.rlist[i].address+ "</p>";
+						output += "<p class='room_capacity'>"+ jdata.rlist[i].capacity +"인실</p>";
+						output += "<ul>";
+						if(jdata.olist[i].lounge == 1) { output += "<li>공용 라운지</li>"; }
+						if(jdata.olist[i].smoking_room == 1) { output += "<li>흡연실</li>"; }
+						if(jdata.olist[i].parking_lot == 1) { output += "<li>주차장</li>"; }
+						if(jdata.olist[i].elevator == 1) { output += "<li>승강기</li>"; }
+						if(jdata.olist[i].freight_elevator == 1) { output += "<li>화물승강기</li>"; }
+						if(jdata.olist[i].vending_machine == 1) { output += "<li>자판기</li>"; }
+						if(jdata.olist[i].wifi == 1) { output += "<li>Fi</li>"; }
+						if(jdata.olist[i].accessible_toilet == 1) { output += "<li>장애인 화장실</li>"; }
+						if(jdata.olist[i].toilet == 1) { output += "<li>화장실</li>"; }
+						if(jdata.olist[i].water_dispenser == 1) { output += "<li>정수기</li>"; }
+						if(jdata.olist[i].ktx == 1) { output += "<li>KTX/SRT 인근</li>"; }
+						if(jdata.olist[i].beam == 1) { output += "<li>빔프로젝터</li>"; }
+						if(jdata.olist[i].video_device == 1) { output += "<li>화상회의장비</li>"; }
+						if(jdata.olist[i].mic == 1) { output += "<li>마이크</li>"; }
+						if(jdata.olist[i].lectetn == 1) { output += "<li>강연대</li>"; }
+						if(jdata.olist[i].tv == 1) { output += "<li>TV</li>"; }
+						if(jdata.olist[i].speaker == 1) { output += "<li>스피커</li>"; }
+						if(jdata.olist[i].pc == 1) { output += "<li>PC</li>"; }
+						if(jdata.olist[i].pointer == 1) { output += "<li>포인터</li>"; }
+						if(jdata.olist[i].banner == 1) { output += "<li>현수막</li>"; }
+						if(jdata.olist[i].whiteboard == 1) { output += "<li>화이트보드</li>"; }
+						if(jdata.olist[i].dais == 1) { output += "<li>단상</li>"; }
+						if(jdata.olist[i].conference_call == 1) { output += "<li>컨퍼런스콜</li>"; }
+						if(jdata.olist[i].air_conditional == 1) { output += "<li>에어컨</li>"; }
+						if(jdata.olist[i].heater == 1) { output += "<li>난방기</li>"; }
+						if(jdata.olist[i].internet == 1) { output += "<li>유선인터넷</li>"; }
+						if(jdata.olist[i].studio == 1) { output += "<li>영상스튜디오</li>"; }
+						output += "</ul>"
+						output += "</div>";
+						output += "<div class='info_right'>";
+						output += "<p class='room_star'><img src='http://localhost:9000/space/images/list_star" + star_count + ".png'>" + jdata.rlist[i].grade + "점</p>";
+						output += "<p class='room_review'><span>" + jdata.rlist[i].review_count + "</span>개의 이용후기</p>";
+						output += "<P class='room_payment'>";
+						if(jdata.olist[i].online_payment == 1) { output += "<span class='payment_online'>온라인 결제</span>"; }
+						if(jdata.olist[i].offline_payment == 1) { output += "<span class='payment_offline'>현장 결제</span>"; }
+						output += "</P>";
+						output += "<P class='room_price'>";
+						output += "<span>" + number_format(jdata.rlist[i].charge) + "원</span>부터(시간)";
+						output += "</P>";
+						output += "</div>";
+						output += "	</div>";
+						output += "</a>";
+						output += "</li>";
+					}//for문
+					count = "<span class='result_count'>검색된 센터 <span>" + jdata.count + "</span>개</span>";
+				}
+				output += "</ul>";
+
+				$(".result_count").remove();
+				$(".count").append(count);
+				
+				$(".search_result ul").remove();
+				$(".search_result").append(output);
 			}//success
 		});//ajax
-	} //ajax_list function
+	} //getList function
 
 });
 </script>
@@ -282,23 +430,7 @@ $(document).ready(function() {
 									</div>
 								</li>
 								<li>
-									<span class="room_type">□자형</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">연회식</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">극장식</span>
+									<span class="room_type">ㅁ자형</span>
 									<div>
 										<button type="button" class="down"></button>
 										<input type="text" class="room_capacity" value="0" readonly>
@@ -319,7 +451,6 @@ $(document).ready(function() {
 		<div class="search_area_bottom">
 			<!-- 좌측 옵션 검색 -->
 			<div class="search_left_box">
-				<!-- <a href="http://localhost:9000/space/room_map.do" target="" class="map" id="map">지도로 보기</a> -->
 				<a class="map" id="map">지도로 보기</a>
 				<div class="search_option_list">
 					<div class="search_option">
@@ -414,16 +545,18 @@ $(document).ready(function() {
 
 			<!-- 우측 검색 결과 -->
 			<div class="search_right_box">
-				<span class="result_count">검색된 센터 <span>100</span>개</span>
+				<span class="count">
+					<!-- <span class="result_count">검색된 센터 <span>100</span>개</span> -->
+				</span>
 				<ul class="sort_type">
-					<li>평점순</li>
-					<li>인기순</li>
-					<li>낮은금액순</li>
-					<li>높은금액순</li>
+					<li data="grade desc">평점순</li>
+					<li data="review_count desc">인기순</li>
+					<li data="charge">낮은금액순</li>
+					<li data="charge desc">높은금액순</li>
 				</ul>
 				<div class="search_result">
-					<ul>
-					<c:forEach var="rvo" items="${rlist}" varStatus="status">
+ 					<!-- <ul> -->
+<%--					<c:forEach var="rvo" items="${rlist}" varStatus="status">
 						<li class="room_info">
 							<a href="http://localhost:9000/space/room_content.do?rid=${rvo.rid}">
 								<div class="info_image">
@@ -535,44 +668,8 @@ $(document).ready(function() {
 								</div>
 							</a>
 						</li>
-					</c:forEach>
-<!-- 						<li class="room_info">
-							<a href="#">
-								<div class="info_image">
-									<img src="http://localhost:9000/space/images/room2.jpg">
-								</div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">강남구2 1호점</p>
-										<p class="room_sub_title">강남역 도보 2분 거리</p>
-										<p class="room_location">강남구</p>
-										<p class="room_capacity">40인실, 28인실, 16인실, 8인실</p>
-										<ul>
-											<li>공용 라운지</li>
-											<li>흡연실</li>
-											<li>주차장</li>
-											<li>승강기</li>
-											<li>화물승강기</li>
-											<li>자판기</li>
-											<li>Wi-Fi</li>
-											<li>화장실</li>
-											<li>정수기</li>
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star3.png">3.2점</p>
-										<p class="room_review"><span>5</span>개의 이용후기</p>
-										<P class="room_payment">
-											<span class="payment_online">온라인 결제</span>
-											<span class="payment_offline">현장 결제</span>
-										</P>
-										<P class="room_price"><span>38,500원</span>부터(시간)</P>
-									</div>
-								</div>
-							</a>
-						</li>
--->
-					</ul>
+					</c:forEach> --%>
+					<!-- </ul> -->
 				</div>
 			</div>
 		</div>

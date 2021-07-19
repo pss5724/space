@@ -27,8 +27,30 @@ html, body {
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJE8peRXRO0ACfNfstLiSpXZv0lLoniEc&callback=initMap">
     </script>
     <script>
+		var jdata = "";
+		function getMapList() {
+			$.ajax({
+				url: "get_map_list.do",
+				success: function(data) {		
+					//var tmp = JSON.stringify(data);
+					//var jdata = JSON.parse(tmp);
+					jdata = data;
+				}
+			});
+		}
+	    getMapList();
+	    
+		function number_format(numstr) {
+			var numstr = String(numstr);
+			var re0 = /(\d+)(\d{3})($|\..*)/;
+			if (re0.test(numstr)) {
+				return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
+			} else {
+				return numstr;
+			}
+		}
+	    
 		function initMap() {
-			
 			//초기 맵 생성
             var map = new google.maps.Map(document.getElementById('google-map'), {
                 zoom: 12.5,
@@ -37,7 +59,7 @@ html, body {
                     lng: 127.0664091
                 }
             });
- 
+
          	var geocoder = new google.maps.Geocoder();
 			
          	//var addrList = ["경기 수원시 팔달구 덕영대로 924", "서울 용산구 한강대로 405", "서울 강남구 강남대로 지하 396", "서울 강남구 테헤란로 지하 156"];
@@ -47,10 +69,14 @@ html, body {
          	 						{"name": "강남점", "addr": "서울 강남구 강남대로 지하 396", "msg": "전국 최대 규모", "price": "75,000원", "img":"room2.jpg"},
          	   						{"name": "역삼점", "addr": "서울 강남구 테헤란로 지하 156", "msg": "고객 만족도 1위", "price": "110,000원", "img":"room2.jpg"}
          					]};
-         	
 
-         	for(var i in infoList.info) {
+         	/* for(var i in infoList.info) {
         		geocodeAddress(geocoder, map, infoList.info[i].name, infoList.info[i].addr, infoList.info[i].msg, infoList.info[i].price, infoList.info[i].img);
+         	} */
+         	
+         	for(var i in jdata.list) {
+        		geocodeAddress(geocoder, map, jdata.list[i].rid, 
+        				jdata.list[i].branch_name, jdata.list[i].intro, jdata.list[i].address, jdata.list[i].charge, jdata.list[i].rsfile1, jdata.list[i].capacity);
          	}
          	       	
          	/* for(var i in addrList) {
@@ -58,8 +84,8 @@ html, body {
          	} */
  
 			//주소에 마커 표시
-            function geocodeAddress(geocoder, resultMap, name, addr, msg, price, img) {
-                var address = addr;
+            function geocodeAddress(geocoder, resultMap, rid, branch_name, intro, address, charge, rsfile1, capacity) {
+                //var address = addr;
                 geocoder.geocode({'address': address}, function(result, status) {
                     if (status === 'OK') {
                         resultMap.setCenter(result[0].geometry.location);
@@ -73,13 +99,15 @@ html, body {
                         var infowindow = new google.maps.InfoWindow();
                         var windowhtml = "<div class='map_room_info'>"
  										+	"<div class='map_room_img'>"
- 										+		"<img src='http://localhost:9000/space/images/" + img + "'>"
+ 										+		"<img src='http://localhost:9000/space/upload/" + rsfile1 + "'>"
  										+	"</div>"
  										+	"<div class='map_room_detail'>"
- 										+		"<p class='map_room_name'>" + name + "</p>"
- 										+		"<p class='map_room_msg'>" + msg + "</p>"	
- 										+		"<p class='map_room_addr'>" + addr + "</p>"	
- 										+		"<p class='map_room_price'>" + price + "<a href='http://localhost:9000/space/room_content.do'>상세 정보</a></p>"
+ 										+		"<p class='map_room_name'>" + branch_name + "</p>"
+ 										+		"<p class='map_room_msg'>" + intro + "</p>"	
+ 										+		"<p class='map_room_addr'>" + address + "</p>"	
+ 										+		"<p class='map_room_addr'>" + capacity + "인실</p>"	
+ 										+		"<p class='map_room_price'>" + number_format(charge) + "원"
+ 										+ 			"<a href='http://localhost:9000/space/room_content.do?rid=" + rid + "'>상세 정보</a></p>"
  										+	"</div>"
  										+"</div>";
  										

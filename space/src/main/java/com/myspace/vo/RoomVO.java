@@ -5,8 +5,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public class RoomVO {
 	String rid,	id,	branch_name, room_name, intro, closed_day, check_info, type, 
 			address, rfile1, rsfile1, rfile2, rsfile2, rfile3, rsfile3, rdate;
-	double opening_time, closing_time;
-	int capacity, charge;
+	double opening_time, closing_time, grade;
+	int capacity, charge, review_count;
 	CommonsMultipartFile file1, file2, file3;
 	
 	public String getRid() {
@@ -147,6 +147,19 @@ public class RoomVO {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
+	public double getGrade() {
+		return grade;
+	}
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+	public int getReview_count() {
+		return review_count;
+	}
+	public void setReview_count(int review_count) {
+		this.review_count = review_count;
+	}
+	
 	
 
 	

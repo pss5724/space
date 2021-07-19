@@ -8,10 +8,9 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 .mypage_content {
 	width: 1000px;
@@ -69,6 +68,19 @@
 	border: 1px solid lightgray;
 }
 
+#address {
+	width: 79%;
+}
+
+#btn_search_address {
+	padding: 8px 10px;
+    border: 1px solid darkgray;
+    border-radius: 6px;
+    background: white;
+}
+#btn_search_address:hover {
+	cursor: pointer;
+}
 #time1, #time2 {
 	width: 47.3%;
 	padding: 10px;
@@ -136,7 +148,36 @@ tr.form_explanation {
 }
 </style>
 <script>
+
+    function searchAddress() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+               
+                var roadAddr = data.roadAddress;
+                var extraRoadAddr = '';
+
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+
+                document.getElementById("address").value = data.jibunAddress;
+                
+                var guideTextBox = document.getElementById("guide");
+                
+                /* close(); */
+            }
+        }).open();
+    }
+
 	$(document).ready(function() {
+		
+		$("#btn_search_address").click(function() {
+			searchAddress();
+		});
 
 		$("#time1").timepicker({
 			timeFormat : 'HH:mm',
@@ -242,7 +283,7 @@ tr.form_explanation {
 			});
 			
 			
-			/* 편의사항, 식음료 미선택 시 null, 0 넣어주기 */
+			/* 편의사항, 식음료 미선택 시 -, 0 넣어주기 */
 			$(".service").each(function() {
 				if($(this).hasClass("price")) {
 					if($(this).val()=="") {
@@ -251,7 +292,7 @@ tr.form_explanation {
 					
 				} else {
 					if($(this).val()=="") {
-						$(this).val("null");
+						$(this).val("-");
 					}
 				}
 			});
@@ -300,53 +341,60 @@ tr.form_explanation {
 						</tr>
 						<tr>
 							<th scope="row">지점명 *</th>
-							<td><input type="text" name="branch_name" id="branch_name"
+							<td>
+								<input type="text" name="branch_name" id="branch_name"
 								class="input_subject" title="지점명" required>
 							</td>
 						</tr>
 						<tr>
 							<th>회의실명 *</th>
-							<td><input type="text" name="room_name" id="room_name"
-								class="input_subject" title="회의실명" required>
+							<td>
+								<input type="text" name="room_name" id="room_name"
+								class="input_subject" title="회의실명">
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">주소 *</th>
-							<td><input type="text" name="address" id="address"
-								class="input_subject" title="주소" required>
+							<td>
+								<input type="text" name="address" id="address" class="input_subject" title="주소">
+								<button type="button" id="btn_search_address">주소 검색</button>
 							</td>
 						</tr>
 						<tr>
 							<th>한 줄 설명 *</th>
-							<td><input type="text" name="intro" id="intro"
+							<td>
+								<input type="text" name="intro" id="intro"
 								class="input_subject" title="한 줄 설명">
 							</td>
 						</tr>
 						<tr>
 							<th>영업시간 *</th>
-							<td><input type="text" id="time1" name="opening_time"
+							<td>
+								<input type="text" id="time1" name="opening_time"
 								title="시작시간"> ~ <input type="text" id="time2"
 								name="closing_time" title="종료시간">
 							</td>
 						</tr>
 						<tr>
 							<th>대관료(시간당) *</th>
-							<td><input type="number" id="charge" name="charge"
+							<td>
+								<input type="number" id="charge" name="charge"
 								title="대관료" class="input_subject"
 								placeholder="시간당 대관료를 숫자로 적어주세요. 예) 75000">
 							</td>
 						</tr>
 						<tr>
 							<th>휴무일 *</th>
-							<td><input type="text" name="closed_day" id="closed_day"
+							<td>
+								<input type="text" name="closed_day" id="closed_day"
 								class="input_subject" title="휴무일">
 							</td>
 						</tr>
 						<tr>
 							<th>입,퇴실 시간 안내 *</th>
-							<td><input type="text" name="check_info" id="check_info"
-								class="input_subject" title="입,퇴실 시간 안내"
-								placeholder="입,퇴실 시간 예약시간 30분 전/후">
+							<td>
+								<input type="text" name="check_info" id="check_info"
+								class="input_subject" title="입,퇴실 시간 안내" placeholder="입,퇴실 시간 예약시간 30분 전/후">
 							</td>
 						</tr>
 						<tr>
@@ -371,14 +419,14 @@ tr.form_explanation {
 						</tr>
 						<tr>
 							<th>수용인원 *</th>
-							<td><input type="number" name="capacity" id="capacity"
-								class="input_subject" title="수용인원" min="1"></td>
+							<td>
+								<input type="number" name="capacity" id="capacity"class="input_subject" title="수용인원" min="1">
+							</td>
 						</tr>
 						<tr>
 							<th>편의시설</th>
-							<td><input type="checkbox" name="lounge" class="chk1"
-								value="0"><span>공용 라운지</span> <input type="checkbox"
-								name="smoking_room" class="chk1" value="0"><span>흡연실</span>
+							<td><input type="checkbox" name="lounge" class="chk1" value="0"><span>공용 라운지</span> 
+								<input type="checkbox" name="smoking_room" class="chk1" value="0"><span>흡연실</span>
 								<input type="checkbox" name="parking_lot" class="chk1" value="0"><span>주차장</span>
 								<input type="checkbox" name="elevator" class="chk1" value="0"><span>승강기</span>
 								<input type="checkbox" name="freight_elevator" class="chk1"value="0"><span>화물승강기</span><br>
@@ -387,6 +435,7 @@ tr.form_explanation {
 								<input type="checkbox" name="accessible_toilet" class="chk1"value="0"><span>장애인 화장실</span>
 								<input type="checkbox" name="toilet" class="chk1" value="0"><span>화장실</span> 
 								<input type="checkbox" name="water_dispenser" class="chk1" value="0"><span>정수기</span>
+								<input type="checkbox" name="ktx" class="chk1" value="0"><span>KTX/SRT 인근</span>
 							</td>
 						</tr>
 						<tr>
@@ -412,13 +461,11 @@ tr.form_explanation {
 						<tr>
 							<th>식음료</th>
 							<td>
-								<input type="checkbox" name="snack_carry" class="chk1" value="0">
-								<span>다과류 반입가능</span> 
-								<input type="checkbox" name="snack_sale" class="chk1" value="0">
-								<span>다과류 별도판매</span> 
+								<input type="checkbox" name="snack_carry" class="chk1" value="0"><span>다과류 반입가능</span> 
+								<input type="checkbox" name="snack_sale" class="chk1" value="0"><span>다과류 별도판매</span> 
 								<input type="checkbox" name="meal_carry" class="chk1" value="0"><span>식사류 반입가능</span> 
-								<input type="checkbox" name="meal_sale" class="chk1" value="0">
-								<span>식사류 별도판매</span></td>
+								<input type="checkbox" name="meal_sale" class="chk1" value="0"><span>식사류 별도판매</span>
+							</td>
 						</tr>
 						<tr>
 							<th>편의사항1</th>
