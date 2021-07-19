@@ -274,7 +274,6 @@ tr.form_explanation {
 			
 			/* 영업시간 숫자로 변환 */
 			$("input[id^=time]").each(function() {
-				if($(this).val().indexOf(":") !== -1) {
 					var tlist = $(this).val().split(":");
 					var time = 0;
 	
@@ -289,7 +288,6 @@ tr.form_explanation {
 					}
 	
 					$(this).val(time);
-				}
 			});
 			
 			
@@ -358,6 +356,33 @@ tr.form_explanation {
 				$(this).val("");
 			}
 		});
+		
+		/* 숫자를 시간으로 변환 */
+ 		var opening_time = "<c:out value='${rvo.opening_time}' />";
+		var closing_time = "<c:out value='${rvo.closing_time}' />";
+		var time_list = {opening_time, closing_time};
+		
+		for(var i in time_list) {
+			var list = time_list[i].split(".");
+			var time = "";
+
+			if(list[0]<10) {
+				time += "0";
+			}
+			
+			if(list[1]==0) {
+				time += list[0] + ":" + "00"; 
+			} else {
+				time += list[0] + ":" + "30";
+			}
+			
+			if(time_list[i] == opening_time) {
+				$("#time1").val(time);
+			} else {
+				$("#time2").val(time);
+			}
+		} 
+		
 		
 		$("input[name=type]").each(function() {
 			if($(this).val() == "<c:out value='${rvo.type}' />") {
@@ -442,8 +467,8 @@ tr.form_explanation {
 						<tr>
 							<th>영업시간 *</th>
 							<td>
-								<input type="text" id="time1" name="opening_time" title="시작시간" value="${rvo.opening_time}"> ~ 
-								<input type="text" id="time2" name="closing_time" title="종료시간" value="${rvo.closing_time}">
+								<input type="text" id="time1" name="opening_time" title="시작시간"> ~ 
+								<input type="text" id="time2" name="closing_time" title="종료시간">
 							</td>
 						</tr>
 						<tr>

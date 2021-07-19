@@ -127,20 +127,20 @@
         </select>
         
         <!-- 회의실 검색 옵션 리스트 -->
-        <select id="searchOptionList" parameterType="java.util.ArrayList" resultType="com.myspace.vo.OptionVO">
-                select * from space_option
+		<select id="searchOptionList" parameterType="java.util.ArrayList" resultType="com.myspace.vo.OptionVO">
+			select space_option.* from space_option join space_room on space_option.rid = space_room.rid
                 
                 <if test="rid_list != null">
-                        where rid in 
-                        <foreach item="rid" index="index" collection="rid_list" open="(" separator="," close=")">
-                                #{rid}
-                        </foreach>
+					where space_option.rid in 
+					<foreach item="rid" index="index" collection="rid_list" open="(" separator="," close=")">
+						#{rid}
+					</foreach>
                 </if>
                 order by 
                 <if test="order != ''">
                         ${order},
                 </if>
-                rid
+                space_option.rid
         </select>
 	
 	
