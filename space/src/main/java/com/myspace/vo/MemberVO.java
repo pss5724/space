@@ -1,21 +1,33 @@
 package com.myspace.vo;
 
 public class MemberVO {
-	int rno, choice;
+	int rno, position, chocein, choiceout;
 	String name, id, pass, hp, cname, tname, cnum1, cnum2, cnum3, cnum, caddr1, caddr2, clic, chp;
 	
 	
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	public int getChocein() {
+		return chocein;
+	}
+	public void setChocein(int chocein) {
+		this.chocein = chocein;
+	}
+	public int getChoiceout() {
+		return choiceout;
+	}
+	public void setChoiceout(int choiceout) {
+		this.choiceout = choiceout;
+	}
 	public int getRno() {
 		return rno;
 	}
 	public void setRno(int rno) {
 		this.rno = rno;
-	}
-	public int getChoice() {
-		return choice;
-	}
-	public void setChoice(int choice) {
-		this.choice = choice;
 	}
 	public String getName() {
 		return name;
