@@ -8,23 +8,24 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/datepicker.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<link rel="stylesheet" href="http://localhost:9000/space/css/jquery.timepicker.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"> -->
 <link rel="stylesheet" href="http://localhost:9000/space/css/room_bootstrap.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/room_reserve.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script> -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="http://localhost:9000/space/js/jquery.timepicker.js"></script>
 
 <style>
 
 </style>
 <script>
 $(document).ready(function() {
-
+	
 	$("#r_name").click(function(){
-		console.log('하이');
 
 		/* 영업시간 숫자로 변환 */
 	    $("input[id^=time]").each(function() { 
@@ -50,10 +51,6 @@ $(document).ready(function() {
 		var used_hours = Number($("#time2").val()) - Number($("#time1").val());
 		$("#amount").append('<input type="text" name="used_hours" id="uhours" style="display:none">')
 		$("#uhours").val(used_hours);
-		console.log('dgegwsd',$("#uhours").val());
-		console.log('1',$("#time1").val()==0);
-		console.log('2',$("#time2").val());
-		console.log($("#datepicker").val());
 
 		if("<c:out value='${svo.convenience1}'/>" == ""){
 			$("#slist").append('<li style="display:none"><input type="text" value="0" id="conv1" name="convenience1_num"></li>');
@@ -79,10 +76,6 @@ $(document).ready(function() {
 		$("#amount").append('<input type="text" name="amount" id="r_amount" style="display:none">')
 		$("#r_amount").val(amount);
 		
-		$(".form-control").each(function(){
-			console.log($(this).val());
-		});
-		console.log($("#r_name").val());
 		if($("#datepicker").val() == ""){
 			alert("이용일자를 선택해주세요");
 			$("#datepicker").focus();
@@ -126,12 +119,10 @@ $(document).ready(function() {
 			
 			
 			if($("#online").is(":checked")==true){
-				console.log('온라인');
 				$("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}");
 				room_reserve.submit();
 			}
 			if($("#onsite").is(":checked")==true){
-				console.log('현장');
 				$("form").attr("action", "room_reserve_offline_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}");
 				room_reserve.submit();
 			}
@@ -144,6 +135,7 @@ $(document).ready(function() {
 		dateFormat: 'yy.mm.dd',
         prevText: ' ',
         nextText: ' ',
+		minDate: 0,
         monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
         monthNamesShort: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
         dayNames: ['일', '월', '화', '수', '목', '금', '토'],
@@ -156,27 +148,31 @@ $(document).ready(function() {
 	});
 	$("#datepicker").datepicker().datepicker("setDate", new Date());
 	
-	$("#time1").timepicker({
-        timeFormat: 'HH:mm',
-        interval: 30,
-        minTime: '09:00',
-        maxTime: '22:00',
-        startTime: '09:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true        
-    });
-	$("#time2").timepicker({
-        timeFormat: 'HH:mm',
-        interval: 30,
-        minTime: '09:00',
-        maxTime: '22:00',
-        startTime: '09:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true        
-    });
+    var opening_time, closing_time;
+    var olist = "<c:out value='${vo.opening_time}' />".split(".");
+    var clist = "<c:out value='${vo.closing_time}' />".split(".");
+    
+    if(olist[1]==0) {
+    	opening_time = olist[0] + ":" + "00";
+    } else {
+    	opening_time = olist[0] + ":" + "30";
+    }
+    if(clist[1]==0) {
+       closing_time = clist[0] + ":" + "00";
+    } else {
+       closing_time = clist[0] + ":" + "30";
+    }
 	
+	$("input[id^=time]").timepicker({
+        timeFormat: 'H:i',
+        interval: 30,
+        minTime: opening_time,
+        maxTime: closing_time,
+        startTime: opening_time,
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true        
+    });
 	
 	$(".number-spinner input").click(function(){   
 		var btn = $(this),
@@ -204,6 +200,131 @@ $(document).ready(function() {
     	$(".large_img>div").hide();
     });
     
+
+    var timelist = new Array();
+    <c:forEach var="rsvo" items="${list}">
+	    timelist.push("${rsvo.checkin_time}");
+	    timelist.push("${rsvo.checkout_time}");
+	</c:forEach>
+    
+    var rlist = new Array();
+    <c:forEach var="rsvo" items="${list}">
+    	rlist.push("${rsvo.reserve_date}");
+    </c:forEach>
+    
+    
+    var tlist = new Array();
+    for(var i=0;i<timelist.length;i++){
+    	tlist.push(timelist[i].split("."));
+    }
+    
+    var checkinlist = new Array();
+    var checkoutlist = new Array();
+    for(var i=0;i<tlist.length;i=i){
+    	if(tlist[i][1]==0) {
+    		checkinlist.push(tlist[i++][0]+":"+"00");
+    	}else {
+    		checkinlist.push(tlist[i++][0]+":"+"30");
+    	}
+    	if(tlist[i][1]==0) {
+    		checkoutlist.push(tlist[i++][0]+":"+"00");
+    	}else {
+    		checkoutlist.push(tlist[i++][0]+":"+"30");
+    	}
+    }
+    
+    $("#datepicker").change(function(){
+    	var length = rlist.length;
+    	$("input[id^=time]").val("");
+    	$("input[id^=time]").timepicker({
+	        timeFormat: 'H:i',
+	        interval: 30,
+	        minTime: opening_time,
+	        maxTime: closing_time,
+	        startTime: opening_time,
+	        dynamic: false,
+	        dropdown: true,
+	        scrollbar: true
+	    });
+    	for(var i=0;i<length;i++){
+    		if(rlist[i]==$("#datepicker").val()){
+    			length = i;
+    			$("input[id^=time]").timepicker({
+    		        timeFormat: 'H:i',
+    		        interval: 30,
+    		        minTime: opening_time,
+    		        maxTime: closing_time,
+    		        startTime: opening_time,
+    		        dynamic: false,
+    		        dropdown: true,
+    		        scrollbar: true,
+    		        disableTimeRanges:[
+    		        	[checkinlist[i],checkoutlist[i]]
+    		        ]
+    		    });
+    			var k=i;
+    			$("#time1").change(function(){
+    				if(Number($(this).val().split(":")[0]) <= Number(checkinlist[k].split(":")[0])){
+    					$("#time2").timepicker({
+            		        timeFormat: 'H:i',
+            		        interval: 30,
+            		        minTime: opening_time,
+            		        maxTime: closing_time,
+            		        startTime: opening_time,
+            		        dynamic: false,
+            		        dropdown: true,
+            		        scrollbar: true,
+            		        disableTimeRanges:[
+            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
+            		        	[checkinlist[k],(Number(closing_time.split(":")[0])+1)+":"+closing_time.split(":")[1]],
+            		        ]
+            		    });
+    				}else {
+    					$("#time2").timepicker({
+            		        timeFormat: 'H:i',
+            		        interval: 30,
+            		        minTime: opening_time,
+            		        maxTime: closing_time,
+            		        startTime: opening_time,
+            		        dynamic: false,
+            		        dropdown: true,
+            		        scrollbar: true,
+            		        disableTimeRanges:[
+            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]]
+            		        ]
+            		    });
+    				}
+    			});
+    		}else {
+    	    	$("input[id^=time]").timepicker({
+    		        timeFormat: 'H:i',
+    		        interval: 30,
+    		        minTime: opening_time,
+    		        maxTime: closing_time,
+    		        startTime: opening_time,
+    		        dynamic: false,
+    		        dropdown: true,
+    		        scrollbar: true
+    		    });
+    	    	$("#time1").change(function(){
+   					$("#time2").timepicker({
+           		        timeFormat: 'H:i',
+           		        interval: 30,
+           		        minTime: opening_time,
+           		        maxTime: closing_time,
+           		        startTime: opening_time,
+           		        dynamic: false,
+           		        dropdown: true,
+           		        scrollbar: true,
+           		        disableTimeRanges:[
+           		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
+           		        ]
+           		    });
+    			});
+    		}
+    	}
+    });
+    
     
 });
 </script>
@@ -219,12 +340,12 @@ $(document).ready(function() {
 			<!-- 회의실 정보1 -->
 			<div class="name">
 				<div class="label"><div class="l_line"></div><label>${vo.branch_name }</label><div></div><label>${vo.room_name }</label></div>
-				<div id="image" style="background:url('http://localhost:9000/space/upload/${vo.rfile1 }'); background-size: cover; background-repeat: no-repeat; background-position: 50%;"></div>
+				<div id="image" style="background:url('http://localhost:9000/space/upload/${vo.rsfile1 }'); background-size: cover; background-repeat: no-repeat; background-position: 50%;"></div>
 				<div class="large_img">
 					<img src="http://localhost:9000/space/images/thum_more_icon.png">
 					<div>
 						<img src="http://localhost:9000/space/images/item_viewbox_top_tabcon_box02_content_box_list_slide_box_close_btn.png">
-						<img src="http://localhost:9000/space/upload/${vo.rfile1 }">
+						<img src="http://localhost:9000/space/upload/${vo.rsfile1 }">
 					</div>
 				</div>
 			</div>
@@ -486,7 +607,7 @@ $(document).ready(function() {
 				</div>
 				<div>
 					<ul id="slist">
-						<c:if test="${svo.convenience1 != null }">
+						<c:if test="${svo.convenience1 ne 'null' }">
 						<li>
 							<div class="s_label"><div class="required"></div><label>편의사항</label></div>
 							<div id="s_content">
@@ -503,7 +624,7 @@ $(document).ready(function() {
 							</div>
 						</li>
 						</c:if>
-						<c:if test="${svo.convenience2 != null }">
+						<c:if test="${svo.convenience2 ne 'null' }">
 						<li>
 							<div id="s_content">
 								<span>${svo.convenience2 }<br>${svo.convenience2_price }원</span>
@@ -519,7 +640,7 @@ $(document).ready(function() {
 							</div>
 						</li>
 						</c:if>
-						<c:if test="${svo.convenience3 != null }">
+						<c:if test="${svo.convenience3 ne 'null' }">
 						<li>
 							<div id="s_content">
 								<span>${svo.convenience3 }<br>${svo.convenience3_price }원</span>
@@ -535,7 +656,7 @@ $(document).ready(function() {
 							</div>
 						</li>
 						</c:if>
-						<c:if test="${svo.beverage1 != null }">
+						<c:if test="${svo.beverage1 ne 'null' }">
 						<li>
 							<div class="s_label"><div class="required"></div><label>식음료</label></div>
 							<div id="s_content">
@@ -552,7 +673,7 @@ $(document).ready(function() {
 							</div>
 						</li>
 						</c:if>
-						<c:if test="${svo.beverage2 != null }">
+						<c:if test="${svo.beverage2 ne 'null' }">
 						<li>
 							<div id="s_content">
 								<span>${svo.beverage2 }<br>${svo.beverage2_price }원</span>
@@ -568,7 +689,7 @@ $(document).ready(function() {
 							</div>
 						</li>
 						</c:if>
-						<c:if test="${svo.beverage3 != null }">
+						<c:if test="${svo.beverage3 ne 'null' }">
 						<li>
 							<div id="s_content">
 								<span>${svo.beverage3 }<br>${svo.beverage3_price }원</span>
@@ -607,7 +728,7 @@ $(document).ready(function() {
 						</li>
 						<li>
 							<label>이메일<span>*</span></label>
-							<input type="text" id="email" name="email">
+							<input type="text" id="email" name="email" value="${sessionScope.svo.id }" disabled>
 						</li>
 						<li>
 							<label>회사명<span>*</span></label>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,35 +28,129 @@ $(document).ready(function() {
 		<div class="confirm_wrap">
 			<div class="confirm_item_box">
 				<span class="confirm_title">회의실 예약 내용</span>
-				<span class="reservation_number">예약번호 001721</span>
+				<span class="reservation_number">예약번호 ${vo.rsid }</span>
 				<span class="reservation_print">인쇄</span>
 				<table>
 					<tr>
 						<th>예약 센터</th>
-						<td>강남구 1호점</td>
+						<td>${vo.branch_name }</td>
 						<th>예약 회의실</th>
-						<td>37층 아폴론</td>
+						<td>${vo.room_name }</td>
 					</tr>
 					<tr>
 						<th>이용 일자</th>
-						<td>2021.07.28</td>
+						<td>${vo.reserve_date }</td>
 						<th>이용 시간</th>
-						<td>10시~12시 / 2시간</td>
+						<td>
+							<c:choose>
+								<c:when test="${fn:split(vo.checkin_time,'.')[1] == 0}">
+									${fn:split(vo.checkin_time,'.')[0]}시~ 
+								</c:when>
+								<c:when test="${fn:split(vo.checkin_time,'.')[1] == 5}">
+									${fn:split(vo.checkin_time,'.')[0]}시 30분~ 
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${fn:split(vo.checkout_time,'.')[1] == 0}">
+									${fn:split(vo.checkout_time,'.')[0]}시 / ${fn:split(vo.used_hours,'.')[0]}시간
+								</c:when>
+								<c:when test="${fn:split(vo.checkout_time,'.')[1] == 5}">
+									${fn:split(vo.checkout_time,'.')[0]}시 30분 / ${fn:split(vo.used_hours,'.')[0]}시간
+								</c:when>
+							</c:choose>
+						</td>
 					</tr>
 					<tr>
 						<th>수용 형태</th>
-						<td>U자형</td>
+						<td>${vo.type }</td>
 						<th>이용 인원</th>
-						<td>20명</td>
+						<td>${vo.headcount }명</td>
 					</tr>
 				</table>
 				<p class="confirm_sub_title">부가서비스</p>
 				<table>
 					<tr>
 						<th>편의사항</th>
-						<td>라커룸 1개/종일 11,000원</td>
+						<c:choose>
+						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num == 0 && vo.convenience3_num == 0}">
+						<td>${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원</td>
+						</c:when>
+						<c:when test="${vo.convenience1_num == 0 && vo.convenience2_num != 0 && vo.convenience3_num == 0}">
+						<td>${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원</td>
+						</c:when>
+						<c:when test="${vo.convenience1_num == 0 && vo.convenience2_num == 0 && vo.convenience3_num != 0}">
+						<td>${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원</td>
+						</c:when>
+						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num != 0 && vo.convenience3_num == 0}">
+						<td>
+							${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원<br>
+							${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원
+						</td>
+						</c:when>
+						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num == 0 && vo.convenience3_num != 0}">
+						<td>
+							${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원<br>
+							${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원
+						</td>
+						</c:when>
+						<c:when test="${vo.convenience1_num == 0 && vo.convenience2_num != 0 && vo.convenience3_num != 0}">
+						<td>
+							${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원<br>
+							${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원
+						</td>
+						</c:when>
+						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num != 0 && vo.convenience3_num != 0}">
+						<td>
+							${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원<br>
+							${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원<br>
+							${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원
+						</td>
+						</c:when>
+						<c:otherwise>
+						<td></td>
+						</c:otherwise>
+						</c:choose>
+						
 						<th>식음료</th>
-						<td>케이터링 SET 132,000원</td>
+						<c:choose>
+						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num == 0 && vo.beverage3_num == 0}">
+						<td>${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원</td>
+						</c:when>
+						<c:when test="${vo.beverage1_num == 0 && vo.beverage2_num != 0 && vo.beverage3_num == 0}">
+						<td>${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원</td>
+						</c:when>
+						<c:when test="${vo.beverage1_num == 0 && vo.beverage2_num == 0 && vo.beverage3_num != 0}">
+						<td>${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원</td>
+						</c:when>
+						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num != 0 && vo.beverage3_num == 0}">
+						<td>
+							${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원<br><br>
+							${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원
+						</td>
+						</c:when>
+						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num == 0 && vo.beverage3_num != 0}">
+						<td>
+							${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원<br><br>
+							${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원
+						</td>
+						</c:when>
+						<c:when test="${vo.beverage1_num == 0 && vo.beverage2_num != 0 && vo.beverage3_num != 0}">
+						<td>
+							${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원<br><br>
+							${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원
+						</td>
+						</c:when>
+						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num != 0 && vo.beverage3_num != 0}">
+						<td>
+							${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원<br><br>
+							${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원<br><br>
+							${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원
+						</td>
+						</c:when>
+						<c:otherwise>
+						<td></td>
+						</c:otherwise>
+						</c:choose>
 					</tr>				
 				</table>
 			</div>
@@ -63,23 +159,23 @@ $(document).ready(function() {
 				<table>
 					<tr>
 						<th>예약자</th>
-						<td colspan="3">홍길동</td>
+						<td colspan="3">${vo.name }</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td>hongkd1@naver.com</td>
+						<td>${vo.email }</td>
 						<th>연락처</th>
-						<td>010-9876-4567</td>
+						<td>${vo.hp }</td>
 					</tr>
 					<tr>
 						<th>행사명</th>
-						<td>2분기 결산 회의</td>
+						<td>${vo.event_name }</td>
 						<th>회사명</th>
-						<td>길동 컴퍼니</td>
+						<td>${vo.corp_name }</td>
 					</tr>
 					<tr>
 						<th>기타 요청사항</th>
-						<td colspan="3">테이블 1개 추가 요청</td>
+						<td colspan="3">${vo.etc_request }</td>
 					</tr>
 				</table>
 			</div>
@@ -88,9 +184,16 @@ $(document).ready(function() {
 				<table>
 					<tr>
 						<th>결제 금액</th>
-						<td>215,000원</td>
+						<td>${vo.amount }원</td>
 						<th>결제 수단</th>
+						<c:choose>
+						<c:when test="${vo.pay_type == '온라인' }">
 						<td>KAKAO PAY</td>
+						</c:when>
+						<c:otherwise>
+						<td>현장결제</td>
+						</c:otherwise>
+						</c:choose>
 					</tr>
 				</table>
 			</div>
@@ -127,7 +230,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	<p class="print_area">㈜회의실닷컴</p>
+	<p class="print_area">㈜스페이스닷컴</p>
 	
 	
 	<jsp:include page="../footer.jsp"></jsp:include>
