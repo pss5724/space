@@ -16,7 +16,7 @@
 }
 
 
-/* 메인 팝업레이어 { */
+/* 硫붿씤 �뙘�뾽�젅�씠�뼱 { */
 #hd_pop {z-index:1000;position:relative;margin:0 auto;width:1200px;height:0}
 #hd_pop h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
 .hd_pops {position:absolute;border:1px solid #e9e9e9;background:#fff;}
@@ -27,17 +27,17 @@
 .hd_pops_footer button {padding: 10px;border:0;color:#fff}
 .hd_pops_footer .hd_pops_reject{background:#000;text-align:left}
 .hd_pops_footer .hd_pops_close{background:#393939;position:absolute;top:0;right:0}
-/* } 메인 팝업레이어 */
+/* } 硫붿씤 �뙘�뾽�젅�씠�뼱 */
 
-/* 콘테이너 { */
+/* 肄섑뀒�씠�꼫 { */
 .container:after {
 	content: '';
 	display:block;
 	clear:both;
 }
-/* } 콘테이너 */
+/* } 肄섑뀒�씠�꼫 */
 
-/* 헤더 { */
+/* �뿤�뜑 { */
 	
 #header {
 	width:100%;
@@ -172,6 +172,11 @@ header{
 	display:block;
 	clear:both;
 }
+
+/*.hi li a{
+	margin-top:0px;
+}*/
+
 .gnb_etc li {
 	float:left;
 }
@@ -391,11 +396,11 @@ header{
 .sub_depth2 .focus h4 a {
 	color:#006be0;
 }
-/* } 헤더 */
+/* } �뿤�뜑 */
 
 
 
-/* 푸터 { */
+/* �뫖�꽣 { */
 #footer {
 	min-width:1280px;
 	background:#f9f9f9;
@@ -536,12 +541,12 @@ header{
 .footer_etc_sns li + li {
 	margin-left:29px;
 }
-/* } 푸터 */
+/* } �뫖�꽣 */
 
 .hidden {
 	display:none;	
 }
-/* 리스트 { */
+/* 由ъ뒪�듃 { */
 .cont_list:after {
 	content:'';
 	display:block;
@@ -810,9 +815,9 @@ header{
 	background:url('http://localhost:9000/space/images/item_viewbox_top_slide_right.png') no-repeat center;
 }
 
-/* } 리스트 */
+/* } 由ъ뒪�듃 */
 
-/* 효과 { */
+/* �슚怨� { */
 .s_obj.active.left_obj01 {
 	-webkit-transform: translateX(-30%) translateY(50px);
 	-ms-transform: translateX(-30%) translateY(50px);
@@ -866,5 +871,5 @@ header{
 	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
-/* } 효과 */
+/* } �슚怨� */
 

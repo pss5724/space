@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import = "com.myspace.vo.SessionVO" %>
-<%
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--
 	SessionVO svo = (SessionVO)session.getAttribute("svo");
-%>
+--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,8 +130,30 @@ $(function(){
 				
 			</ul>
 			
+			<c:choose>
+				<c:when test="${sessionScope.svo != null }">
+				<ul class="gnb_etc">
+					<li><a href="http://localhost:9000/space/logout.do">로그아웃</a></li>
+					<li><a href="#">나의 회의실</a></li>
+					<c:if test="${sessionScope.svo.id=='admin@naver.com' }">     	
+					<li><a href="http://localhost:9000/space/admin.do">Admin</a></li>
+					</c:if>
+				</ul >	
+				<ul class="gnb_etc hi" >
+					<li><a href="#">안녕하세요 ${sessionScope.svo.name }님 환영합니다</a></li>
+				</ul>
+				</c:when>
+				<c:otherwise>
+				<ul class="gnb_etc">
+					<li><a href="http://localhost:9000/space/login.do">로그인</a></li>
+					<li><a href="http://localhost:9000/space/join_main.do">회원가입</a></li>
+					<li><a href="#">나의 회의실</a></li>
+				</ul>
+				</c:otherwise>
+			</c:choose>
 			
-			<% if(svo == null){ %>
+			
+<%-- 			<% if(svo == null){ %>
 				<ul class="gnb_etc">
 					<li><a href="http://localhost:9000/space/login.do">로그인 </a></li>
 					<li><a href="http://localhost:9000/space/join_main.do">회원가입 </a></li>
@@ -148,7 +171,7 @@ $(function(){
 						<li><a href="#">나의 회의실</a></li>
 					</ul>
 				<% } %>
-			<% } %>
+			<% } %> --%>
 			
 			
 			<!-- <ul class="gnb_etc">
