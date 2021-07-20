@@ -75,7 +75,8 @@ $(document).ready(function() {
 	});
 
 	/* 옵션 버튼 선택 */
-	var option_list = ["default"];  //ajax에서 배열을 받아야해서 기본 값 하나 삽입
+	var option_list = new Array();
+	//var option_list = ["default"];  //ajax에서 배열을 받아야해서 기본 값 하나 삽입
 	
 	$(".search_option button").click(function() {
 		$(this).toggleClass("on");
@@ -86,7 +87,6 @@ $(document).ready(function() {
 			var idx = option_list.indexOf($(this).val());
 			option_list.splice(idx, 1);
 		}
-		
 		getList($("#pay1").text(), $("#pay2").text());
 		
 	});
@@ -245,9 +245,17 @@ $(document).ready(function() {
 			url: "get_list.do",
 			data: params,
 			type: "POST",
+			traditional: true,
+			/* beforeSend: function(loading) {
+				var img = "<img src='http://localhost:9000/space/images/loading.gif' class='loading_img'>";
+				$(".result_count").remove();
+				$(".search_result ul").remove();
+				$(".search_result").append(img);
+			}, */
 			success: function(jdata) {
 /* 				var tmp = JSON.stringify(data);
 				var jdata = JSON.parse(tmp); */
+				$(".loading_img").remove();
 				
 				var output = "<ul>";
 				var count = "<span class='result_count'>검색된 센터 <span>0</span>개</span>";
@@ -555,121 +563,6 @@ $(document).ready(function() {
 					<li data="charge desc">높은금액순</li>
 				</ul>
 				<div class="search_result">
- 					<!-- <ul> -->
-<%--					<c:forEach var="rvo" items="${rlist}" varStatus="status">
-						<li class="room_info">
-							<a href="http://localhost:9000/space/room_content.do?rid=${rvo.rid}">
-								<div class="info_image">
-									<img src="http://localhost:9000/space/upload/${rvo.rsfile1}">
-								</div>
-								<div class="info_text">
-									<div class="info_left">
-										<p class="room_title">${rvo.branch_name}</p>
-										<p class="room_sub_title">${rvo.intro}</p>
-										<p class="room_location">${rvo.address}</p>
-										<p class="room_capacity">${rvo.capacity}인실</p>
-										<ul>
-											<c:if test="${olist[status.index].lounge == 1}">
-												<li>공용 라운지</li>										
-											</c:if>
-											<c:if test="${olist[status.index].smoking_room == 1}">
-												<li>흡연실</li>										
-											</c:if>
-											<c:if test="${olist[status.index].parking_lot == 1}">
-												<li>주차장</li>										
-											</c:if>
-											<c:if test="${olist[status.index].elevator == 1}">
-												<li>승강기</li>										
-											</c:if>
-											<c:if test="${olist[status.index].freight_elevator == 1}">
-												<li>화물승강기</li>										
-											</c:if>
-											<c:if test="${olist[status.index].vending_machine == 1}">
-												<li>자판기</li>										
-											</c:if>
-											<c:if test="${olist[status.index].wifi == 1}">
-												<li>Wi-Fi</li>										
-											</c:if>
-											<c:if test="${olist[status.index].accessible_toilet == 1}">
-												<li>장애인 화장실</li>										
-											</c:if>
-											<c:if test="${olist[status.index].toilet == 1}">
-												<li>화장실</li>										
-											</c:if>
-											<c:if test="${olist[status.index].water_dispenser == 1}">
-												<li>정수기</li>										
-											</c:if>
-											<c:if test="${olist[status.index].ktx == 1}">
-												<li>KTX/SRT 인근</li>										
-											</c:if>
-											<c:if test="${olist[status.index].beam == 1}">
-												<li>빔프로젝터</li>										
-											</c:if>
-											<c:if test="${olist[status.index].video_device == 1}">
-												<li>화상회의장비</li>										
-											</c:if>
-											<c:if test="${olist[status.index].mic == 1}">
-												<li>마이크</li>										
-											</c:if>
-											<c:if test="${olist[status.index].tv == 1}">
-												<li>TV</li>										
-											</c:if>
-											<c:if test="${olist[status.index].speaker == 1}">
-												<li>스피커</li>										
-											</c:if>
-											<c:if test="${olist[status.index].pc == 1}">
-												<li>PC</li>										
-											</c:if>
-											<c:if test="${olist[status.index].pointer == 1}">
-												<li>포인터</li>										
-											</c:if>
-											<c:if test="${olist[status.index].banner == 1}">
-												<li>현수막</li>										
-											</c:if>
-											<c:if test="${olist[status.index].whiteboard == 1}">
-												<li>화이트보드</li>										
-											</c:if>
-											<c:if test="${olist[status.index].dais == 1}">
-												<li>단상</li>										
-											</c:if>
-											<c:if test="${olist[status.index].conference_call == 1}">
-												<li>컨퍼런스콜</li>										
-											</c:if>
-											<c:if test="${olist[status.index].air_conditional == 1}">
-												<li>에어컨</li>										
-											</c:if>
-											<c:if test="${olist[status.index].heater == 1}">
-												<li>난방기</li>										
-											</c:if>
-											<c:if test="${olist[status.index].internet == 1}">
-												<li>유선인터넷</li>										
-											</c:if>
-											<c:if test="${olist[status.index].studio == 1}">
-												<li>영상스튜디오</li>										
-											</c:if>
-										
-										</ul>
-									</div>
-									<div class="info_right">
-										<p class="room_star"><img src="http://localhost:9000/space/images/list_star5.png">4.5점</p>
-										<p class="room_review"><span>16</span>개의 이용후기</p>
-										<P class="room_payment">
-										<c:if test="${olist[status.index].online_payment == 1}">
-											<span class="payment_online">온라인 결제</span>
-										</c:if>
-										<c:if test="${olist[status.index].offline_payment == 1}">
-											<span class="payment_offline">현장 결제</span>
-										</c:if>
-										</P>
-										<P class="room_price">
-											<span>${rvo.charge}</span>부터(시간)
-										</P>
-									</div>
-								</div>
-							</a>
-						</li>
-					</c:forEach> --%>
-					<!-- </ul> -->
 				</div>
 			</div>
 		</div>

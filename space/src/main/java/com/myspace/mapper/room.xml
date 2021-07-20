@@ -85,13 +85,12 @@
         <select id="rsfile" parameterType="map"        resultType="java.lang.String">
                 select ${rsfile} from space_room where rid=#{rid}
         </select>
-
         
         <!-- 회의실 최근 등록된 rid -->
         <select id="insertedId" resultType="java.lang.String">
                 select rid from (select rid from space_room order by rdate desc) where rownum = 1
         </select>
-        
+
         <!-- 지도 회의실 리스트 -->
          <select id="mapList" resultType="com.myspace.vo.RoomVO">
                 select rid,branch_name,intro,charge,address,capacity,rfile1,rsfile1 from space_room order by rid
@@ -142,37 +141,58 @@
                 </if>
                 space_option.rid
         </select>
-	
-	
-	<!-- 새미 -->
-	<!-- 새미 -->
-	<!-- 새미 -->
-	
-	<!-- 회의실 상세 -->
-    <select id="roomcontent" parameterType="java.lang.String" resultType="com.myspace.vo.RoomVO">
-            select * from space_room where rid=#{rid}
-    </select>
-    
-    <!-- 회의실 옵션 -->
-    <select id="roomoption" parameterType="java.lang.String" resultType="com.myspace.vo.OptionVO">
-            select * from space_option where rid=#{rid}
-    </select>
-    
-    <!-- 회의실 예약 - 부가서비스 -->
-    <select id="roomservice" parameterType="java.lang.String" resultType="com.myspace.vo.ServiceVO">
-            select * from space_service where rid=#{rid}
-    </select>
-    
-    <!-- 회의실 예약 시간 조회 -->
-    <select id="availabletime" parameterType="map" resultType="com.myspace.vo.ReservationVO">
-            select checkin_time, checkout_time, to_char(reserve_date,'yyyy.mm.dd') reserve_date, rid from space_reserve where rid=#{rid}
-    </select>
-    
-    <!-- 회의실 예약 -->
-     <insert id="roomreserve" parameterType="com.myspace.vo.ReservationVO">
-    		insert into space_reserve values('rs_'||sequ_space_room.nextval, #{name}, #{hp}, #{email}, #{rid}, #{branch_name}, #{room_name}, #{headcount}, #{type}, #{reserve_date}, #{checkin_time}, #{checkout_time}, #{used_hours}, #{convenience1_num},#{convenience2_num},#{convenience3_num},#{beverage1_num},#{beverage2_num},#{beverage3_num}, #{corp_name}, #{event_name}, #{amount}, #{pay_type}, #{etc_request})
-    </insert>	
+        
+        <!-- 회의실 예약 내역(결제) -->
+		<select id="reserve" parameterType="map" resultType="com.myspace.vo.ReservationVO">
+			select rsid, name, hp, email, rid, branch_name, room_name, headcount, type, to_char(reserve_date, 'yyyy.mm.dd') reserve_date, 
+			checkin_time, checkout_time, used_hours, convenience1_num, convenience2_num, convenience3_num, 
+			beverage1_num, beverage2_num, beverage3_num, corp_name, event_name, amount, pay_type, etc_request 
+			from space_reserve where rid=#{rid} and reserve_date=#{reserve_date} and checkin_time=#{checkin_time}
+		</select>
 
+        <!-- 회의실 예약 내역(결제) -->
+		<select id="paymentInfo" parameterType="java.lang.String" resultType="com.myspace.vo.ReservationVO">
+			select rsid, name, hp, email, branch_name, room_name, amount 
+			from space_reserve where rsid=#{rsid}
+		</select>
+	
+	
+	<!-- 새미 -->
+	<!-- 새미 -->
+	<!-- 새미 -->
+		
+	<!-- 회의실 상세 -->
+	<select id="roomcontent" parameterType="java.lang.String" resultType="com.myspace.vo.RoomVO">
+			select * from space_room where rid=#{rid}
+	</select>
+	
+	<!-- 회의실 옵션 -->
+	<select id="roomoption" parameterType="java.lang.String" resultType="com.myspace.vo.OptionVO">
+			select * from space_option where rid=#{rid}
+	</select>
+	
+	<!-- 회의실 예약 - 부가서비스 -->
+	<select id="roomservice" parameterType="java.lang.String" resultType="com.myspace.vo.ServiceVO">
+			select * from space_service where rid=#{rid}
+	</select>
+	
+	<!-- 회의실 예약 시간 조회 -->
+	<select id="availabletime" parameterType="map" resultType="com.myspace.vo.ReservationVO">
+		select checkin_time, checkout_time, to_char(reserve_date,'yyyy.mm.dd') reserve_date, rid from space_reserve where rid=#{rid}
+	</select>
+	
+	<!-- 회의실 예약 -->
+	<insert id="roomreserve" parameterType="com.myspace.vo.ReservationVO">
+		insert into space_reserve values('rs_'||sequ_space_room.nextval, #{name}, #{hp}, #{email}, #{rid}, #{branch_name}, #{room_name}, #{headcount}, #{type}, #{reserve_date}, #{checkin_time}, #{checkout_time}, #{used_hours}, #{convenience1_num},#{convenience2_num},#{convenience3_num},#{beverage1_num},#{beverage2_num},#{beverage3_num}, #{corp_name}, #{event_name}, #{amount}, #{pay_type}, #{etc_request})
+	</insert>		
+	
+	<!-- 회의실 예약 정보 -->
+	<select id="reservationinfo" parameterType="java.lang.String" resultType="com.myspace.vo.ReservationVO">
+		select rsid, name, hp, email, rid, branch_name, room_name, headcount, type, to_char(reserve_date,'yyyy.mm.dd') reserve_date, checkin_time, checkout_time, used_hours, convenience1_num,
+		convenience2_num, convenience3_num, beverage1_num, beverage2_num, beverage3_num, corp_name, event_name, amount, pay_type, etc_request from space_reserve where rsid=#{rsid}
+	</select>
+        
+        
 </mapper>
 
 

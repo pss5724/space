@@ -39,17 +39,6 @@ public class RoomServiceImpl implements RoomService {
             return roomDAO.getInsertedId();
     }
 
-/*        @Override
-    public ArrayList<RoomVO> getList() {
-            return roomDAO.getList();
-    }
-    
-    @Override
-    public ArrayList<OptionVO> getOptionList() {
-            return roomDAO.getOptionList();
-    }
-*/
-    
     @Override
     public ArrayList<RoomVO> getMapList() {
             return roomDAO.getMapList();
@@ -57,7 +46,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public ArrayList<RoomVO> getList(String location1, String location2, String date, double time, String type, int capacity, 
-                                                            int min, int max, int stars, ArrayList<String> option_list, String order) {
+                                                            int min, int max, int stars, String[] option_list, String order) {
 
             return roomDAO.getList(location1, location2, date, time, type, capacity, min, max, stars, option_list, order);
     }
@@ -91,34 +80,49 @@ public class RoomServiceImpl implements RoomService {
     public String getFile(String rid, String rsfile) {
             return roomDAO.getFile(rid, rsfile);
     }
+    
+    @Override
+	public ReservationVO getReserve(String rid, String reserve_date, String checkin_time) {
+		return roomDAO.getReserve(rid, reserve_date, checkin_time);
+	}
 	
-	
-	//새미
 	@Override
-    public RoomVO getRoomContent(String rid) {
-            return roomDAO.getRoomContent(rid);
-    }
+	public ReservationVO getReserve(String rsid) {
+		return roomDAO.getReserve(rsid);
+	}
 
+	//새미
     @Override
-    public OptionVO getRoomOption(String rid) {
-            return roomDAO.getRoomOption(rid);
-    }
-    
-    @Override
-    public ServiceVO getService(String rid) {
-            return roomDAO.getService(rid);
-    }
-    
-    @Override
-    public ArrayList<ReservationVO> getAvailableTime(String rid) {
-            return roomDAO.getAvailableTime(rid);
-    }
-    
+	public RoomVO getRoomContent(String rid) {
+	        return roomDAO.getRoomContent(rid);
+	}
 	
-    @Override
-    public boolean getReserveResult(ReservationVO vo) { 
-    	return roomDAO.getReserveResult(vo); 
-    }
+	@Override
+	public OptionVO getRoomOption(String rid) {
+	        return roomDAO.getRoomOption(rid);
+	}
+	
+	@Override
+	public ServiceVO getService(String rid) {
+	        return roomDAO.getService(rid);
+	}
+	
+	@Override
+	public ArrayList<ReservationVO> getAvailableTime(String rid) {
+	        return roomDAO.getAvailableTime(rid);
+	}
+	
+	    
+	@Override
+	public boolean getReserveResult(ReservationVO vo) { 
+	        return roomDAO.getReserveResult(vo); 
+	}
+	     
+	    
+	@Override
+	public ReservationVO getReservation(String rsid) { 
+	        return roomDAO.getReservation(rsid);
+	}
 	 
 	
 	

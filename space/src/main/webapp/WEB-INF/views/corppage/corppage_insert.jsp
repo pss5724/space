@@ -149,35 +149,47 @@ tr.form_explanation {
 </style>
 <script>
 
-    function searchAddress() {
+    function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-               
-                var roadAddr = data.roadAddress;
-                var extraRoadAddr = '';
+                var addr = ''; 
+                var extraAddr = ''; 
 
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
                 }
 
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    addr += extraAddr;
+                
+                } else {
+                    addr += '';
+                    
                 }
 
-                //document.getElementById("address").value = data.jibunAddress;
-                document.getElementById("address").value = data.roadAddress;
-                
-                var guideTextBox = document.getElementById("guide");
-                
-                /* close(); */
+                $("#address").val(addr);
+                $("#address").focus();
             }
         }).open();
     }
+    
+
 
 	$(document).ready(function() {
 		
 		$("#btn_search_address").click(function() {
-			searchAddress();
+			execDaumPostcode();
 		});
 
 		$("#time1").timepicker({
