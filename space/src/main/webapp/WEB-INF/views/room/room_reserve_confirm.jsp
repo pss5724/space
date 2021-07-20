@@ -15,6 +15,24 @@ $(document).ready(function() {
 	$(".reservation_print").click(function() {
 		window.print();
 	});
+    
+    /* 금액 콤마 표시하기 */
+	function number_format(numstr) {
+	   var numstr = String(numstr);
+	   var re0 = /(\d+)(\d{3})($|\..*)/;
+	   if (re0.test(numstr)) {
+	      return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
+	   } else {
+	      return numstr;
+	   }
+	}
+
+    $(".item_price").each(function(){
+    	var price = number_format($(this).text());
+    	$(this).text(number_format(price)+"원");
+    });
+   	console.log('999',$(".item_price").text());
+    
 });
 </script>
 </head>
@@ -184,7 +202,7 @@ $(document).ready(function() {
 				<table>
 					<tr>
 						<th>결제 금액</th>
-						<td>${vo.amount }원</td>
+						<td class="item_price">${vo.amount }</td>
 						<th>결제 수단</th>
 						<c:choose>
 						<c:when test="${vo.pay_type == '온라인' }">

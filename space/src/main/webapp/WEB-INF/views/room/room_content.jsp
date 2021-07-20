@@ -27,6 +27,17 @@
 <script>
 $(document).ready(function() {
 	
+	/* 금액 콤마 표시하기 */
+	function number_format(numstr) {
+	   var numstr = String(numstr);
+	   var re0 = /(\d+)(\d{3})($|\..*)/;
+	   if (re0.test(numstr)) {
+	      return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
+	   } else {
+	      return numstr;
+	   }
+	}
+	
 	var mapContainer = document.getElementById('g_map');
 	var mapOptions = {
 		center: new google.maps.LatLng(37.55539849783088, 126.98713113288264),
@@ -39,7 +50,6 @@ $(document).ready(function() {
 	geocodeAddress(geocoder, map);
 
 	function geocodeAddress(geocoder, resultMap) {
-        console.log('geocodeAddress 함수 실행');
 
         // 주소 설정
         var address = "<c:out value='${vo.address}'/>";
@@ -54,8 +64,6 @@ $(document).ready(function() {
          *      ㄴ status : 상태. OK가 나오면 정상.
          */
         geocoder.geocode({'address': address}, function(result, status) {
-            console.log(result);
-            console.log(status);
 
             if (status === 'OK') {
                 // 맵의 중심 좌표를 설정한다.
@@ -167,33 +175,21 @@ var pager = jQuery('#ampaginationsm').pagination({
 	    timelist.push("${rsvo.checkin_time}");
 	    timelist.push("${rsvo.checkout_time}");
 	</c:forEach>
-	for(var i=0;i<timelist.length;i++){
-		console.log('h1',timelist[i++]);
-		console.log('h2',timelist[i]);
-	}
     
     var rlist = new Array();
     <c:forEach var="rsvo" items="${list}">
     	rlist.push("${rsvo.reserve_date}");
     </c:forEach>
-    for(var i=0;i<rlist.length;i++){
-    	console.log('123',rlist[[i]]);
-    }
     
     $("#datepicker").change(function(){
     	$("td").each(function(){
     		$(this).css("background-color","white");
     	});
-    	console.log('111');
-    	console.log($("#datepicker").val());
     	for(var i=0;i<rlist.length;i++){
     		if(rlist[i]==$("#datepicker").val()){
-    			console.log('같음',i);
     			var j=i*2;
    				for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
-   					console.log('kkk',k);
    					$("td").each(function(){
-   						console.log($(this).attr('id') == k+".5");
     					if(($(this).attr('id') == k)){
     						$(this).css("background-color","#97ccff");
     					}
@@ -202,8 +198,108 @@ var pager = jQuery('#ampaginationsm').pagination({
     		}
     	}
     });
-	console.log('ddd',$("#datepicker").val());
 	
+    $(".item_price").each(function(){
+    	var price = number_format($(this).text());
+    	$(this).text(number_format(price)+"원");
+    });
+    
+    var service = new Array();
+	<c:if test="${ovo.lounge == 1}">
+			service.push("공용 라운지"); 
+	</c:if>
+	<c:if test="${ovo.smoking_room == 1}">
+		service.push("흡연실"); 
+	</c:if>
+	<c:if test="${ovo.parking_lot == 1}">
+		service.push("주차장");
+	</c:if>
+	<c:if test="${ovo.elevator == 1}">
+		service.push("승강기");
+	</c:if>
+	<c:if test="${ovo.freight_elevator == 1}">
+		service.push("화물승강기");
+	</c:if>
+	<c:if test="${ovo.vending_machine == 1}">
+		service.push("자판기");
+	</c:if>
+	<c:if test="${ovo.wifi == 1}">
+		service.push("WI-FI"); 
+	</c:if>
+	<c:if test="${ovo.accessible_toilet == 1}">
+		service.push("장애인 화장실");
+	</c:if>
+	<c:if test="${ovo.toilet == 1}">
+		service.push("화장실");
+	</c:if>
+	<c:if test="${ovo.water_dispenser == 1}">
+		service.push("정수기"); 
+	</c:if>
+	<c:if test="${ovo.ktx == 1}">
+		service.push("KTX/SRT 인근");
+	</c:if>
+	<c:if test="${ovo.beam == 1}">
+		service.push("빔프로젝터");
+	</c:if>
+	<c:if test="${ovo.video_device == 1}">
+		service.push("화상회의장비");
+	</c:if>
+	<c:if test="${ovo.mic == 1}">
+		service.push("마이크");
+	</c:if>
+	<c:if test="${ovo.lectern == 1}">
+		service.push("강연대");
+	</c:if>
+	<c:if test="${ovo.tv == 1}">
+		service.push("TV");
+	</c:if>
+	<c:if test="${ovo.speaker == 1}">
+		service.push("스피커"); 
+	</c:if>
+	<c:if test="${ovo.pc == 1}">
+		service.push("PC/노트북");
+	</c:if>
+	<c:if test="${ovo.pointer == 1}">
+		service.push("포인터");
+	</c:if>
+	<c:if test="${ovo.banner == 1}">
+		service.push("현수막");
+	</c:if>
+	<c:if test="${ovo.whiteboard == 1}">
+		service.push("화이트보드"); 
+	</c:if>
+	<c:if test="${ovo.dais == 1}">
+		service.push("단상"); 
+	</c:if>
+	<c:if test="${ovo.conference_call == 1}">
+		service.push("컨퍼런스콜"); 
+	</c:if>
+	<c:if test="${ovo.air_conditional == 1}">
+		service.push("에어컨"); 
+	</c:if>
+	<c:if test="${ovo.heater == 1}">
+		service.push("난방기"); 
+	</c:if>
+	<c:if test="${ovo.internet == 1}">
+		service.push("유선인터넷"); 
+	</c:if>
+	<c:if test="${ovo.studio == 1}">
+		service.push("영상스튜디오"); 
+	</c:if>				
+	console.log(service);
+	
+	var output="";
+	console.log(service.length);
+	for(var i=0;i<service.length;i++){
+		if(i != service.length-1){
+			output += (service[i]+", ");
+		}else {
+			output += service[i];
+		}
+	}
+	$("#service").append(output);
+	
+    
     $("#btn_delete").click(function() {
         var con = confirm("회의실을 삭제하시겠습니까?");
         if(con) {
@@ -636,7 +732,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 		<div class="room_inform" id="room_inform">
 			<div class="label"><div class="l_line"></div><label>회의실 안내</label></div>
 			<div>
-				<img src="http://localhost:9000/space/upload/${vo.rsfile1 }" width="250px" height="220px">
+				<img src="http://localhost:9000/space/upload/${vo.rsfile1 }" width="250px" height="220px" style="object-fit:cover">
 				<div class="large_img">
 					<img src="http://localhost:9000/space/images/thum_more_icon.png">
 					<div>
@@ -649,7 +745,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 						<label>${vo.room_name }</label>
 						<input type="button" value="선택" class="select_btn">
 					</div> 
-					<span>${vo.charge } / 시간</span>
+					<span><span class="item_price">${vo.charge }</span> / 시간</span>
 					<ul>
 						<li>
 							<label>최저 이용시간</label>
@@ -662,88 +758,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 						<li>
 							<label>부가서비스</label>
 							<div>
-								<span>
-									<c:if test="${ovo.lounge == 1}">
-											공용 라운지, 
-									</c:if>
-									<c:if test="${ovo.smoking_room == 1}">
-											흡연실, 
-									</c:if>
-									<c:if test="${ovo.parking_lot == 1}">
-											주차장, 
-									</c:if>
-									<c:if test="${ovo.elevator == 1}">
-											승강기, 
-									</c:if>
-									<c:if test="${ovo.freight_elevator == 1}">
-											화물승강기, 
-									</c:if>
-									<c:if test="${ovo.vending_machine == 1}">
-											자판기, 
-									</c:if>
-									<c:if test="${ovo.wifi == 1}">
-											WI-FI, 
-									</c:if>
-									<c:if test="${ovo.accessible_toilet == 1}">
-											장애인 화장실, 
-									</c:if>
-									<c:if test="${ovo.toilet == 1}">
-											화장실, 
-									</c:if>
-									<c:if test="${ovo.water_dispenser == 1}">
-											정수기, 
-									</c:if>
-									<c:if test="${ovo.ktx == 1}">
-											KTX/SRT 인근, 
-									</c:if>
-									<c:if test="${ovo.beam == 1}">
-											빔프로젝터, 
-									</c:if>
-									<c:if test="${ovo.video_device == 1}">
-											화상회의장비, 
-									</c:if>
-									<c:if test="${ovo.mic == 1}">
-											마이크, 
-									</c:if>
-									<c:if test="${ovo.lectern == 1}">
-											강연대, 
-									</c:if>
-									<c:if test="${ovo.tv == 1}">
-											TV, 
-									</c:if>
-									<c:if test="${ovo.speaker == 1}">
-											스피커, 
-									</c:if>
-									<c:if test="${ovo.pc == 1}">
-											PC/노트북, 
-									</c:if>
-									<c:if test="${ovo.pointer == 1}">
-											포인터, 
-									</c:if>
-									<c:if test="${ovo.banner == 1}">
-											현수막, 
-									</c:if>
-									<c:if test="${ovo.whiteboard == 1}">
-											화이트보드, 
-									</c:if>
-									<c:if test="${ovo.dais == 1}">
-											단상, 
-									</c:if>
-									<c:if test="${ovo.conference_call == 1}">
-											컨퍼런스콜, 
-									</c:if>
-									<c:if test="${ovo.air_conditional == 1}">
-											에어컨, 
-									</c:if>
-									<c:if test="${ovo.heater == 1}">
-											난방기, 
-									</c:if>
-									<c:if test="${ovo.internet == 1}">
-											유선인터넷, 
-									</c:if>
-									<c:if test="${ovo.studio == 1}">
-											영상스튜디오, 
-									</c:if>					
+								<span id="service">
 								</span>
 							</div>
 						</li>
@@ -906,7 +921,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
 			  		<div>
-			  			<span>101,000원</span>
+			  			<span class="item_price">101000</span>
 			  			<span>부터</span>
 			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
@@ -922,7 +937,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
 			  		<div>
-			  			<span>101,000원</span>
+			  			<span class="item_price">101000</span>
 			  			<span>부터</span>
 			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
@@ -938,7 +953,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
 			  		<div>
-			  			<span>101,000원</span>
+			  			<span class="item_price">101000</span>
 			  			<span>부터</span>
 			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
@@ -954,7 +969,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
 			  		<div>
-			  			<span>101,000원</span>
+			  			<span class="item_price">101000</span>
 			  			<span>부터</span>
 			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
@@ -970,7 +985,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
 			  		<div>
-			  			<span>101,000원</span>
+			  			<span class="item_price">101000</span>
 			  			<span>부터</span>
 			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
@@ -986,7 +1001,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
 			  		</div>
 			  		<div>
-			  			<span>101,000원</span>
+			  			<span class="item_price">101000</span>
 			  			<span>부터</span>
 			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
 			  		</div>
@@ -1000,7 +1015,7 @@ var pager = jQuery('#ampaginationsm').pagination({
 		<c:when test="${sessionScope.svo.position == 1}">
 			<div class="c_button">
 				<a href="http://localhost:9000/space/corppage.do"><input type="button" value="목록으로" id="btn_golist"></a>
-				<div><a href="http://localhost:9000/space/room_reserve.do"><input type="button" value="수정" id="btn_update"></a>
+				<div><a href="http://localhost:9000/space/corppage_update.do?rid=${vo.rid }"><input type="button" value="수정" id="btn_update"></a>
 				<input type="button" value="삭제" id="btn_delete"></div>
 			</div>
 		</c:when>
