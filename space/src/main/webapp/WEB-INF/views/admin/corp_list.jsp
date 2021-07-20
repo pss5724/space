@@ -118,7 +118,7 @@
 					<th>가입승인</th>
 					<th>탈퇴승인</th>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>1</td>
 					<td>종로점</td>
 					<td>홍길순</td>
@@ -127,7 +127,20 @@
 					<td>1</td>
 					<td><button type="button" class="corp_join_btn">완료</button></td>
 					<td><button type="button">승인</button></td>
+				</tr> -->
+				<c:forEach var="vo" items="${clist }">
+				<tr>
+					<td>${vo.rno }</td>
+					<td>${vo.cname }</td>
+					<td>${vo.name }</td>
+					<td>${vo.id }</td>
+					<td>${vo.hp }</td>
+					<td>${vo.name }</td>
+					<td><button type="button" disabled>승인</button></td>
+					<td><button type="button" disabled>승인</button></td>
 				</tr>
+				</c:forEach>
+				
 				
 			</table>
 				

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,14 +109,22 @@
 					<th>전화번호<div class="table_th_after"></div></th>
 					<th>탈퇴승인</th>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>1</td>
 					<td>홍길동</td>
 					<td>hong@naver.com</td>
 					<td>010-1111-2222</td>
 					<td><button type="button">승인</button></td>
+				</tr> -->
+				<c:forEach var="vo" items="${plist }">
+				<tr>
+					<td>${vo.rno }</td>
+					<td><a href="member_content.do?name=${vo.name}&rno=${vo.rno }">${vo.name }</a></td>
+					<td>${vo.id }</td>
+					<td>${vo.hp }</td>
+					<td><button type="button" disabled>승인</button></td>
 				</tr>
-				
+				</c:forEach>
 			</table>
 				
 		

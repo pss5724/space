@@ -138,7 +138,12 @@ $(function(){
 				<c:when test="${sessionScope.svo != null }">
 				<ul class="gnb_etc">
 					<li><a href="http://localhost:9000/space/logout.do">로그아웃</a></li>
-					<li><a href="#">나의 회의실</a></li>
+					<c:if test="${sessionScope.svo.position==0 }">
+					<li><a href="http://localhost:9000/space/mypage.do">나의 회의실</a></li>
+					</c:if>
+					<c:if test="${sessionScope.svo.position==1 }">
+					<li><a href="http://localhost:9000/space/corppage.do">나의 회의실</a></li>
+					</c:if>
 					<c:if test="${sessionScope.svo.id=='admin@naver.com' }">     	
 					<li><a href="http://localhost:9000/space/admin.do">Admin</a></li>
 					</c:if>

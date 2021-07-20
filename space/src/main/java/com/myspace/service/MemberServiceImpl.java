@@ -19,8 +19,11 @@ public class MemberServiceImpl implements MemberService {
 	 /* @Override public MemberVO getContent(String id) { return
 	  memberDAO.getContent(id); }*/
 	  
-	@Override public ArrayList<MemberVO> getList(int start, int end) { 
-		return memberDAO.getList(start, end); }
+	@Override public ArrayList<MemberVO> getList0(int start, int end) { 
+		return memberDAO.getList0(start, end); }
+	
+	@Override public ArrayList<MemberVO> getList1(int start, int end) { 
+		return memberDAO.getList1(start, end); }
 	 
 
 	@Override

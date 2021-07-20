@@ -111,13 +111,23 @@ public class MemberDAO {
 	}
 	
 	
-	 //회원 전체 리스트 :: 페이징 
-	 public ArrayList<MemberVO> getList(int start, int end) {
-		 Map param = new HashMap<String, String>(); param.put("start", start);
-		 param.put("end", end); List<MemberVO> list =
-		 sqlSession.selectList(namespasce+".list", param);
+	 //개인 회원 전체 리스트 :: 페이징 
+	 public ArrayList<MemberVO> getList0(int start, int end) {
+		 Map param = new HashMap<String, String>(); 
+		 param.put("start", start);
+		 param.put("end", end); 
+		 List<MemberVO> plist = sqlSession.selectList(namespasce+".plist", param);
 		 
-		 return (ArrayList<MemberVO>)list; 
+		 return (ArrayList<MemberVO>)plist; 
+	 }
+	 //기업 회원 전체 리스트 :: 페이징 
+	 public ArrayList<MemberVO> getList1(int start, int end) {
+		 Map param = new HashMap<String, String>(); 
+		 param.put("start", start);
+		 param.put("end", end); 
+		 List<MemberVO> clist = sqlSession.selectList(namespasce+".clist", param);
+		 
+		 return (ArrayList<MemberVO>)clist; 
 	 }
 	 
 	 //회원 상세정보 
