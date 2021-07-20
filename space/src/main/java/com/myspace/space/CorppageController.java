@@ -110,13 +110,14 @@ public class CorppageController {
 		return "corppage/corppage_info";
 	}
 	
+	@RequestMapping(value="/corppage_info_pass.do", method=RequestMethod.GET)
+	public String corppage_info_pass() {
+		return "corppage/corppage_info_pass";
+	}
+	
 	@RequestMapping(value="/corppage_booked.do", method=RequestMethod.GET)
 	public String corppage_booked() {
 		return "corppage/corppage_booked";
 	}
 
-	@RequestMapping(value="/corppage_update.do", method=RequestMethod.GET)
-	public String corppage_update() {
-		return "corppage/corppage_update";
-	}
 }

@@ -83,6 +83,11 @@ public class MypageController {
 	public String mypage_info() {
 		return "mypage/mypage_info";
 	}
+	
+	@RequestMapping(value="/mypage_info_pass.do", method=RequestMethod.GET)
+	public String mypage_info_pass() {
+		return "mypage/mypage_info_pass";
+	}
 
 	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
 	public String mypage() {

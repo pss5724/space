@@ -11,19 +11,41 @@
 <script>
 $(document).ready(function(){
 	
-	$(".member_out_btn").click(function(){
-		alert("탈퇴 신청 완료");
-		return false;
-	
+	$("#pass_change_btn").click(function(){
+		if($(".old_pass").val() ==""){
+			alert("기존 비밀번호를 입력해주세요");
+			$(".old_pass").focus();
+			return false;
+		}else if($(".new_pass").val() == ""){
+			alert("변경할 비밀번호를 입력해주세요");
+			$(".new_pass").focus();
+			return false;
+		}else if($(".new_pass_c").val() == ""){
+			alert("비밀번호 확인을 입력해주세요");
+			$(".new_pass_c").focus();
+			return false;
+		}
+			else{
+			pass_change.submit();
+		}
+		
 	});
 	
-	var now = new Date();
+	$(".new_pass_c").blur(function(){
+		if($(".new_pass").val() != "" && $(".new_pass_c").val() != ""){
+			if($(".new_pass").val() == $(".new_pass_c").val()){
+				$("#msg").text("패스워드가 동일합니다.").css({"color":"blue","fontSize":"13px"});
+				return true
+			}else{
+				$("#msg").text("패스워드가 동일하지 않습니다.").css({"color":"red","fontSize":"13px"});
+				$(".new_pass_c").val("");
+				$(".new_pass").val("").focus();
+				return false;
+			}
+		}
+		
+	});
 	
-	var date1 = new Date('2021-7-19 '+$("#check").val());
-	
-
-
-
 		
 		
 });
@@ -36,8 +58,8 @@ $(document).ready(function(){
 	color:black;
 }
 .mypage_right_box_title p{
-	margin-bottom:20px; 
-}
+	margin-bottom:20px;
+} 
 
 .mypage_right_box_table_info {
  margin-top:20px;
@@ -71,20 +93,17 @@ $(document).ready(function(){
  }
  .mypage_btn a{
  	font-size:14px;
- 	font-weight:600;
- 	color : rgb(190,192,200);
  }
- .mypage_right_box_table_info tr:nth-child(3) a{
+ .pass_change_btn{
  	border:1px solid lightgray;
  	border-radius:6px;
  	padding : 10px 25px;
  	background-color : white;
  }
-
 </style>
 </head>
 <body>
-<input type="hidden" value="17:30" id="check">
+
 <!-- header -->
 <jsp:include page="../header.jsp"></jsp:include>
  
@@ -101,13 +120,16 @@ $(document).ready(function(){
 				</p>
 				<ul>
 					<li>
-						<a href="mypage.do">예약한 회의실</a>
+						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
-						<a href="mypage_inquiry.do">1:1 문의</a>
+						<a href="corppage_booked.do">예약 내역</a>
 					</li>
-					<li>
-						<a href="mypage_info.do">회원정보 수정</a>
+						<li>
+						<a href="corppage_inquiry.do">1:1 문의</a>
+					</li>
+						<li>
+						<a href="corppage_info.do">회원정보 수정</a>
 					</li>
 				</ul>
 			</div>
@@ -123,30 +145,29 @@ $(document).ready(function(){
 				</div>
 				
 		
-			
+		<form name="pass_change" action="#" method="post">
 			<table class="mypage_right_box_table_info">
 				<tr>
-					<th>이름</th>
-					<td>홍길동</td>
+					<th>기존 비밀번호</th>
+					<td><input type="password" name="old_pass" class="old_pass"></td>
 				</tr>
 				<tr>
-					<th>이메일</th>
-					<td>hong@naver.com</td>
+					<th>변경 비밀번호</th>
+					<td><input type="password" name="new_pass" class="new_pass"></td>
 				</tr>
 				<tr>
-					<th>비밀번호</th>
-					<td><a href="mypage_info_pass.do">변경하기</a></td>
+					<th>비밀번호 확인</th>
+					<td><input type="password" name="new_pass_c" class="new_pass_c"><div id="msg"></div></td>
 				</tr>
-				<tr>
-					<th>핸드폰</th>
-					<td>010-1111-2222</td>
-				</tr>
+			
 				
 				
 			</table>
 		<div class="mypage_btn">
-			<a href="memeber_out_proc.do" class="member_out_btn">회원탈퇴하기</a>
+			<button type="button" id="pass_change_btn">변경하기</button>
+			<button type="button"><a href="corppage_info.do">돌아가기</a></button>
 		</div>
+		</form>
 			</div>
 			<!-- right box end -->
 			

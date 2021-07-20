@@ -54,11 +54,7 @@
 					<div class="title_deco"></div>
 					<p class="mypage_right_tit">예약한 회의실</p>
 					
-					<select name="select_menu" class = "select_menu">
-							<option value = "all">전체</option>
-							<option value = "bookings">예약현황</option>
-							<option value = "cancel">예약취소</option>
-						</select>
+					
 					
 				</div>
 				<br>
@@ -68,7 +64,7 @@
 				<!-- 여러개 반복 -->
 				<div class="bookings">
 					<ul>
-						<li><a href="#">강남구 17호점/6B </a><a href="#"><button type="button" class="mypage_cancel_btn">예약취소</button></a></li>
+						<li><a href="#">강남구 17호점/6B </a><a href="#" class="mypage_cancel_btn">예약정보</a></li>
 						</ul>
 						<img src="http://localhost:9000/space/images/cal_btn_img01.png">
 						<span>2021.07.02</span>

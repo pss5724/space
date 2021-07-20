@@ -8,6 +8,19 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$(".member_out_btn").click(function(){
+		alert("탈퇴 신청 완료");
+		return true;
+	
+	});
+	
+		
+		
+});
+</script>
 <style>
 .mypage_left_box ul li:last-child a{
 	text-decoration: none;
@@ -60,7 +73,12 @@
  	padding : 10px 25px;
  	background-color : white;
  }
-
+ .mypage_right_box_table_info tr:nth-child(3) a{
+ 	border:1px solid lightgray;
+ 	border-radius:6px;
+ 	padding : 10px 25px;
+ 	background-color : white;
+ }
 </style>
 </head>
 <body>
@@ -118,7 +136,7 @@
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><button type="button" class="pass_change_btn">변경하기</button></td>
+					<td><a href="corppage_info_pass.do">변경하기</a></td>
 				</tr>
 				<tr>
 					<th>핸드폰</th>
@@ -142,7 +160,7 @@
 				
 			</table>
 		<div class="mypage_btn">
-			<a href="#">회원탈퇴하기</a>
+				<a href="memeber_out_proc.do" class="member_out_btn">회원탈퇴하기</a>
 		</div>
 			</div>
 			<!-- right box end -->
