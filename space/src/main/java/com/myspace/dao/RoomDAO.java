@@ -135,19 +135,20 @@ public class RoomDAO {
             return sqlSession.selectOne(namespace+".rsfile", param);
     }
     
-    public ReservationVO getReserve(String rid, String reserve_date, String checkin_time) {
+    public String getRsid(String rid, String reserve_date, String checkin_time, String checkout_time, String name, String hp, String corp_name) {
         Map<String, String> param = new HashMap<String, String>();
         
         param.put("rid", rid);
         param.put("reserve_date", reserve_date);
         param.put("checkin_time", checkin_time);
-    	
-    	return sqlSession.selectOne(namespace+".reserve", param);
+        param.put("checkout_time", checkout_time);
+        param.put("name", name);
+        param.put("hp", hp);
+        param.put("corp_name", corp_name);
+        
+    	return sqlSession.selectOne(namespace+".rsid", param);
     }
     
-    public ReservationVO getReserve(String rsid) {
-    	return sqlSession.selectOne(namespace+".paymentInfo", rsid);
-    }
     
   //새미***********************
     
@@ -179,15 +180,15 @@ public class RoomDAO {
 	/* 회의실 예약  */
 	public boolean getReserveResult(ReservationVO vo) { 
 	        boolean result=false; 
-	        int        value = sqlSession.insert(namespace+".roomreserve", vo);
-	        if(value != 0)        result = true;
+	        int value = sqlSession.insert(namespace+".roomreserve", vo);
+	        if(value != 0) result = true;
 	
 	        return result; 
 	}
 	
 	/* 회의실 예약 확인 */
 	public ReservationVO getReservation(String rsid) {
-	        return sqlSession.selectOne(namespace+".reservationinfo",rsid);
+	        return sqlSession.selectOne(namespace+".reservationinfo", rsid);
 	}
 	
 }

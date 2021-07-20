@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +23,6 @@ import com.myspace.vo.OptionVO;
 import com.myspace.vo.ReservationVO;
 import com.myspace.vo.RoomVO;
 import com.myspace.vo.ServiceVO;
-import com.myspace.vo.SessionVO;
 
 @Controller
 public class RoomController {
@@ -96,38 +93,6 @@ public class RoomController {
             result.put("count", rid_list.size());
     
             return result;
-    }
-
-    @RequestMapping(value="/room_payment.do", method=RequestMethod.GET)
-    public ModelAndView room_payment(String rid, String reserve_date, String checkin_time) {
-    	ModelAndView mv = new ModelAndView();
-    	
-    	RoomVO rvo = roomService.getRoomContent(rid);
-    	ServiceVO svo = roomService.getService(rid);
-    	ReservationVO rsvo = roomService.getReserve(rid, reserve_date, checkin_time);
-    	
-    	mv.setViewName("room/room_payment");
-    	mv.addObject("rvo", rvo);
-    	mv.addObject("svo", svo);
-    	mv.addObject("rsvo", rsvo);
-    	
-    	return mv;
-    }
-    
-    @RequestMapping(value="/room_payment_proc.do", method=RequestMethod.GET)
-	public ModelAndView room_payment_proc(String rsid) {
-        ModelAndView mv = new ModelAndView();
-
-    	ReservationVO rsvo = roomService.getReserve(rsid);
-    	mv.setViewName("room/room_payment_proc");
-    	mv.addObject("rsvo", rsvo);
-    	
-    	return mv;
-    }
-    
-    @RequestMapping(value="/room_payment_success.do", method=RequestMethod.GET)
-    public String room_payment_success() {
-            return "room/room_payment_success";
     }
     
     /* 회의실 등록 처리 */
@@ -303,7 +268,42 @@ public class RoomController {
     return mv;
     }
 
+    /* 회의실 결제 */
+    @RequestMapping(value="/room_payment.do", method=RequestMethod.GET)
+    public ModelAndView room_payment(String rsid) {
+    	ModelAndView mv = new ModelAndView();
+    	
+    	ReservationVO rsvo = roomService.getReservation(rsid);
+    	RoomVO rvo = roomService.getRoomContent(rsvo.getRid());
+    	ServiceVO svo = roomService.getService(rsvo.getRid());
+    	
+    	mv.setViewName("room/room_payment");
+    	mv.addObject("rvo", rvo);
+    	mv.addObject("svo", svo);
+    	mv.addObject("rsvo", rsvo);
+    	
+    	return mv;
+    }
+    
+    /* 회의실 결제 처리 */
+    @RequestMapping(value="/room_payment_proc.do", method=RequestMethod.GET)
+	public ModelAndView room_payment_proc(String rsid) {
+        ModelAndView mv = new ModelAndView();
+
+    	ReservationVO rsvo = roomService.getReservation(rsid);
+    	mv.setViewName("room/room_payment_proc");
+    	mv.addObject("rsvo", rsvo);
+    	
+    	return mv;
+    }
+    
+    @RequestMapping(value="/room_payment_success.do", method=RequestMethod.GET)
+    public String room_payment_success() {
+            return "room/room_payment_success";
+    }
+
 	
+    
   //새미
     
     /* 회의실 상세 */
@@ -345,32 +345,39 @@ public class RoomController {
     @RequestMapping(value="/room_reserve_proc.do", method=RequestMethod.POST)
     public ModelAndView room_reserve_proc(ReservationVO vo, HttpServletRequest request) throws Exception {
             ModelAndView mv = new ModelAndView();
-            
             boolean result = roomService.getReserveResult(vo);
 
-                String url = "?rid=" + vo.getRid() + "&reserve_date=" + vo.getReserve_date() + "&checkin_time=" + vo.getCheckin_time();
+        	String rsid = roomService.getRsid(vo.getRid(), vo.getReserve_date(), Double.toString(vo.getCheckin_time()), 
+        								Double.toString(vo.getCheckout_time()), vo.getName(), vo.getHp(), vo.getCorp_name());
+        	ReservationVO rsvo = roomService.getReservation(rsid);
 
             if(result) {
-                    mv.setViewName("redirect:/room_payment.do"+url);
+            	if(vo.getPay_type().equals("온라인")) {
+                    mv.setViewName("redirect:/room_payment.do?rsid="+rsvo.getRsid());
+            	} else {
+            		mv.setViewName("redirect:/room_reserve_confirm.do?rsid="+rsvo.getRsid());
+            	}
             }
             
             return mv;
     }
-    /* 회의실 예약 처리 */
+    
+    /* 회의실 예약 처리 
     @RequestMapping(value="/room_reserve_offline_proc.do", method=RequestMethod.POST)
     public ModelAndView room_reserve_offline_proc(ReservationVO vo, HttpServletRequest request) throws Exception {
             ModelAndView mv = new ModelAndView();
             
             boolean result = roomService.getReserveResult(vo);
             
-            String url = "?rsid=" + vo.getRsid();
+        	String rsid = roomService.getRsid(vo.getRid(), vo.getReserve_date(), Double.toString(vo.getCheckin_time()));
+        	ReservationVO rsvo = roomService.getReservation(rsid);
                         
             if(result) {
-                    mv.setViewName("redirect:/room_reserve_confirm.do" + url);
+                    mv.setViewName("redirect:/room_reserve_confirm.do?="+rsvo.getRsid());
             }
             
             return mv;
-    }
+    }*/
         
         
     /* 회의실 예약 확인 */

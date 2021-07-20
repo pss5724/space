@@ -82,13 +82,8 @@ public class RoomServiceImpl implements RoomService {
     }
     
     @Override
-	public ReservationVO getReserve(String rid, String reserve_date, String checkin_time) {
-		return roomDAO.getReserve(rid, reserve_date, checkin_time);
-	}
-	
-	@Override
-	public ReservationVO getReserve(String rsid) {
-		return roomDAO.getReserve(rsid);
+	public String getRsid(String rid, String reserve_date, String checkin_time, String checkout_time, String name, String hp, String corp_name) {
+		return roomDAO.getRsid(rid, reserve_date, checkin_time, checkout_time, name, hp, corp_name);
 	}
 
 	//»õ¹Ì

@@ -21,6 +21,7 @@
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : '스페이스닷컴 대관료 결제',
+            buyer_name : "<c:out value='${rsvo.name}'/>",
             amount : "<c:out value='${rsvo.amount}'/>",
         }, function(rsp) {
             if ( rsp.success ) {

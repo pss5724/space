@@ -142,21 +142,13 @@
                 space_option.rid
         </select>
         
-        <!-- 회의실 예약 내역(결제) -->
-		<select id="reserve" parameterType="map" resultType="com.myspace.vo.ReservationVO">
-			select rsid, name, hp, email, rid, branch_name, room_name, headcount, type, to_char(reserve_date, 'yyyy.mm.dd') reserve_date, 
-			checkin_time, checkout_time, used_hours, convenience1_num, convenience2_num, convenience3_num, 
-			beverage1_num, beverage2_num, beverage3_num, corp_name, event_name, amount, pay_type, etc_request 
-			from space_reserve where rid=#{rid} and reserve_date=#{reserve_date} and checkin_time=#{checkin_time}
+        <!-- 회의실 예약번호 -->
+		<select id="rsid" parameterType="map" resultType="java.lang.String">
+			select rsid	from space_reserve where rid=#{rid} and reserve_date=#{reserve_date} and checkin_time=#{checkin_time}
+			and checkout_time=#{checkout_time} and name=#{name} and hp=#{hp} and corp_name=#{corp_name}
 		</select>
-
-        <!-- 회의실 예약 내역(결제) -->
-		<select id="paymentInfo" parameterType="java.lang.String" resultType="com.myspace.vo.ReservationVO">
-			select rsid, name, hp, email, branch_name, room_name, amount 
-			from space_reserve where rsid=#{rsid}
-		</select>
-	
-	
+		
+		
 	<!-- 새미 -->
 	<!-- 새미 -->
 	<!-- 새미 -->

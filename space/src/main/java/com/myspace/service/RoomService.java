@@ -22,8 +22,7 @@ public interface RoomService {
     boolean getUpdateServiceResult(ServiceVO svo);
     boolean getDeleteResult(String rid);
     String getFile(String rid, String rsfile);
-    ReservationVO getReserve(String rsid);
-    ReservationVO getReserve(String rid, String reserve_date, String checkin_time);
+    String getRsid(String rid, String reserve_date, String checkin_time, String checkout_time, String name, String hp, String corp_name);
 	
 	// »õ¹Ì
 	RoomVO getRoomContent(String rid);
