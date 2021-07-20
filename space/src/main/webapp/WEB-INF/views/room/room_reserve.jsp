@@ -269,7 +269,7 @@ $(document).ready(function() {
     		        dropdown: true,
     		        scrollbar: true,
     		        disableTimeRanges:[
-    		        	[checkinlist[i],checkoutlist[i]]
+    		        	[(Number(checkinlist[i].split(":")[0])-1)+":"+checkinlist[i].split(":")[1],checkoutlist[i]]
     		        ]
     		    });
     			var k=i;
