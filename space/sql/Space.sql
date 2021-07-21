@@ -557,24 +557,3 @@ insert into SPACE_FAQ VALUES('F_'||SEQU_SPACE_FAQ.NEXTVAL, '회원가입은 어�
           ,'<p>회의실닷컴 개인회원 가입은 네이버, 이메일로 가능합니다.<p>기업회원과 파트너회원은 이메일로만 가입이 가능합니다.</p></p>'
           ,'MEMBER');
       
-      
-insert into space_room values('r_'||sequ_space_room.nextval, 'test','종로구 1호점','컨퍼런스룸','접근성 및 회의실 컨디션 최상',9,22,'주말, 공휴일','입,퇴실 시간 예약시간 30분 전/후','ㅁ자형',8,55000,'서울 종로구 세종대로 149 광화문빌딩(동화면세점 건물) 20층','sx0jDcBSAARlRYpsD3yV47A38rNKlugEsId0PZHj.jpg','sx0jDcBSAARlRYpsD3yV47A38rNKlugEsId0PZHj.jpg','vRjJdEoBBRvhHU7OzDfo4T6twDmPyzMJ0a6msW3P.jpg','vRjJdEoBBRvhHU7OzDfo4T6twDmPyzMJ0a6msW3P.jpg','ExbCPm9ajnxHwm7DcZtn6PDBUZyfsC6AmLvxqejW.jpg','ExbCPm9ajnxHwm7DcZtn6PDBUZyfsC6AmLvxqejW.jpg',sysdate);
-insert into space_room values('r_'||sequ_space_room.nextval, 'test','강남구 7호점','노스','실내 인테리어가 고급스러운 회의실',9,22,'주말 및 공휴일','예약시간 10분 전 입실 / 정시 퇴실','U자형',6,88000,'서울 강남구 영동대로 517 30층','wQHeiu3b9e7lgieEsMf3eRS9GEZSR8e2gDy5YGcf.jpg','wQHeiu3b9e7lgieEsMf3eRS9GEZSR8e2gDy5YGcf.jpg','wAMwJJzS3CJK2ImZAFeDAHzjYRwlzj584ODHbisK.jpg','wAMwJJzS3CJK2ImZAFeDAHzjYRwlzj584ODHbisK.jpg','ymee5NaTiAA7HokZetU3OZ0t72AbxkoFJ5viJpsh.jpg','ymee5NaTiAA7HokZetU3OZ0t72AbxkoFJ5viJpsh.jpg',sysdate);
-insert into space_room values('r_'||sequ_space_room.nextval, 'test','마포구 3호점','소회의실','공덕역 대형회의장',9,21,'주말 및 공휴일','예약시간 30분 전 입실 / 정시 퇴실','ㅁ자형',20,125000,'서울 마포구 만리재로 14 6층','NQFMb3lnjqnLf7Gymoh0ui7mVSCuuWyug6SsdhkE.jpg','NQFMb3lnjqnLf7Gymoh0ui7mVSCuuWyug6SsdhkE.jpg','sx0jDcBSAARlRYpsD3yV47A38rNKlugEsId0PZHj.jpg','sx0jDcBSAARlRYpsD3yV47A38rNKlugEsId0PZHj.jpg','DpBhM8BPWNphLcDMvCFGgMulKubydiN57OfBJ389.jpg','DpBhM8BPWNphLcDMvCFGgMulKubydiN57OfBJ389.jpg',sysdate);
-insert into space_room values('r_'||sequ_space_room.nextval, 'test','영등포구 1호점','6인실','여의도 IFC MALL',9,22,'주말 및 공휴일','예약시간 정시 입/퇴실','ㅁ자형',6,66000,'서울 영등포구 국제금융로 10 Two IFC 22층 / 여의도역','2iVpkQxwtlPBFKpbVyDXOm04TUmpVtEPfJlS5WLt.jpg','2iVpkQxwtlPBFKpbVyDXOm04TUmpVtEPfJlS5WLt.jpg','becQsPaNuki2UXgyuoFeqPiftiPCCktpZR2GRHIn.jpg','becQsPaNuki2UXgyuoFeqPiftiPCCktpZR2GRHIn.jpg','ZJjQg9taWOMmEDsDnK3xrn56lXVNxdAPdPGNhuq1.jpg','ZJjQg9taWOMmEDsDnK3xrn56lXVNxdAPdPGNhuq1.jpg',sysdate);
-insert into space_room values('r_'||sequ_space_room.nextval, 'test','송파구 2호점','오디토리움','롯데월드타워에 위치한 컨벤션',9,22,'주말 및 공휴일','예약시간 30분 전 입실 / 30분 내 퇴실','강의식',180,575800,'서울 송파구 올림픽로 300 롯데월드타워 31F / 잠실역','4cFk6nKzD4c3RydKEIscQmgbscaG06kpI93ifw9B.jpg','4cFk6nKzD4c3RydKEIscQmgbscaG06kpI93ifw9B.jpg','BkXBqXrwrwfzEWV3NBSOR2VzlJmkN0eamb0NX99Z.jpg','BkXBqXrwrwfzEWV3NBSOR2VzlJmkN0eamb0NX99Z.jpg','XwylvPwCgOgGNXFFbSW6Rd2zLOTmWIvY9GmMoTUN.jpg','XwylvPwCgOgGNXFFbSW6Rd2zLOTmWIvY9GmMoTUN.jpg',sysdate);
-
-
-insert into space_option values('r_1',1,1,1,1,1,0,1,0,1,0,0,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,0,1,1,0,1,0,1);
-insert into space_service values('r_1','빔프로젝터',440000,'LED 스크린',2750000,'포인터 1개',0,'아이시스 디스펜서',6600,'',0,'',0);
-insert into space_option values('r_2',1,1,1,1,1,0,1,0,1,1,0,0,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,0,1);
-insert into space_service values('r_2','TV패널 1대/시간당',33000,'TV패널 1대/30분',16500,'의자 추가/1개당',16500,'',0,'',0,'',0);
-insert into space_option values('r_3',1,1,1,1,0,0,0,0,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,0);
-insert into space_service values('r_3','화상회의장비',400000,'빔프로젝터',50000,'노트북',70000,'',0,'',0,'',0);
-insert into space_option values('r_4',1,1,1,1,1,0,1,0,1,1,0,1,1,1,0,1,1,0,0,0,1,0,1,1,1,1,0,1,1,0,0,0,1);
-insert into space_service values('r_4','라커룸 1개/종일',11000,'18시 이후 직원 stand by 비용',33000,'',0,'커피/티/주스 선택',7700,'커피 10인세트',33000,'케이터링세트(쿠키, 빵 등)',132000);
-insert into space_option values('r_5',1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,1,0,1);
-insert into space_service values('r_5','주차 1대/시간',4400,'포인터 1대/시간',5500,'노트북 1개/시간',11000,'쿠키 4인 세트',22000,'쿠키 8인 세트',44000,'생수/병',1100);
-
-    
-commit;
