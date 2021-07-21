@@ -135,7 +135,7 @@ $(document).ready(function() {
 			$("#phone").append('<input type="text" name="hp" id="hp" style="display:none">');
 			$("#hp").val(phone);
 			
-			$("form").attr("action", "room_reserve_offline_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }");
+			$("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }");
 			room_reserve.submit();
 		}
 		

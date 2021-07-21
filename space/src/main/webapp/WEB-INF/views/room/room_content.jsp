@@ -198,6 +198,55 @@ var pager = jQuery('#ampaginationsm').pagination({
     		}
     	}
     });
+    
+
+	var rolist = new Array();
+    <c:forEach var="room" items="${roomlist}">
+    	rolist.push("${room.address}".split(' ')[1]);
+	    rolist.push("${room.rid}");
+	    rolist.push("${room.capacity}");
+	    rolist.push("${room.charge}");
+	    rolist.push("${room.rsfile1}");
+	    rolist.push("${room.intro}");
+	    rolist.push("${room.branch_name}");
+	    rolist.push("${room.capacity}");
+	    rolist.push("${room.charge}");
+	</c:forEach>
+	console.log(rolist);
+	
+	var similar ="";
+	var num=0;
+	var k=0;
+	for(var i=0;i<rolist.length;i++){
+		if(rolist[i] == ("${vo.address}".split(' ')[1])){
+			k=i;
+			if(rolist[++i] != "${vo.rid}" && rolist[++i] >= Number("${vo.capacity}") && rolist[++i] <= Number("${vo.charge}")+50000){
+				num++;
+				similar += "<div class='s_room slick-slide slick-active' data-slick-index='1' aria-hidden='false' tabindex='0' style='width: 180px;'>"
+				similar += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[++k] + "'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px'>";
+				similar += "<div><span>" + rolist[++i] + "</span>";
+				similar += "<span>" + rolist[++i] + "</span>";
+				similar += "<div><img src='http://localhost:9000/space/images/cont_list_detail_info01.png'><span>" + rolist[--k] + "</span>";
+				similar += "<img src='http://localhost:9000/space/images/cont_list_detail_info03.png'><span>" + rolist[++i] + "인실</span>";
+				similar += "</div><div><span class='item_price'>" + rolist[++i] + "</span>";
+				similar += "<span>부터</span><img src='http://localhost:9000/space/images/star50.png'><span>0</span></div></div></a></div>";
+			}
+		}
+	}
+		$(".slick-track").append(similar);
+	
+    if(num >= 4) {
+		$(".slick-slider").prepend("<button class='slick-prev slick-arrow' aria-label='Previous' type='button' style=''>Previous</button>");
+		$(".slick-slider").append("<button class='slick-next slick-arrow' aria-label='Next' type='button' style=''>Next</button>");
+    }
+    
+    $(".slick-prev").click(function(){
+    	$(".s_room:last").prependTo(".slick-track");
+    });
+    
+    $(".slick-next").click(function(){
+    	$(".s_room:first").appendTo(".slick-track");
+    });
 	
     $(".item_price").each(function(){
     	var price = number_format($(this).text());
@@ -286,10 +335,8 @@ var pager = jQuery('#ampaginationsm').pagination({
 	<c:if test="${ovo.studio == 1}">
 		service.push("영상스튜디오"); 
 	</c:if>				
-	console.log(service);
 	
 	var output="";
-	console.log(service.length);
 	for(var i=0;i<service.length;i++){
 		if(i != service.length-1){
 			output += (service[i]+", ");
@@ -911,102 +958,6 @@ var pager = jQuery('#ampaginationsm').pagination({
 		<div class="similar">
 			<div class="label"><div class="l_line"></div><label>비슷한 회의실</label></div>
 			<div data-slick='{"slidesToShow": 4, "slidesToScroll": 4}' class="slider">
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
-			  		</div>
-			  		<div>
-			  			<span class="item_price">101000</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
-			  		</div>
-			  		<div>
-			  			<span class="item_price">101000</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
-			  		</div>
-			  		<div>
-			  			<span class="item_price">101000</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
-			  		</div>
-			  		<div>
-			  			<span class="item_price">101000</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
-			  		</div>
-			  		<div>
-			  			<span class="item_price">101000</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="s_room">
-			  	<img src="http://localhost:9000/space/images/carousel1.jpg" width="178px">
-			  	<div>
-			  		<span>롯데월드타워에 위치한 컨벤션</span>
-			  		<span>송파구 2호점 (신천동)</span>
-			  		<div>
-			  			<img src="http://localhost:9000/space/images/cont_list_detail_info01.png"><span>신천동</span>
-				  		<img src="http://localhost:9000/space/images/cont_list_detail_info03.png"><span>240인실</span>
-			  		</div>
-			  		<div>
-			  			<span class="item_price">101000</span>
-			  			<span>부터</span>
-			  			<img src="http://localhost:9000/space/images/star50.png"><span>0</span>
-			  		</div>
-			  	</div>
-			  </div>
 			</div>
 		</div>
 		
