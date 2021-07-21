@@ -40,7 +40,14 @@ public class LoginController {
 		if(svo != null) {
 			svo.setId(vo.getId());
 			session.setAttribute("svo",svo);
+			//result_page = "index";   -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
+			
+			if(svo.getChoicein() == 0) {
+				result_page = "login/login";
+			}else {
 			result_page = "index";
+			}
+			
 		} else {
 			result_page = "login/loginFail";
 		}

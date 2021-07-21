@@ -137,8 +137,24 @@
 					<td>${vo.id }</td>
 					<td>${vo.hp }</td>
 					<td>${vo.name }</td>
+					<c:choose>
+					<c:when test="${vo.choicein==0 }">
 					<td><button type="button" disabled>승인</button></td>
+					</c:when>
+					<c:otherwise>
+					<td><button type="button" >승인</button></td>
+					</c:otherwise>
+					</c:choose>
+					<c:choose>
+					<c:when test="${vo.choiceout==0 }">
 					<td><button type="button" disabled>승인</button></td>
+					</c:when>
+					<c:otherwise>
+					<td><button type="button" >승인</button></td>
+					</c:otherwise>
+					</c:choose>
+					<!-- <td><button type="button" disabled>승인</button></td>
+					<td><button type="button" disabled>승인</button></td> -->
 				</tr>
 				</c:forEach>
 				

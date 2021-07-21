@@ -1,7 +1,7 @@
 package com.myspace.vo;
 
 public class SessionVO {
-	int result, position;
+	int result, position, choicein, choiceout;
 	String name, id;
 	
 	
@@ -28,6 +28,18 @@ public class SessionVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getChoicein() {
+		return choicein;
+	}
+	public void setChoicein(int choicein) {
+		this.choicein = choicein;
+	}
+	public int getChoiceout() {
+		return choiceout;
+	}
+	public void setChoiceout(int choiceout) {
+		this.choiceout = choiceout;
 	}
 	
 	

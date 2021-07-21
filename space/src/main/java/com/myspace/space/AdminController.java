@@ -3,12 +3,15 @@ package com.myspace.space;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspace.dao.MemberDAO;
 import com.myspace.service.InquiryService;
 import com.myspace.service.MemberService;
 import com.myspace.vo.InquiryVO;
@@ -67,6 +70,27 @@ public class AdminController {
 		
 		return mv;
 	}
+	
+	/**
+	 * member_delete_process : 탈퇴 처리
+	 * **/
+	/*@RequestMapping(value="/member_delete_process.do", method = RequestMethod.POST)
+	public String member_delete_process(String id) {
+		
+		//로그인 폼에서 넘어오는 데이터 받기
+		String id = "";
+		MemberDAO mdao = memberService.getJoinOut(id);
+		
+		if(mdao != null) {
+			mdao.setId(vo.getId());
+			session.setAttribute("mdao",mdao);
+			result_page = "admin/member_list";
+		} else {
+			result_page = "login/loginFail";
+		}
+
+		return result_page;
+	}*/
 	
 
 	@RequestMapping(value="/admin_booked.do", method=RequestMethod.GET)

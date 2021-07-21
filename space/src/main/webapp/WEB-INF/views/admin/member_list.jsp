@@ -122,7 +122,14 @@
 					<td><a href="member_content.do?name=${vo.name}&rno=${vo.rno }">${vo.name }</a></td>
 					<td>${vo.id }</td>
 					<td>${vo.hp }</td>
+					<c:choose>
+					<c:when test="${vo.choiceout==0 }">
 					<td><button type="button" disabled>승인</button></td>
+					</c:when>
+					<c:otherwise>
+					<td><button type="button" >승인</button></td>
+					</c:otherwise>
+					</c:choose>
 				</tr>
 				</c:forEach>
 			</table>
