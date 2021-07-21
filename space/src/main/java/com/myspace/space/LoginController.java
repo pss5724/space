@@ -1,6 +1,10 @@
 package com.myspace.space;
 
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +34,8 @@ public class LoginController {
 	/**
 	 * login_check.do: 로그인 처리
 	 * **/
-	@RequestMapping(value="/login_check.do", method = RequestMethod.POST)
+	/**가입승인이 안되도 로그인이 되지만 login.jsp쪽에서 jquery를 사용해서 강제로 로그아웃시킴(logout.do 이용): 이 로직을 사용하려면 login.jsp 에서 jquery주석처리 된 부분 주석 풀기!**/
+	/*@RequestMapping(value="/login_check.do", method = RequestMethod.POST)
 	public String login_check(MemberVO vo, HttpSession session) {
 		
 		//로그인 폼에서 넘어오는 데이터 받기
@@ -40,18 +45,41 @@ public class LoginController {
 		if(svo != null) {
 			svo.setId(vo.getId());
 			session.setAttribute("svo",svo);
-			//result_page = "index";   -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
+			//result_page = "index";  // -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
 			
 			if(svo.getChoicein() == 0) {
 				result_page = "login/login";
 			}else {
-			result_page = "index";
+				result_page = "index";
 			}
 			
 		} else {
 			result_page = "login/loginFail";
 		}
 
+		return result_page;
+	}*/
+	/**가입승인이 안되면 아에 로그인이 안되게 처리하고 controller안에서 alert(경고창)을 띄우게 함**/
+	@RequestMapping(value="/login_check.do", method = RequestMethod.POST)
+	public String login_check(MemberVO vo, HttpSession session,  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//로그인 폼에서 넘어오는 데이터 받기
+		String result_page = "";
+		SessionVO svo = memberService.getLoginResult(vo);
+		
+		if(svo.getChoicein() == 1) {
+			svo.setId(vo.getId());
+			session.setAttribute("svo",svo);
+			result_page = "index";  // -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
+			
+		} else {
+			result_page = "login/login";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+            out.println("<script>alert('승인 대기 중입니다.'); history.go(-1);</script>");  //history.go(-1); :한단계 뒤로가기(id는 내가 쳤던것을 그대로 출력) //생략할 시 그냥 login.jsp 띄워짐
+            out.flush();  //안하면 알람 안뜸
+		}
+		
 		return result_page;
 	}
 	

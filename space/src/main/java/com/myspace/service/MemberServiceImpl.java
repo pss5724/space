@@ -14,7 +14,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
-
 	
 	 /* @Override public MemberVO getContent(String id) { return
 	  memberDAO.getContent(id); }*/
@@ -31,17 +30,6 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("로그인 됌!(로그인 처리과정)");
 		return memberDAO.getLoginResult(vo);
 	}
-	
-	/*@Override
-	public SessionVO getLoginResult(MemberVO vo) {
-		int value = memberVO.getChoicein();
-		if(value == 1) {
-			System.out.println("로그인 됌!(로그인 처리과정)");
-			return memberDAO.getLoginResult(vo);
-		}else {
-			System.out.println("로그인 승인대기");
-		}
-	}*/
 
 	@Override
 	public boolean getInsertResult0(MemberVO vo) {

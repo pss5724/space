@@ -28,10 +28,11 @@
 		});
 
 		//if ("${svo}" != null) {
-			if ("${svo.choicein}" == "0") {
+			/*if ("${svo.choicein}" == "0") {
 				alert("승인 대기 중입니다.");
-				location.replace('logout.do');   //페이지 이동
-		}
+				//location.replace('logout.do');   //페이지 이동
+		}*/
+		
 	});
 </script>
 <body>
