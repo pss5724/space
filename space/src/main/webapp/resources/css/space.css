@@ -191,6 +191,12 @@ header{
 	top:2px;
 	left:0;
 }
+.gnb_etc li.hi {
+	display:block;
+	font-size:14px;
+	line-height:14px;
+	color:#ffffff;
+}
 .gnb_etc li a {
 	display:block;
 	font-size:14px;
@@ -199,7 +205,7 @@ header{
 #header .gnb_etc li a {
 	color:#ffffff;
 }
-#header .gnb_etc.on li a ,#header .logo.on{
+#header .gnb_etc.on li a, #header .gnb_etc.on li.hi ,#header .logo.on{
 	color:#252626;
 }
 

@@ -137,6 +137,7 @@ $(function(){
 			<c:choose>
 				<c:when test="${sessionScope.svo != null }">
 				<ul class="gnb_etc">
+					<li class="hi">${sessionScope.svo.name }님 환영합니다</li>
 					<li><a href="http://localhost:9000/space/logout.do">로그아웃</a></li>
 					<c:if test="${sessionScope.svo.position==0 }">
 					<li><a href="http://localhost:9000/space/mypage.do">나의 회의실</a></li>
@@ -148,9 +149,7 @@ $(function(){
 					<li><a href="http://localhost:9000/space/admin.do">Admin</a></li>
 					</c:if>
 				</ul >	
-				<ul class="gnb_etc hi">
-					<li><a href="#">안녕하세요 ${sessionScope.svo.name }님 환영합니다</a></li>
-				</ul>
+					
 				</c:when>
 				<c:otherwise>
 				<ul class="gnb_etc">
