@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.review">
+
+	<select id="search" parameterType="map" resultType="com.myspace.vo.ReservationVO">
+		select rid,branch_name,room_name,rsid,reserve_date,checkout_time 
+  		 from( select rid,branch_name,room_name,rsid,to_char(reserve_date,'yyyy-mm-dd') reserve_date,checkout_time
+		 from space_reserve where rsid=#{rsid} and email=#{id})
+	</select>
+	
+	<select id="content" parameterType="map" resultType="com.myspace.vo.ReviewVO">
+		select id,rdate,rid,room_name,rsid, rcontent,locationlv, facilitylv, pricelv, servicelv, totallv
+		from (select id,to_char(rdate,'yyyy-mm-dd') rdate, rid, room_name,rsid,rcontent, locationlv, facilitylv, pricelv,servicelv, totallv
+		from space_review where rsid=#{rsid} and id=#{id})
+		
+	</select>
+	
+	<insert id="insert" parameterType="com.myspace.vo.ReviewVO">
+		insert into space_review values(#{id},sysdate,#{rid},#{room_name},#{rsid},#{locationlv},#{facilitylv},#{pricelv},#{servicelv},#{rcontent},#{totallv})
+	</insert>
+	
+	<update id="update" parameterType="com.myspace.vo.ReviewVO">
+		update space_review set locationlv=#{locationlv}, facilitylv=#{facilitylv}, pricelv=#{pricelv}, servicelv=#{servicelv}, totallv=#{totallv}, rcontent=#{rcontent}
+		where id=#{id} and rsid=#{rsid} 
+	</update>
+	
+	<delete id="delete" parameterType="map">
+		delete from space_review where id=#{id} and rsid=#{rsid}
+	</delete>
+	
+</mapper>
