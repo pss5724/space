@@ -1,10 +1,10 @@
 /********** list **********/
 /********** list **********/
-/**
+/** 
  * 검색 상단(검색바)
  */
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
-* {
+.container * {
 	font-family: 'Nanum Gothic', sans-serif;
 }
 body {
@@ -59,7 +59,7 @@ body {
 	background-color: white;
 	box-shadow: 5px 5px 7px 0 rgba(0, 0, 0, 0.4);
 }
-.search_box_list>li:nth-child(4) {
+.search_box_list .btn_search_style {
 	padding: 0;
 	height: 63px;
 }
@@ -133,7 +133,7 @@ body {
 .location_list, .location_list ul {
 	list-style-type: none;
 	padding: 0;
-	margin-top: 15px;
+	margin-top: 12px;
 }
 .location_list ul {
 	margin-top: 10px;
@@ -142,9 +142,9 @@ body {
 	float: left;
 	display: inline-block;
 	margin-left: 3px;
-	width: 200px;
+	width: 140px;
 	height: 220px;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .main_location {
 	font-weight: bold;
@@ -163,7 +163,7 @@ body {
 
 .type {
 	padding-top: 0;
-	height: 260px;
+	height: 180px;
 }
 div.type ul {
 	list-style-type: none;
@@ -439,7 +439,7 @@ li.room_info a, li.room_info a:active {
 	margin-top: 0;
 }
 .info_left {
-	width: 300px;
+	width: 350px;
 	text-align: left;
 }
 .info_left ul {
@@ -450,7 +450,7 @@ li.room_info a, li.room_info a:active {
 .info_left ul li {
 	display: inline-block;
 	padding: 7px 15px;
-	margin: 3px 0;
+	margin: 3px 2px;
 	border: 1px solid darkgray;
 	border-radius: 30px;
 	font-size: 12px;
@@ -473,7 +473,7 @@ li.room_info a, li.room_info a:active {
 	margin-bottom: 5px;
 }
 .info_right {
-	width: calc(100% - 300px);
+	width: calc(100% - 350px);
 	text-align: right;
 }
 .room_star {
@@ -499,6 +499,7 @@ li.room_info a, li.room_info a:active {
 	color: white;
 	font-size: 12px;
 	border-radius: 30px;
+	margin-left: 3px;
 }
 .payment_online {
 	background-color: crimson;
@@ -787,7 +788,7 @@ button.exit{
 
 .map_room_info {
 	width: 500px;
-	height: 200px;
+	height: 170px;
 	box-sizing: border-box;
 }
 .map_room_info div {
@@ -796,7 +797,7 @@ button.exit{
 	box-sizing: border-box;
 }
 .map_room_img {
-	width: 200px;
+	width: 170px;
 	height: 100%;
 	overflow: hidden;
 }
@@ -806,8 +807,8 @@ button.exit{
 	object-fit: cover;
 }
 .map_room_detail {
-	padding: 10px 15px;
-	width: calc(100% - 200px);
+	padding-left: 15px;
+	width: calc(100% - 170px);
 	height: 100%;
 }
 .map_room_detail p {
@@ -823,10 +824,16 @@ button.exit{
 	font-weight: bold;
 	color: royalblue;
 }
+.map_room_addr {
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .map_room_price {
 	font-weight: bold;
 	font-size: 17px;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 .map_room_detail a {
 	display: inline-block;
@@ -837,6 +844,7 @@ button.exit{
 	border-radius: 20px;
 	font-size: 13px;
 	margin-left: 50px;
+	float: right;
 }
 
 
