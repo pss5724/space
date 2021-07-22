@@ -13,13 +13,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.InquiryService;
+import com.myspace.service.ReviewService;
 import com.myspace.vo.InquiryVO;
+import com.myspace.vo.ReservationVO;
+import com.myspace.vo.ReviewVO;
+import com.myspace.vo.RoomVO;
 
 @Controller
 public class MypageController {
 
 	@Autowired
 	private InquiryService inquiryService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping(value="/mypage_inquiry_write.do", method=RequestMethod.GET)
 	public String mypage_inquiry_write() {
@@ -93,16 +100,103 @@ public class MypageController {
 	public String mypage() {
 		return "mypage/mypage";
 	}
+	
 
 	@RequestMapping(value="/mypage_inquiry.do", method=RequestMethod.GET)
-	public ModelAndView mypage_inquiry() {
+	public ModelAndView mypage_inquiry(String id) {
 		ModelAndView mv = new ModelAndView();
-		
 		ArrayList<InquiryVO> list = inquiryService.getList();
 		
 		mv.setViewName("mypage/mypage_inquiry");
 		mv.addObject("list",list);
 		
+		
+		
+		return mv;
+	}
+	
+
+	@RequestMapping(value="/mypage_review.do", method=RequestMethod.GET)
+	public String mypage_review() {
+		return "mypage/mypage_review";
+	}
+	
+	@RequestMapping(value="/mypage_review_write.do", method=RequestMethod.GET)
+	public ModelAndView mypage_review_write(String id, String rsid) {
+		ModelAndView mv = new ModelAndView();
+		ReservationVO revo = reviewService.getSearchResult(id,rsid);
+		mv.setViewName("mypage/mypage_review_write");
+		mv.addObject("revo", revo);
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_review_update.do", method=RequestMethod.GET)
+	public ModelAndView mypage_review_update(String id, String rsid) {
+		ModelAndView mv = new ModelAndView();
+		ReviewVO vo = reviewService.getReviewContent(id,rsid);
+		mv.setViewName("mypage/mypage_review_update");
+		mv.addObject("vo", vo);
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_review_update_proc.do", method=RequestMethod.GET)
+	public ModelAndView mypage_review_update_proc(ReviewVO vo) {
+		ModelAndView mv = new ModelAndView();
+		boolean result = reviewService.getUpdateResult(vo);
+	  	
+	  	
+	  	if(result){
+	  		mv.setViewName("redirect:/mypage_review.do");
+	  	}
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_review_write_proc.do", method=RequestMethod.GET)
+	public ModelAndView mypage_review_write_proc(ReviewVO vo) {
+		ModelAndView mv = new ModelAndView();
+		boolean result = reviewService.getInsertResult(vo);
+	  	
+	  	
+	  	if(result){
+	  		mv.setViewName("redirect:/mypage_review.do");
+	  	}
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_review_search_proc.do", method=RequestMethod.GET)
+	public ModelAndView mypage_review_search_proc(String id, String rsid) {
+		ModelAndView mv = new ModelAndView();
+		ReservationVO revo = reviewService.getSearchResult(id,rsid);
+		if(revo != null) {
+			ReviewVO vo = reviewService.getReviewContent(id,rsid);
+			mv.setViewName("mypage/mypage_review_content");
+			mv.addObject("vo",vo);
+			mv.addObject("revo",revo);
+			mv.addObject("rsid",rsid);
+			
+		}else {
+			mv.setViewName("redirect:/mypage_review.do");
+		}
+		
+		
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/mypage_review_delete_proc.do", method=RequestMethod.GET)
+	public ModelAndView mypage_review_delete_proc(String id, String rsid) {
+		ModelAndView mv = new ModelAndView();
+		boolean result = reviewService.getDeleteResult(id, rsid);
+	  	
+	  	
+	  	if(result){
+	  		mv.setViewName("redirect:/mypage_review.do");
+	  	}
 		
 		
 		return mv;
