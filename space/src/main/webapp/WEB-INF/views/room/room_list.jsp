@@ -2,10 +2,12 @@
     pageEncoding="EUC-KR"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"
+    prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/space/css/room.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
@@ -15,68 +17,18 @@
 <script src="http://localhost:9000/space/js/room.js"></script>
 <script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
 <script src="http://localhost:9000/space/js/jquery-ui.js"></script>
-
 <script>
-$(document).ready(function() {
+$(document).ready(function() {	
 
-	/* 날짜 선택 */
- 	$('*[name=date]').appendDtpicker({
-		locale:"ko",
-		futureOnly: true,
-		minuteInterval: 30,
-		dateFormat:"YYYY.MM.DD hh:mm"
-    });
-   
-	/* 지역 선택 */
-	$(".main_location").click(function() {
-		$("#search_location").val($(this).text());	
-		$(".location").removeClass("on");
-	});
-	
-	$(".sub_location").click(function() {
-		var location = $(this).parent().parent().siblings("span").text() + " > " + $(this).text();
-		$("#search_location").val(location);
-		$(".location").removeClass("on");
-	});
-	
-	/* 타입 및 인원수 선택 */	
-	$(".up").click(function() {
-		var capacity = $(this).siblings(".room_capacity").val();
-		capacity = Number(capacity);
-		
-		$(this).siblings(".room_capacity").val(capacity+5); //5씩 증가
-		$(this).siblings(".down").addClass("active");
-		$(this).parent().parent().siblings().find("input").val("0"); //다른 옵션 초기화
-		$(this).parent().parent().siblings().find(".down").removeClass("active");
-		
-		var type = $(this).parent().siblings("span").text(); //선택한 타입
-		$("#search_type").val(type + " " + $(this).siblings(".room_capacity").val());
-	});
-	
-	$(".down").click(function() {
-		var capacity = $(this).siblings(".room_capacity").val();
-		capacity = Number(capacity);
-		var type = $(this).parent().siblings("span").text();
-		
-		if(capacity > 5) {
-			$(this).siblings(".room_capacity").val(capacity-5);
-			$("#search_type").val(type + " " + $(this).siblings(".room_capacity").val());
-		} else if(capacity > 0 && capacity <= 5) {
-			$(this).siblings(".room_capacity").val(capacity-5);
-			$("#search_type").val("");
-			$(this).removeClass("active");
-			
-		}
-	});
 	
 	/* 검색버튼 클릭 */
 	$(".btn_search").click(function() {
+		getData();
 		getList($("#pay1").text(), $("#pay2").text());
 	});
 
 	/* 옵션 버튼 선택 */
 	var option_list = new Array();
-	//var option_list = ["default"];  //ajax에서 배열을 받아야해서 기본 값 하나 삽입
 	
 	$(".search_option button").click(function() {
 		$(this).toggleClass("on");
@@ -87,21 +39,9 @@ $(document).ready(function() {
 			var idx = option_list.indexOf($(this).val());
 			option_list.splice(idx, 1);
 		}
+		getData();
 		getList($("#pay1").text(), $("#pay2").text());
 		
-	});
-	
-	/* 옵션 검색 더보기 */
-	$(".btn_more").click(function() {
-		$(this).siblings("ul").toggleClass("more");
-		
-		if($(this).siblings("ul").hasClass("more")) {
-			$(this).children("span").text("접기");
-			$(this).children("img").attr("src", "http://localhost:9000/space/images/btn_less_img.png");
-		} else {
-			$(this).children("span").text("더보기");
-			$(this).children("img").attr("src", "http://localhost:9000/space/images/btn_more_img.png");
-		}
 	});
 	
 	/* 옵션 검색 평점 체크 */
@@ -113,11 +53,12 @@ $(document).ready(function() {
 
 		$("#grade").val("1점 ~ " + $("input[name=star]:checked").length + "점");
 		
+		getData();
 		getList($("#pay1").text(), $("#pay2").text());
 	});	
 
-	var order = "";
 	/* 정렬 선택 */
+	var order = "";
 	$(".sort_type li").click(function() {
 		$(this).siblings("li").removeClass("on");
 		$(this).toggleClass("on");
@@ -127,53 +68,60 @@ $(document).ready(function() {
 		} else {
 			order = "";
 		}
+		getData();
 		getList($("#pay1").text(), $("#pay2").text());
 	});
 
-	/* 지도 모달창 */
-	$("#map").click(function(){
-		$("#modal").show();
-		$("#overlay").css({"opacity":"1","pointer-events":"auto"});
-	});
-	$("#exit").click(function(){
-		$("#modal").hide();
-		$("#overlay").css({"opacity":"0","pointer-events":"none"});
+ 	$(".ui-slider-handle, ui-slider-range, #slider-range").on("mouseup mousedown click mouseleave mouseenter", function(){
+ 		getData();
+		getList($("#pay1").text(), $("#pay2").text());
 	});
 	
-	/* 금액 콤마 표시하기 */
-	function number_format(numstr) {
-		var numstr = String(numstr);
-		var re0 = /(\d+)(\d{3})($|\..*)/;
-		if (re0.test(numstr)) {
-			return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
+	/* 지역선택 */
+	var addr_list = new Array();
+	<c:forEach items="${addr_list}" var="addr">
+		addr_list.push("${addr}");
+	</c:forEach>
+	
+	var seoul="", gyeonggi="", incheon="";
+	for(var i in addr_list) {
+		if(addr_list[i].indexOf("서울") != -1) {
+			$(".seoul li").remove();
+			var list = addr_list[i].split(" ");
+			seoul += "<li><button class='sub_location'>" + list[1] + "</button></li>";
+		} else if(addr_list[i].indexOf("경기") != -1){
+			$(".gyeonggi li").remove();
+			var list = addr_list[i].split(" ");
+			gyeonggi += "<li><button class='sub_location'>" + list[1] + "</button></li>";
 		} else {
-			return numstr;
+			$(".incheon li").remove();
+			var list = addr_list[i].split(" ");
+			incheon += "<li><button class='sub_location'>" + list[1] + "</button></li>";
 		}
 	}
 	
-	/* 금액 슬라이더 */
-	$("#slider-range").slider({
-		range: true,
-		min: 0,
-		max: 1000000,
-		values: [ 0, 1000000 ],
-		slide: function( event, ui ) {
-			$("#pay1").html(number_format(ui.values[0]));
-			$("#pay2").html(number_format(ui.values[1]));
-		}
-	});
-	
- 	$("#pay1").html(number_format($( "#slider-range" ).slider( "values", 0 )));
-	$("#pay2").html(number_format($( "#slider-range" ).slider( "values", 1 )));
+	$(".seoul").append(seoul);
+	$(".gyeonggi").append(gyeonggi);
+	$(".incheon").append(incheon);
 
- 	$(".ui-slider-handle, ui-slider-range, #slider-range").on("mouseup mousedown click mouseleave mouseenter", function(){
-		getList($("#pay1").text(), $("#pay2").text());
+	$(".sub_location").click(function() {
+		var location =  $(this).parent().parent().siblings("span").text() + " > " + $(this).text();
+		$("#search_location").val(location);
+		$(".location").removeClass("open");
 	});
-	
 	
 	/* 넘겨줄 데이터 정제 */
-	var location1, location2, date, time, type, capacity;
-	var stars;
+	var location1 = "<c:out value='${location1}'/>";
+	var location2 = "<c:out value='${location2}'/>";
+	
+	if(location2 != "") {
+		$("#search_location").val(location1+" > "+location2);
+	} else {
+		$("#search_location").val(location1);
+	}
+	
+	var date="", time=0, type="", capacity=0, stars=5;
+	$("#search_date").val("");
 	
 	function getData() {	
 		if($("#search_location").val()!="") {
@@ -225,8 +173,6 @@ $(document).ready(function() {
 
 	/* 리스트 출력 function */
  	function getList(min, max) {
-		getData();
-		
 		var params = {
 				"location1": location1,
 				"location2": location2,
@@ -338,10 +284,9 @@ $(document).ready(function() {
 			}//success
 		});//ajax
 	} //getList function
-
+	
 });
 </script>
-
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -364,35 +309,19 @@ $(document).ready(function() {
 								<ul class="location_list">
 									<li>
 										<span class="main_location">서울</span>
-										<ul>
-											<li><button class="sub_location">강남구</button></li>
-											<li><button class="sub_location">강동구</button></li>
-											<li><button class="sub_location">강서구</button></li>
-											<li><button class="sub_location">광진구</button></li>
-											<li><button class="sub_location">구로구</button></li>
-											<li><button class="sub_location">금천구</button></li>
-											<li><button class="sub_location">동작구</button></li>
-											<li><button class="sub_location">마포구</button></li>
-											<li><button class="sub_location">서대문구</button></li>
-											<li><button class="sub_location">서초구</button></li>
-											<li><button class="sub_location">성동구</button></li>
-											<li><button class="sub_location">송파구</button></li>
-											<li><button class="sub_location">영등포구</button></li>
-											<li><button class="sub_location">용산구</button></li>
-											<li><button class="sub_location">종로구</button></li>
-											<li><button class="sub_location">중구</button></li>
+										<ul class="seoul">
 										</ul>
 									</li>
 									<li>
 										<span class="main_location">경기</span>
-										<ul>
-											<li><button class="sub_location">고양시</button></li>
-											<li><button class="sub_location">광명시</button></li>
-											<li><button class="sub_location">성남시</button></li>
-											<li><button class="sub_location">안산시</button></li>
-											<li><button class="sub_location">안양시</button></li>
+										<ul class="gyeonggi">
 										</ul>
-									</li>																
+									</li>	
+									<li>
+										<span class="main_location">인천</span>
+										<ul class="incheon">										
+										</ul>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -448,7 +377,7 @@ $(document).ready(function() {
 							</ul>
 						</div>
 					</li>
-					<li>
+					<li class="btn_search_style">
 						<button type="button" class="btn_search">검색하기</button>
 					</li>
 				</ul>	

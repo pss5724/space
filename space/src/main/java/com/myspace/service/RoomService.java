@@ -24,12 +24,14 @@ public interface RoomService {
     String getFile(String rid, String rsfile);
     String getRsid(String rid, String reserve_date, String checkin_time, String checkout_time, String name, String hp, String corp_name);
 	
-	// 새미
-	RoomVO getRoomContent(String rid);
-	OptionVO getRoomOption(String rid);
-	ServiceVO getService(String rid);
-	ArrayList<ReservationVO> getAvailableTime(String rid);
-	boolean getReserveResult(ReservationVO vo);
-	ReservationVO getReservation(String rsid);
-	
+    ArrayList<Object> getAddrList();
+
+    // 새미
+    RoomVO getRoomContent(String rid);
+    OptionVO getRoomOption(String rid);
+    ServiceVO getService(String rid);
+    ArrayList<ReservationVO> getAvailableTime(String rid);
+    boolean getReserveResult(ReservationVO vo);
+    ReservationVO getReservation(String rsid);
+    ArrayList<RoomVO> getRoomList();
 }

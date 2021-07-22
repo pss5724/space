@@ -51,22 +51,22 @@ public class RoomController {
             return result;
     }
     
-    /* 회의실 목록 */ //삭제예정
+    /* 회의실 목록 */
     @RequestMapping(value="/room_list.do", method=RequestMethod.GET)
-    public ModelAndView room_list() {
+    public ModelAndView room_list(String location1, String location2) {
             ModelAndView mv = new ModelAndView();
             
-            //ArrayList<RoomVO> rlist = roomService.getList();
-            //ArrayList<OptionVO> olist = roomService.getOptionList();
-            
+            ArrayList<Object> addr_list = roomService.getAddrList();
+
             mv.setViewName("room/room_list");
-            //mv.addObject("rlist", rlist);
-            //mv.addObject("olist", olist);
+            mv.addObject("location1", location1);
+            mv.addObject("location2", location2);
+            mv.addObject("addr_list", addr_list);
             
             return mv;
     }
 
-    /* 회의실 리스트 가져오기 */
+    /* 회의실 목록(ajax) */
     @ResponseBody
     @RequestMapping(value="/get_list.do", method=RequestMethod.POST)
     public Map<String, Object> getList(String location1, String location2, String date, double time, String type, int capacity, int min, int max, int stars, 
@@ -83,7 +83,7 @@ public class RoomController {
                             rid_list.add(rvo.getRid());
                     }
                     olist = roomService.getOptionList(rid_list, order);        
-                    for(int i=0; i<rlist.size(); i++) {
+                    for(int i=0; i<rlist.size(); i++) {  //////////////순서 확인용 // 지우기
                             System.out.println((i+1) + ">>" +rlist.get(i).getRid() + "///" + olist.get(i).getRid());
                     }
             }
@@ -118,7 +118,7 @@ public class RoomController {
                     rvo.setRsfile3(uuid + "_" + rvo.getFile3().getOriginalFilename());
             }
             
-            rvo.setId("test");  //세션으로 받게 되면 지우기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!######################################################
+            //rvo.setId("test");  //세션으로 받게 되면 지우기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!######################################################
             boolean room_result = roomService.getInsertResult(rvo);  //회의실 테이블 insert
             
             if(room_result) {
@@ -161,9 +161,9 @@ public class RoomController {
             ServiceVO svo = roomService.getService(rid);
             
             mv.setViewName("corppage/corppage_update");
-    mv.addObject("rvo", rvo);
-    mv.addObject("ovo", ovo);
-    mv.addObject("svo", svo);
+            mv.addObject("rvo", rvo);
+            mv.addObject("ovo", ovo);
+            mv.addObject("svo", svo);
             
     return mv;
     }
@@ -304,7 +304,7 @@ public class RoomController {
 
 	
     
-  //새미
+//새미
     
     /* 회의실 상세 */
     @RequestMapping(value="/room_content.do", method=RequestMethod.GET)
@@ -315,10 +315,12 @@ public class RoomController {
             OptionVO ovo = roomService.getRoomOption(rid);
             
             ArrayList<ReservationVO> list = roomService.getAvailableTime(rid);
+            ArrayList<RoomVO> roomlist = roomService.getRoomList();
             mv.setViewName("room/room_content");
             mv.addObject("vo", vo);
             mv.addObject("ovo", ovo);
             mv.addObject("list", list);
+            mv.addObject("roomlist", roomlist);
             
             return mv;
     }
@@ -347,16 +349,16 @@ public class RoomController {
             ModelAndView mv = new ModelAndView();
             boolean result = roomService.getReserveResult(vo);
 
-        	String rsid = roomService.getRsid(vo.getRid(), vo.getReserve_date(), Double.toString(vo.getCheckin_time()), 
-        								Double.toString(vo.getCheckout_time()), vo.getName(), vo.getHp(), vo.getCorp_name());
-        	ReservationVO rsvo = roomService.getReservation(rsid);
+                String rsid = roomService.getRsid(vo.getRid(), vo.getReserve_date(), Double.toString(vo.getCheckin_time()), 
+                                                                        Double.toString(vo.getCheckout_time()), vo.getName(), vo.getHp(), vo.getCorp_name());
+                ReservationVO rsvo = roomService.getReservation(rsid);
 
             if(result) {
-            	if(vo.getPay_type().equals("온라인")) {
+                    if(vo.getPay_type().equals("온라인")) {
                     mv.setViewName("redirect:/room_payment.do?rsid="+rsvo.getRsid());
-            	} else {
-            		mv.setViewName("redirect:/room_reserve_confirm.do?rsid="+rsvo.getRsid());
-            	}
+                    } else {
+                            mv.setViewName("redirect:/room_reserve_confirm.do?rsid="+rsvo.getRsid());
+                    }
             }
             
             return mv;
@@ -369,8 +371,8 @@ public class RoomController {
             
             boolean result = roomService.getReserveResult(vo);
             
-        	String rsid = roomService.getRsid(vo.getRid(), vo.getReserve_date(), Double.toString(vo.getCheckin_time()));
-        	ReservationVO rsvo = roomService.getReservation(rsid);
+                String rsid = roomService.getRsid(vo.getRid(), vo.getReserve_date(), Double.toString(vo.getCheckin_time()));
+                ReservationVO rsvo = roomService.getReservation(rsid);
                         
             if(result) {
                     mv.setViewName("redirect:/room_reserve_confirm.do?="+rsvo.getRsid());

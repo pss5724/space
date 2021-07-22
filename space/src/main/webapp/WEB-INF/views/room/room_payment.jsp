@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:choose>
+	<c:when test="${sessionScope.svo.id == rsvo.email}">
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,3 +169,11 @@ $(document).ready(function() {
 	
 </body>
 </html>
+    </c:when>
+    <c:otherwise>
+    	<script>
+    	alert("잘못된 접근입니다.");
+    	location.href = "http://localhost:9000/space/index.do";
+    	</script>
+    </c:otherwise>
+</c:choose>

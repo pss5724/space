@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:choose>
+	<c:when test="${sessionScope.svo != null && sessionScope.svo.position == 1}">
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,7 +217,7 @@ tr.form_explanation {
 		});
 
 		$("#insert_room").click(function() {
-
+			var $addr_val = $("#address").val();
  			if ($("#branch_name").val() == "") {
 				alert("지점명을 입력해주세요.");
 				$("#branch_name").focus();
@@ -223,8 +226,12 @@ tr.form_explanation {
 				alert("회의실명을 입력해주세요.");
 				$("#room_name").focus();
 				return false;
-			} else if ($("#address").val() == "") {
+			} else if ($addr_val == "") {
 				alert("주소를 입력해주세요.");
+				$("#address").focus();
+				return false;
+			} else if ($addr_val.indexOf("서울") == -1 && $addr_val.indexOf("경기") == -1 && $addr_val.indexOf("인천") == -1 ) {
+				alert("서울/경기 지역의 회의실만 등록할 수 있습니다.");
 				$("#address").focus();
 				return false;
 			} else if ($("#intro").val() == "") {
@@ -348,6 +355,7 @@ tr.form_explanation {
 
 				
 				<form id="insert_corppage" action="room_insert_proc.do" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="id" value="${sessionScope.svo.id}">
 					<table class="insert_corppage_table">
 						<tr class="form_explanation">
 							<td class="form_explanation" colspan=2>*은 필수 입력사항입니다.</td>
@@ -355,15 +363,13 @@ tr.form_explanation {
 						<tr>
 							<th scope="row">지점명 *</th>
 							<td>
-								<input type="text" name="branch_name" id="branch_name"
-								class="input_subject" title="지점명" required>
+								<input type="text" name="branch_name" id="branch_name" class="input_subject" title="지점명" required>
 							</td>
 						</tr>
 						<tr>
 							<th>회의실명 *</th>
 							<td>
-								<input type="text" name="room_name" id="room_name"
-								class="input_subject" title="회의실명">
+								<input type="text" name="room_name" id="room_name" class="input_subject" title="회의실명">
 							</td>
 						</tr>
 						<tr>
@@ -383,24 +389,21 @@ tr.form_explanation {
 						<tr>
 							<th>영업시간 *</th>
 							<td>
-								<input type="text" id="time1" name="opening_time"
-								title="시작시간"> ~ <input type="text" id="time2"
-								name="closing_time" title="종료시간">
+								<input type="text" id="time1" name="opening_time" title="시작시간" autocomplete="off"> ~ 
+								<input type="text" id="time2" name="closing_time" title="종료시간" autocomplete="off">
 							</td>
 						</tr>
 						<tr>
 							<th>대관료(시간당) *</th>
 							<td>
-								<input type="number" id="charge" name="charge"
-								title="대관료" class="input_subject"
+								<input type="number" id="charge" name="charge" title="대관료" class="input_subject"
 								placeholder="시간당 대관료를 숫자로 적어주세요. 예) 75000">
 							</td>
 						</tr>
 						<tr>
 							<th>휴무일 *</th>
 							<td>
-								<input type="text" name="closed_day" id="closed_day"
-								class="input_subject" title="휴무일">
+								<input type="text" name="closed_day" id="closed_day" class="input_subject" title="휴무일">
 							</td>
 						</tr>
 						<tr>
@@ -560,3 +563,17 @@ tr.form_explanation {
 
 </body>
 </html>
+    </c:when>
+    <c:when test="${sessionScope.svo != null && sessionScope.svo.position == 0}">
+        <script>
+    	alert("기업회원만 이용 가능합니다.");
+    	location.href = "http://localhost:9000/space/index.do";
+    	</script>
+    </c:when>
+    <c:otherwise>
+    	<script>
+    	alert("로그인 후 이용 가능합니다.");
+    	location.href = "http://localhost:9000/space/login.do";
+    	</script>
+    </c:otherwise>
+</c:choose>

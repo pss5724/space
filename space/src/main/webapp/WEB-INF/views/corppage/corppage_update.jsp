@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:choose>
+	<c:when test="${sessionScope.svo != null && sessionScope.svo.id == rvo.id}">
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,6 +213,7 @@ tr.form_explanation {
 		});
 
 		$("#update_room").click(function() {
+			var $addr_val = $("#address").val();
  			if ($("#branch_name").val() == "") {
 				alert("지점명을 입력해주세요.");
 				$("#branch_name").focus();
@@ -219,8 +222,12 @@ tr.form_explanation {
 				alert("회의실명을 입력해주세요.");
 				$("#room_name").focus();
 				return false;
-			} else if ($("#address").val() == "") {
+			} else if ($addr_val == "") {
 				alert("주소를 입력해주세요.");
+				$("#address").focus();
+				return false;
+			} else if ($addr_val.indexOf("서울") == -1 && $addr_val.indexOf("경기") == -1 && $addr_val.indexOf("인천") == -1 ) {
+				alert("서울/경기 지역의 회의실만 등록할 수 있습니다.");
 				$("#address").focus();
 				return false;
 			} else if ($("#intro").val() == "") {
@@ -433,7 +440,7 @@ tr.form_explanation {
 				</div>
 				
 				<form id="update_corppage" action="room_update_proc.do" method="POST" enctype="multipart/form-data">
-					<input type="hidden" name="rid" value="${rvo.rid }">
+					<input type="hidden" name="rid" value="${rvo.rid}">
 					<table class="insert_corppage_table">
 						<tr class="form_explanation">
 							<td class="form_explanation" colspan=2>*은 필수 입력사항입니다.</td>
@@ -468,8 +475,8 @@ tr.form_explanation {
 						<tr>
 							<th>영업시간 *</th>
 							<td>
-								<input type="text" id="time1" name="opening_time" title="시작시간"> ~ 
-								<input type="text" id="time2" name="closing_time" title="종료시간">
+								<input type="text" id="time1" name="opening_time" title="시작시간" autocomplete="off"> ~ 
+								<input type="text" id="time2" name="closing_time" title="종료시간" autocomplete="off">
 							</td>
 						</tr>
 						<tr>
@@ -658,3 +665,11 @@ tr.form_explanation {
 
 </body>
 </html>
+    </c:when>
+    <c:otherwise>
+    	<script>
+    	alert("잘못된 접근입니다.");
+    	location.href = "http://localhost:9000/space/index.do";
+    	</script>
+    </c:otherwise>
+</c:choose>

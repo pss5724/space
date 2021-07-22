@@ -115,14 +115,14 @@ $(function(){
 				<li class="depth1"><h3><a href="http://localhost:9000/space/room_list.do">회의실<span class="gnb_bar"></span></a></h3>
 				</li>
 				
-				<li class="depth1"><h3><a href="#">화상 회의실<span class="gnb_bar"></span></a></h3>
+<!-- 				<li class="depth1"><h3><a href="#">화상 회의실<span class="gnb_bar"></span></a></h3>
 					<ul class="depth2">
 						<li><h4><a href="#">화상 회의실 찾기</a></h4></li>
 						<li><h4><a href="#">화상 장비 렌탈</a></h4></li>
 						<li><h4><a href="#">영상녹화 스튜디오 찾기</a></h4></li>
 						<li><h4><a href="#">영상녹화 소프트웨어</a></h4></li>
 					</ul>
-				</li>
+				</li> -->
 				
 				<li class="depth1"><h3><a href="http://localhost:9000/space/notice.do?rpage=1">고객센터<span class="gnb_bar"></span></a></h3>
 					<ul class="depth2">

@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>½ºÆäÀÌ½º ´åÄÄ</title>
+<meta charset="UTF-8">
+<title>ìŠ¤í˜ì´ìŠ¤ ë‹·ì»´</title>
+<link rel="stylesheet" href="http://localhost:9000/space/css/room.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/carousel.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/jquery.simple-dtpicker.css">
@@ -18,7 +19,6 @@
 <script src="http://localhost:9000/space/js/jquery.countup.js"></script>
 <script src="http://localhost:9000/space/js/jquery.simple-dtpicker.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script type="text/javascript" src="slick/slick.min.js"></script>
 <script>
 </script>
 <style>
@@ -26,14 +26,17 @@ header {
 	height:0;
 	display:absolute;
 }
+body {
+	text-align: left;
+}
 .visual {
 	box-sizing:border-box;
 	position:relative;
 	width:100%;
 	min-width:1280px;
-	height:646px;
+	height:450px;
 	padding-top:182px;
-	background:url('http://localhost:9000/space/images/main_visual.png') no-repeat top center;
+	background:url('http://localhost:9000/space/images/main_visual.png') no-repeat center;
 }
 
 .visual_box {
@@ -43,6 +46,7 @@ header {
 
 .main_visual_text_box {
 	margin-bottom:30px;
+	margin-left: 120px;
 	font-size:0;
 }
 .main_visual_text_box_logo{
@@ -88,10 +92,6 @@ header {
 	padding:18px 15px;
 	font-size:0;
 }
-
-
-
-/* } */
 
 .main_tit_box{
 	position:relative;
@@ -278,7 +278,7 @@ header {
 	display:block;
 	width:29px;
 	height:41px;
-	background:url('http://localhost:9000/space/images/main_section06_content_box_tit_mark.png') no-repeat left top;
+	/*background:url('http://localhost:9000/space/images/main_section06_content_box_tit_mark.png') no-repeat left top;*/
 	position:absolute;
 	top:3px;
 	right:-34px;
@@ -378,195 +378,14 @@ header {
 .sub_section_videoconference01_contentbox_btn span {
 	opacity:0.9;
 }
-
-/* °Ë»ö »óÀÚ { */
-.search_box {
-	margin-left:-30px;
-	width: 1000px;
-}
-.search_box_title {
-	display: inline-block;
-	width: 1000px;
-	margin-top: 40px;
-	color: white;
-	font-weight: bold;
-	text-align: left;
-	text-indent: 30px;
-}
-.search_box_list {
-	list-style-type: none;
-	display: inline-block;
-	padding: 0 20px;
-	margin: 0 auto;
-}
-.search_box_list>li {
-	float: left;
-	display: inline-block;
-	position: relative;
-	width: 450px;
-	padding: 20px 10px;
-	margin: 5px;
-	text-align: center;
-	border-radius: 3px;
-	background-color: white;
-	box-shadow: 5px 5px 7px 0 rgba(0, 0, 0, 0.4);
-}
-.search_box_list>li:nth-child(4) {
-	padding: 0;
-	height: 63px;
-}
-.search_box_list label * {
-	float: left;
-	margin: 0 5px;
-}
-.search_box_list>li>label>input[type=text] {
-	padding: 3px 5px;
-	width: 350px;
-	border: none;
-	font-size: 15px;
-	background-color: white;
-}
-.search_box_list li input[type=text]:focus {
-	outline: none;
-}
-.search_box_list li input[type=text]:hover{
-	cursor: pointer;
-}
-.select_data {
-	display: none;
-	position: absolute;
-	top: 60px;
-	left: 0;
-	width: 450px;
-	height: 100px;
-	padding: 5px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	background-color: white;
-	z-index: 100;
-	box-shadow: 7px 7px 7px 0 rgba(0, 0, 0, 0.1);
-}
-.date {
-	height: 300px;
-}
-.open {
-	display: block;
-}
-.btn_search_reset {
-	background: none;
-	border: none;
-}
-.btn_search_reset:hover {
-	cursor: pointer;	
-}
-.btn_search {
-	border: none;
-	width: 100%;
-	height: 100%;
-	color: white;
-	font-size: 15px;
-	font-weight: bold;
-	text-indent: 20px;
-	background: url("http://localhost:9000/space/images/search_icon.png") lightsteelblue no-repeat 170px;
-	border-radius: 3px;
-}
-.btn_search:hover {
-	cursor: pointer;
-	background-color: steelblue;
-}
-.location {
-	height: 280px;
-}
-.location p {
-	margin: 0 0 10px 0;
-	padding-bottom: 10px;
-	border-bottom: 1px solid darkgray;
-}
-.location_list, .location_list ul {
-	list-style-type: none;
-	padding: 0;
-	margin-top: 15px;
-}
-.location_list ul {
-	margin-top: 10px;
-}
-.location_list>li {
-	float: left;
-	display: inline-block;
-	margin-left: 3px;
-	width: 200px;
-	height: 220px;
-	overflow-y: scroll;
-}
-.main_location {
-	font-weight: bold;
-	margin-bottom: 0;
-}
-.sub_location {
-	font-size: 15px;
-	padding: 7px 10px;
-	border: none;
-	background: none;
-}
-.main_location:hover, .sub_location:hover {
-	color: steelblue;
-	cursor: pointer;
+.star_img {
+	width: 90px;
 }
 
-.type {
-	padding-top: 0;
-	height: 260px;
-}
-div.type ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-span.room_type {
-	float: left;
-	padding: 7px;
-	margin-left: 50px;
-}
-input.room_capacity {
-	float: left;
-	padding: 7px;
-	width: 40px;
- 	border: none;
-	text-align: center;
-}
-.room_type_list li {
-	padding: 2px;
-}
-.room_type_list div {
-	margin-left: 100px;
-	display: inline-block;
-}
-.room_type_list button {
-	float: left;
-	width: 32px;
-	height: 32px;
-	border: none;
-}
-.room_type_list button:hover {
-	cursor: pointer;
-}
-button.down {
-	background-image: url("http://localhost:9000/space/images/down.png");
-	background-position: center;
-	background-repeat: no-repeat;
-}
-button.down.active {
-	background-image: url("http://localhost:9000/space/images/down_active.png");
-}
-button.up {
-	background-image: url("http://localhost:9000/space/images/up.png");
-	background-position: center;
-	background-repeat: no-repeat;
-}
-/* } °Ë»ö »óÀÚ */
+/* } ê²€ìƒ‰ ìƒì */
 </style>
 <script>
-//Animation È°¼ºÈ­
+//Animation í™œì„±í™”
 $(function(){
 	var initViewTop = $(window).scrollTop(),
 		initViewHeight = $(window).outerHeight(true),
@@ -604,7 +423,7 @@ $(function(){
 	});
 });
 
-//½½¶óÀÌ´õ ±â´É
+//ìŠ¬ë¼ì´ë” ê¸°ëŠ¥
 $(function(){
 	$('.main_section01_slide_box').slick({
 		dots:true,
@@ -666,7 +485,7 @@ $(function(){
 
 
 
-//¼ıÀÚ Ä«¿îÆ® 
+//ìˆ«ì ì¹´ìš´íŠ¸ 
 $(function(){
 		var count01 = $('#count01').html(),
 		count02 = $('#count02').html(),
@@ -689,7 +508,6 @@ $(function(){
 
 
 		if(((targetOffsetTop <= thisBottom) && (targetOffsetBottom >= thisTop))) {
-
 			count01Target.start();
 			count02Target.start();
 			count03Target.start();
@@ -697,80 +515,81 @@ $(function(){
 	});
 
 });
- // °Ë»ö ±â´É
+ // ê²€ìƒ‰ ê¸°ëŠ¥
  $(document).ready(function() {
 		$("html").click(function(e) { 
-			if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data *") && !$(e.target).is("label input") 
-					&& !$(e.target).is(".before-month") && !$(e.target).is(".next-month")) { 
+			if(!$(e.target).is(".select_data") && !$(e.target).is(".select_data *") && !$(e.target).is("label input")) { 
 				$("label").siblings("div").removeClass("open");
-				$('*[name=date]').handleDtpicker('hide');
 			}
 		});
 
 		$("label").click(function() {
 			$(this).parent("li").siblings().children("div").removeClass("open");
 			$(this).siblings("div").toggleClass("open");
-			
-			if($(this).siblings("div").hasClass("open")) {
-				$('*[name=date]').handleDtpicker('show');
-			} else {
-				$('*[name=date]').handleDtpicker('hide');
-			}
 		});
 		
 		$(".btn_search_reset").click(function() {
 			$(this).siblings("label").children("input").val("");
 		});
+
+		/* ì§€ì—­ì„ íƒ */
+		var addr_list = new Array();
+		<c:forEach items="${addr_list}" var="addr">
+			addr_list.push("${addr}");
+		</c:forEach>
 		
-		/* ³¯Â¥ ¼±ÅÃ */
-		$('*[name=date]').appendDtpicker({
-			locale:"ko",
-			futureOnly: true,
-			minuteInterval: 30,
-			dateFormat:"YYYY.MM.DD ÀÏ hh:mm"
-	    });
+		var seoul="", gyeonggi="", incheon="";
+		for(var i in addr_list) {
+			if(addr_list[i].indexOf("ì„œìš¸") != -1) {
+				$(".seoul li").remove();
+				var list = addr_list[i].split(" ");
+				seoul += "<li><button class='sub_location'>" + list[1] + "</button></li>";
+			} else if(addr_list[i].indexOf("ê²½ê¸°") != -1){
+				$(".gyeonggi li").remove();
+				var list = addr_list[i].split(" ");
+				gyeonggi += "<li><button class='sub_location'>" + list[1] + "</button></li>";
+			} else {
+				$(".incheon li").remove();
+				var list = addr_list[i].split(" ");
+				incheon += "<li><button class='sub_location'>" + list[1] + "</button></li>";
+			}
+		}
 		
-		/* Áö¿ª ¼±ÅÃ */
-		$(".main_location").click(function() {
-			$("#search_location").val($(this).text());	
-			$(".location").removeClass("on");
-		});
+		$(".seoul").append(seoul);
+		$(".gyeonggi").append(gyeonggi);
+		$(".incheon").append(incheon);
 		
 		$(".sub_location").click(function() {
-			var location = $(this).parent().parent().siblings("span").text() + " > " + $(this).text()
+			var location =  $(this).parent().parent().siblings("span").text() + " > " + $(this).text();
 			$("#search_location").val(location);
-			$(".location").removeClass("on");
+			$(".location").removeClass("open");
 		});
 		
-		/* Å¸ÀÔ ¹× ÀÎ¿ø¼ö ¼±ÅÃ */	
-		$(".up").click(function() {
-			var capacity = $(this).siblings(".room_capacity").val();
-			capacity = Number(capacity);
-			
-			$(this).siblings(".room_capacity").val(capacity+5); //5¾¿ Áõ°¡
-			$(this).siblings(".down").addClass("active");
-			$(this).parent().parent().siblings().find("input").val("0"); //´Ù¸¥ ¿É¼Ç ÃÊ±âÈ­
-			$(this).parent().parent().siblings().find(".down").removeClass("active");
-			
-			var type = $(this).parent().siblings("span").text(); //¼±ÅÃÇÑ Å¸ÀÔ
-			$("#search_type").val(type + " " + $(this).siblings(".room_capacity").val());
+		$(".main_location").click(function() {
+			$("#search_location").val($(this).text());	
+			$(".location").removeClass("open");
 		});
 		
-		$(".down").click(function() {
-			var capacity = $(this).siblings(".room_capacity").val();
-			capacity = Number(capacity);
-			var type = $(this).parent().siblings("span").text();
+		$(".btn_search").click(function() {
+			var location1, location2;
 			
-			if(capacity > 5) {
-				$(this).siblings(".room_capacity").val(capacity-5);
-				$("#search_type").val(type + " " + $(this).siblings(".room_capacity").val());
-			} else if(capacity > 0 && capacity <= 5) {
-				$(this).siblings(".room_capacity").val(capacity-5);
-				$("#search_type").val("");
-				$(this).removeClass("active");
-				
+			if($("#search_location").val()!="") {
+				if($("#search_location").val().indexOf(">") != -1) {
+					var location_list = $("#search_location").val().split(" > ");
+					location1 = location_list[0];  //ì„œìš¸
+					location2 = location_list[1];  //ê°•ë‚¨êµ¬
+				} else {
+					location1 = $("#search_location").val();
+					location2 = "";
+				}
+			} else {
+				location1 = "";
+				location2 = "";
 			}
+			
+			location.href = "http://localhost:9000/space/room_list.do?location1=" + location1 + "&location2=" + location2;
 		});
+
 	});
 </script>
 </head>
@@ -782,132 +601,49 @@ $(function(){
 	
 	<!-- s container -->
 	<div class="container">
-		<h2 id="content" class="hidden">ÄÜÅÙÃ÷ ¿µ¿ª</h2>
+		<h2 id="content" class="hidden">ì½˜í…ì¸  ì˜ì—­</h2>
 		
 	<!-- s main_visual -->
 	<div class="visual">
 		<div class="visual_box">
 			<div class="main_visual_text_box">
-				<div class="main_visual_text_box_logo"><span>½ºÆäÀÌ½º´åÄÄ</span></div>
-				<p class="main_visual_text_box_text"><span>È¸ÀÇ½ÇÀÇ ¸ğµç °Í. ºñÁî´Ï½º ¸ğÀÓ°ø°£ ÃÖÀú°¡·Î ÇÑ¹ø¿¡ ºñ±³! <br>
-                        ±¹³» ÃÖÃÊ È¸ÀÇ½Ç ¸ÅÄª ÇÃ·§Æû</span></p>
+				<div class="main_visual_text_box_logo"><span>ìŠ¤í˜ì´ìŠ¤ë‹·ì»´</span></div>
+				<p class="main_visual_text_box_text"><span>íšŒì˜ì‹¤ì˜ ëª¨ë“  ê²ƒ. ë¹„ì¦ˆë‹ˆìŠ¤ ëª¨ì„ê³µê°„ ìµœì €ê°€ë¡œ í•œë²ˆì— ë¹„êµ! <br>
+                        êµ­ë‚´ ìµœì´ˆ íšŒì˜ì‹¤ ë§¤ì¹­ í”Œë«í¼</span></p>
 			</div>
 			<div class="search_box">
 				<ul class="search_box_list">
 					<li>
 						<label>
 							<span><img src="http://localhost:9000/space/images/search_icon_location.png"></span>
-							<input type="text" name="location" id="search_location" placeholder="Áö¿ª" readonly>
+							<input type="text" name="location" id="search_location" placeholder="ì§€ì—­" readonly>
 						</label>
 						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
 						<div class="select_data location">
-							<p>¹æ¹®ÇÒ Áö¿ªÀ» ¼±ÅÃÇØÁÖ¼¼¿ä</p>
+							<p>ë°©ë¬¸í•  ì§€ì—­ì„ ì„ íƒí•´ì£¼ì„¸ìš”</p>
 							<div>
 								<ul class="location_list">
 									<li>
-										<span class="main_location">¼­¿ï</span>
-										<ul>
-											<li><button class="sub_location">°­³²±¸</button></li>
-											<li><button class="sub_location">°­µ¿±¸</button></li>
-											<li><button class="sub_location">°­¼­±¸</button></li>
-											<li><button class="sub_location">±¤Áø±¸</button></li>
-											<li><button class="sub_location">±¸·Î±¸</button></li>
-											<li><button class="sub_location">±İÃµ±¸</button></li>
-											<li><button class="sub_location">µ¿ÀÛ±¸</button></li>
-											<li><button class="sub_location">¸¶Æ÷±¸</button></li>
-											<li><button class="sub_location">¼­´ë¹®±¸</button></li>
-											<li><button class="sub_location">¼­ÃÊ±¸</button></li>
-											<li><button class="sub_location">¼ºµ¿±¸</button></li>
-											<li><button class="sub_location">¼ÛÆÄ±¸</button></li>
-											<li><button class="sub_location">¿µµîÆ÷±¸</button></li>
-											<li><button class="sub_location">¿ë»ê±¸</button></li>
-											<li><button class="sub_location">Á¾·Î±¸</button></li>
-											<li><button class="sub_location">Áß±¸</button></li>
+										<span class="main_location">ì„œìš¸</span>
+										<ul class="seoul">										
 										</ul>
 									</li>
 									<li>
-										<span class="main_location">°æ±â</span>
-										<ul>
-											<li><button class="sub_location">°í¾ç½Ã</button></li>
-											<li><button class="sub_location">±¤¸í½Ã</button></li>
-											<li><button class="sub_location">¼º³²½Ã</button></li>
-											<li><button class="sub_location">¾È»ê½Ã</button></li>
-											<li><button class="sub_location">¾È¾ç½Ã</button></li>
+										<span class="main_location">ê²½ê¸°</span>
+										<ul class="gyeonggi">										
+										</ul>
+									</li>																
+									<li>
+										<span class="main_location">ì¸ì²œ</span>
+										<ul class="incheon">										
 										</ul>
 									</li>																
 								</ul>
 							</div>
 						</div>
 					</li>
-					<li>
-						<label>
-							<span><img src="http://localhost:9000/space/images/search_icon_date.png"></span>
-							<input type="text" name="date" id="search_date" placeholder="³¯Â¥/½Ã°£" readonly>
-						</label>
-						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
-						<div class="select_data date"></div>
-					</li>
-					<li>
-						<label>
-							<span><img src="http://localhost:9000/space/images/search_icon_person.png"></span>
-							<input type="text" name="type" id="search_type" placeholder="±¸Á¶/ÀÎ¿ø" readonly>
-						</label>
-						<button type="button" class="btn_search_reset"><img src="http://localhost:9000/space/images/btn_reset_icon.png"></button>
-						<div class="select_data type">
-							<ul class="room_type_list">
-								<li>
-									<span class="room_type">°­ÀÇ½Ä</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">ºĞÀÓ½Ä</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">UÀÚÇü</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">¡àÀÚÇü</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">¿¬È¸½Ä</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-								<li>
-									<span class="room_type">±ØÀå½Ä</span>
-									<div>
-										<button type="button" class="down"></button>
-										<input type="text" class="room_capacity" value="0" readonly>
-										<button type="button" class="up"></button>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<button type="button" class="btn_search">°Ë»öÇÏ±â</button>
+					<li class="btn_search_style">
+						<button type="button" class="btn_search">ê²€ìƒ‰í•˜ê¸°</button>
 					</li>
 				</ul>	
 			</div>
@@ -916,7 +652,7 @@ $(function(){
 	</div>
 	<!-- e main_visual -->
 	
-				<!-- Ä³·¯¼¿ ½ÃÀÛ -->
+				<!-- ìºëŸ¬ì…€ ì‹œì‘ -->
 		<div id="demo" class="carousel slide" data-ride="carousel">
 		
 		<!-- Indicators -->
@@ -958,7 +694,7 @@ $(function(){
 		    <span class="carousel-control-next-icon"></span>
 		  </a>
 	</div>
-	<!-- Ä³·¯¼¿Á¾·á -->
+	<!-- ìºëŸ¬ì…€ì¢…ë£Œ -->
 
 
 
@@ -966,35 +702,35 @@ $(function(){
 	<div class="section section02">
 		<div class="section_center_box">
 			<div class="main_tit_box line">
-				<p class="main_tit01"><span>È­»ó È¸ÀÇ½Ç</span> º¸À¯ ¼¾ÅÍ</p>
-				<p class="main_stit01">ÁÜ, ½ºÄ«ÀÌÇÁ, ÆÀÁî, ½Ã½ºÄÚ, Æú¸®ÄŞ µî È­»ó È¸ÀÇ°¡ °¡´ÉÇÑ ¼¾ÅÍÀÔ´Ï´Ù.</p>
+				<p class="main_tit01"><span>í™”ìƒ íšŒì˜ì‹¤</span> ë³´ìœ  ì„¼í„°</p>
+				<p class="main_stit01">ì¤Œ, ìŠ¤ì¹´ì´í”„, íŒ€ì¦ˆ, ì‹œìŠ¤ì½”, í´ë¦¬ì½¤ ë“± í™”ìƒ íšŒì˜ê°€ ê°€ëŠ¥í•œ ì„¼í„°ì…ë‹ˆë‹¤.</p>
 			</div>
 			<div class="cont_list_div_wrap md_slider_wrap">
-				<button class="right" type="button" title="´ÙÀ½"></button>
-				<button class="left" type="button" title="ÀÌÀü"></button>
+				<button class="right" type="button" title="ë‹¤ìŒ"></button>
+				<button class="left" type="button" title="ì´ì „"></button>
 				<div class="md_slider cont_list_div hf_effect02">
 
 						<div class="slick-list draggable">
 							<a class="move_box" href="#">
 								<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/gwodlXqFzuM2InkKSQTzNMqO0qcKmhhQsys43rQM.jpg') no-repeat center;background-size:cover;">
-									<span class="cont_list_thum_cover">7¿ù<br />10% ÇÒÀÎ ÇÁ·Î¸ğ¼Ç</span>
+									<span class="cont_list_thum_cover">7ì›”<br />10% í• ì¸ í”„ë¡œëª¨ì…˜</span>
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="15"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">Á¢±Ù¼ºÀÌ ¶Ù¾î³­ ±ò²û È¸ÀÇ½Ç</p>
-									<p class="cont_list_detail_tit">°­³²±¸ 9È£Á¡ (´ëÄ¡µ¿)</p>
+									<p class="cont_list_detail_stit">ì ‘ê·¼ì„±ì´ ë›°ì–´ë‚œ ê¹”ë” íšŒì˜ì‹¤</p>
+									<p class="cont_list_detail_tit">ê°•ë‚¨êµ¬ 9í˜¸ì  (ëŒ€ì¹˜ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">´ëÄ¡µ¿</li>
-											<li class="subway">»ï¼º¿ª</li>
+											<li class="mark">ëŒ€ì¹˜ë™</li>
+											<li class="subway">ì‚¼ì„±ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">30ÀÎ½Ç, 16ÀÎ½Ç, 10ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">30ì¸ì‹¤, 16ì¸ì‹¤, 10ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">66,000¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star40.png" alt=""> <span>3.5</span>
+										<p class="cont_list_detail_ps_p">66,000ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star1.png" alt="" class="star_img"> <span>3.5</span>
 										</p>
 									</div>
 								</div>
@@ -1010,13 +746,13 @@ $(function(){
 	<div class="section section03">
 		<div class="section_center_box">
 			<div class="main_tit_box">
-				<p class="main_tit01"><span>½ºÆäÀÌ½º´åÄÄ</span> MD ÃßÃµ</p>
-				<p class="main_stit01">¿¹¾à·ü, ÆòÁ¡, ÀçÀÌ¿ë·ü µî »óÀ§ ·©Å·¿¡ µî·ÏµÈ ¼¾ÅÍ ÀÔ´Ï´Ù.</p>
+				<p class="main_tit01"><span>ìŠ¤í˜ì´ìŠ¤ë‹·ì»´</span> MD ì¶”ì²œ</p>
+				<p class="main_stit01">ì˜ˆì•½ë¥ , í‰ì , ì¬ì´ìš©ë¥  ë“± ìƒìœ„ ë­í‚¹ì— ë“±ë¡ëœ ì„¼í„° ì…ë‹ˆë‹¤.</p>
 			</div>
 			
 			<div class="cont_list_div_wrap popularity_slider_wrap slider">
-				<button class="right" type="button" title="´ÙÀ½"></button>
-				<button class="left" type="button" title="ÀÌÀü"></button>
+				<button class="right" type="button" title="ë‹¤ìŒ"></button>
+				<button class="left" type="button" title="ì´ì „"></button>
 				
 				<div class="slick-list draggable">
 				<div class="popularity_slider cont_list_div hf_effect02">
@@ -1026,20 +762,20 @@ $(function(){
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">¾È¾ç¿ª 1¹øÃâ±¸ 1ºĞ°Å¸®. ¾È¾ç1¹ø°¡ ÀÔ±¸</p>
-									<p class="cont_list_detail_tit">°æ±â ¾È¾ç 1È£Á¡ (¾È¾çµ¿)</p>
+									<p class="cont_list_detail_stit">ì•ˆì–‘ì—­ 1ë²ˆì¶œêµ¬ 1ë¶„ê±°ë¦¬. ì•ˆì–‘1ë²ˆê°€ ì…êµ¬</p>
+									<p class="cont_list_detail_tit">ê²½ê¸° ì•ˆì–‘ 1í˜¸ì  (ì•ˆì–‘ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">¾È¾çµ¿</li>
-											<li class="subway">¾È¾ç¿ª</li>
+											<li class="mark">ì•ˆì–‘ë™</li>
+											<li class="subway">ì•ˆì–‘ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">20ÀÎ½Ç, 9ÀÎ½Ç, 4ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">20ì¸ì‹¤, 9ì¸ì‹¤, 4ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">17,500¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										<p class="cont_list_detail_ps_p">17,500ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>0.0</span>
 										</p>
 									</div>
 								</div>
@@ -1051,20 +787,20 @@ $(function(){
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">¾È¾ç¿ª 1¹øÃâ±¸ 1ºĞ°Å¸®. ¾È¾ç1¹ø°¡ ÀÔ±¸</p>
-									<p class="cont_list_detail_tit">°æ±â ¾È¾ç 1È£Á¡ (¾È¾çµ¿)</p>
+									<p class="cont_list_detail_stit">ì•ˆì–‘ì—­ 1ë²ˆì¶œêµ¬ 1ë¶„ê±°ë¦¬. ì•ˆì–‘1ë²ˆê°€ ì…êµ¬</p>
+									<p class="cont_list_detail_tit">ê²½ê¸° ì•ˆì–‘ 1í˜¸ì  (ì•ˆì–‘ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">¾È¾çµ¿</li>
-											<li class="subway">¾È¾ç¿ª</li>
+											<li class="mark">ì•ˆì–‘ë™</li>
+											<li class="subway">ì•ˆì–‘ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">20ÀÎ½Ç, 9ÀÎ½Ç, 4ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">20ì¸ì‹¤, 9ì¸ì‹¤, 4ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">17,500¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										<p class="cont_list_detail_ps_p">17,500ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>0.0</span>
 										</p>
 									</div>
 								</div>
@@ -1076,20 +812,20 @@ $(function(){
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">¾È¾ç¿ª 1¹øÃâ±¸ 1ºĞ°Å¸®. ¾È¾ç1¹ø°¡ ÀÔ±¸</p>
-									<p class="cont_list_detail_tit">°æ±â ¾È¾ç 1È£Á¡ (¾È¾çµ¿)</p>
+									<p class="cont_list_detail_stit">ì•ˆì–‘ì—­ 1ë²ˆì¶œêµ¬ 1ë¶„ê±°ë¦¬. ì•ˆì–‘1ë²ˆê°€ ì…êµ¬</p>
+									<p class="cont_list_detail_tit">ê²½ê¸° ì•ˆì–‘ 1í˜¸ì  (ì•ˆì–‘ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">¾È¾çµ¿</li>
-											<li class="subway">¾È¾ç¿ª</li>
+											<li class="mark">ì•ˆì–‘ë™</li>
+											<li class="subway">ì•ˆì–‘ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">20ÀÎ½Ç, 9ÀÎ½Ç, 4ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">20ì¸ì‹¤, 9ì¸ì‹¤, 4ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">17,500¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										<p class="cont_list_detail_ps_p">17,500ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>0.0</span>
 										</p>
 									</div>
 								</div>
@@ -1101,20 +837,20 @@ $(function(){
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">¾È¾ç¿ª 1¹øÃâ±¸ 1ºĞ°Å¸®. ¾È¾ç1¹ø°¡ ÀÔ±¸</p>
-									<p class="cont_list_detail_tit">°æ±â ¾È¾ç 1È£Á¡ (¾È¾çµ¿)</p>
+									<p class="cont_list_detail_stit">ì•ˆì–‘ì—­ 1ë²ˆì¶œêµ¬ 1ë¶„ê±°ë¦¬. ì•ˆì–‘1ë²ˆê°€ ì…êµ¬</p>
+									<p class="cont_list_detail_tit">ê²½ê¸° ì•ˆì–‘ 1í˜¸ì  (ì•ˆì–‘ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">¾È¾çµ¿</li>
-											<li class="subway">¾È¾ç¿ª</li>
+											<li class="mark">ì•ˆì–‘ë™</li>
+											<li class="subway">ì•ˆì–‘ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">20ÀÎ½Ç, 9ÀÎ½Ç, 4ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">20ì¸ì‹¤, 9ì¸ì‹¤, 4ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">17,500¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										<p class="cont_list_detail_ps_p">17,500ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>0.0</span>
 										</p>
 									</div>
 								</div>
@@ -1126,20 +862,20 @@ $(function(){
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">¾È¾ç¿ª 1¹øÃâ±¸ 1ºĞ°Å¸®. ¾È¾ç1¹ø°¡ ÀÔ±¸</p>
-									<p class="cont_list_detail_tit">°æ±â ¾È¾ç 1È£Á¡ (¾È¾çµ¿)</p>
+									<p class="cont_list_detail_stit">ì•ˆì–‘ì—­ 1ë²ˆì¶œêµ¬ 1ë¶„ê±°ë¦¬. ì•ˆì–‘1ë²ˆê°€ ì…êµ¬</p>
+									<p class="cont_list_detail_tit">ê²½ê¸° ì•ˆì–‘ 1í˜¸ì  (ì•ˆì–‘ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">¾È¾çµ¿</li>
-											<li class="subway">¾È¾ç¿ª</li>
+											<li class="mark">ì•ˆì–‘ë™</li>
+											<li class="subway">ì•ˆì–‘ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">20ÀÎ½Ç, 9ÀÎ½Ç, 4ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">20ì¸ì‹¤, 9ì¸ì‹¤, 4ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">17,500¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										<p class="cont_list_detail_ps_p">17,500ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>0.0</span>
 										</p>
 									</div>
 								</div>
@@ -1151,20 +887,20 @@ $(function(){
 									<button class="heart_btn  " type="button" data-likable="centers" data-target="119"></button>
 								</div>
 								<div class="cont_list_detail">
-									<p class="cont_list_detail_stit">¾È¾ç¿ª 1¹øÃâ±¸ 1ºĞ°Å¸®. ¾È¾ç1¹ø°¡ ÀÔ±¸</p>
-									<p class="cont_list_detail_tit">°æ±â ¾È¾ç 1È£Á¡ (¾È¾çµ¿)</p>
+									<p class="cont_list_detail_stit">ì•ˆì–‘ì—­ 1ë²ˆì¶œêµ¬ 1ë¶„ê±°ë¦¬. ì•ˆì–‘1ë²ˆê°€ ì…êµ¬</p>
+									<p class="cont_list_detail_tit">ê²½ê¸° ì•ˆì–‘ 1í˜¸ì  (ì•ˆì–‘ë™)</p>
 
 									<div class="cont_list_detail_info">
 										<ul class="cont_list_detail_info_l">
-											<li class="mark">¾È¾çµ¿</li>
-											<li class="subway">¾È¾ç¿ª</li>
+											<li class="mark">ì•ˆì–‘ë™</li>
+											<li class="subway">ì•ˆì–‘ì—­</li>
 										</ul>
-										<p class="cont_list_detail_info_m">20ÀÎ½Ç, 9ÀÎ½Ç, 4ÀÎ½Ç...</p>
+										<p class="cont_list_detail_info_m">20ì¸ì‹¤, 9ì¸ì‹¤, 4ì¸ì‹¤...</p>
 									</div>
 
 									<div class="cont_list_detail_ps">
-										<p class="cont_list_detail_ps_p">17,500¿ø<span>ºÎÅÍ</span></p>
-										<p class="cont_list_detail_ps_s"><img src="/pc/images/star00.png" alt=""> <span>0.0</span>
+										<p class="cont_list_detail_ps_p">17,500ì›<span>ë¶€í„°</span></p>
+										<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>0.0</span>
 										</p>
 									</div>
 								</div>
@@ -1181,35 +917,35 @@ $(function(){
 	<div class="section section04">
 		<div class="section_center_box">
 			<div class="main_tit_box line">
-				<p class="main_tit01"><span>ÇÒÀÎ ÇÁ·Î¸ğ¼Ç</span> ¼¾ÅÍ</p>
-				<p class="main_stit01">ÇöÀç ÇÒÀÎÀÌ ÁøÇà ÁßÀÎ ¼¾ÅÍÀÔ´Ï´Ù.</p>
+				<p class="main_tit01"><span>í• ì¸ í”„ë¡œëª¨ì…˜</span> ì„¼í„°</p>
+				<p class="main_stit01">í˜„ì¬ í• ì¸ì´ ì§„í–‰ ì¤‘ì¸ ì„¼í„°ì…ë‹ˆë‹¤.</p>
 			</div>
 			<div class="cont_list_div_wrap discount_slider_wrap">
-				<button class="right" type="button" title="´ÙÀ½"></button>
-				<button class="left" type="button" title="ÀÌÀü"></button>
+				<button class="right" type="button" title="ë‹¤ìŒ"></button>
+				<button class="left" type="button" title="ì´ì „"></button>
 				<div class="discount_slider cont_list_div hf_effect02">
 				
 					<div class="">
 						<a class="move_box" href="#">
 							<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/WLA7dDyQKpnOB8rHD19ZG1UiJTczyuTIXWV4CoTl.jpg') no-repeat center;background-size:cover;">
-								<span class="cont_list_thum_cover">7¿ù <br />20% ÇÒÀÎ ÇÁ·Î¸ğ¼Ç</span>
+								<span class="cont_list_thum_cover">7ì›” <br />20% í• ì¸ í”„ë¡œëª¨ì…˜</span>
 								<button class="heart_btn  " type="button" data-likable="centers" data-target="64"></button>
 							</div>
 							<div class="cont_list_detail">
-								<p class="cont_list_detail_stit">19°³ È¸ÀÇ½Ç, Àü¹® ¸éÁ¢Àå ¹× °­ÀÇÀå</p>
-								<p class="cont_list_detail_tit">¼­´ë¹®±¸ 1È£Á¡ (ÃæÁ¤·Î2°¡)</p>
+								<p class="cont_list_detail_stit">19ê°œ íšŒì˜ì‹¤, ì „ë¬¸ ë©´ì ‘ì¥ ë° ê°•ì˜ì¥</p>
+								<p class="cont_list_detail_tit">ì„œëŒ€ë¬¸êµ¬ 1í˜¸ì  (ì¶©ì •ë¡œ2ê°€)</p>
 
 								<div class="cont_list_detail_info">
 									<ul class="cont_list_detail_info_l">
-										<li class="mark">ÃæÁ¤·Î2°¡</li>
-										<li class="subway">¼­´ë¹®¿ª</li>
+										<li class="mark">ì¶©ì •ë¡œ2ê°€</li>
+										<li class="subway">ì„œëŒ€ë¬¸ì—­</li>
 									</ul>
-									<p class="cont_list_detail_info_m">100ÀÎ½Ç, 64ÀÎ½Ç, 60ÀÎ½Ç...</p>
+									<p class="cont_list_detail_info_m">100ì¸ì‹¤, 64ì¸ì‹¤, 60ì¸ì‹¤...</p>
 								</div>
 
 								<div class="cont_list_detail_ps">
-									<p class="cont_list_detail_ps_p">17,600¿ø<span>ºÎÅÍ</span></p>
-									<p class="cont_list_detail_ps_s"><img src="/pc/images/star50.png" alt=""> <span>4.5</span>
+									<p class="cont_list_detail_ps_p">17,600ì›<span>ë¶€í„°</span></p>
+									<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>4.5</span>
 									</p>
 								</div>
 							</div>
@@ -1218,24 +954,24 @@ $(function(){
 					<div>
 						<a class="move_box" href="#">
 							<div class="cont_list_thum" style="background:url('http://localhost:9000/space/images/WLA7dDyQKpnOB8rHD19ZG1UiJTczyuTIXWV4CoTl.jpg') no-repeat center;background-size:cover;">
-								<span class="cont_list_thum_cover">7¿ù <br />20% ÇÒÀÎ ÇÁ·Î¸ğ¼Ç</span>
+								<span class="cont_list_thum_cover">7ì›” <br />20% í• ì¸ í”„ë¡œëª¨ì…˜</span>
 								<button class="heart_btn  " type="button" data-likable="centers" data-target="64"></button>
 							</div>
 							<div class="cont_list_detail">
-								<p class="cont_list_detail_stit">19°³ È¸ÀÇ½Ç, Àü¹® ¸éÁ¢Àå ¹× °­ÀÇÀå</p>
-								<p class="cont_list_detail_tit">¼­´ë¹®±¸ 1È£Á¡ (ÃæÁ¤·Î2°¡)</p>
+								<p class="cont_list_detail_stit">19ê°œ íšŒì˜ì‹¤, ì „ë¬¸ ë©´ì ‘ì¥ ë° ê°•ì˜ì¥</p>
+								<p class="cont_list_detail_tit">ì„œëŒ€ë¬¸êµ¬ 1í˜¸ì  (ì¶©ì •ë¡œ2ê°€)</p>
 
 								<div class="cont_list_detail_info">
 									<ul class="cont_list_detail_info_l">
-										<li class="mark">ÃæÁ¤·Î2°¡</li>
-										<li class="subway">¼­´ë¹®¿ª</li>
+										<li class="mark">ì¶©ì •ë¡œ2ê°€</li>
+										<li class="subway">ì„œëŒ€ë¬¸ì—­</li>
 									</ul>
-									<p class="cont_list_detail_info_m">100ÀÎ½Ç, 64ÀÎ½Ç, 60ÀÎ½Ç...</p>
+									<p class="cont_list_detail_info_m">100ì¸ì‹¤, 64ì¸ì‹¤, 60ì¸ì‹¤...</p>
 								</div>
 
 								<div class="cont_list_detail_ps">
-									<p class="cont_list_detail_ps_p">17,600¿ø<span>ºÎÅÍ</span></p>
-									<p class="cont_list_detail_ps_s"><img src="/pc/images/star50.png" alt=""> <span>4.5</span>
+									<p class="cont_list_detail_ps_p">17,600ì›<span>ë¶€í„°</span></p>
+									<p class="cont_list_detail_ps_s"><img src="/space/images/list_star4.png" alt="" class="star_img"> <span>4.5</span>
 									</p>
 								</div>
 							</div>
@@ -1264,27 +1000,31 @@ $(function(){
 	<div class="section section06">
 		<div class="section_center_box">
 			<div class="main_section06_content_box">
-				<div class="main_section06_content_box_location"><img src="http://localhost:9000/space/images/main_section06_img01.png" alt="Áöµµ">
+				<div class="main_section06_content_box_location"><img src="http://localhost:9000/space/images/main_section06_img01.png" alt="ì§€ë„">
 				</div>
 				<div class="main_section06_content_box_text">
-					<p class="main_section06_content_box_tit"><span>±¹³» ÃÖÃÊÀÇ</span><br>
-						È¸ÀÇ½Ç Àü¹® ¸ÅÄª ÇÃ·§Æû
+					<p class="main_section06_content_box_tit">
+						<span>êµ­ë‚´ ìµœì´ˆì˜</span><br>
+						íšŒì˜ì‹¤ ì „ë¬¸ ë§¤ì¹­ í”Œë«í¼
 					</p>
-					<p class="main_section06_content_box_stit">½ºÆäÀÌ½º´åÄÄÀº ÁÁÀº È¸ÀÇ½ÇÀ» ¿øÇÏ´Â Áö¿ª¿¡¼­ <br>
-						´©±¸³ª ÀÌ¿ëÇÒ ¼ö ÀÖµµ·Ï ¿¬°áÇÕ´Ï´Ù.
+					<p class="main_section06_content_box_stit">
+						ìŠ¤í˜ì´ìŠ¤ë‹·ì»´ì€ ì¢‹ì€ íšŒì˜ì‹¤ì„ ëˆ„êµ¬ë‚˜ ì‰½ê³  ë¹ ë¥´ê²Œ<br>
+						ì´ìš©í•  ìˆ˜ ìˆë„ë¡ ì—°ê²°í•©ë‹ˆë‹¤.
 					</p>
 					<ul class="main_section06_content_box_list">
 						<li>
-							<span id="count01" class="main_section06_content_box_list_num">94</span>
-							<span class="main_section06_content_box_list_text">µî·Ï ¼¾ÅÍ</span>
+							<span id="count01" class="main_section06_content_box_list_num">
+							94
+							</span>
+							<span class="main_section06_content_box_list_text">ë“±ë¡ ì„¼í„°</span>
 						</li>
 						<li>
 							<span id="count02" class="main_section06_content_box_list_num">417</span>
-							<span class="main_section06_content_box_list_text">µî·ÏµÈ È¸ÀÇ½Ç</span>
+							<span class="main_section06_content_box_list_text">ë“±ë¡ëœ íšŒì˜ì‹¤</span>
 						</li>
 						<li>
 							<span id="count03" class="main_section06_content_box_list_num">53457</span>
-							<span class="main_section06_content_box_list_text">´©Àû ÀÌ¿ë °í°´</span>
+							<span class="main_section06_content_box_list_text">ëˆ„ì  ì´ìš© ê³ ê°</span>
 						</li>
 					</ul>
 				</div>
@@ -1294,22 +1034,22 @@ $(function(){
 	<!-- s main_section06 -->
 
 	<!-- s sub_section -->
-	<div class="sub_section sub_section_videoconference01" style="padding: 80px 0 130px;">
+<!-- 	<div class="sub_section sub_section_videoconference01" style="padding: 80px 0 130px;">
 		<div class="center_box">
 			<div class="sub_section_videoconference01_contentbox">
 				<div class="sub_section_videoconference01_contentbox_right motion02 s_obj opa_obj01 active">
-					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 37px;">°í°¡ÀÇ ÃÖ½ÅÇü È­»ó È¸ÀÇ ¼Ö·ç¼ÇÀ»<br>
-						<span>¿ù ·»Å»</span>·Î ÀÌ¿ëÇØº¸¼¼¿ä.</p>
+					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 37px;">ê³ ê°€ì˜ ìµœì‹ í˜• í™”ìƒ íšŒì˜ ì†”ë£¨ì…˜ì„<br>
+						<span>ì›” ë Œíƒˆ</span>ë¡œ ì´ìš©í•´ë³´ì„¸ìš”.</p>
 						<br>
 					<p class="sub_section_videoconference01_contentbox_tit" style="font-size: 22px;">
-						´Ü ÇÏ·ç »ç¿ëÀ» À§ÇÑ ·»Å»ºÎÅÍ Àå±â ·»Å»±îÁö °¡´ÉÇÕ´Ï´Ù.
+						ë‹¨ í•˜ë£¨ ì‚¬ìš©ì„ ìœ„í•œ ë Œíƒˆë¶€í„° ì¥ê¸° ë Œíƒˆê¹Œì§€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 					</p>
-					<a class="sub_section_videoconference01_contentbox_btn" href="#"><span>È­»óÈ¸ÀÇ ¼Ö·ç¼Ç</span></a>
+					<a class="sub_section_videoconference01_contentbox_btn" href="#"><span>í™”ìƒíšŒì˜ ì†”ë£¨ì…˜</span></a>
 				</div>
 				<div class="sub_section_videoconference01_contentbox_left motion s_obj left_obj02 active"><img src="http://localhost:9000/space/images/sub_section_videoconference01_contentbox_img01.jpg" alt=""></div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- e sub_section -->
 
 	</div>

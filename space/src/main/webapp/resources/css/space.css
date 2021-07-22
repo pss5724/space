@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /** css **/
  * {
         margin: 0;
@@ -6,7 +7,7 @@
         color: inherit;
         text-decoration: none;
         box-sizing: border-box;
-    }
+    } 
  body{
 	min-width:1280px;
 	max-width:1920px;
@@ -16,7 +17,6 @@
 }
 
 
-/* 硫붿씤 �뙘�뾽�젅�씠�뼱 { */
 #hd_pop {z-index:1000;position:relative;margin:0 auto;width:1200px;height:0}
 #hd_pop h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
 .hd_pops {position:absolute;border:1px solid #e9e9e9;background:#fff;}
@@ -27,17 +27,12 @@
 .hd_pops_footer button {padding: 10px;border:0;color:#fff}
 .hd_pops_footer .hd_pops_reject{background:#000;text-align:left}
 .hd_pops_footer .hd_pops_close{background:#393939;position:absolute;top:0;right:0}
-/* } 硫붿씤 �뙘�뾽�젅�씠�뼱 */
 
-/* 肄섑뀒�씠�꼫 { */
 .container:after {
 	content: '';
 	display:block;
 	clear:both;
 }
-/* } 肄섑뀒�씠�꼫 */
-
-/* �뿤�뜑 { */
 	
 #header {
 	width:100%;
@@ -60,7 +55,7 @@ header{
 	position:absolute;
 	bottom:0;
 	left:0;
-	background:url('http://loalhost:9000/space/images/main_header_bar.png') repeat-x left top;
+	/* background:url('http://localhost:9000/space/images/main_header_bar.jpg') repeat-x left top; */
 }
 .logo {
 	font-size:28px;
@@ -94,7 +89,7 @@ header{
 	position:relative;
 	z-index:100;
 	float:left;
-	margin-left:75px;
+	margin-left:130px;
 }
 #gnb:after {
 	content:'';
@@ -103,6 +98,7 @@ header{
 }
 #gnb a {
 	display:block;
+	line-height: 20px;
 }
 .depth1 {
 	position:relative;
@@ -113,7 +109,7 @@ header{
 	z-index:100;
 }
 .depth1 h3 a {
-	padding:6px 50px 40px;
+	padding:6px 50px 30px;
 	font-size:18px;
 	line-height:18px;
 	letter-spacing:-1px;
@@ -396,11 +392,8 @@ header{
 .sub_depth2 .focus h4 a {
 	color:#006be0;
 }
-/* } �뿤�뜑 */
 
 
-
-/* �뫖�꽣 { */
 #footer {
 	min-width:1280px;
 	background:#f9f9f9;
@@ -541,12 +534,10 @@ header{
 .footer_etc_sns li + li {
 	margin-left:29px;
 }
-/* } �뫖�꽣 */
 
 .hidden {
 	display:none;	
 }
-/* 由ъ뒪�듃 { */
 .cont_list:after {
 	content:'';
 	display:block;
@@ -815,9 +806,9 @@ header{
 	background:url('http://localhost:9000/space/images/item_viewbox_top_slide_right.png') no-repeat center;
 }
 
-/* } 由ъ뒪�듃 */
+/* } �뵳�딅뮞占쎈뱜 */
 
-/* �슚怨� { */
+/* 占쎌뒞�⑨옙 { */
 .s_obj.active.left_obj01 {
 	-webkit-transform: translateX(-30%) translateY(50px);
 	-ms-transform: translateX(-30%) translateY(50px);
@@ -871,5 +862,5 @@ header{
 	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
-/* } �슚怨� */
+/* } 占쎌뒞�⑨옙 */
 
