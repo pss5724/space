@@ -146,7 +146,7 @@ $(function(){
 					<li><a href="http://localhost:9000/space/corppage.do">나의 회의실</a></li>
 					</c:if>
 					<c:if test="${sessionScope.svo.id=='admin@naver.com' }">     	
-					<li><a href="http://localhost:9000/space/admin.do">Admin</a></li>
+					<li><a href="http://localhost:9000/space/member_list.do">Admin</a></li>
 					</c:if>
 				</ul >	
 					
