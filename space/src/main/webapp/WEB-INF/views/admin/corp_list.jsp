@@ -138,19 +138,19 @@
 					<td>${vo.hp }</td>
 					<td>${vo.name }</td>
 					<c:choose>
-					<c:when test="${svo.choicein==0 }">
+					<c:when test="${vo.choicein==1 }">
 					<td><button type="button" disabled>완료</button></td>
 					</c:when>
 					<c:otherwise>
-					<td><a href="cor_join_process.do?id=${vo.id}"><button type="button" >승인</button></td>
+					<td><a href="cor_join_proc.do?id=${vo.id}"><button type="button" >승인</button></td>
 					</c:otherwise>
 					</c:choose>
 					<c:choose>
-					<c:when test="${svo.choiceout==0 }">
-					<td><button type="button" disabled>완료</button></td>
+					<c:when test="${vo.choiceout==0 }">
+					<td><button type="button" disabled>-</button></td>
 					</c:when>
 					<c:otherwise>
-					<td><a href="member_delete_process.do?id=${vo.id}"><button type="button" >승인</button></td>
+					<td><a href="member_delete_proc.do?id=${vo.id}"><button type="button" >승인</button></td>
 					</c:otherwise>
 					</c:choose>
 					<!-- <td><button type="button" disabled>승인</button></td>

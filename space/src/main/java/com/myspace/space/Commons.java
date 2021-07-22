@@ -14,6 +14,7 @@ public class Commons {
 	//페이징 처리 - startCount, endCount 구하기
 	int startCount = 0;
 	int endCount = 0;
+	int listend = 0;
 	int pageSize = 15;	//한페이지당 게시물 수
 	int reqPage = 1;	//요청페이지	
 	int pageCount = 1;	//전체 페이지 수
@@ -45,6 +46,8 @@ public class Commons {
 		endCount = 5;
 	}
 	
+	
+	System.out.println(startCount);
 	map.put("start", startCount);
 	map.put("end", endCount);
 	map.put("dbCount", dbCount);

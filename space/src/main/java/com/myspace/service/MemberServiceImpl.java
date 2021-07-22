@@ -62,8 +62,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public boolean getJoinDelete(String id) {
-		return memberDAO.getJoinDelete(id);
+	public boolean getJoinBdelete(String id) {
+		return memberDAO.getJoinBdelete(id);
 	}
 	
 	

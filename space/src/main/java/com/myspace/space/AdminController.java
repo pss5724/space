@@ -3,19 +3,17 @@ package com.myspace.space;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspace.service.InquiryService;
 import com.myspace.service.MemberService;
 import com.myspace.vo.InquiryVO;
 import com.myspace.vo.MemberVO;
-import com.myspace.vo.SessionVO;
 
 @Controller
 public class AdminController { 
@@ -71,39 +69,63 @@ public class AdminController {
 		return mv;
 	}
 	
+	
 	/**
-	 * member_delete_process : 탈퇴 처리
+	 * cor_join_proc : 기업고객 가입 승인 처리
 	 * **/
-	/*@RequestMapping(value="/member_delete_process.do", method = RequestMethod.GET)
-	public String member_delete_process(String id) {
+	@RequestMapping(value="/cor_join_proc.do", method = RequestMethod.GET)
+	public ModelAndView cor_join_proc(String id) {
+		System.out.println(id);
 		
-		//로그인 폼에서 넘어오는 데이터 받기
-		String id = "";
-		MemberDAO mdao = memberService.getJoinOut(id);
-		
-		if(mdao != null) {
-			mdao.setId(vo.getId());
-			session.setAttribute("mdao",mdao);
-			result_page = "admin/member_list";
-		} else {
-			result_page = "login/loginFail";
-		}
+		ModelAndView mv = new ModelAndView();
+		boolean result = memberService.getJoinIn(id);
 
-		return result_page;
+		if(result) mv.setViewName("redirect:/corp_list.do");   //controller에서 불러오면 .do 형태
+
+		return mv;
+	}
+	//db쪽은 바뀌고 넘어가지만 return페이지가 오류남 (멤버리스트 출력안되고 빈칸)
+	/*@RequestMapping(value="/cor_join_proc.do", method = RequestMethod.GET)
+	public String cor_join_proc(String id) {
+		
+		System.out.println(id);
+		String view_name = ""; 
+		boolean result = memberService.getJoinIn(id);
+		
+		if(result) view_name = "admin/corp_list";      //jsp에서 불러오기때문에 admin/ 써야함
+		
+		return view_name;
 	}*/
 	
 	/**
-	 * cor_join_process : 기업고객 가입 승인 처리
+	 * joinout_btn_proc : 고객이 탈퇴버튼 누르면 admin쪽 list에 탈퇴 승인 버튼 활성화
 	 * **/
-	@RequestMapping(value="/cor_join_process.do", method = RequestMethod.GET)
-	public String cor_join_process(String id, HttpSession session) {
+	@RequestMapping(value="/joinout_btn_proc.do", method = RequestMethod.GET)
+	public ModelAndView joinout_btn_proc(String id) {
+		System.out.println(id);
 		
-		//System.out.println(id);
-		boolean svo = memberService.getJoinIn(id);
-
-		return "admin/corp_list";
+		ModelAndView mv = new ModelAndView();
+		boolean result = memberService.getJoinBdelete(id);
+		
+		if(result) mv.setViewName("redirect:/corp_list.do");    
+		
+		return mv;
 	}
 	
+	/**
+	 * member_delete_process : 탈퇴처리(삭제)
+	 * **/
+	@RequestMapping(value="/member_delete_proc.do", method = RequestMethod.GET)
+	public ModelAndView member_delete_proc(String id) {
+		System.out.println(id);
+		
+		ModelAndView mv = new ModelAndView();
+		boolean result = memberService.getJoinOut(id);
+
+		if(result) mv.setViewName("redirect:/corp_list.do"); 
+
+		return mv;
+	}
 
 	@RequestMapping(value="/admin_booked.do", method=RequestMethod.GET)
 	public String admin_booked() {

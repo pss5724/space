@@ -37,21 +37,12 @@ public class MemberDAO {
 	public SessionVO getLoginResult(MemberVO vo) {
 		return sqlSession.selectOne(namespasce+".login", vo);  //디비연결후 매퍼호출한 결과 리턴
 	}
-	//로그인 처리 
-	/*public SessionVO getLoginResult(MemberVO vo) {
-		int value = vo.getChoicein();
-		if(value == 1) { 
-			return sqlSession.selectOne(namespasce+".login", vo);  //디비연결후 매퍼호출한 결과 리턴
-		}else {
-			return sqlSession.selectOne(namespasce+".notlogin", vo);  //디비연결후 매퍼호출한 결과 리턴
-		}
-	}*/
 	
 	
 	// 관리자페이지 - 사용자 가입승인 처리하기 : choicein을 0에서 1로 바꾸기 
 	public boolean getJoinIn(String id) {
 		boolean result = false;
-		int value = sqlSession.update(namespasce + ".member_joinin", id);
+		int value = sqlSession.update(namespasce + ".cor_joinin", id);
 		if(value != 0) result = true;  
 		System.out.println(value);
 		
@@ -75,35 +66,11 @@ public class MemberDAO {
 	}
 	
 	
-	// 관리자페이지 - 탈퇴 버튼 활성화 : choiceout을 0에서 1로 바꾸기 
-	public boolean getJoinDelete(String id) {
-		boolean result = false;
-		int value = sqlSession.update(namespasce + ".joinout_btn_able", id);
-		if(value != 0) result = true;  
-		
-		return result;
-		
-		/*String sql = "update space_member set choice=1 where id = ?";
-		getPreparedStatement(sql);
-		try {
-			pstmt.setString(1, id);
-			int value = pstmt.executeUpdate();
-			
-			if(value != 0) {
-				result = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		close();
-		return result;*/
-	}
-	
 	// 관리자페이지 - 사용자 탈퇴 처리하기
 	public boolean getJoinOut(String id) {
 		boolean result = false;
-		int value = sqlSession.delete(namespasce+".member_joinout", id);
-		if(value != 0) result = true;	//리턴타입 안맞으니까
+		int value = sqlSession.update(namespasce + ".member_joinout", id);
+		if(value != 0) result = true;  
 		
 		return result;
 		
@@ -118,6 +85,30 @@ public class MemberDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();		}
+		close();
+		return result;*/
+	}
+	
+	// 관리자페이지 - 탈퇴 버튼 활성화 : choiceout을 0에서 1로 바꾸기 
+	public boolean getJoinBdelete(String id) {
+		boolean result = false;
+		int value = sqlSession.delete(namespasce+".joinout_btn_able", id);
+		if(value != 0) result = true;	//리턴타입 안맞으니까
+		
+		return result;
+		
+		/*String sql = "update space_member set choiceout=1 where id = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			int value = pstmt.executeUpdate();
+			
+			if(value != 0) {
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		close();
 		return result;*/
 	}

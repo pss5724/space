@@ -70,7 +70,7 @@ public class LoginController {
 			if(svo.getChoicein() == 1) {
 				svo.setId(vo.getId());
 				session.setAttribute("svo",svo);
-				result_page = "index";  // -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
+				result_page = "redirect:/index.do";  // -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
 				
 			} else {
 				result_page = "login/login";
