@@ -16,9 +16,9 @@ public interface MemberService {
 	boolean getInsertResult0(MemberVO vo);   //°³ΐΞ
 	boolean getInsertResult1(MemberVO vo);    //±βΎχ
 	int execTotalCount();
-	boolean getJoinIn(String id);
-	boolean getJoinDelete(String id);
-	boolean getJoinOut(String id);
+	boolean getJoinIn(String id);   //°‘ΐΤ½ΒΐΞ
+	boolean getJoinDelete(String id);   //Ε»Επ
+	boolean getJoinOut(String id);   //°ν°΄ΐΜ Ε»ΕπΉφΖ° ΄­·―Ό­ Ε»ΕπΓ³Έ®
 	
 	
 	

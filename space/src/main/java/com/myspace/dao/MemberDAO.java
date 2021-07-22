@@ -53,10 +53,12 @@ public class MemberDAO {
 		boolean result = false;
 		int value = sqlSession.update(namespasce + ".member_joinin", id);
 		if(value != 0) result = true;  
+		System.out.println(value);
+		
 		
 		return result;
 		
-		/*String sql = "update space_member set choice=1 where id = ?";
+		/*String sql = "update space_member set choicein=1 where id = ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, id);

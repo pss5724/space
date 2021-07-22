@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspace.dao.MemberDAO;
 import com.myspace.service.InquiryService;
 import com.myspace.service.MemberService;
 import com.myspace.vo.InquiryVO;
 import com.myspace.vo.MemberVO;
+import com.myspace.vo.SessionVO;
 
 @Controller
 public class AdminController { 
@@ -49,7 +49,7 @@ public class AdminController {
 		//return "admin/member_list"; 
 	}
 	/**
-	 * corp_list.do  -->  관리자 - 개인 회원리스트 출력
+	 * corp_list.do  -->  관리자 - 기업 회원리스트 출력
 	 * **/
 	@RequestMapping(value="/corp_list.do", method=RequestMethod.GET)
 	public ModelAndView admin_corp_list(String rpage) {
@@ -74,7 +74,7 @@ public class AdminController {
 	/**
 	 * member_delete_process : 탈퇴 처리
 	 * **/
-	/*@RequestMapping(value="/member_delete_process.do", method = RequestMethod.POST)
+	/*@RequestMapping(value="/member_delete_process.do", method = RequestMethod.GET)
 	public String member_delete_process(String id) {
 		
 		//로그인 폼에서 넘어오는 데이터 받기
@@ -91,6 +91,18 @@ public class AdminController {
 
 		return result_page;
 	}*/
+	
+	/**
+	 * cor_join_process : 기업고객 가입 승인 처리
+	 * **/
+	@RequestMapping(value="/cor_join_process.do", method = RequestMethod.GET)
+	public String cor_join_process(String id, HttpSession session) {
+		
+		//System.out.println(id);
+		boolean svo = memberService.getJoinIn(id);
+
+		return "admin/corp_list";
+	}
 	
 
 	@RequestMapping(value="/admin_booked.do", method=RequestMethod.GET)

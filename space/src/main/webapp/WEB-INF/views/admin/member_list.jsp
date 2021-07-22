@@ -124,10 +124,10 @@
 					<td>${vo.hp }</td>
 					<c:choose>
 					<c:when test="${vo.choiceout==0 }">
-					<td><button type="button" disabled>승인</button></td>
+					<td><button type="button" disabled>완료</button></td>
 					</c:when>
 					<c:otherwise>
-					<td><button type="button" >승인</button></td>
+					<td><a href="member_delete_process.do?id=${vo.id}"><button type="button" >승인</button></td>
 					</c:otherwise>
 					</c:choose>
 				</tr>

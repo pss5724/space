@@ -21,22 +21,25 @@
 	</insert>
 	
 	
-	
-	<!-- 관리자페이지 - 사용자 가입승인 처리하기 : choicein을 0에서 1로 바꾸기 -->
-	<select id="member_joinin" parameterType="java.lang.String">
+	<!-- 관리자페이지 - 기업 가입승인 버튼 활성화 : choicein을 0에서 1로 바꾸기 -->
+	<!-- <select id="joinin_btn_able" parameterType="java.lang.String">
+		update space_member set choicein=1 where id = #{id}
+	</select> -->
+	<!-- 관리자페이지 - 기업 가입승인 처리하기 : choicein을 0에서 1로 바꾸기 -->
+	<select id="cor_joinin" parameterType="java.lang.String">
 		update space_member set choicein=1 where id = #{id}
 	</select>
 	
-	
-	<!-- 관리자페이지 - 사용자 탈퇴 처리하기 -->
-	<select id="member_joinout" parameterType="java.lang.String">
-		delete from space_member where id= #{id}
-	</select>
 	
 	<!-- 관리자페이지 - 탈퇴 버튼 활성화 : choiceout을 0에서 1로 바꾸기 -->
 	<select id="joinout_btn_able" parameterType="java.lang.String">
 		update space_member set choiceout=1 where id = #{id}
 	</select>
+	<!-- 관리자페이지 - 사용자 탈퇴 처리하기 -->
+	<select id="member_joinout" parameterType="java.lang.String">
+		delete from space_member where id= #{id}
+	</select>
+	
 	
 	
 	
