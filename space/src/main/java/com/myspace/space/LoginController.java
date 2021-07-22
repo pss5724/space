@@ -66,18 +66,25 @@ public class LoginController {
 		//로그인 폼에서 넘어오는 데이터 받기
 		String result_page = "";
 		SessionVO svo = memberService.getLoginResult(vo);
-		
-		if(svo.getChoicein() == 1) {
-			svo.setId(vo.getId());
-			session.setAttribute("svo",svo);
-			result_page = "index";  // -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
-			
-		} else {
-			result_page = "login/login";
+		if(svo != null) {
+			if(svo.getChoicein() == 1) {
+				svo.setId(vo.getId());
+				session.setAttribute("svo",svo);
+				result_page = "index";  // -> 이렇게 주려면 index.jsp에 jquery(if문 중 승인대기중)조건문 추가해야함.
+				
+			} else {
+				result_page = "login/login";
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('승인 대기 중입니다.'); history.go(-1);</script>");  //history.go(-1); :한단계 뒤로가기(id는 내가 쳤던것을 그대로 출력) //생략할 시 그냥 login.jsp 띄워짐
+				out.flush();  //안하면 알람 안뜸
+			}
+		}else {
+			result_page = "login/loginFail";
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-            out.println("<script>alert('승인 대기 중입니다.'); history.go(-1);</script>");  //history.go(-1); :한단계 뒤로가기(id는 내가 쳤던것을 그대로 출력) //생략할 시 그냥 login.jsp 띄워짐
-            out.flush();  //안하면 알람 안뜸
+			out.println("<script>alert('회원정보가 없거나 아이디/비밀번호가 틀렸습니다.'); history.go(-1);</script>");
+			out.flush();  //안하면 알람 안뜸
 		}
 		
 		return result_page;
