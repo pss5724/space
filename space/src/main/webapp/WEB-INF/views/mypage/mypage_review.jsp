@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
-.mypage_left_box ul li:nth-child(3) a{
+.mypage_left_box ul li:nth-child(2) a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
@@ -19,15 +19,20 @@
 .mypage_right_box_title p{ 
 	margin-bottom:20px;
 }
-.mypage_right_box_table th:nth-child(2) {
-	text-align : right;
-	padding-right:10px;
+.review_search {
+	float:left;
+	width:50%;
+	height:40px;
+	margin-left:200px;
+	border:3px solid lightgray;
+	border-radius:7px;
 }
-.mypage_right_box_table th:first-child {
-	text-align : left;
-	padding-left:10px;
+.review_search_input {
+	height:30px;
+	border:none;
+	width:50%;
+	margin-left:110px;
 }
-
 </style>
 </head>
 <body>
@@ -68,59 +73,19 @@
 					
 				<div class="mypage_right_box_title">
 					<div class="title_deco"></div>
-					<p class="mypage_right_tit">1:1 문의</p>
+					<p class="mypage_right_tit">이용 후기</p>
 					
 				</div>
 				
-		
-			
-			<table class="mypage_right_box_table">
-				<tr>
-					<th>${vo.qtitle }</th>
-					<th>${vo.qdate }</th>
-				</tr>
-				<tr>
-					<td colspan="2"><br><br><br><br>
-					
-					${vo.qcontent }
-					<br><br><br><br><br>
-						<c:if test="${vo.qsfile ne null }">
-							<img src="http://localhost:9000/space/upload/${vo.qsfile }" width="200px" height="200px">
-						</c:if>
-					<br><br></td>
-				</tr>
-				
-			</table>
-			<br><br>
-				<div class="mypage_right_box_title">
-					<div class="title_deco"></div>
-					<p class="mypage_right_tit">문의 답변</p>
-					
-				</div>
-				
-		
-			
-			<table class="mypage_right_box_table">
-				<tr>
-					<th>${vo.qstate }</th>
-				</tr>
-				<tr>
-					<td><br><br><br><br>
-					
-						<c:choose>
-						<c:when test="${vo.acontent != null}">
-						${vo.acontent }
-						</c:when>
-						<c:otherwise>
-						문의주신 내용을 꼼꼼히 확인하여 답변드리겠습니다.
-						</c:otherwise>
-					
-					</c:choose>
-					<br><br><br><br><br><br><br></td>
-				</tr>
-				
-			</table>
-		
+				<br>
+				<br>
+				<br>
+				<hr color="lightgray">
+				<br>
+		<form name="review_search" action="mypage_review_search_proc.do" method="get">
+			<input type="hidden" name="id" value="${sessionScope.svo.id }">
+			<div class="review_search"><input type="text" name="rsid" class="review_search_input" placeholder="예약번호를 입력해주세요" value=""><button type="submit" ><img src="http://localhost:9000/space/images/sub_header_search_btn.jpg" width="20" height="20"></button></div>
+		</form>
 			</div>
 			<!-- right box end -->
 			

@@ -35,10 +35,13 @@
 				</p>
 				<ul>
 					<li>
-						<a href="mypage.do">예약한 회의실</a>
+						<a href="mypage.do?id=${sessionScope.svo.id }">예약한 회의실</a>
 					</li>
-					<li >
-						<a href="mypage_inquiry.do">1:1 문의</a>
+					<li>
+						<a href="mypage_review.do">이용 후기</a>
+					</li>
+					<li>
+						<a href="mypage_inquiry.do?id=${sessionScope.svo.id }">1:1 문의</a>
 					</li>
 					<li>
 						<a href="mypage_info.do">회원정보 수정</a>
@@ -55,7 +58,6 @@
 					<p class="mypage_right_tit">예약한 회의실</p>
 					
 					
-					
 				</div>
 				<br>
 				<br>
@@ -70,7 +72,7 @@
 						<span>2021.07.02</span>
 						<br>
 						<img src="http://localhost:9000/space/images/mypage01_list_bottom_sect_icon02.png">
-						<span>22시~24시[2시간]</span>
+						<span class="time">22시~24시[2시간]</span>
 						<span class="price">132,000원</span>
 						
 						  

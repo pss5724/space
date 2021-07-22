@@ -35,7 +35,7 @@ $(document).ready(function(){
 });
 </script>
 <style>
-.mypage_left_box ul li:nth-child(2) a{
+.mypage_left_box ul li:nth-child(3) a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
@@ -117,6 +117,9 @@ $(document).ready(function(){
 				<ul>
 					<li>
 						<a href="mypage.do">예약한 회의실</a>
+					</li>
+					<li>
+						<a href="mypage_review.do">이용 후기</a>
 					</li>
 					<li>
 						<a href="mypage_inquiry.do">1:1 문의</a>

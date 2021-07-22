@@ -104,6 +104,9 @@ $(document).ready(function(){
 						<a href="mypage.do">예약한 회의실</a>
 					</li>
 					<li>
+						<a href="mypage_review.do">이용 후기</a>
+					</li>
+					<li>
 						<a href="mypage_inquiry.do">1:1 문의</a>
 					</li>
 					<li>
@@ -127,11 +130,11 @@ $(document).ready(function(){
 			<table class="mypage_right_box_table_info">
 				<tr>
 					<th>이름</th>
-					<td>홍길동</td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td>hong@naver.com</td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -139,7 +142,7 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<th>핸드폰</th>
-					<td>010-1111-2222</td>
+					<td></td>
 				</tr>
 				
 				

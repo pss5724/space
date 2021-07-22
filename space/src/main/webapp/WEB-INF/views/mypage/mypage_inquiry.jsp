@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <style>
-.mypage_left_box ul li:nth-child(2) a{
+.mypage_left_box ul li:nth-child(3) a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
@@ -40,6 +40,9 @@
 				<ul>
 					<li>
 						<a href="mypage.do">예약한 회의실</a>
+					</li>
+					<li>
+						<a href="mypage_review.do">이용 후기</a>
 					</li>
 					<li>
 						<a href="mypage_inquiry.do">1:1 문의</a>

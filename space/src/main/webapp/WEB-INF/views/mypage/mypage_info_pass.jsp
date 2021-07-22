@@ -129,8 +129,11 @@ $(document).ready(function(){
 					<span>나의 회의실</span>
 				</p>
 				<ul>
-					<li>
+						<li>
 						<a href="mypage.do">예약한 회의실</a>
+					</li>
+					<li>
+						<a href="mypage_review.do">이용 후기</a>
 					</li>
 					<li>
 						<a href="mypage_inquiry.do">1:1 문의</a>

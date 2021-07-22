@@ -3,7 +3,8 @@ package com.myspace.vo;
 public class ReviewVO {
 	
 	String id, rdate, rid, room_name, rsid, rcontent;
-	int locationlv, facilitylv, pricelv, servicelv, totallv;
+	int locationlv, facilitylv, pricelv, servicelv; 
+	double totallv;
 	public String getId() {
 		return id;
 	}
@@ -64,10 +65,10 @@ public class ReviewVO {
 	public void setServicelv(int servicelv) {
 		this.servicelv = servicelv;
 	}
-	public int getTotallv() {
+	public double getTotallv() {
 		return totallv;
 	}
-	public void setTotallv(int totallv) {
+	public void setTotallv(double totallv) {
 		this.totallv = totallv;
 	}
 	
