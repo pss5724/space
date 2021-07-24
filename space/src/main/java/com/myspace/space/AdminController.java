@@ -34,12 +34,12 @@ public class AdminController {
 		HashMap map = commons.getPage(rpage, memberService, "member");
 		
 		int start = (Integer)map.get("start");
-		int end = (Integer)map.get("end");
+		int end = (Integer)map.get("dbCount");
 		ArrayList<MemberVO> plist = memberService.getList0(start, end);
 		
 		mv.setViewName("admin/member_list");
 		mv.addObject("plist", plist);
-		mv.addObject("dbcount", map.get("dbCount"));
+		//mv.addObject("dbcount", map.get("dbCount"));
 		mv.addObject("rpage", map.get("rpage"));
 		mv.addObject("pageSize", map.get("pageSize"));
 		
@@ -57,12 +57,12 @@ public class AdminController {
 		HashMap map = commons.getPage(rpage, memberService, "member");
 		
 		int start = (Integer)map.get("start");
-		int end = (Integer)map.get("end");
+		int end = (Integer)map.get("dbCount");
 		ArrayList<MemberVO> clist = memberService.getList1(start, end);
 		
 		mv.setViewName("admin/corp_list");
 		mv.addObject("clist", clist);
-		mv.addObject("dbcount", map.get("dbCount"));
+		//mv.addObject("dbcount", map.get("dbCount"));
 		mv.addObject("rpage", map.get("rpage"));
 		mv.addObject("pageSize", map.get("pageSize"));
 		

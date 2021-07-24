@@ -3,6 +3,7 @@ package com.myspace.space;
 import java.util.HashMap;
 
 import com.myspace.service.FaqService;
+import com.myspace.service.MemberService;
 import com.myspace.service.NoticeService;
 
 public class Commons {
@@ -28,6 +29,10 @@ public class Commons {
 		FaqService faqService =(FaqService)obj;
 		dbCount = faqService.execTotalCount();
 	} 
+	else if(name.equals("member")) {
+		MemberService memberService =(MemberService)obj;
+		dbCount = memberService.execTotalCount();
+	}
 	
 	//총 페이지 수 계산
 	if(dbCount % pageSize == 0){
@@ -47,7 +52,6 @@ public class Commons {
 	}
 	
 	
-	System.out.println(startCount);
 	map.put("start", startCount);
 	map.put("end", endCount);
 	map.put("dbCount", dbCount);
