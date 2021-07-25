@@ -369,7 +369,7 @@ $(document).ready(function() {
          if(rolist[++i] != "${vo.rid}" && rolist[++i] >= Number("${vo.capacity}") && rolist[++i] <= Number("${vo.charge}")+50000){
             num++;
             similar += "<div class='s_room slick-slide slick-active' data-slick-index='1' aria-hidden='false' tabindex='0' style='width: 180px;'>"
-            similar += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[++k] + "'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px'>";
+            similar += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[++k] + "'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px' height='91px'>";
             similar += "<div><span>" + rolist[++i] + "</span>";
             similar += "<span>" + rolist[++i] + "</span>";
             similar += "<div><img src='http://localhost:9000/space/images/cont_list_detail_info01.png'><span>" + rolist[--k] + "</span>";

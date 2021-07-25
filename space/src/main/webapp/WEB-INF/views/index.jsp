@@ -510,7 +510,7 @@ $(document).ready(function() {
 		for(var i=0;i<rolist.length;i++){
 			if(rolist[i] == oplist[j]){
 				video += "<div class='item item"+num+"' data-index='"+num+"'>";
-				video += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[i] + "&rpage=1'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px'>";
+				video += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[i] + "&rpage=1'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px' height='91px'>";
 				if(rolist[++i].length > 15){
 					video += "<div><span>" + rolist[i].substring(0,15) + "...</span>";
 				}else {
