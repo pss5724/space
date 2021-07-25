@@ -33,6 +33,12 @@ $(document).ready(function() {
     });
    	console.log('999',$(".item_price").text());
     
+   	$(".cancel_reservation.btn").click(function(){
+		var con = confirm("예약을 취소하시겠습니까?");
+		if(con) {
+		        $(location).attr('href', 'http://localhost:9000/space/reservation_cancel_proc.do?rsid=${vo.rsid}');
+		}
+   	});
 });
 </script>
 </head>
@@ -91,37 +97,37 @@ $(document).ready(function() {
 						<th>편의사항</th>
 						<c:choose>
 						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num == 0 && vo.convenience3_num == 0}">
-						<td>${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원</td>
+						<td>${svo.convenience1 } <span class="item_price">${(vo.convenience1_num)*(svo.convenience1_price)}</span></td>
 						</c:when>
 						<c:when test="${vo.convenience1_num == 0 && vo.convenience2_num != 0 && vo.convenience3_num == 0}">
-						<td>${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원</td>
+						<td>${svo.convenience2 } <span class="item_price">${(vo.convenience2_num)*(svo.convenience2_price)}</span></td>
 						</c:when>
 						<c:when test="${vo.convenience1_num == 0 && vo.convenience2_num == 0 && vo.convenience3_num != 0}">
-						<td>${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원</td>
+						<td>${svo.convenience3 } <span class="item_price">${(vo.convenience3_num)*(svo.convenience3_price)}</span></td>
 						</c:when>
 						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num != 0 && vo.convenience3_num == 0}">
 						<td>
-							${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원<br>
-							${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원
+							${svo.convenience1 } <span class="item_price">${(vo.convenience1_num)*(svo.convenience1_price)}</span><br>
+							${svo.convenience2 } <span class="item_price">${(vo.convenience2_num)*(svo.convenience2_price)}</span>
 						</td>
 						</c:when>
 						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num == 0 && vo.convenience3_num != 0}">
 						<td>
-							${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원<br>
-							${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원
+							${svo.convenience1 } <span class="item_price">${(vo.convenience1_num)*(svo.convenience1_price)}</span><br>
+							${svo.convenience3 } <span class="item_price">${(vo.convenience3_num)*(svo.convenience3_price)}</span>
 						</td>
 						</c:when>
 						<c:when test="${vo.convenience1_num == 0 && vo.convenience2_num != 0 && vo.convenience3_num != 0}">
 						<td>
-							${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원<br>
-							${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원
+							${svo.convenience2 } <span class="item_price">${(vo.convenience2_num)*(svo.convenience2_price)}</span><br>
+							${svo.convenience3 } <span class="item_price">${(vo.convenience3_num)*(svo.convenience3_price)}</span>
 						</td>
 						</c:when>
 						<c:when test="${vo.convenience1_num != 0 && vo.convenience2_num != 0 && vo.convenience3_num != 0}">
 						<td>
-							${svo.convenience1 } ${(vo.convenience1_num)*(svo.convenience1_price)}원<br>
-							${svo.convenience2 } ${(vo.convenience2_num)*(svo.convenience2_price)}원<br>
-							${svo.convenience3 } ${(vo.convenience3_num)*(svo.convenience3_price)}원
+							${svo.convenience1 } <span class="item_price">${(vo.convenience1_num)*(svo.convenience1_price)}</span><br>
+							${svo.convenience2 } <span class="item_price">${(vo.convenience2_num)*(svo.convenience2_price)}</span><br>
+							${svo.convenience3 } <span class="item_price">${(vo.convenience3_num)*(svo.convenience3_price)}</span>
 						</td>
 						</c:when>
 						<c:otherwise>
@@ -132,37 +138,37 @@ $(document).ready(function() {
 						<th>식음료</th>
 						<c:choose>
 						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num == 0 && vo.beverage3_num == 0}">
-						<td>${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원</td>
+						<td>${svo.beverage1 } <span class="item_price">${(vo.beverage1_num)*(svo.beverage1_price)}</span></td>
 						</c:when>
 						<c:when test="${vo.beverage1_num == 0 && vo.beverage2_num != 0 && vo.beverage3_num == 0}">
-						<td>${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원</td>
+						<td>${svo.beverage2 } <span class="item_price">${(vo.beverage2_num)*(svo.beverage2_price)}</span></td>
 						</c:when>
 						<c:when test="${vo.beverage1_num == 0 && vo.beverage2_num == 0 && vo.beverage3_num != 0}">
-						<td>${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원</td>
+						<td>${svo.beverage3 } <span class="item_price">${(vo.beverage3_num)*(svo.beverage3_price)}</span></td>
 						</c:when>
 						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num != 0 && vo.beverage3_num == 0}">
 						<td>
-							${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원<br><br>
-							${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원
+							${svo.beverage1 } <span class="item_price">${(vo.beverage1_num)*(svo.beverage1_price)}</span><br><br>
+							${svo.beverage2 } <span class="item_price">${(vo.beverage2_num)*(svo.beverage2_price)}</span>
 						</td>
 						</c:when>
 						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num == 0 && vo.beverage3_num != 0}">
 						<td>
-							${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원<br><br>
-							${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원
+							${svo.beverage1 } <span class="item_price">${(vo.beverage1_num)*(svo.beverage1_price)}</span><br><br>
+							${svo.beverage3 } <span class="item_price">${(vo.beverage3_num)*(svo.beverage3_price)}</span>
 						</td>
 						</c:when>
 						<c:when test="${vo.beverage1_num == 0 && vo.beverage2_num != 0 && vo.beverage3_num != 0}">
 						<td>
-							${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원<br><br>
-							${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원
+							${svo.beverage2 } <span class="item_price">${(vo.beverage2_num)*(svo.beverage2_price)}</span><br><br>
+							${svo.beverage3 } <span class="item_price">${(vo.beverage3_num)*(svo.beverage3_price)}</span>
 						</td>
 						</c:when>
 						<c:when test="${vo.beverage1_num != 0 && vo.beverage2_num != 0 && vo.beverage3_num != 0}">
 						<td>
-							${svo.beverage1 } ${(vo.beverage1_num)*(svo.beverage1_price)}원<br><br>
-							${svo.beverage2 } ${(vo.beverage2_num)*(svo.beverage2_price)}원<br><br>
-							${svo.beverage3 } ${(vo.beverage3_num)*(svo.beverage3_price)}원
+							${svo.beverage1 } <span class="item_price">${(vo.beverage1_num)*(svo.beverage1_price)}</span><br><br>
+							${svo.beverage2 } <span class="item_price">${(vo.beverage2_num)*(svo.beverage2_price)}</span><br><br>
+							${svo.beverage3 } <span class="item_price">${(vo.beverage3_num)*(svo.beverage3_price)}</span>
 						</td>
 						</c:when>
 						<c:otherwise>
@@ -246,6 +252,7 @@ $(document).ready(function() {
 					</li>
 				</ul>
 			</div>
+			<div class="cancel_reservation"><input type="button" value="예약취소" class="cancel_reservation btn"></div>
 		</div>
 	</div>
 	<p class="print_area">㈜스페이스닷컴</p>

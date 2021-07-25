@@ -6,152 +6,158 @@
 
 <mapper namespace="mapper.room">
 
-	<!-- 회의실 등록 -->
-	<insert id="insert" parameterType="com.myspace.vo.RoomVO">
-		insert into space_room values('r_'||sequ_space_room.nextval, #{id}, #{branch_name}, #{room_name}, #{intro}, #{opening_time}, #{closing_time}, #{closed_day}, 
-		#{check_info}, #{type}, #{capacity}, #{charge}, #{address}, #{rfile1}, #{rsfile1},
-		<choose>
-			<when test="rfile2==null and rfile3==null"> <!-- 파일1만 있음 -->
-				null, null, null, null,
-			</when>
-			<when test="rfile2 != null and rfile3 == null"> <!-- 파일1,2 있음 -->
-				#{rfile2}, #{rsfile2}, null, null,
-			</when>
-			<when test="rfile2 != null and rfile3 != null"> <!-- 파일1,2,3 있음 -->
-				#{rfile2}, #{rsfile2}, #{rfile3}, #{rsfile3},
-			</when>		
-		</choose>
-		 sysdate, 0, 0)
-	</insert>
+	
+        <!-- 회의실 등록 -->
+        <insert id="insert" parameterType="com.myspace.vo.RoomVO">
+                insert into space_room values('r_'||sequ_space_room.nextval, #{id}, #{branch_name}, #{room_name}, #{intro}, #{opening_time}, #{closing_time}, #{closed_day}, 
+                #{check_info}, #{type}, #{capacity}, #{charge}, #{address}, #{rfile1}, #{rsfile1},
+                <choose>
+                        <when test="rfile2==null and rfile3==null"> <!-- 파일1만 있음 -->
+                                null, null, null, null,
+                        </when>
+                        <when test="rfile2 != null and rfile3 == null"> <!-- 파일1,2 있음 -->
+                                #{rfile2}, #{rsfile2}, null, null,
+                        </when>
+                        <when test="rfile2 != null and rfile3 != null"> <!-- 파일1,2,3 있음 -->
+                                #{rfile2}, #{rsfile2}, #{rfile3}, #{rsfile3},
+                        </when>                
+                </choose>
+                 sysdate, 0, 0)
+        </insert>
 
-	<!-- 회의실 등록(옵션) -->
-	<insert id="insertOption" parameterType="com.myspace.vo.OptionVO">
-		insert into space_option values(#{rid}, #{lounge}, #{smoking_room}, #{parking_lot}, #{elevator}, #{freight_elevator}, 
-		#{vending_machine}, #{wifi}, #{accessible_toilet}, #{toilet}, #{water_dispenser}, #{ktx}, #{beam}, #{video_device}, #{mic}, #{lectern}, #{tv}, 
-		#{speaker}, #{pc}, #{pointer}, #{banner}, #{whiteboard}, #{dais}, #{conference_call}, #{air_conditional}, #{heater}, #{internet}, #{studio}, 
-		#{snack_carry}, #{snack_sale}, #{meal_carry}, #{meal_sale}, #{online_payment}, #{offline_payment})
-	</insert>
-	
-	<!-- 회의실 등록(서비스) -->
-	<insert id="insertService" parameterType="com.myspace.vo.ServiceVO">
-		insert into space_service values( #{rid}, #{convenience1}, #{convenience1_price}, #{convenience2}, #{convenience2_price},
-		 #{convenience3}, #{convenience3_price}, #{beverage1}, #{beverage1_price}, #{beverage2}, #{beverage2_price}, #{beverage3}, #{beverage3_price})
-	</insert>
-	
-	<!-- 회의실 업데이트 -->
-	<update id="update" parameterType="com.myspace.vo.RoomVO">
-		update space_room set branch_name=#{branch_name}, room_name=#{room_name}, intro=#{intro},
-		opening_time=#{opening_time}, closing_time=#{closing_time}, closed_day=#{closed_day}, 
-		check_info=#{check_info}, type=#{type}, capacity=#{capacity}, charge=#{charge}, address=#{address}
-		<if test="rsfile1 != null">
-			, rfile1=#{rfile1}, rsfile1=#{rsfile1}
-		</if>
-		<if test="rsfile2 != null">
-			, rfile2=#{rfile2}, rsfile2=#{rsfile2}
-		</if>
-		<if test="rsfile3 != null">
-			, rfile3=#{rfile3}, rsfile3=#{rsfile3}
-		</if>
-		where rid=#{rid}
-	</update>
-	
-	<!-- 회의실 업데이트(옵션) -->
-	<update id="updateOption" parameterType="com.myspace.vo.OptionVO">
-		update space_option set lounge=#{lounge}, smoking_room=#{smoking_room}, parking_lot=#{parking_lot}, elevator=#{elevator},
-		freight_elevator=#{freight_elevator}, vending_machine=#{vending_machine}, wifi=#{wifi}, accessible_toilet=#{accessible_toilet}, 
-		toilet=#{toilet}, water_dispenser=#{water_dispenser}, ktx=#{ktx}, beam=#{beam}, video_device=#{video_device}, mic=#{mic}, 
-		lectern=#{lectern}, tv=#{tv}, speaker=#{speaker}, pc=#{pc}, pointer=#{pointer}, banner=#{banner}, whiteboard=#{whiteboard}, dais=#{dais}, 
-		conference_call=#{conference_call}, air_conditional=#{air_conditional}, heater=#{heater}, internet=#{internet}, studio=#{studio}, 
-		snack_carry=#{snack_carry}, snack_sale=#{snack_sale}, meal_carry=#{meal_carry}, meal_sale=#{meal_sale}, 
-		online_payment=#{online_payment}, offline_payment=#{offline_payment}
-		where rid=#{rid}
-	</update>
-	
-	<!-- 회의실 업데이트(서비스) -->
-	<update id="updateService" parameterType="com.myspace.vo.ServiceVO">
-		update space_service set convenience1=#{convenience1}, convenience1_price=#{convenience1_price}, 
-		convenience2=#{convenience2}, convenience2_price=#{convenience2_price}, convenience3=#{convenience3}, 
-		convenience3_price=#{convenience3_price}, beverage1=#{beverage1}, beverage1_price=#{beverage1_price}, 
-		beverage2=#{beverage2}, beverage2_price=#{beverage2_price}, beverage3=#{beverage3}, beverage3_price=#{beverage3_price}
-		where rid=#{rid}
-	</update>
-	
-	<!-- 회의실 삭제 -->
-	<delete id="delete" parameterType="java.lang.String">
-		delete from space_room where rid=#{rid}
-	</delete>
-	
-	<!-- 파일 가져오기 -->
-	<select id="rsfile" parameterType="map"	resultType="java.lang.String">
-		select ${rsfile} from space_room where rid=#{rid}
-	</select>
-	
-	<!-- 회의실 최근 등록된 rid -->
-	<select id="insertedId" resultType="java.lang.String">
-		select rid from (select rid from space_room order by rdate desc) where rownum = 1
-	</select>
+        <!-- 회의실 등록(옵션) -->
+        <insert id="insertOption" parameterType="com.myspace.vo.OptionVO">
+                insert into space_option values(#{rid}, #{lounge}, #{smoking_room}, #{parking_lot}, #{elevator}, #{freight_elevator}, 
+                #{vending_machine}, #{wifi}, #{accessible_toilet}, #{toilet}, #{water_dispenser}, #{ktx}, #{beam}, #{video_device}, #{mic}, #{lectern}, #{tv}, 
+                #{speaker}, #{pc}, #{pointer}, #{banner}, #{whiteboard}, #{dais}, #{conference_call}, #{air_conditional}, #{heater}, #{internet}, #{studio}, 
+                #{snack_carry}, #{snack_sale}, #{meal_carry}, #{meal_sale}, #{online_payment}, #{offline_payment})
+        </insert>
+        
+        <!-- 회의실 등록(서비스) -->
+        <insert id="insertService" parameterType="com.myspace.vo.ServiceVO">
+                insert into space_service values( #{rid}, #{convenience1}, #{convenience1_price}, #{convenience2}, #{convenience2_price},
+                 #{convenience3}, #{convenience3_price}, #{beverage1}, #{beverage1_price}, #{beverage2}, #{beverage2_price}, #{beverage3}, #{beverage3_price})
+        </insert>
+        
+        <!-- 회의실 업데이트 -->
+        <update id="update" parameterType="com.myspace.vo.RoomVO">
+                update space_room set branch_name=#{branch_name}, room_name=#{room_name}, intro=#{intro},
+                opening_time=#{opening_time}, closing_time=#{closing_time}, closed_day=#{closed_day}, 
+                check_info=#{check_info}, type=#{type}, capacity=#{capacity}, charge=#{charge}, address=#{address}
+                <if test="rsfile1 != null">
+                        , rfile1=#{rfile1}, rsfile1=#{rsfile1}
+                </if>
+                <if test="rsfile2 != null">
+                        , rfile2=#{rfile2}, rsfile2=#{rsfile2}
+                </if>
+                <if test="rsfile3 != null">
+                        , rfile3=#{rfile3}, rsfile3=#{rsfile3}
+                </if>
+                where rid=#{rid}
+        </update>
+        
+        <!-- 회의실 업데이트(옵션) -->
+        <update id="updateOption" parameterType="com.myspace.vo.OptionVO">
+                update space_option set lounge=#{lounge}, smoking_room=#{smoking_room}, parking_lot=#{parking_lot}, elevator=#{elevator},
+                freight_elevator=#{freight_elevator}, vending_machine=#{vending_machine}, wifi=#{wifi}, accessible_toilet=#{accessible_toilet}, 
+                toilet=#{toilet}, water_dispenser=#{water_dispenser}, ktx=#{ktx}, beam=#{beam}, video_device=#{video_device}, mic=#{mic}, 
+                lectern=#{lectern}, tv=#{tv}, speaker=#{speaker}, pc=#{pc}, pointer=#{pointer}, banner=#{banner}, whiteboard=#{whiteboard}, dais=#{dais}, 
+                conference_call=#{conference_call}, air_conditional=#{air_conditional}, heater=#{heater}, internet=#{internet}, studio=#{studio}, 
+                snack_carry=#{snack_carry}, snack_sale=#{snack_sale}, meal_carry=#{meal_carry}, meal_sale=#{meal_sale}, 
+                online_payment=#{online_payment}, offline_payment=#{offline_payment}
+                where rid=#{rid}
+        </update>
+        
+        <!-- 회의실 업데이트(서비스) -->
+        <update id="updateService" parameterType="com.myspace.vo.ServiceVO">
+                update space_service set convenience1=#{convenience1}, convenience1_price=#{convenience1_price}, 
+                convenience2=#{convenience2}, convenience2_price=#{convenience2_price}, convenience3=#{convenience3}, 
+                convenience3_price=#{convenience3_price}, beverage1=#{beverage1}, beverage1_price=#{beverage1_price}, 
+                beverage2=#{beverage2}, beverage2_price=#{beverage2_price}, beverage3=#{beverage3}, beverage3_price=#{beverage3_price}
+                where rid=#{rid}
+        </update>
+        
+        <!-- 회의실 삭제 -->
+        <delete id="delete" parameterType="java.lang.String">
+                delete from space_room where rid=#{rid}
+        </delete>
+        
+        <!-- 파일 가져오기 -->
+        <select id="rsfile" parameterType="map"        resultType="java.lang.String">
+                select ${rsfile} from space_room where rid=#{rid}
+        </select>
+        
+        <!-- 회의실 최근 등록된 rid -->
+        <select id="insertedId" resultType="java.lang.String">
+                select rid from (select rid from space_room order by rdate desc) where rownum = 1
+        </select>
 
-	<!-- 지도 회의실 리스트 -->
-	 <select id="mapList" resultType="com.myspace.vo.RoomVO">
-		select rid,branch_name,intro,charge,address,capacity,rfile1,rsfile1 from space_room order by rid
-	</select>
+        <!-- 지도 회의실 리스트 -->
+         <select id="mapList" resultType="com.myspace.vo.RoomVO">
+                select rid,branch_name,intro,charge,address,capacity,rfile1,rsfile1 from space_room order by rid
+        </select>
 
-	<!-- 회의실 검색 리스트 -->
-	<select id="searchList" parameterType="map" resultType="com.myspace.vo.RoomVO">
-		select * from space_room where charge between #{min} and #{max}
+        <!-- 회의실 검색 리스트 -->
+        <select id="searchList" parameterType="map" resultType="com.myspace.vo.RoomVO">
+                select * from space_room where charge between #{min} and #{max}
 
-		<if test="location1 != ''"> and address like '%'||#{location1}||'%' </if>
-		<if test="location2 != ''"> and address like '%'||#{location2}||'%' </if>
-		<if test="date != '' and time != 0">
-			and rid not in (select rid from space_reserve where to_char(reserve_date, 'yyyy.mm.dd') = #{date}
-			and <![CDATA[ checkin_time <= #{time} and #{time} <= checkout_time) ]]>
-		</if>
-		<if test="type != ''"> and type = #{type} </if>
-		<if test="capacity != 0"> <![CDATA[ and capacity >= #{capacity} ]]></if>
-		<if test="stars != 0"> <![CDATA[ and grade < #{stars} ]]></if>
-		<if test="option_list != null">
-			and rid in (select rid from space_option
-			<where>
-				<foreach item="option" index="index" collection="option_list">
-					and ${option} = 1
-				</foreach>
-			</where>
-			)
-		</if>
-		order by
-		<if test="order != ''">
-			${order},
-		</if>
-		rid
-	</select>
-	
-	<!-- 회의실 검색 옵션 리스트 -->
-	<select id="searchOptionList" parameterType="java.util.ArrayList" resultType="com.myspace.vo.OptionVO">
-		select space_option.* from space_option join space_room on space_option.rid = space_room.rid
-		<if test="rid_list != null">
-			where space_option.rid in
-			<foreach item="rid" index="index" collection="rid_list"
-				open="(" separator="," close=")">
-				#{rid}
-			</foreach>
-		</if>
-		order by
-		<if test="order != ''">
-			${order},
-		</if>
-		space_option.rid
-	</select>
-	
-	<!-- 회의실 예약번호 -->
-	<select id="rsid" parameterType="map" resultType="java.lang.String">
-		select rsid	from space_reserve where rid=#{rid} and reserve_date=#{reserve_date} and checkin_time=#{checkin_time}
-		and checkout_time=#{checkout_time} and name=#{name} and hp=#{hp} and corp_name=#{corp_name}
-	</select>
-		
-	<!-- 회의실 주소 -->
-	<select id="addr" resultType="java.lang.String">
-		select distinct substr(address, 1, instr(address, ' ', 1, 2)-1) addr from space_room
-	</select>
+                <if test="location1 != ''"> and address like '%'||#{location1}||'%' </if>
+                <if test="location2 != ''"> and address like '%'||#{location2}||'%' </if>
+                <if test="date != '' and time != 0">
+                        and rid not in (select rid from space_reserve where to_char(reserve_date, 'yyyy.mm.dd') = #{date}
+                        and <![CDATA[ checkin_time <= #{time} and #{time} <= checkout_time) ]]>
+                </if>
+                <if test="type != ''"> and type = #{type} </if>
+                <if test="capacity != 0"> <![CDATA[ and capacity >= #{capacity} ]]></if>
+                <if test="stars != 0"> <![CDATA[ and grade < #{stars} ]]></if>
+                <if test="option_list != null">
+                        and rid in (select rid from space_option
+                        <where>
+                                <foreach item="option" index="index" collection="option_list">
+                                        and ${option} = 1
+                                </foreach>
+                        </where>
+                        )
+                </if>
+                order by
+                <if test="order != ''">
+                        ${order},
+                </if>
+                rid
+        </select>
+        
+        <!-- 회의실 검색 옵션 리스트 -->
+        <select id="searchOptionList" parameterType="java.util.ArrayList" resultType="com.myspace.vo.OptionVO">
+                select space_option.* from space_option join space_room on space_option.rid = space_room.rid
+                <if test="rid_list != null">
+                        where space_option.rid in
+                        <foreach item="rid" index="index" collection="rid_list"
+                                open="(" separator="," close=")">
+                                #{rid}
+                        </foreach>
+                </if>
+                order by
+                <if test="order != ''">
+                        ${order},
+                </if>
+                space_option.rid
+        </select>
+        
+        <!-- 회의실 예약번호 -->
+        <select id="rsid" parameterType="map" resultType="java.lang.String">
+                select rsid        from space_reserve where rid=#{rid} and reserve_date=#{reserve_date} and checkin_time=#{checkin_time}
+                and checkout_time=#{checkout_time} and name=#{name} and hp=#{hp} and corp_name=#{corp_name}
+        </select>
+                
+        <!-- 회의실 주소 -->
+        <select id="addr" resultType="java.lang.String">
+                select distinct substr(address, 1, instr(address, ' ', 1, 2)-1) addr from space_room
+        </select>
+        
+        <!-- 카운트 -->
+        <select id="count" parameterType="map" resultType="Integer">
+                select count(*) from space_${category}
+        </select>
 	
 	
 		
@@ -164,14 +170,37 @@
 			select * from space_room where rid=#{rid}
 	</select>
 	
+	<!-- 회의실 상세 - 리뷰 총평점 -->
+	<select id="reviewgradelist" parameterType="map" resultType="com.myspace.vo.ReviewVO">
+		select locationlv, facilitylv, pricelv, servicelv, totallv from space_review where rid=#{rid}
+	</select>
+	
+	<!-- 회의실 상세 - 리뷰 -->
+	<select id="roomreview" parameterType="map" resultType="com.myspace.vo.ReviewVO">
+		select rno, id, rdate, rid, room_name , rsid, locationlv, facilitylv, pricelv, servicelv, rcontent, totallv from 
+			(select rownum rno, id, to_char(rdate,'yyyy.mm.dd') rdate, rid, room_name , rsid, locationlv, facilitylv, pricelv, servicelv, rcontent, totallv
+			from (select id, rdate, rid, room_name , rsid, locationlv, facilitylv, pricelv, servicelv, rcontent, totallv from space_review order by rdate)) 
+			where (rno between #{start} and #{end}) and rid=#{rid}
+	</select>
+	
+	<!-- 전체 로우수 -->
+	<select id ="countreview" resultType="int">
+		select count(*) from space_review where rid=#{rid}
+	</select>
+	
 	<!-- 회의실 리스트 - 비슷한 회의실 -->
 	<select id="roomlist" parameterType="map" resultType="com.myspace.vo.RoomVO">
-		select address, charge, capacity, rsfile1, branch_name, intro, rid from space_room
+		select address, charge, capacity, rsfile1, branch_name, intro, rid, grade from space_room
 	</select>
 	
 	<!-- 회의실 옵션 -->
 	<select id="roomoption" parameterType="java.lang.String" resultType="com.myspace.vo.OptionVO">
 			select * from space_option where rid=#{rid}
+	</select>
+	
+	<!-- 회의실 옵션 리스트 -->
+	<select id="roomoptionlist" parameterType="map" resultType="com.myspace.vo.OptionVO">
+			select rid, video_device from space_option
 	</select>
 	
 	<!-- 회의실 예약 - 부가서비스 -->
@@ -195,7 +224,35 @@
 		convenience2_num, convenience3_num, beverage1_num, beverage2_num, beverage3_num, corp_name, event_name, amount, pay_type, etc_request from space_reserve where rsid=#{rsid}
 	</select>
 	
+	<!-- 회의실 예약 취소 -->
+	<delete id="cancelreservation" parameterType="java.lang.String">
+		delete from space_reserve where rsid=#{rsid}
+	</delete>
+	
+	<!-- 예약률 상위 10% 회의실 -->
+	<select id="topreservation" parameterType="map" resultType="com.myspace.vo.RoomVO">
+		select * from(
+			select rid, charge, capacity, address, rsfile1, grade, intro, branch_name, count, percent_rank() over(order by count desc) per_rank from(
+			select space_room.*, nvl(count, 0) count 
+			from space_room, (select rid, count(*) count from space_reserve group by rid order by count desc) reserve
+			where space_room.rid = reserve.rid(+)
+			)) <![CDATA[where per_rank <= 0.1]]>
+	</select>
+	
+	<!-- 평점 상위 10% 회의실 -->
+	<select id="topgrade" parameterType="map" resultType="com.myspace.vo.RoomVO">
+		select * from space_room where rid in
+			(select rid from(
+			select rid, grade, percent_rank() over(order by grade desc) ranking from space_room) <![CDATA[where ranking <= 0.1)]]>
+	</select>
+	
         
+    <!-- 성수 -->
+    <!-- 회의실 예약 리스트 -->
+    <select id="reservationlist" parameterType="java.lang.String" resultType="com.myspace.vo.ReservationVO">
+            select rsid, rid, branch_name, room_name, to_char(reserve_date,'yyyy.mm.dd') reserve_date, checkin_time, checkout_time, used_hours, amount
+      from space_reserve where email=#{id}
+    </select>
 </mapper>
 
 
