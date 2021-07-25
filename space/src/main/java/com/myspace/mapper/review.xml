@@ -32,4 +32,8 @@
 		delete from space_review where id=#{id} and rsid=#{rsid}
 	</delete>
 	
+	<update id="updatetotallv" parameterType="com.myspace.vo.ReviewVO">
+		update space_room set grade=(select avg(totallv) from space_review where rid=#{rid}), review_count=(select count(*) from space_review where rid=#{rid}) where rid=#{rid}
+	</update>
+	
 </mapper>

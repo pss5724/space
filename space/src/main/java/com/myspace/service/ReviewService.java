@@ -9,5 +9,6 @@ public interface ReviewService {
 	boolean getInsertResult(ReviewVO vo);
 	boolean getUpdateResult(ReviewVO vo);
 	boolean getDeleteResult(String id, String rsid);
+	boolean insertTotallv(ReviewVO vo);
 	
 }

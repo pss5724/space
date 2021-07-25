@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspace.service.InquiryService;
 import com.myspace.service.MemberService;
 import com.myspace.vo.InquiryVO;
 import com.myspace.vo.MemberVO;
+import com.myspace.vo.NoticeVO;
 
 @Controller
 public class AdminController { 
@@ -133,13 +133,30 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="/admin_inquiry.do", method=RequestMethod.GET)
-	public ModelAndView admin_inquiry() {
+	public ModelAndView admin_inquiry(String rpage) {
 		ModelAndView mv = new ModelAndView();
 		
-		ArrayList<InquiryVO> list = inquiryService.getList();
+		 Commons commons= new Commons();
+		 HashMap map = commons.getPage(rpage, inquiryService, "inquiry");
+		 
+		 int start = (Integer)map.get("start");
+		 int end =(Integer)map.get("end");
+		 ArrayList<Object> olist = inquiryService.getListAll(start, end);
+		 ArrayList<InquiryVO> list =new ArrayList<InquiryVO>();
+			 for(Object obj :olist) {
+				 InquiryVO vo = (InquiryVO)obj;
+				 list.add(vo);
+			 }
+			 
+		 mv.setViewName("admin/admin_inquiry");
+		 mv.addObject("list", list);
+		 mv.addObject("dbcount", map.get("dbCount"));
+		 mv.addObject("rpage", map.get("rpage"));
+		 mv.addObject("pagesize", map.get("pageSize"));
 		
-		mv.setViewName("admin/admin_inquiry");
-		mv.addObject("list",list);
+		
+		
+		
 		
 		return mv;
 	}

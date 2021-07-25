@@ -9,6 +9,39 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/space/js/am-pagination.js"></script>
+<script>
+//페이징 처리
+	$(document).ready(function(){
+		
+		var pager = jQuery('#ampaginationsm').pagination({
+			
+		    maxSize: 5,	    		// max page size
+		    totals:${dbcount},	// total pages	
+		    page:${rpage},		// initial page		
+		    pageSize: ${pagesize},	// max number items per page
+		    
+			
+		    //totals: ${dbcount},	// total pages	
+		    //page: ${rpage},		// initial page		
+		    //pageSize: ${pageSize},	// max number items per page
+		    
+		    
+		    // custom labels		
+		    lastText: '&raquo;&raquo;', 		
+		    firstText: '&laquo;&laquo;',		
+		    prevText: '&laquo;',		
+		    nextText: '&raquo;',
+				     
+		    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/space/admin_inquiry.do?rpage="+e.page);         
+	    });
+ 	});
+</script>
 <style>
 .mypage_left_box ul li:last-child a{
 	text-decoration: none;
@@ -66,6 +99,115 @@
     .mypage_right_box_atable tr th:last-child{
  	width:10%;
  }
+ 
+ .am-pagination-lg > li > a, .am-pagination-lg > li > span {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+
+}
+.am-pagination-sm > li > a, .am-pagination-sm > li > span {
+	padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.am-pagination-default {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.am-pagination-default > li {
+  display: inline;
+	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+.am-pagination-default > li > a,
+.am-pagination-default > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+}
+.am-pagination-default > li:first-child > a,
+.am-pagination-default > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.am-pagination-default > li:last-child > a,
+.am-pagination-default > li:last-child > span {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.am-pagination-default > li > a:hover,
+.am-pagination-default > li > span:hover,
+.am-pagination-default > li > a:focus,
+.am-pagination-default > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eeeeee;
+  border-color: #ddd;
+}
+.am-pagination-default > .active > a,
+.am-pagination-default > .active > span,
+.am-pagination-default > .active > a:hover,
+.am-pagination-default > .active > span:hover,
+.am-pagination-default > .active > a:focus,
+.am-pagination-default > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  background-color: #5eb95e;
+  border-color: #5eb95e;
+  cursor: default;
+}
+.am-pagination-default > .disabled > span,
+.am-pagination-default > .disabled > span:hover,
+.am-pagination-default > .disabled > span:focus,
+.am-pagination-default > .disabled > a,
+.am-pagination-default > .disabled > a:hover,
+.am-pagination-default > .disabled > a:focus {
+  color: #777777;
+  background-color: #fff;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+.am-pagination-default-lg > li > a,
+.am-pagination-default-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.am-pagination-default-lg > li:first-child > a,
+.am-pagination-default-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.am-pagination-default-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.am-pagination-default-sm > li > a,
+.am-pagination-default-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.am-pagination-default-sm > li:first-child > a,
+.am-pagination-default-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.am-pagination-default-sm > li:last-child > a,
+.am-pagination-default-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
 </style>
 </head>
 <body>
@@ -131,9 +273,13 @@
 					<td>${vo.qstate} </td>
 				</tr>
 				</c:forEach>
-				
+				<tr>
+				<td colspan="6"><div id="ampaginationsm"></div>	</td>
+				</tr>
 			</table>
-	
+					
+						
+				
 			</div>
 			<!-- right box end -->
 			

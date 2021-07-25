@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.InquiryService;
 import com.myspace.vo.InquiryVO;
+import com.myspace.vo.SessionVO;
 
 @Controller
 public class CorppageController {
@@ -32,10 +34,12 @@ public class CorppageController {
 	}
 	
 	@RequestMapping(value="/corppage_inquiry.do", method=RequestMethod.GET)
-	public ModelAndView corppage_inquiry() {
+	public ModelAndView corppage_inquiry(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
-		ArrayList<InquiryVO> list = inquiryService.getList();
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		ArrayList<InquiryVO> list = inquiryService.getList(svo.getId());
 		
 		mv.setViewName("corppage/corppage_inquiry");
 		mv.addObject("list",list);

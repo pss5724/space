@@ -204,10 +204,10 @@
 	font-weight: 900; 
 }
 .bookings ul li a:last-child{
-	margin-left:105px;
+	float:right;
 	}
 .bookings span:last-child{
-	margin-left:130px;
+	margin-left:20px;
 }
 .bookings button{
 	margin-left:100px;
@@ -225,5 +225,6 @@
 	font-weight:600;      
 }
 .bookings span:last-child{
+	margin-left:330px;
 	font-size:17px;
 }

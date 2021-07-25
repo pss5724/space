@@ -143,7 +143,7 @@ $(document).ready(function(){
 		
 			
 		<form id="inquiry_write" action="corppage_inquiry_write_proc.do" method="POST" enctype="multipart/form-data">
-
+		<input type="hidden" value="${sessionScope.svo.id }" name="id">
 		<table class="inquiry_write_table">
 	
 			<tr>

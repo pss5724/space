@@ -58,7 +58,7 @@ public class ReviewDAO {
 				return result;
 			}
 			
-	//리뷰 작성
+	//리뷰 수정
 			public boolean getUpdateResult(ReviewVO vo) {
 				boolean result =false;
 				
@@ -89,4 +89,18 @@ public class ReviewDAO {
 					
 				return result;
 			}
+			
+	//리뷰 등록시 해당 회의실에 평점 평균 업데이트, 리뷰 수 업데이트
+			public boolean insertTotallv(ReviewVO vo) {
+				boolean result = false;
+				
+				int value = sqlSession.update(namespace+".updatetotallv",vo);
+				if(value != 0) {
+					result=true;
+				}
+				
+				return result;
+			}
+			
+	
 }

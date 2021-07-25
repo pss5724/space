@@ -3,6 +3,7 @@ package com.myspace.space;
 import java.util.HashMap;
 
 import com.myspace.service.FaqService;
+import com.myspace.service.InquiryService;
 import com.myspace.service.MemberService;
 import com.myspace.service.NoticeService;
 
@@ -32,6 +33,10 @@ public class Commons {
 	else if(name.equals("member")) {
 		MemberService memberService =(MemberService)obj;
 		dbCount = memberService.execTotalCount();
+	}else if(name.equals("inquiry")) {
+		InquiryService inquriyService =(InquiryService)obj;
+		dbCount = inquriyService.execTotalCount();
+		pageSize=10;
 	}
 	
 	//총 페이지 수 계산

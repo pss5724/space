@@ -37,6 +37,13 @@ public class ReviewServiceImpl implements ReviewService {
 	public boolean getDeleteResult(String id, String rsid) {
 		return reviewDAO.getDeleteResult(id,rsid);
 	}
+
+	@Override
+	public boolean insertTotallv(ReviewVO vo) {
+		return reviewDAO.insertTotallv(vo);
+	}
+
+	
 	
 	
 

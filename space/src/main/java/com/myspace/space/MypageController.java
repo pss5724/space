@@ -2,9 +2,12 @@ package com.myspace.space;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.InquiryService;
 import com.myspace.service.ReviewService;
+import com.myspace.service.RoomService;
 import com.myspace.vo.InquiryVO;
 import com.myspace.vo.ReservationVO;
 import com.myspace.vo.ReviewVO;
-import com.myspace.vo.RoomVO;
+import com.myspace.vo.SessionVO;
 
 @Controller
 public class MypageController {
@@ -27,6 +31,9 @@ public class MypageController {
 	
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private RoomService roomService;
 	
 	@RequestMapping(value="/mypage_inquiry_write.do", method=RequestMethod.GET)
 	public String mypage_inquiry_write() {
@@ -97,15 +104,30 @@ public class MypageController {
 	}
 
 	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
-	public String mypage() {
-		return "mypage/mypage";
+	public ModelAndView mypage(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		ArrayList<ReservationVO> list = roomService.getReservationList(svo.getId());
+		
+		
+		
+		mv.setViewName("mypage/mypage");
+		mv.addObject("list",list);
+		
+		
+		return mv;
 	}
 	
 
 	@RequestMapping(value="/mypage_inquiry.do", method=RequestMethod.GET)
-	public ModelAndView mypage_inquiry(String id) {
+	public ModelAndView mypage_inquiry(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		ArrayList<InquiryVO> list = inquiryService.getList();
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		System.out.println(svo.getId());
+		
+		ArrayList<InquiryVO> list = inquiryService.getList(svo.getId());
 		
 		mv.setViewName("mypage/mypage_inquiry");
 		mv.addObject("list",list);
@@ -146,7 +168,12 @@ public class MypageController {
 	  	
 	  	
 	  	if(result){
-	  		mv.setViewName("redirect:/mypage_review.do");
+	  		boolean result2 = reviewService.insertTotallv(vo);
+	  		
+	  		if(result2) {
+	  			mv.setViewName("redirect:/mypage_review.do");
+	  			
+	  		}
 	  	}
 		
 		
@@ -160,7 +187,13 @@ public class MypageController {
 	  	
 	  	
 	  	if(result){
-	  		mv.setViewName("redirect:/mypage_review.do");
+	  	
+	  		boolean result2 = reviewService.insertTotallv(vo);
+	  		
+	  		if(result2) {
+	  			mv.setViewName("redirect:/mypage_review.do");
+	  			
+	  		}
 	  	}
 		
 		

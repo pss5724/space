@@ -162,6 +162,7 @@ $(document).ready(function(){
 				</div>
 				<form id="review_write" action="mypage_review_update_proc.do" method="get">
 					<input type="hidden" value="" name="totallv" class="totallv">
+					<input type="hidden" value="${vo.rid }" name="rid">
 					<input type="hidden" value="${vo.rsid }" name="rsid">
 					<input type="hidden" value="${sessionScope.svo.id }" name="id">
 				<table class="mypage_right_box_table_review">

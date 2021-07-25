@@ -14,9 +14,10 @@ public class InquiryServiceImpl implements InquiryService {
 	@Autowired
 	private InquiryDAO inquiryDAO;
 
+	
 	@Override
-	public ArrayList<InquiryVO> getList() {
-		return inquiryDAO.getList();
+	public ArrayList<InquiryVO> getList(String id) {
+		return inquiryDAO.getList(id);
 	}
 
 	@Override
@@ -32,6 +33,16 @@ public class InquiryServiceImpl implements InquiryService {
 	@Override
 	public boolean getUpdateResult(String qid, String acontent) {
 		return inquiryDAO.getUpdateResult(qid, acontent);
+	}
+
+	@Override
+	public ArrayList<Object> getListAll(int start, int end) {
+		return inquiryDAO.getListAll(start, end);
+	}
+
+	@Override
+	public int execTotalCount() {
+		return inquiryDAO.execTotalCount();
 	}
 	
 	
