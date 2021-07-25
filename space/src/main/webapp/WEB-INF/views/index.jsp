@@ -617,7 +617,7 @@ $(document).ready(function() {
 	var rk=0;
 	for(var i=0;i<trlist.length;i++){
 		recommend += "<div class='ritem item"+rnum+"' rdata-index='"+rnum+"'>";
-		recommend += "<a href='http://localhost:9000/space/room_content.do?rid=" + trlist[i] + "&rpage=1'><img src='http://localhost:9000/space/upload/" + trlist[++i] + "' width='178px'>";
+		recommend += "<a href='http://localhost:9000/space/room_content.do?rid=" + trlist[i] + "&rpage=1'><img src='http://localhost:9000/space/upload/" + trlist[++i] + "' width='178px' height='91px'>";
 		if(trlist[++i].length > 15){
 			recommend += "<div><span>" + trlist[i].substring(0,15) + "...</span>";
 		}else {
