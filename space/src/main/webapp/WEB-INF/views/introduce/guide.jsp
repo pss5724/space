@@ -81,18 +81,18 @@ $(function(){
 		<div class="sub_section sub_section_useguide01">
 			<div class="center_box">
 				<p class="sub_section_useguide01_tit motion s_obj right_obj02 active">스페이스닷컴 <span>이용안내</span></p>
-				<p class="sub_section_useguide01_text motion02 s_obj opa_obj01 active">스마트폰 앱을 설치하면 더욱 편리하게 회의실 예약을 이용할 수 있습니다.</p>
+				<p class="sub_section_useguide01_text motion02 s_obj opa_obj01 active">간단한 회원가입을 통해 편리하게 스페이스닷컴을 이용할 수 있습니다.</p>
 				<div class="sub_section_useguide01_list_box">
 					<ul class="sub_section_useguide01_list">
 						<li><div class="sub_section_useguide01_list_num motion s_obj bottom_obj01 active"><span class="sub_section_useguide01_list_num01"><span>01</span></span></div>
-							<span class="sub_section_useguide01_list_tit motion s_obj right_obj02 active">앱 설치/ 홈페이지 접속</span>
-							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">홈페이지 접속 혹은 앱스토어에서 회의실닷컴을 검색해 <br>
-								앱을 설치해주세요.
+							<span class="sub_section_useguide01_list_tit motion s_obj right_obj02 active">홈페이지 접속</span>
+							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">인터넷 또는 모바일에서<br>
+								스페이스닷컴에 접속해주세요.
 							</p>
-							<div class="sub_section_useguide01_list_app_btnbox">
+<!-- 							<div class="sub_section_useguide01_list_app_btnbox">
 								<a href="#" target="_blank"><img src="http://localhost:9000/space/images/sub_section_useguide01_list_btnimg01.png" alt=""></a>
 								<a href="#" target="_blank"><img src="http://localhost:9000/space/images/sub_section_useguide01_list_btnimg02.png" alt=""></a>
-							</div>
+							</div> -->
 						</li>
 						<li class="type02"><span class="sub_section_useguide01_list_bar sub_section_useguide01_list_bar01"></span>
 							<div class="sub_section_useguide01_list_num motion s_obj bottom_obj01 active"><span class="sub_section_useguide01_list_num01"><span>02</span></span></div>
@@ -100,8 +100,7 @@ $(function(){
 							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">간편가입을 이용하여 회원가입을 완료합니다.
 							</p>
 							<p class="sub_section_useguide01_list_tip_text motion02 s_obj opa_obj01 active"><span class="sub_section_useguide01_list_tip_text01">tip</span>
-								<span class="sub_section_useguide01_list_tip_text02">기업회원으로 가입 시 회사 내부에 다양한 인원이 <br>
-                                    회의실 예약을 하고 한번에 결제가 가능합니다.
+								<span class="sub_section_useguide01_list_tip_text02">기업(파트너)회원으로 가입 시 회의실을 등록할 수 있습니다.<br>
                                 </span>
 							</p>
 						</li>
@@ -116,10 +115,10 @@ $(function(){
 					<ul class="sub_section_useguide01_list">
 						<li><div class="sub_section_useguide01_list_num motion s_obj bottom_obj01 active"><span class="sub_section_useguide01_list_num01"><span>04</span></span></div>
 							<span class="sub_section_useguide01_list_tit motion s_obj right_obj02 active">회의실 결제</span>
-							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">예약승인이 완료되면 회의실 이용요금을 결제합니다.
+							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">선택한 결제 방식에 따라 회의실 요금을 결제합니다.
 							</p>
 							<p class="sub_section_useguide01_list_tip_text motion02 s_obj opa_obj01 active"><span class="sub_section_useguide01_list_tip_text01">tip</span>
-								<span class="sub_section_useguide01_list_tip_text02">가맹점 별로 결제 방법이 상이할 수 있습니다. (온라인결제 / 현장결제)
+								<span class="sub_section_useguide01_list_tip_text02">회의실 별로 결제 방법이 상이할 수 있습니다. (온라인결제 / 현장결제)
                                 </span>
 							</p>
 						</li>
@@ -131,13 +130,10 @@ $(function(){
 						</li>
 						<li class="type02"><span class="sub_section_useguide01_list_bar sub_section_useguide01_list_bar04"></span>
 							<div class="sub_section_useguide01_list_num motion s_obj bottom_obj01 active"><span class="sub_section_useguide01_list_num01"><span>06</span></span></div>
-							<span class="sub_section_useguide01_list_tit motion s_obj right_obj02 active">이용후기 작성 및 포인트 적립</span>
-							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">회의실 이용 시 느꼈던 후기를 작성하고 포인트를 적립합니다.
+							<span class="sub_section_useguide01_list_tit motion s_obj right_obj02 active">이용후기 작성</span>
+							<p class="sub_section_useguide01_list_text motion02 s_obj opa_obj01 active">회의실 이용 시 느꼈던 후기를 작성해주시면 <br>다른 이용자에게 큰 도움이 됩니다.
 							</p>
 							<p class="sub_section_useguide01_list_tip_text motion02 s_obj opa_obj01 active"><span class="sub_section_useguide01_list_tip_text01">tip</span>
-								<span class="sub_section_useguide01_list_tip_text02">개인회원의 경우 상품권으로 교환이 가능하며 기업회원은 대관료에서 <br>
-                                    포인트 만큼 차감하여 사용이 가능합니다.
-                                </span>
 							</p>
 						</li>
 					</ul>

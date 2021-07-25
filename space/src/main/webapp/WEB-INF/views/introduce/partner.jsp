@@ -142,7 +142,7 @@ $(function(){
 					<p>파트너가 되어 회의실 <br>
 						<span>운영 효율을 극대화하세요.</span>
 					</p>
-					<a href="#">파트너 등록 상담하기</a>
+					<a href="http://localhost:9000/space/join_cor.do">파트너 회원 가입하기</a>
 				</div>
 			</div>
 		</div>
@@ -188,17 +188,17 @@ $(function(){
 			<div class="center_box">
 
 				<ul class="sub_section_partnerguide03_top_list">
-					<li><span class="sub_section_partnerguide03_top_list_tit motion02 s_obj opa_obj01 active">등록된 총 센터수</span>
+					<li><span class="sub_section_partnerguide03_top_list_tit motion02 s_obj opa_obj01 active">누적 예약 수</span>
 						<div class="sub_section_partnerguide03_top_list_img"><img src="http://localhost:9000/space/images/sub_section_partnerguide03_top_list_img01.png" alt=""></div>
-						<span class="sub_section_partnerguide03_top_list_count"><span id="count01" class="sub_section_partnerguide03_top_list_count01">94</span><span class="sub_section_partnerguide03_top_list_count02">+</span></span>
+						<span class="sub_section_partnerguide03_top_list_count"><span id="count01" class="sub_section_partnerguide03_top_list_count01">${reserve_count}</span><span class="sub_section_partnerguide03_top_list_count02">+</span></span>
 					</li>
 					<li><span class="sub_section_partnerguide03_top_list_tit motion02 s_obj opa_obj01 active">등록된 총 회의실 수</span>
 						<div class="sub_section_partnerguide03_top_list_img"><img src="http://localhost:9000/space/images/sub_section_partnerguide03_top_list_img02.png" alt=""></div>
-						<span class="sub_section_partnerguide03_top_list_count"><span id="count02" class="sub_section_partnerguide03_top_list_count01">417</span><span class="sub_section_partnerguide03_top_list_count02">+</span></span>
+						<span class="sub_section_partnerguide03_top_list_count"><span id="count02" class="sub_section_partnerguide03_top_list_count01">${room_count}</span><span class="sub_section_partnerguide03_top_list_count02">+</span></span>
 					</li>
-					<li><span class="sub_section_partnerguide03_top_list_tit motion02 s_obj opa_obj01 active">누적 이용고객 수</span>
+					<li><span class="sub_section_partnerguide03_top_list_tit motion02 s_obj opa_obj01 active">누적 리뷰 수</span>
 						<div class="sub_section_partnerguide03_top_list_img"><img src="http://localhost:9000/space/images/sub_section_partnerguide03_top_list_img03.png" alt=""></div>
-						<span class="sub_section_partnerguide03_top_list_count"><span id="count03" class="sub_section_partnerguide03_top_list_count01">53,486</span><span class="sub_section_partnerguide03_top_list_count02">+</span></span>
+						<span class="sub_section_partnerguide03_top_list_count"><span id="count03" class="sub_section_partnerguide03_top_list_count01">${review_count}</span><span class="sub_section_partnerguide03_top_list_count02">+</span></span>
 					</li>
 				</ul>
 
@@ -216,22 +216,22 @@ $(function(){
 								<li>
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>01</span></span>
 									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">상담 등록</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">"파트너 등록 상담하기"로 접수된 기본 정보를 토대로 담당자와 상담을 진행합니다.</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">가입 신청</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">파트너(기업) 회원으로 가입을 진행합니다.</span>
 									</div>
 								</li>
 								<li>
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>02</span></span>
 									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">서류 제출</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">등록여부 검토가 완료되면 회의실에 대한 정보와 서류를 제출합니다.</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">가입 심사</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">가입 시 제출한 기업 정보를 바탕으로 가입 심사가 진행됩니다.</span>
 									</div>
 								</li>
 								<li>
 									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>03</span></span>
 									<div class="sub_section_partnerguide03_content_inner_list_text_box">
 										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">인터뷰 및 현장답사</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">부족한 회의실 정보와 사진 촬영을 위해 회의실닷컴 담당자가 직접 방문하여 등록된 내용을 확인합니다.</span>
+										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">부족한 회의실 정보와 사진 촬영을 위해 스페이스닷컴 담당자가 직접 방문하여 등록된 내용을 확인합니다.</span>
 									</div>
 								</li>
 								<li>
@@ -250,51 +250,6 @@ $(function(){
 								</li>
 							</ul>
 						</div>
-						<!-- e sub_section_partnerguide03_content_inner -->
-
-						<!-- s sub_section_partnerguide03_content_inner -->
-						<div class="sub_section_partnerguide03_content_inner">
-							<p class="sub_section_partnerguide03_content_inner_tit motion s_obj right_obj02 active">종합 위탁운영</p>
-							<p class="sub_section_partnerguide03_content_inner_text">스페이스닷컴의 운영 인력이 위탁자가 보유한 회의실 및 기타 공간에 상주하며 위탁자를 대신하여 회의실 및 공간을 직접 홍보, 판매, 관리 운영</p>
-							<ul class="sub_section_partnerguide03_content_inner_list">
-								<li>
-									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>01</span></span>
-									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">상담 등록</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">"파트너 등록 상담하기"로 접수된 기본 정보를 토대로 담당자와 상담을 진행합니다.</span>
-									</div>
-								</li>
-								<li>
-									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>02</span></span>
-									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">서류 제출</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">종합 위탁 프로세스에 대한 안내가 끝나면 위탁 희망 사업장 주소, 면적, 도면 등 세부 정보를 전달합니다. (최소 면적 200평 이상)</span>
-									</div>
-								</li>
-								<li>
-									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>03</span></span>
-									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">종합 위탁운영 준비</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">예상매출, 최수 운영인력 등 세부 내용을 검토하고 운영 준비를 합니다.</span>
-									</div>
-								</li>
-								<li>
-									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>04</span></span>
-									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">종합 위탁운영 시작</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">위탁자를 대신하여 회의실닷컴 담당자가 회의실을 직접 홍보, 판매, 운영을 진행합니다.</span>
-									</div>
-								</li>
-								<li>
-									<span class="sub_section_partnerguide03_content_inner_list_num motion02 s_obj opa_obj01 active"><span>05</span></span>
-									<div class="sub_section_partnerguide03_content_inner_list_text_box">
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_tit">첫 예약 받기</span>
-										<span class="sub_section_partnerguide03_content_inner_list_text_box_text">스페이스닷컴을 통하여 더 많은 예약과 수익을 창출합니다.</span>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<!-- e sub_section_partnerguide03_content_inner -->
 
 					</div>
 				</div>
@@ -339,16 +294,6 @@ $(function(){
 							<p class="sub_section_partnerguide04_list_s_tit"><span>가맹점 가입비나 별도의 수수료는 없나요?</span></p>
 							<p class="sub_section_partnerguide04_list_s_text">회의실닷컴의 가맹점 등록시 별도의 등록(가입)비는 발생되지 않습니다. <br>
 								매출 건에 대한 수수료는 부과되며 카드사 및 간편결제 수수료, 부가가치세를 스페이스닷컴에서 부담합니다.
-							</p>
-						</div>
-					</li>
-					<li>
-						<div class="sub_section_partnerguide04_list_f motion02 s_obj opa_obj01 active"><span>05</span></div>
-						<div class="sub_section_partnerguide04_list_s">
-							<p class="sub_section_partnerguide04_list_s_tit"><span>가맹점 등록과 위탁 운영의 차이점은 무엇인가요?</span></p>
-							<p class="sub_section_partnerguide04_list_s_text">가맹점 등록은 센터가 보유한 회의실 및 기타 공간을 온/오프라인을 통하여 홍보 및 판매를 대행하는 서비스를 의미합니다. <br>
-								위탁 운영은 스페이스닷컴의 인력이 위탁자가 보유한 회의실 및 기타 공간에 상주하며 위탁자를 대신하여 회의실 및 공간을 <br>
-								직접 운영, 홍보, 판매하는 서비스입니다.
 							</p>
 						</div>
 					</li>

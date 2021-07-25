@@ -316,7 +316,7 @@ header{
 	position:relative;
 	display:inline-block;
 	width:160px;
-	padding:36px 0 15px;
+	padding: 25px 0;
 	text-align:center;
 	vertical-align:top;
 }
@@ -504,7 +504,7 @@ header{
 	left:28px;
 }
 .sub_section_useguide01_list_bar01 {
-	height:50px;
+	height:110px;
 }
 .sub_section_useguide01_list_bar02 {
 	height:50px;
@@ -667,9 +667,10 @@ header{
 
 .sub_section.sub_section_partnerguide03 {
 	box-sizing:border-box;
-	height:2098px;
+	height:1700px;
 	padding:214px 0 0;
 	background:url('http://localhost:9000/space/images/sub_section_partnerguide03_bg01.png') no-repeat center top;
+	background-size: 1700px 1500px;
 }
 .sub_section_partnerguide03_top_list {
 	text-align:center;
@@ -848,7 +849,7 @@ header{
 
 .sub_section.sub_section_partnerguide04 {
 	background:#f9f9f9;
-	padding:130px 0 100px;
+	padding: 100px 0 130px;
 	font-weight:bold;
 }
 .sub_section_partnerguide04_tit {

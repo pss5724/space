@@ -367,40 +367,43 @@ body {
 //숫자 카운트 
 $(function(){
 
-   $(window).one('mousewheel scroll', function(){
-      var thisTop = $(this).scrollTop(),
-         thisHeight = $(this).outerHeight(true),
-         thisBottom = thisTop + thisHeight;
+	var end_count = 1;
+	$(window).on('mousewheel scroll', function(){
+		var thisTop = $(this).scrollTop(),
+			thisHeight = $(this).outerHeight(true),
+			thisBottom = thisTop + thisHeight;
 
-      var targetOffsetTop = $('.count').offset().top;
-      var targetOffsetHeight = $('.count').outerHeight();
-      var targetOffsetBottom = targetOffsetTop + targetOffsetHeight;
+		var targetOffsetTop = $('.count').offset().top;
+		var targetOffsetHeight = $('.count').outerHeight();
+		var targetOffsetBottom = targetOffsetTop + targetOffsetHeight;
 
 
-      if(((targetOffsetTop <= thisBottom) && (targetOffsetBottom >= thisTop))) {
-         countUp($("#count01"), "<c:out value='${room_count}' />");
-         countUp($("#count02"), "<c:out value='${reserve_count}' />");
-         countUp($("#count03"), "<c:out value='${review_count}' />");
-      }
-   });
-      
+		if(((targetOffsetTop <= thisBottom) && (targetOffsetBottom >= thisTop))) {
+	 	  if(end_count != 0) {
+			countUp($("#count01"), "<c:out value='${room_count}' />");
+			countUp($("#count02"), "<c:out value='${reserve_count}' />");
+			countUp($("#count03"), "<c:out value='${review_count}' />");
+	 	  }
+			end_count = 0;
+		}
+	});	 
 
-      function countUp(target, target_num) {
-         var cnt0 = 0;
-         target_num = parseInt(target_num);
-         
-         intv = setInterval(count, 100);
-   
-         function count() {
-            cnt0++;
-   
-            if (cnt0 > target_num) {
-               clearInterval(intv);
-            } else {
-               target.text(cnt0);
-            }
-         }
-      }   
+		function countUp(target, target_num) {
+			var cnt0 = 0;
+			target_num = parseInt(target_num);
+			
+			intv = setInterval(count, 100);
+	
+			function count() {
+				cnt0++;
+	
+				if (cnt0 > target_num) {
+					clearInterval(intv);
+				} else {
+					target.text(cnt0);
+				}
+			}
+		}	
 });
 
  
@@ -830,8 +833,8 @@ $(document).ready(function() {
                   회의실 전문 매칭 플랫폼
                </p>
                <p class="main_count_stit">
-                  스페이스닷컴은 좋은 회의실을 누구나 쉽고 빠르게<br>
-                  이용할 수 있도록 연결합니다.
+                  스페이스닷컴은 좋은 회의실을 누구나 쉽고 빠르게 이용할 수 있도록 연결합니다.<br>
+                  현재 수도권을 중심으로 운영하고 있으며 곧 전국으로 확대해 갈 예정입니다.
                </p>
                <ul class="main_count_list">
                   <li>
