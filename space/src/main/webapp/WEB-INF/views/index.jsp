@@ -647,7 +647,7 @@ $(document).ready(function() {
 	var gk=0;
 	for(var i=0;i<tglist.length;i++){
 		recommend += "<div class='ritem item"+rnum+"' rdata-index='"+rnum+"'>";
-		recommend += "<a href='http://localhost:9000/space/room_content.do?rid=" + tglist[i] + "&rpage=1'><img src='http://localhost:9000/space/upload/" + tglist[++i] + "' width='178px'>";
+		recommend += "<a href='http://localhost:9000/space/room_content.do?rid=" + tglist[i] + "&rpage=1'><img src='http://localhost:9000/space/upload/" + tglist[++i] + "' width='178px' height='91px'>";
 		if(tglist[++i].length > 15){
 			recommend += "<div><span>" + tglist[i].substring(0,15) + "...</span>";
 		}else {
