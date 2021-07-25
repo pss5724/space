@@ -217,7 +217,7 @@ $(document).ready(function() {
 						}
 			
 						output += "<li class='room_info'>";
-						output += "<a href='http://localhost:9000/space/room_content.do?rid=" + jdata.rlist[i].rid + "'>";
+						output += "<a href='http://localhost:9000/space/room_content.do?rid=" + jdata.rlist[i].rid + "&rpage=1'>";
 						output += "<div class='info_image'>";
 						output += "<img src='http://localhost:9000/space/upload/" + jdata.rlist[i].rsfile1 + "'>";
 						output += "</div>";
