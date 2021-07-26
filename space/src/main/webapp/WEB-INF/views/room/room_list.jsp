@@ -51,7 +51,7 @@ $(document).ready(function() {
 		$(this).prevAll("input[name=star]").prop("checked", true);
 		$(this).nextAll("input[name=star]").prop("checked", false);
 
-		$("#grade").val("1점 ~ " + $("input[name=star]:checked").length + "점");
+		$("#grade").val("0점 ~ " + $("input[name=star]:checked").length + "점");
 		
 		getData();
 		getList($("#pay1").text(), $("#pay2").text());
@@ -258,7 +258,9 @@ $(document).ready(function() {
 						output += "</ul>"
 						output += "</div>";
 						output += "<div class='info_right'>";
-						output += "<p class='room_star'><img src='http://localhost:9000/space/images/list_star" + star_count + ".png'>" + jdata.rlist[i].grade + "점</p>";
+						output += "<p class='room_star'>",
+						output += "<img src='http://localhost:9000/space/images/list_star" + star_count + ".png'>",
+						output += Math.floor(jdata.rlist[i].grade * 10)/10 + "점</p>";
 						output += "<p class='room_review'><span>" + jdata.rlist[i].review_count + "</span>개의 이용후기</p>";
 						output += "<P class='room_payment'>";
 						if(jdata.olist[i].online_payment == 1) { output += "<span class='payment_online'>온라인 결제</span>"; }
@@ -400,7 +402,7 @@ $(document).ready(function() {
 					<div class="search_option">
 						<p class="search_option_title">평점</p>
 						<span class="stars_text">
-							<input type="text" id="grade" name="grade" value="1점 ~ 5점" readonly>
+							<input type="text" id="grade" name="grade" value="0점 ~ 5점" readonly>
 						</span>
 						<div class="stars">
 							<input type="checkbox" id="star1" name="star" value="1" checked>

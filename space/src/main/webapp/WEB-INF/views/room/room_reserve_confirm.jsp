@@ -252,7 +252,7 @@ $(document).ready(function() {
 					</li>
 				</ul>
 			</div>
-			<div class="cancel_reservation"><input type="button" value="예약취소" class="cancel_reservation btn"></div>
+			<div class="cancel_reservation no_print"><input type="button" value="예약취소" class="cancel_reservation btn"></div>
 		</div>
 	</div>
 	<p class="print_area">㈜스페이스닷컴</p>
