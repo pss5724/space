@@ -17,7 +17,34 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private RoomDAO roomDAO;
+    
+    
 
+	@Override
+	public ArrayList<RoomVO> getRidList(String id) {
+		return roomDAO.getRidList(id);
+	}
+
+	@Override
+	public ArrayList<Object> getReserveList(int start, int end, String[] ridList) {
+		return roomDAO.getReserveList(start, end, ridList);
+	}
+	
+	@Override
+	public ArrayList<Object> getReserveList(int start, int end) {
+		return roomDAO.getReserveList(start, end);
+	}
+
+	@Override
+	public int execTotalCount() {
+		return roomDAO.execTotalCount();
+	}
+
+	@Override
+	public ArrayList<RoomVO> getCorpPageList(String id) {
+		return roomDAO.getCorpPageList(id);
+	}
+    
     @Override
     public boolean getInsertResult(RoomVO rvo) {
             return roomDAO.getInsertResult(rvo);

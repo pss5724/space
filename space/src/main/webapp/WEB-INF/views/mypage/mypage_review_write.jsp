@@ -160,7 +160,7 @@ $(document).ready(function(){
 					<p class="mypage_right_tit">이용 후기</p>
 					
 				</div>
-				<form id="review_write" action="mypage_review_write_proc.do" method="get">
+				<form id="review_write" action="mypage_review_write_proc.do" method="post">
 					<input type="hidden" value="" name="totallv" class="totallv">
 					<input type="hidden" value="${revo.rid }" name="rid">
 					<input type="hidden" value="${revo.room_name }" name="room_name">

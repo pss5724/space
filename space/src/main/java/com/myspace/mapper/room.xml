@@ -6,6 +6,48 @@
 
 <mapper namespace="mapper.room">
 
+	<!-- 나의 회의실 rid 리스트 -->
+	<select id="ridlist" parameterType="java.lang.String" resultType="com.myspace.vo.RoomVO">
+		select rid from space_room where id=#{id}
+	</select>
+
+	<!-- 나의 회의실 목록-->
+	<select id="corpList" parameterType="java.lang.String" resultType="com.myspace.vo.RoomVO">
+		 select rid,branch_name,room_name, intro, address, capacity,rsfile1 from space_room where id=#{id}
+	</select>
+	
+	<!-- 예약 내역 -->
+	<select id="reserveList" parameterType="map" resultType="com.myspace.vo.ReservationVO">
+		 select rno,email,branch_name,room_name,rsid,reserve_date,checkin_time,checkout_time,amount 
+  		 from( select rownum rno,email,branch_name,room_name,rsid,to_char(reserve_date,'yyyy-mm-dd') reserve_date,checkin_time,checkout_time,amount
+		 from space_reserve where rid =#{ridList0}
+		 <choose>
+			 <when test="ridList2 != null">
+		 		or rid=#{ridList1}
+		 		or rid=#{ridList2}
+		 	</when>
+		 	<when test="ridList1 != null">
+		 		or rid=#{ridList1}
+		 	</when>
+		 	
+		 	
+		 </choose>
+		 
+		 ) where rno between #{start} and #{end}
+	</select>
+	
+	<!-- 예약 내역 -->
+	<select id="reserveListall" parameterType="map" resultType="com.myspace.vo.ReservationVO">
+		 select rno,email,branch_name,room_name,rsid,reserve_date,checkin_time,checkout_time,amount 
+  		 from( select rownum rno,email,branch_name,room_name,rsid,to_char(reserve_date,'yyyy-mm-dd') reserve_date,checkin_time,checkout_time,amount
+		 from space_reserve) where rno between #{start} and #{end}
+	</select>
+	
+	<!-- 로우수 -->
+	 <select id ="execcount" resultType="int">
+  	select count(*) from space_reserve
+  </select>
+
 	
         <!-- 회의실 등록 -->
         <insert id="insert" parameterType="com.myspace.vo.RoomVO">

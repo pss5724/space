@@ -27,6 +27,12 @@ public interface RoomService {
         
     ArrayList<Object> getAddrList();
     Integer getCount(String category);
+    
+    ArrayList<RoomVO> getCorpPageList(String id);
+    ArrayList<Object> getReserveList(int start, int end, String[] ridList);
+    ArrayList<Object> getReserveList(int start, int end);
+    ArrayList<RoomVO> getRidList(String id);
+    int execTotalCount();
 
     // »õ¹Ì
     RoomVO getRoomContent(String rid);

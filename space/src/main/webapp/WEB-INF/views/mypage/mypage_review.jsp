@@ -82,7 +82,7 @@
 				<br>
 				<hr color="lightgray">
 				<br>
-		<form name="review_search" action="mypage_review_search_proc.do" method="get">
+		<form name="review_search" action="mypage_review_search_proc.do" method="post">
 			<input type="hidden" name="id" value="${sessionScope.svo.id }">
 			<div class="review_search"><input type="text" name="rsid" class="review_search_input" placeholder="예약번호를 입력해주세요" value=""><button type="submit" ><img src="http://localhost:9000/space/images/sub_header_search_btn.jpg" width="20" height="20"></button></div>
 		</form>

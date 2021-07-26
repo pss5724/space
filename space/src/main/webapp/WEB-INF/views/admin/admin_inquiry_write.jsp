@@ -114,10 +114,10 @@ $(document).ready(function(){
 						<a href="corp_list.do">기업회원 관리</a>
 					</li>
 						<li>
-						<a href="admin_booked.do">예약 내역</a>
+						<a href="admin_booked.do?rpage=1">예약 내역</a>
 					</li>
 					<li>
-						<a href="admin_inquiry.do">문의 답변</a>
+						<a href="admin_inquiry.do?rpage=1">문의 답변</a>
 					</li>
 				</ul>
 			</div>

@@ -73,6 +73,11 @@
 					<th>작성일<div class="table_th_after"></div></th>
 					<th>답변상태</th>
 				</tr>
+					<c:if test="${empty list }">
+					<tr>
+						<td colspan="5">문의 내역이 없습니다.</td>
+					</tr>
+				</c:if>
 				<c:forEach var="vo" items="${list}">
 				<tr>
 					<td>${vo.rno }</td>

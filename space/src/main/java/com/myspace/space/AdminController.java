@@ -3,6 +3,8 @@ package com.myspace.space;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.InquiryService;
 import com.myspace.service.MemberService;
+import com.myspace.service.RoomService;
 import com.myspace.vo.InquiryVO;
 import com.myspace.vo.MemberVO;
-import com.myspace.vo.NoticeVO;
+import com.myspace.vo.ReservationVO;
+import com.myspace.vo.RoomVO;
+import com.myspace.vo.SessionVO;
 
 @Controller
 public class AdminController { 
@@ -22,6 +27,8 @@ public class AdminController {
 	private InquiryService inquiryService;
 	@Autowired
 	private MemberService memberService; 
+	@Autowired
+	private RoomService roomService; 
 	
 	/**
 	 * member_list.do  -->  관리자 - 개인 회원리스트 출력
@@ -128,8 +135,52 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="/admin_booked.do", method=RequestMethod.GET)
-	public String admin_booked() {
-		return "admin/admin_booked";
+	public ModelAndView admin_booked(String rpage,HttpSession session ) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		 Commons commons= new Commons();
+		 HashMap map = commons.getPage(rpage, roomService, "room");
+		 
+		 int start = (Integer)map.get("start");
+		 int end =(Integer)map.get("end");
+		 
+				 
+		 ArrayList<Object> olist = roomService.getReserveList(start, end);
+		 ArrayList<ReservationVO> list =new ArrayList<ReservationVO>();
+			 for(Object obj :olist) {
+				 ReservationVO vo = (ReservationVO)obj;
+				 list.add(vo);
+			 }
+			 
+		 mv.setViewName("admin/admin_booked");
+		 mv.addObject("list", list);
+		 mv.addObject("dbcount", map.get("dbCount"));
+		 mv.addObject("rpage", map.get("rpage"));
+		 mv.addObject("pagesize", map.get("pageSize"));
+		
+		
+		
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/admin_booked_cancel_proc.do", method=RequestMethod.GET)
+	public ModelAndView corppage_info_pass(String rsid) {
+		ModelAndView mv = new ModelAndView();
+		
+		boolean result = roomService.getCancelResult(rsid);
+	  	
+	  	
+	  	if(result){
+	  		mv.setViewName("redirect:/admin_booked.do");
+	  	}
+		
+		
+		
+		return mv;
 	}
 
 	@RequestMapping(value="/admin_inquiry.do", method=RequestMethod.GET)

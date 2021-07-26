@@ -51,7 +51,7 @@
 						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
-						<a href="corppage_booked.do">예약 내역</a>
+						<a href="corppage_booked.do?rpage=1">예약 내역</a>
 					</li>
 						<li>
 						<a href="corppage_inquiry.do">1:1 문의</a>

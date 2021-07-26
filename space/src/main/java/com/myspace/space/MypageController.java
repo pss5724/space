@@ -125,7 +125,6 @@ public class MypageController {
 	public ModelAndView mypage_inquiry(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		SessionVO svo = (SessionVO)session.getAttribute("svo");
-		System.out.println(svo.getId());
 		
 		ArrayList<InquiryVO> list = inquiryService.getList(svo.getId());
 		
@@ -161,7 +160,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/mypage_review_update_proc.do", method=RequestMethod.GET)
+	@RequestMapping(value="/mypage_review_update_proc.do", method=RequestMethod.POST)
 	public ModelAndView mypage_review_update_proc(ReviewVO vo) {
 		ModelAndView mv = new ModelAndView();
 		boolean result = reviewService.getUpdateResult(vo);
@@ -180,7 +179,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/mypage_review_write_proc.do", method=RequestMethod.GET)
+	@RequestMapping(value="/mypage_review_write_proc.do", method=RequestMethod.POST)
 	public ModelAndView mypage_review_write_proc(ReviewVO vo) {
 		ModelAndView mv = new ModelAndView();
 		boolean result = reviewService.getInsertResult(vo);
@@ -200,7 +199,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/mypage_review_search_proc.do", method=RequestMethod.GET)
+	@RequestMapping(value="/mypage_review_search_proc.do", method=RequestMethod.POST)
 	public ModelAndView mypage_review_search_proc(String id, String rsid) {
 		ModelAndView mv = new ModelAndView();
 		ReservationVO revo = reviewService.getSearchResult(id,rsid);

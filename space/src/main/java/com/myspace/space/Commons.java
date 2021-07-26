@@ -38,6 +38,10 @@ public class Commons {
 		InquiryService inquriyService =(InquiryService)obj;
 		dbCount = inquriyService.execTotalCount();
 		pageSize=10;
+	}else if(name.equals("room")) {
+		RoomService roomService =(RoomService)obj;
+		dbCount = roomService.execTotalCount();
+		pageSize=5;
 	}
 	
 	//총 페이지 수 계산

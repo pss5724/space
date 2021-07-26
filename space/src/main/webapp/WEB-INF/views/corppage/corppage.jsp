@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +96,7 @@
 						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
-						<a href="corppage_booked.do">예약 내역</a>
+						<a href="corppage_booked.do?rpage=1">예약 내역</a>
 					</li>
 						<li>
 						<a href="corppage_inquiry.do">1:1 문의</a>
@@ -123,39 +125,20 @@
 				<br>
 				
 				<!-- 여러개 반복 -->
+				
+				<c:forEach var="vo" items="${list}">
 				<div class="my_room">
-					<img src="http://localhost:9000/space/images/carousel1.jpg">
+					<img src="http://localhost:9000/space/upload/${vo.rsfile1 }">
 					<div>
-						<p><a href="http://localhost:9000/space/room_content.do">종로구 1호점/컨퍼런스룸</a></p>
-						<p>접근성 및 회의실 컨디션 최상</p>
+						<p><a href="http://localhost:9000/space/room_content.do?rid=${vo.rid }">${vo.branch_name }/${vo.room_name }</a></p>
+						<p>${vo.intro }</p>
 						<div>
-							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">세종로</span><div></div>
-							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">54인실</span>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">${fn:split(vo.address,' ')[2]}</span><div></div>
+							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">${vo.capacity }인실</span>
 						</div>
 					</div>
 				</div>
-				<div class="my_room">
-					<img src="http://localhost:9000/space/images/carousel1.jpg">
-					<div>
-						<p><a href="http://localhost:9000/space/room_content.do">종로구 1호점/컨퍼런스룸</a></p>
-						<p>접근성 및 회의실 컨디션 최상</p>
-						<div>
-							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">세종로</span><div></div>
-							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">54인실</span>
-						</div>
-					</div>
-				</div>
-				<div class="my_room">
-					<img src="http://localhost:9000/space/images/carousel1.jpg">
-					<div>
-						<p><a href="http://localhost:9000/space/room_content.do">종로구 1호점/컨퍼런스룸</a></p>
-						<p>접근성 및 회의실 컨디션 최상</p>
-						<div>
-							<span><img src="http://localhost:9000/space/images/cont_list_detail_info01.png">세종로</span><div></div>
-							<span><img src="http://localhost:9000/space/images/cont_list_detail_info03.png">54인실</span>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 				
 			</div>
 			<!-- right box end -->

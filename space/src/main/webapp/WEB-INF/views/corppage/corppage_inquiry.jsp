@@ -42,7 +42,7 @@
 						<a href="corppage.do">회의실 관리</a>
 					</li>
 					<li>
-						<a href="corppage_booked.do">예약 내역</a>
+						<a href="corppage_booked.do?rpage=1">예약 내역</a>
 					</li>
 						<li>
 						<a href="corppage_inquiry.do">1:1 문의</a>
@@ -73,6 +73,11 @@
 					<th>작성일<div class="table_th_after"></div></th>
 					<th>답변상태</th>
 				</tr>
+				<c:if test="${empty list }">
+					<tr>
+						<td colspan="5">문의 내역이 없습니다.</td>
+					</tr>
+				</c:if>
 				<c:forEach var="vo" items="${list}">
 				<tr>
 					<td>${vo.rno }</td>

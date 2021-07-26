@@ -22,6 +22,47 @@ public class RoomDAO {
 	private SqlSessionTemplate sqlSession;
 
 	private static String namespace = "mapper.room";
+	
+	
+	public int execTotalCount() {
+		
+		return sqlSession.selectOne(namespace+".execcount");
+	}
+	
+	public ArrayList<RoomVO> getRidList(String id) {
+		
+		List<RoomVO> list = sqlSession.selectList(namespace+".ridlist",id);
+		return (ArrayList<RoomVO>) list;
+	}
+	
+	public ArrayList<Object> getReserveList(int start, int end, String[] ridList){
+		Map param = new HashMap<String, String>();
+		param.put("start", start);
+		param.put("end", end);
+		for(int i =0; i<ridList.length;i++) {
+			param.put("ridList"+i+"", ridList[i]);
+		}
+		List<Object> list = sqlSession.selectList(namespace+".reserveList",param);
+		
+		return (ArrayList<Object>)list; 
+	}
+	
+	public ArrayList<Object> getReserveList(int start, int end){
+		Map param = new HashMap<String, String>();
+		param.put("start", start);
+		param.put("end", end);
+		List<Object> list = sqlSession.selectList(namespace+".reserveListall",param);
+		
+		return (ArrayList<Object>)list; 
+	}
+	
+	
+	public ArrayList<RoomVO> getCorpPageList(String id) {
+		
+		List<RoomVO> list = sqlSession.selectList(namespace + ".corpList", id);
+
+		return (ArrayList<RoomVO>) list;
+	}
 
 
     /* 회의실 등록 */

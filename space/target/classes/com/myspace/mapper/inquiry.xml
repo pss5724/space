@@ -6,11 +6,28 @@
 
 <mapper namespace="mapper.inquiry">
 
+
+	 <!-- 전체 로우수 -->
+  <select id ="count" resultType="int">
+  	select count(*) from space_inquiry
+  </select>
+
 	<!-- 전체리스트 -->
-	<select id="list" resultType="com.myspace.vo.InquiryVO">
-		select rno, id, qid, qtitle, qcontent, acontent, qfile, qsfile, qtype, qstate, qdate from
+	<select id="list" parameterType="java.lang.String" resultType="com.myspace.vo.InquiryVO">
+			
+			select rno, id, qid, qtitle, qcontent, acontent, qfile, qsfile, qtype, qstate, qdate from
     (select rownum rno,id, qid, qtitle, qcontent, acontent, qfile, qsfile, qtype, qstate, to_char(qdate,'yyyy-mm-dd') qdate
-    from (select id, qid, qtitle, qcontent,acontent, qfile, qsfile, qtype, qstate, qdate from space_inquiry order by qdate desc)where id='test@naver.com')
+    from (select id, qid, qtitle, qcontent,acontent, qfile, qsfile, qtype, qstate, qdate from space_inquiry order by qdate desc)where id=#{id})
+		
+	</select>
+	
+		<select id="listall" parameterType="map" resultType="com.myspace.vo.InquiryVO">
+			
+			select rno, id, qid, qtitle, qcontent, acontent, qfile, qsfile, qtype, qstate, qdate from
+    (select rownum rno,id, qid, qtitle, qcontent, acontent, qfile, qsfile, qtype, qstate, to_char(qdate,'yyyy-mm-dd') qdate
+    from (select id, qid, qtitle, qcontent,acontent, qfile, qsfile, qtype, qstate, qdate from space_inquiry order by qdate desc))
+    where rno between #{start} and #{end}
+		
 	</select>
    
 	<select id="content" parameterType="java.lang.String" resultType="com.myspace.vo.InquiryVO">
@@ -24,10 +41,10 @@
 	<insert id="insert" parameterType="com.myspace.vo.InquiryVO">
 		<choose>
 			<when test="qfile != null">
-				insert into space_inquiry values('test@naver.com','q_'||sequ_space_inquiry.nextval,#{qtitle},#{qcontent},null,#{qfile},#{qsfile},#{qtype},'답변대기중',sysdate)
+				insert into space_inquiry values(#{id},'q_'||sequ_space_inquiry.nextval,#{qtitle},#{qcontent},null,#{qfile},#{qsfile},#{qtype},'답변대기중',sysdate)
 			</when>
 			<otherwise>
-				insert into space_inquiry values('test@naver.com','q_'||sequ_space_inquiry.nextval,#{qtitle},#{qcontent},null,null,null,#{qtype},'답변대기중',sysdate)
+				insert into space_inquiry values(#{id},'q_'||sequ_space_inquiry.nextval,#{qtitle},#{qcontent},null,null,null,#{qtype},'답변대기중',sysdate)
 			</otherwise>
 		</choose>
 	</insert>

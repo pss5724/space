@@ -62,6 +62,13 @@
  	height:60px;
  	border-bottom:1px solid lightgray;
  }
+   .mypage_right_box_atable tr:last-child{
+ 	font-size:14px; 
+ 	font-weight:520;   
+ 	text-align:center;
+ 	height:60px;
+ 	border-bottom:none;
+ }
    .mypage_right_box_atable tr button{
    	padding: 5px 10px;
    	background-color:white;
@@ -234,10 +241,10 @@
 						<a href="corp_list.do">기업회원 관리</a>
 					</li>
 						<li>
-						<a href="admin_booked.do">예약 내역</a>
+						<a href="admin_booked.do?rpage=1">예약 내역</a>
 					</li>
 					<li>
-						<a href="admin_inquiry.do">문의 답변</a>
+						<a href="admin_inquiry.do?rpage=1">문의 답변</a>
 					</li>
 				</ul>
 			</div>
@@ -263,6 +270,7 @@
 					<th>작성일<div class="table_th_after"></div></th>
 					<th>답변상태</th>
 				</tr>
+				
 				<c:forEach var="vo" items="${list}">
 				<tr>
 					<td>${vo.rno }</td>
