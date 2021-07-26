@@ -288,13 +288,10 @@ $(document).ready(function() {
    
    $(".select_btn").click(function(){
          $(this).css('background','#006be0').css('color','white');
-         $(".room_inform>div:last-child").css('border', '1px solid #006be0')
+         $(".room_inform>div:last-child").css('border', '1px solid #006be0');
+         $(this).data('clicked', true);
    });
    
-    $("#btn_detail").click(function(){
-       $("#detail").toggle();
-    });
-    
     $(".large_img>img").click(function(){
        $(".large_img>div").show();
        $(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
@@ -304,9 +301,6 @@ $(document).ready(function() {
        $(".large_img>div").hide();
     });
     
-    $(".select_btn").click(function(){
-       $(this).data('clicked', true);
-    });
     
     $("#btn_reserve").click(function(){
        if($(".select_btn").data('clicked') == true){
@@ -323,17 +317,29 @@ $(document).ready(function() {
        timelist.push("${rsvo.checkout_time}");
    </c:forEach>
     
-    var rlist = new Array();
+    var reslist = new Array();
     <c:forEach var="rsvo" items="${list}">
-       rlist.push("${rsvo.reserve_date}");
+       reslist.push("${rsvo.reserve_date}");
     </c:forEach>
     
+    for(var i=0;i<reslist.length;i++){
+        if(reslist[i]==$("#datepicker").val()){
+           var j=i*2;
+             for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
+                $("td").each(function(){
+                 if(($(this).attr('id') == k)){
+                    $(this).css("background-color","#97ccff");
+                 }
+                });
+             }
+        }
+     }
     $("#datepicker").change(function(){
        $("td").each(function(){
           $(this).css("background-color","white");
        });
        for(var i=0;i<rlist.length;i++){
-          if(rlist[i]==$("#datepicker").val()){
+          if(reslist[i]==$("#datepicker").val()){
              var j=i*2;
                for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
                   $("td").each(function(){
@@ -550,7 +556,7 @@ $(document).ready(function() {
       <!-- 회의실 이름 -->
       <div class="room_name">
          <div>
-            <span><fmt:formatNumber value="${vo.grade }" pattern=".0"/></span><br>
+            <span><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/></span><br>
             <c:choose>
             	<c:when test="${vo.grade == 0 }">
             		<img src="http://localhost:9000/space/images/list_star00.png">
@@ -747,7 +753,26 @@ $(document).ready(function() {
                </li>
                <li>
                   <label>평점</label>
-                  <img src="http://localhost:9000/space/images/list_star50.png" id="rate">4.7
+					<c:choose>
+						<c:when test="${vo.grade == 0 }">
+							<img src="http://localhost:9000/space/images/list_star00.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+						</c:when>
+						<c:when test="${vo.grade < 1.5 }">
+							<img src="http://localhost:9000/space/images/list_star10.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+						</c:when>
+						<c:when test="${vo.grade < 2.5 }">
+							<img src="http://localhost:9000/space/images/list_star20.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+						</c:when>
+						<c:when test="${vo.grade < 3.5 }">
+							<img src="http://localhost:9000/space/images/list_star30.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+						</c:when>
+						<c:when test="${vo.grade < 4.5 }">
+							<img src="http://localhost:9000/space/images/list_star40.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+						</c:when>
+						<c:when test="${vo.grade >= 4.5 }">
+							<img src="http://localhost:9000/space/images/list_star50.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+						</c:when>
+					</c:choose>
                </li>
                <li>
                   <label>수용형태</label>

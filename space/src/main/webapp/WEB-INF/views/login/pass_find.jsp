@@ -16,7 +16,6 @@ $(document).ready(function() {
 		if($("#email").val() == ""){
 			alert('이메일 주소를 입력해주세요');
 		}else{
-			alert('임시 비밀번호를 이메일로 보냈습니다.');
 			passwordForm.submit();
 		}
 	});
