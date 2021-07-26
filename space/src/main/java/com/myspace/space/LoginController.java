@@ -2,6 +2,7 @@ package com.myspace.space;
 
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.myspace.service.MailService;
 import com.myspace.service.MemberService;
+import com.myspace.vo.Email;
 import com.myspace.vo.MemberVO;
 import com.myspace.vo.SessionVO;
 
@@ -21,6 +24,12 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberService;  
+	
+	@Autowired
+	private MailService emailSender;
+	
+	@Autowired
+	private Email email;
 	
 	/**
 	 * login.do: 로그인 화면
@@ -99,7 +108,7 @@ public class LoginController {
 		if(svo != null)
 			session.invalidate();
 		
-		return "/index";
+		return "redirect:/index.do";
 	}
 
 
@@ -115,9 +124,33 @@ public class LoginController {
 	 * pass_find_check.do: 비밀번호 찾기 처리
 	 * **/
 	@RequestMapping(value="/pass_find_check.do", method = RequestMethod.POST)
-	public String pass_find_check(MemberVO vo) {
-		return "login/login_find";
+	public String pass_find_check(MemberVO vo,HttpSession session) throws Exception {
+		Random r = new Random();
+		int num = r.nextInt(89999) + 10000;
+		String npassword = "space" + Integer.toString(num);// 새로운 비밀번호 변경
+		
+		System.out.println("비번생성"+npassword);
+		
+		vo.setPass(npassword);
+		session.setAttribute("vo", vo);
+		memberService.newPassword(vo);
+
+		return "redirect:/findPassword";
+
 	}
-	
-	
+
+	// 이메일로 비밀번호가 전송이된다.
+	@RequestMapping(value="/findPassword")
+	public String findPasswordOK(MemberVO vo, HttpSession session) throws Exception {
+		vo = (MemberVO) session.getAttribute("vo");
+		email.setContent("새로운 비밀번호 " + vo.getPass() + " 입니다." );
+		email.setReceiver(vo.getId());
+		email.setSubject("안녕하세요 "+vo.getId() +"님  재설정된 비밀번호를 확인해주세요");
+		System.out.println("email>>"+emailSender);
+		emailSender.SendEmail(email);
+
+		System.out.println("이메일"+email);
+		session.invalidate();
+		return "login/login";
+	}
 }

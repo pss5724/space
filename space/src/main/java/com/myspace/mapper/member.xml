@@ -10,6 +10,11 @@
 		SELECT COUNT(*) RESULT, NAME, POSITION, CHOICEIN, CHOICEOUT FROM SPACE_MEMBER WHERE ID =#{id} AND PASS =#{pass} GROUP BY NAME, POSITION, CHOICEIN, CHOICEOUT
 	</select>
 	
+	<!-- 비밀번호 찾기 -->
+	<update id="newPassword" parameterType="com.myspace.vo.MemberVO">
+		update space_member	set pass = #{pass} where id=#{id}
+	</update>
+	
 	
 	<!-- 개인 회원가입 [position:0(개인), choicein(가입승인): 1(바로 가입), choiceout(탈퇴): 0] -->
 	<insert id="join_per" parameterType="com.myspace.vo.MemberVO">

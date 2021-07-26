@@ -10,6 +10,18 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/login.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/space/js/space.js"></script>
+<script>
+$(document).ready(function() {
+	$(".login_btn").click(function(){
+		if($("#email").val() == ""){
+			alert('이메일 주소를 입력해주세요');
+		}else{
+			alert('임시 비밀번호를 이메일로 보냈습니다.');
+			passwordForm.submit();
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -26,7 +38,7 @@
 						<p class="login_tit">비밀번호 찾기</p>
 						<ul class="login_top">
 							<li class="id">
-								<input type="email" name="email" placeholder="이메일" value title="이메일 입력">
+								<input type="email" id="email" name="id" placeholder="이메일" value title="이메일 입력">
 							</li>
 						</ul>
 						<%-- <c:choose>
@@ -34,7 +46,7 @@
 						<a id="loginEmail" class="login_btn" onclick="alert('이메일을 입력해주세요.')">비밀번호 찾기</a>
 						</c:when>
 						<c:otherwise> --%>
-						<a id="loginEmail" class="login_btn" onclick="alert('임시 비밀번호를 이메일로 보냈습니다.')">비밀번호 찾기</a>
+						<a id="loginEmail" class="login_btn">비밀번호 찾기</a>
 						<%-- </c:otherwise>
 						</c:choose>	 --%>					
 					</div>

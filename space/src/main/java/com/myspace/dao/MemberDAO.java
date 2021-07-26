@@ -38,6 +38,10 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespasce+".login", vo);  //디비연결후 매퍼호출한 결과 리턴
 	}
 	
+	//비밀번호 찾기
+	public void newPassword(MemberVO vo) {
+		sqlSession.update(namespasce+".newPassword",vo);
+	}
 	
 	// 관리자페이지 - 사용자 가입승인 처리하기 : choicein을 0에서 1로 바꾸기 
 	public boolean getJoinIn(String id) {

@@ -66,6 +66,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getJoinBdelete(id);
 	}
 	
-	
+	@Override
+	public void newPassword(MemberVO vo){
+		memberDAO.newPassword(vo);
+	}
 
 }
