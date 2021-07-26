@@ -526,18 +526,19 @@ $(document).ready(function() {
 				num++;
 				k=++i;
 				console.log('k',rolist[k]);
+				var roomsgrade = Number(rolist[k]).toFixed(1);
 				if(rolist[k] == 0.0){
-					video += "<img src='http://localhost:9000/space/images/star00.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-	            }else if(rolist[k] < 1.5){
-	            	video += "<img src='http://localhost:9000/space/images/star10.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-	            }else if(rolist[k] < 2.5){
-	            	video += "<img src='http://localhost:9000/space/images/star20.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-	            }else if(rolist[k] < 3.5){
-	            	video += "<img src='http://localhost:9000/space/images/star30.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-	            }else if(rolist[k] < 4.5){
-	            	video += "<img src='http://localhost:9000/space/images/star40.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-	            }else if(rolist[k] >= 4.5){
-	            	video += "<img src='http://localhost:9000/space/images/star50.png'><span>"+rolist[k]+"</span></div></div></a></div>";
+					video += "<img src='http://localhost:9000/space/images/star00.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+	            }else if(rolist[k] < 1.5){                                                     
+	            	video += "<img src='http://localhost:9000/space/images/star10.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+	            }else if(rolist[k] < 2.5){                                                    
+	            	video += "<img src='http://localhost:9000/space/images/star20.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+	            }else if(rolist[k] < 3.5){                                                     
+	            	video += "<img src='http://localhost:9000/space/images/star30.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+	            }else if(rolist[k] < 4.5){                                                     
+	            	video += "<img src='http://localhost:9000/space/images/star40.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+	            }else if(rolist[k] >= 4.5){                                                   
+	            	video += "<img src='http://localhost:9000/space/images/star50.png'><span>"+roomsgrade+"</span></div></div></a></div>";
 	            }
 			}
 		}
@@ -633,18 +634,19 @@ $(document).ready(function() {
 		rnum++;
 		rk=++i;
 		console.log('k',trlist[rk]);
+		var roomsgrade = Number(trlist[rk]).toFixed(1); 
 		if(trlist[rk] == 0.0){
-			recommend += "<img src='http://localhost:9000/space/images/star00.png'><span>"+trlist[rk]+"</span></div></div></a></div>";
-           }else if(trlist[rk] < 1.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star10.png'><span>"+trlist[rk]+"</span></div></div></a></div>";
-           }else if(trlist[rk] < 2.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star20.png'><span>"+trlist[rk]+"</span></div></div></a></div>";
-           }else if(trlist[rk] < 3.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star30.png'><span>"+trlist[rk]+"</span></div></div></a></div>";
-           }else if(trlist[rk] < 4.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star40.png'><span>"+trlist[rk]+"</span></div></div></a></div>";
-           }else if(trlist[rk] >= 4.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star50.png'><span>"+trlist[rk]+"</span></div></div></a></div>";
+			recommend += "<img src='http://localhost:9000/space/images/star00.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(trlist[rk] < 1.5){                                                    
+           	recommend += "<img src='http://localhost:9000/space/images/star10.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(trlist[rk] < 2.5){                                                     
+           	recommend += "<img src='http://localhost:9000/space/images/star20.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(trlist[rk] < 3.5){                                                   
+           	recommend += "<img src='http://localhost:9000/space/images/star30.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(trlist[rk] < 4.5){                                                  
+           	recommend += "<img src='http://localhost:9000/space/images/star40.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(trlist[rk] >= 4.5){                                                  
+           	recommend += "<img src='http://localhost:9000/space/images/star50.png'><span>"+roomsgrade+"</span></div></div></a></div>";
            }
 	}
 	var gk=0;
@@ -663,18 +665,19 @@ $(document).ready(function() {
 		rnum++;
 		gk=++i;
 		console.log('k',tglist[gk]);
+		var roomsgrade = Number(tglist[gk]).toFixed(1); 
 		if(tglist[gk] == 0.0){
-			recommend += "<img src='http://localhost:9000/space/images/star00.png'><span>"+tglist[gk]+"</span></div></div></a></div>";
-           }else if(tglist[gk] < 1.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star10.png'><span>"+tglist[gk]+"</span></div></div></a></div>";
-           }else if(tglist[gk] < 2.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star20.png'><span>"+tglist[gk]+"</span></div></div></a></div>";
-           }else if(tglist[gk] < 3.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star30.png'><span>"+tglist[gk]+"</span></div></div></a></div>";
-           }else if(tglist[gk] < 4.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star40.png'><span>"+tglist[gk]+"</span></div></div></a></div>";
-           }else if(tglist[gk] >= 4.5){
-           	recommend += "<img src='http://localhost:9000/space/images/star50.png'><span>"+tglist[gk]+"</span></div></div></a></div>";
+			recommend += "<img src='http://localhost:9000/space/images/star00.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(tglist[gk] < 1.5){                                                    
+           	recommend += "<img src='http://localhost:9000/space/images/star10.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(tglist[gk] < 2.5){                                                    
+           	recommend += "<img src='http://localhost:9000/space/images/star20.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(tglist[gk] < 3.5){                                                    
+           	recommend += "<img src='http://localhost:9000/space/images/star30.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(tglist[gk] < 4.5){                                                
+           	recommend += "<img src='http://localhost:9000/space/images/star40.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+           }else if(tglist[gk] >= 4.5){                                                   
+           	recommend += "<img src='http://localhost:9000/space/images/star50.png'><span>"+roomsgrade+"</span></div></div></a></div>";
            }
 	}
 	$(".slider1").append(recommend);

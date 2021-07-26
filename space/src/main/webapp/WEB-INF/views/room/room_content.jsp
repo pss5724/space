@@ -222,6 +222,7 @@ $(document).ready(function() {
             for(var i=0;i<rlist.length;i++){
                data += "<li class='review1'><div><div id='user_id'>"+rlist[i++]+"</div>";
                data += "<div><div>";
+               var roomsgrade = Number(rlist[i]).toFixed(1);
                if(rlist[i] ==0){
             	  data += "<img src='http://localhost:9000/space/images/list_star00.png'>";
                }else if(rlist[i] < 1.5 ){
@@ -235,7 +236,7 @@ $(document).ready(function() {
                }else if(rlist[i] >= 4.5){
                   data += "<img src='http://localhost:9000/space/images/list_star50.png'>";
                }
-               data += "<span>" + rlist[i] + "</span></div>";
+               data += "<span>" + roomsgrade + "</span></div>";
                data += "<span>" + rlist[++i] + " | " + rlist[++i] + "</span></div>";
                data += "<span>" + rlist[++i] + "</span></div></li>"
             }
