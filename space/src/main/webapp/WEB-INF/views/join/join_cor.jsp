@@ -144,7 +144,7 @@
 		<!-- center_section_join -->
 		<div class="center_section_join">
 			<div class="center_box">
-				<form name="join_form" action="join_cor_proc.do" method="post"
+				<form name="join_form" action="join_cor_proc.do"  method="POST" enctype="multipart/form-data"
 					class="content_layout">
 					<div class="join_box">
 						<div class="join_tit_box">
