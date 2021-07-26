@@ -24,6 +24,10 @@ $(document).ready(function(){
 			alert("비밀번호 확인을 입력해주세요");
 			$(".new_pass_c").focus();
 			return false;
+		}else if($("input[name='old_pass_c']").val() != $(".old_pass").val()){
+			alert("기존 비밀번호가 일치하지 않습니다.");
+			$(".old_pass").val("").focus();
+			return false;
 		}
 			else{
 			pass_change.submit();
@@ -145,7 +149,8 @@ $(document).ready(function(){
 				</div>
 				
 		
-		<form name="pass_change" action="#" method="post">
+		<form name="pass_change" action="corppage_pass_change_proc.do" method="post">
+		<input type="hidden" name="old_pass_c" value="${vo.pass }">
 			<table class="mypage_right_box_table_info">
 				<tr>
 					<th>기존 비밀번호</th>

@@ -128,11 +128,11 @@ $(document).ready(function(){
 			<table class="mypage_right_box_table_info">
 				<tr>
 					<th>이름</th>
-					<td>홍길동</td>
+					<td>${vo.name }</td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td>hong@naver.com</td>
+					<td>${vo.id }</td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -140,19 +140,19 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<th>핸드폰</th>
-					<td>010-1111-2222</td>
+					<td>${vo.hp }</td>
 				</tr>
 				<tr>
 					<th>대표자명</th>
-					<td>홍길순</td>
+					<td>${vo.cname }</td>
 				</tr>
 				<tr>
 					<th>상호명</th>
-					<td>아무거나</td>
+					<td>${vo.tname }</td>
 				</tr>
 				<tr>
 					<th>사업자 번호</th>
-					<td>111-22-33333</td>
+					<td>${vo.cnum }</td>
 				</tr>
 				
 				
@@ -160,7 +160,7 @@ $(document).ready(function(){
 				
 			</table>
 		<div class="mypage_btn">
-				<a href="memeber_out_proc.do" class="member_out_btn">회원탈퇴하기</a>
+				<a href="joinout_btn_proc.do" class="member_out_btn">회원탈퇴하기</a>
 		</div>
 			</div>
 			<!-- right box end -->

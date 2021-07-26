@@ -2,8 +2,6 @@ package com.myspace.space;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.InquiryService;
+import com.myspace.service.MemberService;
 import com.myspace.service.ReviewService;
 import com.myspace.service.RoomService;
 import com.myspace.vo.InquiryVO;
+import com.myspace.vo.MemberVO;
 import com.myspace.vo.ReservationVO;
 import com.myspace.vo.ReviewVO;
 import com.myspace.vo.SessionVO;
@@ -34,6 +34,9 @@ public class MypageController {
 	
 	@Autowired
 	private RoomService roomService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value="/mypage_inquiry_write.do", method=RequestMethod.GET)
 	public String mypage_inquiry_write() {
@@ -92,15 +95,56 @@ public class MypageController {
 		return mv;
 		
 	}
+	@RequestMapping(value="/mypage_pass_change_proc.do", method=RequestMethod.POST)
+	public ModelAndView mypage_pass_change_proc(HttpSession session, String new_pass) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+
+		
+		boolean result = memberService.getPassChangResult(new_pass,svo.getId());
+		if(result) {
+			mv.setViewName("redirect:/mypage_info.do");
+		}else {
+			mv.setViewName("redirect:/mypage_info_pass.do");
+		}
+			
+		
+		
+		
+		
+		return mv;
+	}
+	
 	
 	@RequestMapping(value="/mypage_info.do", method=RequestMethod.GET)
-	public String mypage_info() {
-		return "mypage/mypage_info";
+	public ModelAndView mypage_info(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		
+		MemberVO vo = memberService.getInfo(svo.getId());		
+		
+		mv.setViewName("mypage/mypage_info");
+		mv.addObject("vo",vo);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/mypage_info_pass.do", method=RequestMethod.GET)
-	public String mypage_info_pass() {
-		return "mypage/mypage_info_pass";
+	public ModelAndView mypage_info_pass(HttpSession session) {
+
+		ModelAndView mv = new ModelAndView();	
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		MemberVO vo = memberService.getInfo(svo.getId());
+		
+		
+		mv.setViewName("mypage/mypage_info_pass");
+		mv.addObject("vo",vo);
+		
+		return mv;
 	}
 
 	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)

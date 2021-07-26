@@ -58,16 +58,6 @@
 	    	$(this).text(number_format(price)+"원");
 	    });
 		
-	    $(".cancel_btn").click(function(){
-	    	var choice = confirm("정말로 취소 하시겠습니까?");
-			if(choice){
-				return true;
-				
-			}else{
-				return false;
-			}
-		
-		});
 		
  	});
 </script>
@@ -320,7 +310,7 @@
 								</c:when>
 							</c:choose></td>
 					<td class="price">${vo.amount }</td>
-					<td class="reserve_cancel_btn"><a href="admin_booked_cancel_proc.do?rsid=${vo.rsid }" class="cancel_btn">취소</a></td>
+					<td class="reserve_cancel_btn"><a href="admin_booked_cancel_proc.do?rsid=${vo.rsid }">취소</a></td>
 				</tr>
 				</c:forEach>
 				<tr>

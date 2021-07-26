@@ -26,6 +26,16 @@ public class MemberServiceImpl implements MemberService {
 	 
 
 	@Override
+	public boolean getPassChangResult(String new_pass,String id) {
+		return memberDAO.getPassChangeResult(new_pass,id);
+	}
+
+	@Override
+	public MemberVO getInfo(String id) {
+		return memberDAO.getInfo(id);
+	}
+	
+	@Override
 	public SessionVO getLoginResult(MemberVO vo) {
 		System.out.println("로그인 됌!(로그인 처리과정)");
 		return memberDAO.getLoginResult(vo);

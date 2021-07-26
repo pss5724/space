@@ -11,19 +11,17 @@
 <script>
 $(document).ready(function(){
 	
-	$(".member_out_btn").click(function(){
-		alert("탈퇴 신청 완료");
-		return false;
-	
+	$("#writeInquiry").click(function(){
+		if($(".input_content").val() == ""){
+			alert("내용을 입력해주세요");
+			$(".input_content").focus();
+			return false;
+		}else{
+			inquiry_write.submit();
+		}
+		
 	});
 	
-	var now = new Date();
-	
-	var date1 = new Date('2021-7-19 '+$("#check").val());
-	
-
-
-
 		
 		
 });
@@ -36,16 +34,17 @@ $(document).ready(function(){
 	color:black;
 }
 .mypage_right_box_title p{
-	margin-bottom:20px; 
+	margin-bottom:20px;
 }
-
-.mypage_right_box_table_info {
- margin-top:20px;
- width:100%;
+.inquiry_write_table {
+	margin-top:80px;
+	margin-right:100px;
+ width:90%;
  border-spacing:0;
  border-collapse:collapse;
- }
- .mypage_right_box_table_info tr{
+}
+
+ .inquiry_write_table tr{
  	
   	
    	font-size :14px;
@@ -54,7 +53,7 @@ $(document).ready(function(){
  	border-top:1px solid lightgray;	
  	border-bottom:1px solid lightgray;
  }
-  .mypage_right_box_table_info tr th{
+  .inquiry_write_table tr th{
   	padding-left:12px;
   	text-align:left;
   	width:150px;
@@ -63,54 +62,62 @@ $(document).ready(function(){
  	height:60px;
  	border-top:1px solid lightgray;	
  	border-bottom:1px solid lightgray;
- } .mypage_right_box_table_info tr td{
+ } 
+ .inquiry_write_table tr td{
   	padding-left:12px;
   	text-align:left;
  	font-weight:600;   
  	height:60px;
  }
- .mypage_btn a{
- 	font-size:14px;
- 	font-weight:600;
- 	color : rgb(190,192,200);
+ .input_subject {
+	width:100%;
+	height:45px;
+	border-radius:6px;
+	border: 1px solid lightgray; 
  }
- .mypage_right_box_table_info tr:nth-child(3) a{
- 	border:1px solid lightgray;
+ .input_content{ 
+ 	margin:4px 0;
+ 	width:100%;
+ 	height:250px;
  	border-radius:6px;
- 	padding : 10px 25px;
- 	background-color : white;
+ 	border: 1px solid lightgray;
+ }
+ .inquiry_category {
+ 	width :45%;
+ 	height:45px;
+ 	border-radius:6px;
+	border: 1px solid lightgray; 
  }
 
 </style>
 </head>
 <body>
-<input type="hidden" value="17:30" id="check">
+
 <!-- header -->
 <jsp:include page="../header.jsp"></jsp:include>
  
 	<!-- content -->
 	<div class="mypage_container">
-	<div class="mypage_content">
 	
-		
+			<div class="mypage_content">
 			<!-- left_box  -->
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
 					<img src="http://localhost:9000/space/images/little_logo.jpg"/>
-					<span>나의 회의실</span>
+					<span>관리 메뉴</span>
 				</p>
 				<ul>
 					<li>
-						<a href="mypage.do">예약한 회의실</a>
+						<a href="member_list.do">개인회원 관리</a>
 					</li>
 					<li>
-						<a href="mypage_review.do">이용 후기</a>
+						<a href="corp_list.do">기업회원 관리</a>
+					</li>
+						<li>
+						<a href="admin_booked.do?rpage=1">예약 내역</a>
 					</li>
 					<li>
-						<a href="mypage_inquiry.do">1:1 문의</a>
-					</li>
-					<li>
-						<a href="mypage_info.do">회원정보 수정</a>
+						<a href="admin_inquiry.do?rpage=1">문의 답변</a>
 					</li>
 				</ul>
 			</div>
@@ -121,40 +128,37 @@ $(document).ready(function(){
 					
 				<div class="mypage_right_box_title">
 					<div class="title_deco"></div>
-					<p class="mypage_right_tit">회원정보 수정</p>
+					<p class="mypage_right_tit">1:1 문의</p>
 					
 				</div>
 				
 		
 			
-			<table class="mypage_right_box_table_info">
-				<tr>
-					<th>이름</th>
-					<td>${vo.name }</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>${vo.id }</td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><a href="mypage_info_pass.do">변경하기</a></td>
-				</tr>
-				<tr>
-					<th>핸드폰</th>
-					<td>${vo.hp }</td>
-				</tr>
-				
-				
-			</table>
-		<div class="mypage_btn">
-			<a href="joinout_btn_proc.do" class="member_out_btn">회원탈퇴하기</a>
-		</div>
+		<form id="inquiry_write" action="admin_inquiry_write_proc.do" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="qid" value="${qid }">
+		<table class="inquiry_write_table">
+	
+			<tr>
+				<th>내용</th>
+				<td>
+					<input type="text" name="acontent" class="input_content" title="내용작성">
+				</td>
+			</tr>
+			
+		</table>
+
+	<div class="mypage_write_btn">
+		<button type="button" id="writeInquiry" class="blue" >답변하기</button>
+		<a href="admin_inquiry.do">취소</a>
+	</div>
+
+	</form>
+
 			</div>
 			<!-- right box end -->
 			
 		
-	</div>
+		</div>
 	
 	</div>
 	

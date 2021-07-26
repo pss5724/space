@@ -1,10 +1,8 @@
 package com.myspace.space;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspace.service.InquiryService;
+import com.myspace.service.MemberService;
 import com.myspace.service.RoomService;
 import com.myspace.vo.InquiryVO;
+import com.myspace.vo.MemberVO;
 import com.myspace.vo.ReservationVO;
 import com.myspace.vo.RoomVO;
 import com.myspace.vo.SessionVO;
@@ -31,6 +31,9 @@ public class CorppageController {
 	
 	@Autowired
 	private RoomService roomService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value="/corppage_insert.do", method=RequestMethod.GET)
 	public String corppage_insert() {
@@ -127,13 +130,56 @@ public class CorppageController {
 	}
 	
 	@RequestMapping(value="/corppage_info.do", method=RequestMethod.GET)
-	public String corppage_info() {
-		return "corppage/corppage_info";
+	public ModelAndView corppage_info(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		
+		MemberVO vo = memberService.getInfo(svo.getId());		
+		
+		mv.setViewName("corppage/corppage_info");
+		mv.addObject("vo",vo);
+		
+		return mv;
+		
+		
 	}
 	
 	@RequestMapping(value="/corppage_info_pass.do", method=RequestMethod.GET)
-	public String corppage_info_pass() {
-		return "corppage/corppage_info_pass";
+	public ModelAndView corppage_info_pass(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		
+		MemberVO vo = memberService.getInfo(svo.getId());		
+		
+		mv.setViewName("corppage/corppage_info_pass");
+		mv.addObject("vo",vo);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/corppage_pass_change_proc.do", method=RequestMethod.POST)
+	public ModelAndView mypage_pass_change_proc(HttpSession session, String new_pass) {
+		ModelAndView mv = new ModelAndView();
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+
+		
+		boolean result = memberService.getPassChangResult(new_pass,svo.getId());
+		if(result) {
+			mv.setViewName("redirect:/corppage_info.do");
+		}else {
+			mv.setViewName("redirect:/corppage_info_pass.do");
+		}
+			
+		
+		
+		
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/corppage_booked_cancel_proc.do", method=RequestMethod.GET)

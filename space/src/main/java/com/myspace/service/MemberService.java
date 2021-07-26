@@ -20,4 +20,6 @@ public interface MemberService {
 	boolean getJoinOut(String id);   //°í°´ÀÌ Å»Åğ¹öÆ° ´©¸£¸é adminÂÊ list¿¡ Å»Åğ ½ÂÀÎ ¹öÆ° È°¼ºÈ­
 	boolean getJoinBdelete(String id);   //Å»Åğ(È¸¿ø»èÁ¦)
 	void newPassword(MemberVO vo);
+	MemberVO getInfo(String id);
+	boolean getPassChangResult(String new_pass,String id);
 }

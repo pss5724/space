@@ -19,6 +19,27 @@ public class MemberDAO {
 	private SqlSessionTemplate sqlSession;
 	private static String namespasce="mapper.member";
 	
+	public MemberVO getInfo(String id) {
+		return sqlSession.selectOne(namespasce+".info",id); 
+	}
+	
+	public boolean getPassChangeResult(String new_pass,String id) {
+	
+		boolean result = false;
+		
+		Map param =new HashMap<String,String>();
+		param.put("new_pass", new_pass);
+		param.put("id", id);
+		
+		int value = sqlSession.update(namespasce+".passChange",param);
+		if(value != 0) result= true;
+		
+		
+		return result;
+		
+		
+	}
+	
 	// 전체 카운트 가져오기(<!-- 전체 ROW 수 -->)
 	public int execTotalCount(){
 		return sqlSession.selectOne(namespasce+".count");

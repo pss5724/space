@@ -82,7 +82,6 @@ public class AdminController {
 	 * **/
 	@RequestMapping(value="/cor_join_proc.do", method = RequestMethod.GET)
 	public ModelAndView cor_join_proc(String id) {
-		System.out.println(id);
 		
 		ModelAndView mv = new ModelAndView();
 		boolean result = memberService.getJoinIn(id);
@@ -109,7 +108,6 @@ public class AdminController {
 	 * **/
 	@RequestMapping(value="/joinout_btn_proc.do", method = RequestMethod.GET)
 	public ModelAndView joinout_btn_proc(String id) {
-		System.out.println(id);
 		
 		ModelAndView mv = new ModelAndView();
 		boolean result = memberService.getJoinBdelete(id);

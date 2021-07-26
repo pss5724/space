@@ -5,6 +5,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="mapper.member">
+	<update id="passChange" parameterType="map">
+		update space_member set pass=#{new_pass} where id=#{id}
+	
+	</update>
+
+<select id="info" parameterType="java.lang.String" resultType="com.myspace.vo.MemberVO">
+		select id, pass, name, hp, cname, tname, cnum, choiceout from space_member where id=#{id}
+	
+	</select>
+
 	<!-- loginResult 로그인처리 -->
 	<select id="login" parameterType="com.myspace.vo.MemberVO" resultType="com.myspace.vo.SessionVO">
 		SELECT COUNT(*) RESULT, NAME, POSITION, CHOICEIN, CHOICEOUT FROM SPACE_MEMBER WHERE ID =#{id} AND PASS =#{pass} GROUP BY NAME, POSITION, CHOICEIN, CHOICEOUT

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+       <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,82 +38,45 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/space/corppage_booked.do?rpage="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/space/admin_inquiry.do?rpage="+e.page);         
 	    });
-		
-	    /* 금액 콤마 표시하기 */
-		function number_format(numstr) {
-		   var numstr = String(numstr);
-		   var re0 = /(\d+)(\d{3})($|\..*)/;
-		   if (re0.test(numstr)) {
-		      return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
-		   } else {
-		      return numstr;
-		   }
-		}
-
-	    $(".price").each(function(){
-	    	var price = number_format($(this).text());
-	    	$(this).text(number_format(price)+"원");
-	    });
-		
-	    $(".cancel_btn").click(function(){
-	    	var choice = confirm("정말로 취소 하시겠습니까?");
-			if(choice){
-				return true;
-				
-			}else{
-				return false;
-			}
-		
-		});
-		
  	});
 </script>
 <style>
-.mypage_left_box ul li:nth-child(3) a{
+.mypage_left_box ul li:last-child a{
 	text-decoration: none;
 	font-size:19px;
 	font-weight:bold;
 	color:black;
 }
-.mypage_right_box_title a {
-	float:right;
-	font-size:15px;
-	background-color : white;
-	border:1px solid lightgray;
-	border-radius:4px;
-	padding : 4px 15px;
-}
-.mypage_right_box_booked_table{
+.mypage_right_box_atable{
 	 margin-top:20px;
  width:100%;
  border-spacing:0;
  border-collapse:collapse;
 }
-  .mypage_right_box_booked_table tr{
+  .mypage_right_box_atable tr{
  	font-size:14px; 
  	font-weight:520;   
  	text-align:center;
  	height:60px;
  	border-bottom:1px solid lightgray;
  }
- 
- .mypage_right_box_booked_table tr:last-child{
+   .mypage_right_box_atable tr:last-child{
  	font-size:14px; 
  	font-weight:520;   
  	text-align:center;
  	height:60px;
  	border-bottom:none;
  }
-   .mypage_right_box_booked_table tr button{
+   .mypage_right_box_atable tr button{
    	padding: 5px 10px;
    	background-color:white;
    	border:1px solid lightgray;
    	border-radius:5px;
    	color:red;
    }
- .mypage_right_box_booked_table tr:first-child{
+ .mypage_right_box_atable tr:first-child{
  	background-color: rgb(251,251,251);
  	font-size:16px;
  	font-weight:700; 
@@ -123,15 +85,28 @@
  	border-top:1px solid lightgray;	
  	border-bottom:1px solid lightgray;
  }
+.mypage_right_box_title p{
+	margin-bottom:20px;
+}
+  .mypage_right_box_atable tr th:first-child{
+ 	width:8%;
+ }
+   .mypage_right_box_atable tr th:nth-child(2){
+ 	width:10%;
+ }
+   .mypage_right_box_atable tr th:nth-child(3){
+ 	width:17%;
+ }
+   .mypage_right_box_atable tr th:nth-child(4){
+ 	width:40%;
+ }
+    .mypage_right_box_atable tr th:nth-child(5){
+ 	width:15%;
+ }
+    .mypage_right_box_atable tr th:last-child{
+ 	width:10%;
+ }
  
-   .reserve_cancel_btn a{
-   	padding: 5px 10px;
-   	background-color:white;
-   	border:1px solid lightgray;
-   	border-radius:5px;
-   	color:red;
-   }
-
  .am-pagination-lg > li > a, .am-pagination-lg > li > span {
     padding: 10px 16px;
     font-size: 18px;
@@ -249,8 +224,9 @@
  
 	<!-- content -->
 	<div class="mypage_container">
+	<div class="mypage_content">
 	
-		<div class="mypage_content">
+		
 			<!-- left_box  -->
 			<div class="mypage_left_box">
 				<p class="mypage_ltitle">
@@ -270,7 +246,6 @@
 					<li>
 						<a href="admin_inquiry.do?rpage=1">문의 답변</a>
 					</li>
-					
 				</ul>
 			</div>
 			<!-- left_box end -->
@@ -280,67 +255,49 @@
 					
 				<div class="mypage_right_box_title">
 					<div class="title_deco"></div>
-					<p class="mypage_right_tit">예약 내역</p>
-					
+					<p class="mypage_right_tit">1:1 문의</p>
 					
 				</div>
-				<br>
-				<table class="mypage_right_box_booked_table">
+				
+		
+			
+			<table class="mypage_right_box_atable">
 				<tr>
 					<th>NO<div class="table_th_after"></div></th>
-					<th>예약자<div class="table_th_after"></div></th>
-					<th>지점<div class="table_th_after"></div></th>
-					<th>회의실명<div class="table_th_after"></div></th>
-					<th>예약일<div class="table_th_after"></div></th>
-					<th>예약시간<div class="table_th_after"></div></th>
-					<th>결제금액 (원)<div class="table_th_after"></div></th>
-					<th>관리</th>
+					<th>작성자<div class="table_th_after"></div></th>
+					<th>카테고리<div class="table_th_after"></div></th>
+					<th>제목<div class="table_th_after"></div></th>
+					<th>작성일<div class="table_th_after"></div></th>
+					<th>답변상태</th>
 				</tr>
+				
 				<c:forEach var="vo" items="${list}">
 				<tr>
 					<td>${vo.rno }</td>
-					<td><a href="room_reserve_confirm.do?rsid=${vo.rsid}">${vo.email }</a></td>
-					<td>${vo.branch_name }</td>
-					<td>${vo.room_name }</td>
-					<td>${vo.reserve_date }</td>
-					<td><c:choose>
-								<c:when test="${fn:split(vo.checkin_time,'.')[1] == 0}">
-									${fn:split(vo.checkin_time,'.')[0]}:00 ~
-								</c:when>
-								<c:when test="${fn:split(vo.checkin_time,'.')[1] == 5}">
-									${fn:split(vo.checkin_time,'.')[0]}:30 ~
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${fn:split(vo.checkout_time,'.')[1] == 0}">
-									${fn:split(vo.checkout_time,'.')[0]}:00
-								</c:when>
-								<c:when test="${fn:split(vo.checkout_time,'.')[1] == 5}">
-									${fn:split(vo.checkout_time,'.')[0]}:30
-								</c:when>
-							</c:choose></td>
-					<td class="price">${vo.amount }</td>
-					<td class="reserve_cancel_btn"><a href="admin_booked_cancel_proc.do?rsid=${vo.rsid }" class="cancel_btn">취소</a></td>
+					<td>${vo.id }</td>
+					<td>${vo.qtype } </td>
+					<td><a href="admin_inquiry_content.do?qid=${vo.qid }">${vo.qtitle } </a></td>
+					<td>${vo.qdate } </td>
+					<td>${vo.qstate} </td>
 				</tr>
 				</c:forEach>
 				<tr>
-				<td colspan="8"><div id="ampaginationsm"></div>	</td>
+				<td colspan="6"><div id="ampaginationsm"></div>	</td>
 				</tr>
-				
 			</table>
+					
+						
 				
-		
-		
 			</div>
 			<!-- right box end -->
 			
-		</div>
-	
+		
+	</div>
 	
 	</div>
 	
 	<!-- footer -->   
-<jsp:include page="../footer.jsp"></jsp:include>
+ <jsp:include page="../footer.jsp"></jsp:include>
 	
 </body>
 </html>
