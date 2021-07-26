@@ -257,7 +257,7 @@
 	
 	<!-- 회의실 예약 -->
 	<insert id="roomreserve" parameterType="com.myspace.vo.ReservationVO">
-		insert into space_reserve values('rs_'||sequ_space_room.nextval, #{name}, #{hp}, #{email}, #{rid}, #{branch_name}, #{room_name}, #{headcount}, #{type}, #{reserve_date}, #{checkin_time}, #{checkout_time}, #{used_hours}, #{convenience1_num},#{convenience2_num},#{convenience3_num},#{beverage1_num},#{beverage2_num},#{beverage3_num}, #{corp_name}, #{event_name}, #{amount}, #{pay_type}, #{etc_request})
+		insert into space_reserve values('rs_'||sequ_space_reserve.nextval, #{name}, #{hp}, #{email}, #{rid}, #{branch_name}, #{room_name}, #{headcount}, #{type}, #{reserve_date}, #{checkin_time}, #{checkout_time}, #{used_hours}, #{convenience1_num},#{convenience2_num},#{convenience3_num},#{beverage1_num},#{beverage2_num},#{beverage3_num}, #{corp_name}, #{event_name}, #{amount}, #{pay_type}, #{etc_request})
 	</insert>		
 	
 	<!-- 회의실 예약 정보 -->
