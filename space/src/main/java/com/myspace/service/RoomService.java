@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.myspace.vo.OptionVO;
 import com.myspace.vo.ReservationVO;
+import com.myspace.vo.ReviewVO;
 import com.myspace.vo.RoomVO;
 import com.myspace.vo.ServiceVO;
 
@@ -23,15 +24,27 @@ public interface RoomService {
     boolean getDeleteResult(String rid);
     String getFile(String rid, String rsfile);
     String getRsid(String rid, String reserve_date, String checkin_time, String checkout_time, String name, String hp, String corp_name);
-	
+        
     ArrayList<Object> getAddrList();
+    Integer getCount(String category);
 
     // 새미
     RoomVO getRoomContent(String rid);
     OptionVO getRoomOption(String rid);
+    ArrayList<OptionVO> getRoomOptionList();
     ServiceVO getService(String rid);
     ArrayList<ReservationVO> getAvailableTime(String rid);
     boolean getReserveResult(ReservationVO vo);
     ReservationVO getReservation(String rsid);
     ArrayList<RoomVO> getRoomList();
+    ArrayList<ReviewVO> getReviewList(String rid, int start, int end);
+    int getCountReview(String rid);
+    ArrayList<ReviewVO> getReviewGrade(String rid);
+    boolean getCancelResult(String rsid);
+    ArrayList<RoomVO> getTopReservation();
+    ArrayList<RoomVO> getTopGrade();
+    
+    
+    //성수
+    ArrayList<ReservationVO> getReservationList(String id);
 }

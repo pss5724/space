@@ -100,8 +100,8 @@ $(function(){
 		<h2 id="content" class="hidden">콘텐츠 영역</h2>
 			<div class="sub_visual introduce">
 			<h3>스페이스닷컴은
-				<span>회의실 운영 전문가들이 파트너사를 대신하여 회의시설 보유자와 <br>
-                    이용고객을 이어주는 국내 최초 회의실 매칭 플랫폼입니다.</span>
+				<span>쉽고 간편하게 회의시설 보유자와 <br>
+                    이용고객을 이어주는 수도권 회의실 매칭 플랫폼입니다.</span>
 			</h3>
 		</div>
 		<!-- e sub_visual -->
@@ -120,11 +120,13 @@ $(function(){
 		<div class="sub_section sub_section_introduce01">
 			<div class="center_box">
 				<div class="sub_section_introduce01_img_box motion s_obj opa_obj01 active"><img src="http://localhost:9000/space/images/sub_section_introduce01_img01.jpg" alt=""></div>
-				<p class="sub_section_introduce01_tit motion s_obj bottom_obj01 active">저희는 고객이 원하는 니즈에 맞춰 <br>
+				<p class="sub_section_introduce01_tit motion s_obj bottom_obj01 active">
+					저희는 고객이 원하는 조건에 맞춰 <br>
 					<span>최적의 조건을 갖춘 회의실</span>을 찾고자 노력합니다.</p>
-				<p class="sub_section_introduce01_text">스페이스닷컴은 어느 지역에서나 회의실을 검색하고 예약할 수 있는 국내 최대의 회의실 예약 플랫폼으로 <br>
-					2019년 2월 서비스를 시작으로 매년 성장을 지속하고 있습니다. 다년간 회의실을 직접 운영한 전문가들이 <br>
-					선정한 회의실을 고객의 요구에 맞추어 파트너사와 직접 연결 시켜주는 새로운 형태의 플랫폼입니다.</p>
+				<p class="sub_section_introduce01_text">
+					스페이스닷컴은 손쉽게 회의실을 검색하고 예약할 수 있는 회의실 예약 플랫폼입니다.<br>
+					운영자의 꼼꼼한 검토를 통해 승인받은 수도권(서울, 경기, 인천)의 회의실이 등록되어 있으며<br>
+					고객은 회의실 검색을 통해 원하는 회의실을 쉽게 찾아 예약할 수 있습니다.</p>
 			</div>
 		</div>
 		<!-- e sub_section -->
@@ -132,35 +134,51 @@ $(function(){
 		<!-- s sub_section -->
 		<div class="sub_section sub_section_introduce02">
 			<div class="center_box">
-				<p class="sub_section_introduce02_tit motion s_obj opa_obj01 active">국내 최고의 회의실 예약 플랫폼으로 <br>
-					빠르게 성장 중입니다.
+				<p class="sub_section_introduce02_tit motion s_obj opa_obj01 active">국내 최고의 회의실 예약 플랫폼이 되기 위해<br>
+					더욱 노력하겠습니다.
 				</p>
-				<p class="sub_section_introduce02_text motion s_obj bottom_obj01 active">2019년 2월에 출시된 회의실닷컴은 누적 사용자가 빠르게 증가하고 있습니다. <br>
-					이는 회의실 업계에서 가장 빠른 성장 속도입니다.
+				<p class="sub_section_introduce02_text motion s_obj bottom_obj01 active">
+					현재는 수도권을 중심으로 기업과 사용자를 연결하고 있으나 더 성장하여<br>
+					국내 전 지역을 연결하는 국내 최고의 예약 플랫폼이 되겠습니다.
 				</p>
 				<ul class="sub_section_introduce02_list">
-					<li><span class="sub_section_introduce02_list_num"><span id="count01" class="sub_section_introduce02_list_num01">53486</span><span class="sub_section_introduce02_list_num02">+</span></span>
-						<span class="sub_section_introduce02_list_tit">누적 이용 고객수</span>
+					<li>
+						<span class="sub_section_introduce02_list_num"><span id="count01" class="sub_section_introduce02_list_num01">
+							${reserve_count}
+						</span>
+						<span class="sub_section_introduce02_list_num02">+</span></span>
+						<span class="sub_section_introduce02_list_tit">누적 예약 수</span>
 						<div class="sub_section_introduce02_list_img"><img src="http://localhost:9000/space/images/sub_section_introduce02_list_img01.png" alt=""></div>
-						<p class="sub_section_introduce02_list_text">지금까지 4만 명이 넘는 고객이 <br>
-							회의실닷컴을 통해 <br>
-							회의실 예약을 진행하였습니다
+						<p class="sub_section_introduce02_list_text">
+							지금도 많은 분들이<br>
+							회의실닷컴을<br>
+							이용하고 계십니다.
 						</p>
 					</li>
-					<li><span class="sub_section_introduce02_list_num"><span id="count02" class="sub_section_introduce02_list_num01">417</span><span class="sub_section_introduce02_list_num02">+</span></span>
+					<li>
+						<span class="sub_section_introduce02_list_num"><span id="count02" class="sub_section_introduce02_list_num01">
+							${room_count}
+						</span>
+						<span class="sub_section_introduce02_list_num02">+</span></span>
 						<span class="sub_section_introduce02_list_tit">등록된 총 회의실 수</span>
 						<div class="sub_section_introduce02_list_img"><img src="http://localhost:9000/space/images/sub_section_introduce02_list_img02.png" alt=""></div>
-						<p class="sub_section_introduce02_list_text">전국에서 300여 개의 <br>
-							회의실을 등록하여 <br>
-							손쉽게 예약이 가능합니다.
+						<p class="sub_section_introduce02_list_text">
+							수도권 지역의 회의실을<br>
+							손쉽게 예약할 수 있으며<br>
+							곧 전국으로 확대할 예정입니다.
 						</p>
 					</li>
-					<li><span class="sub_section_introduce02_list_num"><span id="count03" class="sub_section_introduce02_list_num01">387</span><span class="sub_section_introduce02_list_num02">+</span></span>
+					<li>
+						<span class="sub_section_introduce02_list_num"><span id="count03" class="sub_section_introduce02_list_num01">
+							${review_count}
+						</span>
+						<span class="sub_section_introduce02_list_num02">+</span></span>
 						<span class="sub_section_introduce02_list_tit">누적 리뷰 수</span>
 						<div class="sub_section_introduce02_list_img"><img src="http://localhost:9000/space/images/sub_section_introduce02_list_img03.png" alt=""></div>
-						<p class="sub_section_introduce02_list_text">260명이 넘는 고객이 <br>
-							회의실에 대한 <br>
-							리뷰를 등록했습니다.
+						<p class="sub_section_introduce02_list_text">
+							회의실 이용 고객들의<br>
+							솔직한 리뷰를<br>
+							만나보실 수 있습니다.
 						</p>
 					</li>
 				</ul>

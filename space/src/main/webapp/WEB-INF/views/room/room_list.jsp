@@ -217,7 +217,7 @@ $(document).ready(function() {
 						}
 			
 						output += "<li class='room_info'>";
-						output += "<a href='http://localhost:9000/space/room_content.do?rid=" + jdata.rlist[i].rid + "'>";
+						output += "<a href='http://localhost:9000/space/room_content.do?rid=" + jdata.rlist[i].rid + "&rpage=1'>";
 						output += "<div class='info_image'>";
 						output += "<img src='http://localhost:9000/space/upload/" + jdata.rlist[i].rsfile1 + "'>";
 						output += "</div>";
@@ -234,7 +234,7 @@ $(document).ready(function() {
 						if(jdata.olist[i].elevator == 1) { output += "<li>승강기</li>"; }
 						if(jdata.olist[i].freight_elevator == 1) { output += "<li>화물승강기</li>"; }
 						if(jdata.olist[i].vending_machine == 1) { output += "<li>자판기</li>"; }
-						if(jdata.olist[i].wifi == 1) { output += "<li>Fi</li>"; }
+						if(jdata.olist[i].wifi == 1) { output += "<li>Wi-Fi</li>"; }
 						if(jdata.olist[i].accessible_toilet == 1) { output += "<li>장애인 화장실</li>"; }
 						if(jdata.olist[i].toilet == 1) { output += "<li>화장실</li>"; }
 						if(jdata.olist[i].water_dispenser == 1) { output += "<li>정수기</li>"; }

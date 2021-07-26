@@ -173,16 +173,6 @@ $(document).ready(function() {
        closing_time = clist[0] + ":" + "30";
     }
 	
-	$("input[id^=time]").timepicker({
-        timeFormat: 'H:i',
-        interval: 30,
-        minTime: opening_time,
-        maxTime: closing_time,
-        startTime: opening_time,
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true        
-    });
 	
 	$(".number-spinner input").click(function(){   
 		var btn = $(this),
@@ -242,6 +232,144 @@ $(document).ready(function() {
     		checkoutlist.push(tlist[i++][0]+":"+"30");
     	}
     }
+    
+
+    var now_time = new Date();
+    now_hours = now_time.getHours();
+    now_minutes = now_time.getMinutes();
+    now_time = now_hours + ":" + now_minutes;
+    console.log(now_hours);
+    if(Number(olist[0]) == Number(now_hours)){
+    	if(Number(olist[1]) <= Number(now_minutes)){
+			$("input[id^=time]").timepicker({
+		        timeFormat: 'H:i',
+		        interval: 30,
+		        minTime: opening_time,
+		        maxTime: closing_time,
+		        startTime: opening_time,
+		        dynamic: false,
+		        dropdown: true,
+		        scrollbar: true,
+		        disableTimeRanges:[
+		        	[opening_time,opening_time]
+		        ]
+		    });
+    	}else {
+    		$("input[id^=time]").timepicker({
+		        timeFormat: 'H:i',
+		        interval: 30,
+		        minTime: opening_time,
+		        maxTime: closing_time,
+		        startTime: opening_time,
+		        dynamic: false,
+		        dropdown: true,
+		        scrollbar: true
+		    });
+    	}
+	}else if(Number(olist[0]) < Number(now_hours)){
+		$("input[id^=time]").timepicker({
+	        timeFormat: 'H:i',
+	        interval: 30,
+	        minTime: opening_time,
+	        maxTime: closing_time,
+	        startTime: opening_time,
+	        dynamic: false,
+	        dropdown: true,
+	        scrollbar: true,
+	        disableTimeRanges:[
+	        	[opening_time,now_time]
+	        ]
+	    });
+	}else {
+		$("input[id^=time]").timepicker({
+	        timeFormat: 'H:i',
+	        interval: 30,
+	        minTime: opening_time,
+	        maxTime: closing_time,
+	        startTime: opening_time,
+	        dynamic: false,
+	        dropdown: true,
+	        scrollbar: true
+	    });
+		var length = rlist.length;
+		for(var i=0;i<length;i++){
+    		if(rlist[i]==$("#datepicker").val()){
+    			length = i;
+    			$("input[id^=time]").timepicker({
+    		        timeFormat: 'H:i',
+    		        interval: 30,
+    		        minTime: opening_time,
+    		        maxTime: closing_time,
+    		        startTime: opening_time,
+    		        dynamic: false,
+    		        dropdown: true,
+    		        scrollbar: true,
+    		        disableTimeRanges:[
+    		        	[(Number(checkinlist[i].split(":")[0])-1)+":"+checkinlist[i].split(":")[1],checkoutlist[i]]
+    		        ]
+    		    });
+    			var k=i;
+    			$("#time1").change(function(){
+    				if(Number($(this).val().split(":")[0]) <= Number(checkinlist[k].split(":")[0])){
+    					$("#time2").timepicker({
+            		        timeFormat: 'H:i',
+            		        interval: 30,
+            		        minTime: opening_time,
+            		        maxTime: closing_time,
+            		        startTime: opening_time,
+            		        dynamic: false,
+            		        dropdown: true,
+            		        scrollbar: true,
+            		        disableTimeRanges:[
+            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
+            		        	[checkinlist[k],(Number(closing_time.split(":")[0])+1)+":"+closing_time.split(":")[1]],
+            		        ]
+            		    });
+    				}else {
+    					$("#time2").timepicker({
+            		        timeFormat: 'H:i',
+            		        interval: 30,
+            		        minTime: opening_time,
+            		        maxTime: closing_time,
+            		        startTime: opening_time,
+            		        dynamic: false,
+            		        dropdown: true,
+            		        scrollbar: true,
+            		        disableTimeRanges:[
+            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]]
+            		        ]
+            		    });
+    				}
+    			});
+    		}else {
+    	    	$("input[id^=time]").timepicker({
+    		        timeFormat: 'H:i',
+    		        interval: 30,
+    		        minTime: opening_time,
+    		        maxTime: closing_time,
+    		        startTime: opening_time,
+    		        dynamic: false,
+    		        dropdown: true,
+    		        scrollbar: true
+    		    });
+    	    	$("#time1").change(function(){
+   					$("#time2").timepicker({
+           		        timeFormat: 'H:i',
+           		        interval: 30,
+           		        minTime: opening_time,
+           		        maxTime: closing_time,
+           		        startTime: opening_time,
+           		        dynamic: false,
+           		        dropdown: true,
+           		        scrollbar: true,
+           		        disableTimeRanges:[
+           		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
+           		        ]
+           		    });
+    			});
+    		}
+    	}
+	}
     
     $("#datepicker").change(function(){
     	var length = rlist.length;
