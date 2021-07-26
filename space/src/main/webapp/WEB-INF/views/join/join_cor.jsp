@@ -130,7 +130,6 @@
 				join_form.submit();
 			}
 		});
-
 	});
 </script>
 
@@ -272,7 +271,7 @@
 								</li>
 								<li>
 									<div class="join_write_list_f">사업자등록증</div> <input type="file"
-									name="clic" class="bb_ipt_file ">
+									name="file1" class="bb_ipt_file" id="clic">
 								<!-- hidden --> <!-- <button class="join_file_btn" type="button" id="joinFile">첨부파일</button>
 									<span class="join_write_list_s_filetext bb_file_txt"></span> -->
 								</li>

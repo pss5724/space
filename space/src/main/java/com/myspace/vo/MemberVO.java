@@ -1,9 +1,19 @@
 package com.myspace.vo;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class MemberVO {
 	int rno, position, choicein, choiceout;
 	String name, id, pass, hp, cname, tname, cnum1, cnum2, cnum3, cnum, caddr1, caddr2, clic, chp;
+	CommonsMultipartFile file1;
 	
+	
+	public CommonsMultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(CommonsMultipartFile file1) {
+		this.file1 = file1;
+	}
 	
 	public int getPosition() {
 		return position;
