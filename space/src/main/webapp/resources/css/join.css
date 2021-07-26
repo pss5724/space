@@ -154,6 +154,18 @@ ol, ul {
     width: 100%;
     margin-right: 5px;
 }
+
+.normal_ipt_middle_span {
+    display: inline-block;
+    vertical-align: top;
+    width: 9px;
+    font-family: "nanumsquare-r";
+    font-size: 14px;
+    line-height: 45px;
+    color: #252526;
+    text-align: center;
+}
+
 .join_write_list_s .join_write_addr {
     display: inline-block;
     vertical-align: top;
