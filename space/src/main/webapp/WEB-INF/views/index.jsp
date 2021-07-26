@@ -380,8 +380,8 @@ $(function(){
 
 		if(((targetOffsetTop <= thisBottom) && (targetOffsetBottom >= thisTop))) {
 	 	  if(end_count != 0) {
-			countUp($("#count01"), "<c:out value='${room_count}' />");
-			countUp($("#count02"), "<c:out value='${reserve_count}' />");
+			countUp($("#count01"), "<c:out value='${reserve_count}' />");
+			countUp($("#count02"), "<c:out value='${room_count}' />");
 			countUp($("#count03"), "<c:out value='${review_count}' />");
 	 	  }
 			end_count = 0;
