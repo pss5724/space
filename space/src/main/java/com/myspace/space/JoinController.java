@@ -78,7 +78,7 @@ public class JoinController {
 			
 			//2. 파일 이름 >>> vo에 저장
 			UUID uuid = UUID.randomUUID();
-			vo.setClic(vo.getFile1().getOriginalFilename());
+			//vo.setClic(vo.getFile1().getOriginalFilename());
 			vo.setClic(uuid + "_" + vo.getFile1().getOriginalFilename());
 		}
 		
