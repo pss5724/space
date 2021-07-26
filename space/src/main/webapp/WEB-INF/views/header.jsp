@@ -128,7 +128,15 @@ $(function(){
 					<ul class="depth2">
 						<li><h4><a href="http://localhost:9000/space/notice.do?rpage=1">공지사항</a></h4></li>
 						<li><h4><a href="http://localhost:9000/space/faq.do?rpage=1">자주묻는 질문</a></h4></li>
+						<c:if test="${sessionScope.svo.position==0 }">
 						<li><h4><a href="http://localhost:9000/space/mypage_inquiry.do">1:1 문의</a></h4></li>
+						</c:if>
+						<c:if test="${sessionScope.svo.position==1 }">
+						<li><h4><a href="http://localhost:9000/space/corppage_inquiry.do">1:1 문의</a></h4></li>
+						</c:if>
+							<c:if test="${sessionScope.svo.position==2 }">
+						<li><h4><a href="http://localhost:9000/space/admin_inquiry.do">1:1 문의</a></h4></li>
+						</c:if>
 					</ul>
 				</li>
 				
@@ -145,7 +153,7 @@ $(function(){
 					<c:if test="${sessionScope.svo.position==1 }">
 					<li><a href="http://localhost:9000/space/corppage.do">나의 회의실</a></li>
 					</c:if>
-					<c:if test="${sessionScope.svo.id=='admin@naver.com' }">     	
+					<c:if test="${sessionScope.svo.position==2 }">     	
 					<li><a href="http://localhost:9000/space/member_list.do">Admin</a></li>
 					</c:if>
 				</ul >	
@@ -155,7 +163,7 @@ $(function(){
 				<ul class="gnb_etc">
 					<li><a href="http://localhost:9000/space/login.do">로그인</a></li>
 					<li><a href="http://localhost:9000/space/join_main.do">회원가입</a></li>
-					<li><a href="http://localhost:9000/space/mypage.do">나의 회의실</a></li>
+<!-- 					<li><a href="http://localhost:9000/space/mypage.do">나의 회의실</a></li> -->
 				</ul>
 				</c:otherwise>
 			</c:choose>
