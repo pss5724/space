@@ -746,7 +746,21 @@ ul.payment_item_price .item_price, span.payment_item_price {
 .reservation_print:hover {
 	cursor: pointer;
 }
-
+.cancel_reservation {
+	width:100%;
+	text-align: center;
+}
+.cancel_reservation.btn{
+	margin: 0 auto;
+	padding: 20px;
+	width: 200px;
+	border: 1px solid #104ebc;
+	background: #104ebc;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 16px; 
+}
 
 /********** map **********/
 /********** map **********/

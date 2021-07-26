@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -377,18 +379,19 @@ $(document).ready(function() {
             similar += "</div><div><span class='item_price'>" + rolist[++i] + "</span><span>부터</span>";
             k=++i;
             console.log('ro',rolist[k]);
+            var roomsgrade = Number(rolist[k]).toFixed(1);
             if(rolist[k] == 0){
-	            similar += "<img src='http://localhost:9000/space/images/star00.png'><span>"+rolist[k]+"</span></div></div></a></div>";
+	            similar += "<img src='http://localhost:9000/space/images/star00.png'><span>"+roomsgrade+"</span></div></div></a></div>";
             }else if(rolist[k] < 1.5){
-            	similar += "<img src='http://localhost:9000/space/images/star10.png'><span>"+rolist[k]+"</span></div></div></a></div>";
+            	similar += "<img src='http://localhost:9000/space/images/star10.png'><span>"+roomsgrade+"</span></div></div></a></div>";
             }else if(rolist[k] < 2.5){
-            	similar += "<img src='http://localhost:9000/space/images/star20.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-            }else if(rolist[k] < 3.5){
-            	similar += "<img src='http://localhost:9000/space/images/star30.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-            }else if(rolist[k] < 4.5){
-            	similar += "<img src='http://localhost:9000/space/images/star40.png'><span>"+rolist[k]+"</span></div></div></a></div>";
-            }else if(rolist[k] >= 4.5){
-            	similar += "<img src='http://localhost:9000/space/images/star50.png'><span>"+rolist[k]+"</span></div></div></a></div>";
+            	similar += "<img src='http://localhost:9000/space/images/star20.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+            }else if(rolist[k] < 3.5){                                                
+            	similar += "<img src='http://localhost:9000/space/images/star30.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+            }else if(rolist[k] < 4.5){                                                     
+            	similar += "<img src='http://localhost:9000/space/images/star40.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+            }else if(rolist[k] >= 4.5){                                                     
+            	similar += "<img src='http://localhost:9000/space/images/star50.png'><span>"+roomsgrade+"</span></div></div></a></div>";
             }
          }
       }
@@ -546,7 +549,7 @@ $(document).ready(function() {
       <!-- 회의실 이름 -->
       <div class="room_name">
          <div>
-            <span>${vo.grade }</span><br>
+            <span><fmt:formatNumber value="${vo.grade }" pattern=".0"/></span><br>
             <c:choose>
             	<c:when test="${vo.grade == 0 }">
             		<img src="http://localhost:9000/space/images/list_star00.png">
