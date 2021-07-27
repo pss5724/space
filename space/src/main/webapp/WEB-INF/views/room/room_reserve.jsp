@@ -138,7 +138,7 @@ $(document).ready(function() {
       }else {
          var phone = $("#phone1").val() + "-" + $("#phone2").val() + "-" + $("#phone3").val();
          $("#phone").append('<input type="text" name="hp" id="hp" style="display:none">');
-         $("#hp").val(콜);
+         $("#hp").val(phone);
          
          $("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }&name="+mname);
          room_reserve.submit();
