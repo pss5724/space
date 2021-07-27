@@ -160,6 +160,9 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin: 20px auto 0;
 }
+.login_btn:hover {
+	cursor: pointer;
+}
 
 .naver_login_btn {
     display: block;
