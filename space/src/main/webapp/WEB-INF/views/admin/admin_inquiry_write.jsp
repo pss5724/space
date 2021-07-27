@@ -141,7 +141,7 @@ $(document).ready(function(){
 			<tr>
 				<th>내용</th>
 				<td>
-					<input type="text" name="acontent" class="input_content" title="내용작성">
+					<textarea name="acontent" class="input_content" title="내용작성"></textarea>
 				</td>
 			</tr>
 			
