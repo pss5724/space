@@ -83,4 +83,14 @@
 		select count(*) from space_member
 	</select>
 	
+	<!-- 회원 전체 리스트 - 예약페이지 -->
+	<select id="memberlist" parameterType="map" resultType="com.myspace.vo.MemberVO">
+		SELECT ID, NAME, HP FROM SPACE_MEMBER
+	</select>
+	
+	<!-- 회원 여부 -->
+	<select id="chkmember" resultType="int">
+		select count(*) from space_member where id=#{id}
+	</select>
+	
 </mapper>
