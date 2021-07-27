@@ -401,9 +401,9 @@ $(document).ready(function() {
     		if(Number(String($("#time1").val()).split(":")[0])<Number(String(checkinlist[i]).split(":")[0])){
     			if(Number(String($("#time1").val()).split(":")[0]+1)>Number(String(checkinlist[i]).split(":")[0])){
     				if(clist[1] == 0){
-    					hours.push([olist[0]+":"+olist[1],clist[0]+":30"]);
+    					hours.push([(Number(String($("#time1").val()).split(":")[0]))+":"+String($("#time1").val()).split(":")[1],clist[0]+":30"]);
     				}else if(clist[1] == 5){
-    					hours.push([olist[0]+":"+olist[1],(Number(clist[0])+1)+":00"]);
+    					hours.push([(Number(String($("#time1").val()).split(":")[0]))+":"+String($("#time1").val()).split(":")[1],(Number(clist[0])+1)+":00"]);
     				}
     			}
     		}
