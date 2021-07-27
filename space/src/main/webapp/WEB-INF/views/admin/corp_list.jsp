@@ -22,6 +22,19 @@
 			var popupOption = "width=" + winWidth + ", height=" + winHeight;
 			window.open(url, "", popupOption);  //url, name, option
 		});
+		
+		$(".in").click(function(){
+				alert("가입 승인");
+				return true;
+			
+		}); 
+		
+		$(".delete").click(function(){
+				alert("탈퇴 완료");
+				return true;
+			
+		}); 
+			 
 	});
 </script>
 <style>
@@ -56,15 +69,15 @@
 	border-bottom: 1px solid lightgray;
 }
 
-.mypage_right_box_booked_table tr td:last-child button {
+/* .mypage_right_box_booked_table tr td:last-child button {
 	padding: 5px 10px;
 	background-color: white;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	color: red;
-}
+} */
 
-.mypage_right_box_booked_table tr td:nth-child(7) button {
+.mypage_right_box_booked_table tr td button {
 	padding: 5px 10px;
 	background-color: white;
 	border: 1px solid lightgray;
@@ -158,12 +171,18 @@
 							<td>${vo.id }</td>
 							<td>${vo.hp }</td>
 							<td><button type="button" class="popupOpen" id="${vo.clic}">보기</button></td>
-							<c:choose>
+							<c:if test="${vo.choicein==1 }">
+								<td><a href="cor_join_proc.do?id=${vo.id}" class="in"><button type="button">승인</button></a></td>
+							</c:if>
+							<c:if test="${vo.choiceout==1 }">
+								<td><a href="member_delete_proc.do?id=${vo.id}" class="delete"><button type="button">승인</button></a></td>
+							</c:if>
+							<%-- <c:choose>
 								<c:when test="${vo.choicein==1 }">
 									<td><button type="button" disabled>완료</button></td>
 								</c:when>
 								<c:otherwise>
-									<td><a href="cor_join_proc.do?id=${vo.id}"><button
+									<td><a href="cor_join_proc.do?id=${vo.id}" class="in"><button
 												type="button">승인</button></a></td>
 								</c:otherwise>
 							</c:choose>
@@ -172,12 +191,10 @@
 									<td><button type="button" disabled>-</button></td>
 								</c:when>
 								<c:otherwise>
-									<td><a href="member_delete_proc.do?id=${vo.id}"><button
+									<td><a href="member_delete_proc.do?id=${vo.id}" class="delete"><button
 												type="button">승인</button></a></td>
 								</c:otherwise>
-							</c:choose>
-							<!-- <td><button type="button" disabled>승인</button></td>
-					<td><button type="button" disabled>승인</button></td> -->
+							</c:choose> --%>
 						</tr>
 					</c:forEach>
 
