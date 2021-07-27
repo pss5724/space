@@ -77,6 +77,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public boolean getJoinNBdelete(String id) {
+		return memberDAO.getJoinNBdelete(id);
+	}
+	
+	@Override
 	public void newPassword(MemberVO vo){
 		memberDAO.newPassword(vo);
 	}

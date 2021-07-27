@@ -70,8 +70,8 @@
 							id="loginEmail">
 
 						<!-- 네이버 로그인 -->
-						<a id="loginNaver" class="naver_login_btn" href="${url}"><img
-							src="http://localhost:9000/space/images/naver_btn_text.png">로그인</a>
+						<%-- <a id="loginNaver" class="naver_login_btn" href="${url}"><img
+							src="http://localhost:9000/space/images/naver_btn_text.png">로그인</a> --%>
 						<!-- 네이버 로그인 END -->
 
 						<p class="login_comment">*기업, 파트너스 회원가입은 일반 회원가입으로 진행해주시길

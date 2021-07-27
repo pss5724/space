@@ -116,8 +116,6 @@
 
 
 				</div>
-				<br> <br>
-				<hr color="lightgray">
 				<br>
 				<table class="mypage_right_box_booked_table">
 					<tr>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +12,18 @@
 <script>
 $(document).ready(function(){
 	
-	$(".member_out_btn").click(function(){
+	 $(".member_out_btn").click(function(){
 		alert("탈퇴 신청 완료");
-		return false;
+		return true;
 	
-	});
+	}); 
+	 
+	 $(".member_notout_btn").click(function(){
+			alert("탈퇴 철회");
+			return true;
+		
+		}); 
+	 
 	
 	var now = new Date();
 	
@@ -148,7 +156,14 @@ $(document).ready(function(){
 				
 			</table>
 		<div class="mypage_btn">
-			<a href="joinout_btn_proc.do" class="member_out_btn">회원탈퇴하기</a>
+			<c:choose>
+				<c:when test="${vo.choiceout==0 }">
+				<a href="joinout_btn_proc.do" class="member_out_btn">회원탈퇴하기</a>
+				</c:when>
+				<c:otherwise>
+				<a href="joinnotout_btn_proc.do" class="member_notout_btn">회원탈퇴 철회</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 			</div>
 			<!-- right box end -->

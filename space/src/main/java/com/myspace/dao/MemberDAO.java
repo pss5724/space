@@ -114,8 +114,9 @@ public class MemberDAO {
 		return result;*/
 	}
 	
-	// 관리자페이지 - 탈퇴 버튼 활성화 : choiceout을 0에서 1로 바꾸기 
+	// 관리자페이지 - 탈퇴 버튼 & 리스트에서 탈퇴 버튼 활성화 : choiceout을 0에서 1로 바꾸기 
 	public boolean getJoinBdelete(String id) {
+		
 		boolean result = false;
 		int value = sqlSession.delete(namespasce+".joinout_btn_able", id);
 		if(value != 0) result = true;	//리턴타입 안맞으니까
@@ -137,6 +138,32 @@ public class MemberDAO {
 		close();
 		return result;*/
 	}
+	
+	
+	// 관리자페이지 - 탈퇴 철회 버튼 : choiceout을 1에서 0로 바꾸기 
+		public boolean getJoinNBdelete(String id) {
+			
+			boolean result = false;
+			int value = sqlSession.delete(namespasce+".joinnotout_btn_able", id);
+			if(value != 0) result = true;	//리턴타입 안맞으니까
+			
+			return result;
+			
+			/*String sql = "update space_member set choiceout=0 where id = ?";
+			getPreparedStatement(sql);
+			try {
+				pstmt.setString(1, id);
+				int value = pstmt.executeUpdate();
+				
+				if(value != 0) {
+					result = true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			close();
+			return result;*/
+		}
 	
 	
 	 //개인 회원 전체 리스트 :: 페이징 

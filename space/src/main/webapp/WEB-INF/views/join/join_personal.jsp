@@ -11,6 +11,7 @@
 <script>
 $(document).ready(function(){
 	$("#doResgister").click(function(){
+		
 		if($("#name").val()==""){
 			alert("성함을 입력해주세요");
 			$("#name").focus();
@@ -34,6 +35,7 @@ $(document).ready(function(){
 		}else{
 			join_form.submit();
 		}
+		
 	});
 }
 </script>
@@ -54,9 +56,9 @@ $(document).ready(function(){
 						<p class="join_tit">회원가입</p>
 						<p class="join_stit">회원가입을 위한 정보를 입력해주세요.</p>
 					</div>
-					<div class="join_content_box">
+					<!-- <div class="join_content_box">
 						<a class="join_naver_btn" href="#">네이버로 시작하기</a>
-					</div>
+					</div> -->
 					<div class="join_content_box">
 						<ul class="join_write_list">
 							<li>

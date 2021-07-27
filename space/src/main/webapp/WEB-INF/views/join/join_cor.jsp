@@ -132,7 +132,6 @@
 				join_form.submit();
 			}
 			
-			if
 		});
 	});
 </script>

@@ -107,15 +107,46 @@ public class AdminController {
 	 * joinout_btn_proc : °í°´ÀÌ Å»Åð¹öÆ° ´©¸£¸é adminÂÊ list¿¡ Å»Åð ½ÂÀÎ ¹öÆ° È°¼ºÈ­
 	 * **/
 	@RequestMapping(value="/joinout_btn_proc.do", method = RequestMethod.GET)
-	public ModelAndView joinout_btn_proc(String id) {
+	public ModelAndView joinout_btn_proc(HttpSession session) {
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
 		
 		ModelAndView mv = new ModelAndView();
-		boolean result = memberService.getJoinBdelete(id);
+		boolean result = memberService.getJoinBdelete(svo.getId());
 		
-		if(result) mv.setViewName("redirect:/corp_list.do");    
+		if(result) {
+			if(svo.getPosition() == 0 ) {
+				mv.setViewName("redirect:/mypage_info.do");    
+			}else {
+				mv.setViewName("redirect:/corppage_info.do"); 
+			}
+		}
 		
 		return mv;
 	}
+	
+	/**
+	 * joinnotout_btn_proc : Å»Åð Ã¶È¸ Ã³¸®
+	 * **/
+	@RequestMapping(value="/joinnotout_btn_proc.do", method = RequestMethod.GET)
+	public ModelAndView joinnotout_btn_proc(HttpSession session) {
+		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		ModelAndView mv = new ModelAndView();
+		boolean result = memberService.getJoinNBdelete(svo.getId());
+		
+		if(result) {
+			if(svo.getPosition() == 0 ) {
+				mv.setViewName("redirect:/mypage_info.do");    
+			}else {
+				mv.setViewName("redirect:/corppage_info.do"); 
+			}
+		}    
+		
+		return mv;
+	}
+	
 	
 	/**
 	 * member_delete_process : Å»ÅðÃ³¸®(»èÁ¦)

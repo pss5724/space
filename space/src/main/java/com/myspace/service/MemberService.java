@@ -17,8 +17,9 @@ public interface MemberService {
 	boolean getInsertResult1(MemberVO vo);    //기업
 	int execTotalCount();
 	boolean getJoinIn(String id);   //가입승인 & 가입 승인버튼 활성화
-	boolean getJoinOut(String id);   //고객이 탈퇴버튼 누르면 admin쪽 list에 탈퇴 승인 버튼 활성화
-	boolean getJoinBdelete(String id);   //탈퇴(회원삭제)
+	boolean getJoinOut(String id);   //탈퇴(회원삭제)
+	boolean getJoinBdelete(String id);   //고객이 탈퇴버튼 누르면 admin쪽 list에 탈퇴 승인 버튼 활성화
+	boolean getJoinNBdelete(String id);   //탈퇴철회(회원삭제)
 	void newPassword(MemberVO vo);
 	MemberVO getInfo(String id);
 	boolean getPassChangResult(String new_pass,String id);

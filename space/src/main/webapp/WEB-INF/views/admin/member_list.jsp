@@ -9,6 +9,23 @@
 <link rel="stylesheet" href="http://localhost:9000/space/css/space.css">
 <link rel="stylesheet" href="http://localhost:9000/space/css/mypage.css">
 <script src="http://localhost:9000/space/js/jquery-3.6.0.min.js"></script>
+<script>
+ $(document).ready(function(){
+	
+	 $(".member_out_btn").click(function(){
+			alert("탈퇴 신청 완료");
+			return true;
+		
+		}); 
+		 
+		 $(".member_notout_btn").click(function(){
+			alert("탈퇴 철회하기");
+			return true;
+		
+		}); 
+	
+}); 
+ </script>
 <style>
 .mypage_left_box ul li:first-child a{
 	text-decoration: none;
@@ -98,8 +115,6 @@
 					
 				</div>
 				<br>
-				<br>
-				<hr color="lightgray">
 				<br>
 			<table class="mypage_right_box_booked_table">
 				<tr>
