@@ -366,11 +366,13 @@ public class RoomController {
       OptionVO ovo = roomService.getRoomOption(rid);
       ServiceVO svo = roomService.getService(rid);
       ArrayList<ReservationVO> list = roomService.getAvailableTime(rid);
+      ArrayList<MemberVO> memberlist = memberService.getMemberList();
       mv.setViewName("room/room_reserve");
       mv.addObject("vo", vo);
       mv.addObject("ovo", ovo);
       mv.addObject("svo", svo);
       mv.addObject("list", list);
+      mv.addObject("memberlist",memberlist);
 
       return mv;
    }

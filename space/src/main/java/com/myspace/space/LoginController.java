@@ -124,33 +124,38 @@ public class LoginController {
 	 * pass_find_check.do: 비밀번호 찾기 처리
 	 * **/
 	@RequestMapping(value="/pass_find_check.do", method = RequestMethod.POST)
-	public String pass_find_check(MemberVO vo,HttpSession session) throws Exception {
-		Random r = new Random();
-		int num = r.nextInt(89999) + 10000;
-		String npassword = "space" + Integer.toString(num);// 새로운 비밀번호 변경
+	public String pass_find_check(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+	    
+		int result = memberService.getMember(vo.getId());
 		
-		System.out.println("비번생성"+npassword);
-		
-		vo.setPass(npassword);
-		session.setAttribute("vo", vo);
-		memberService.newPassword(vo);
+		if(result == 1) {
+			Random r = new Random();
+			int num = r.nextInt(89999) + 10000;
+			String npassword = "space" + Integer.toString(num);// 새로운 비밀번호 변경
+			
+			System.out.println("비번생성"+npassword);
+			
+			vo.setPass(npassword);
+			memberService.newPassword(vo);
+			// 이메일로 비밀번호가 전송이된다.
+			email.setContent("새로운 비밀번호 " + vo.getPass() + " 입니다." );
+			email.setReceiver(vo.getId());
+			email.setSubject("안녕하세요 "+vo.getId() +"님  재설정된 비밀번호를 확인해주세요");
+			System.out.println("email>>"+emailSender);
+			emailSender.SendEmail(email);
 
-		return "redirect:/findPassword";
+			System.out.println("이메일"+email);
+			out.println("<script>alert('임시 비밀번호를 이메일로 보냈습니다.');</script>");	
+			out.flush();
+		} else {
+			out.println("<script>alert('회원정보가 존재하지 않습니다.');</script>");	
+	    	out.flush();
+		}
 
-	}
-
-	// 이메일로 비밀번호가 전송이된다.
-	@RequestMapping(value="/findPassword")
-	public String findPasswordOK(MemberVO vo, HttpSession session) throws Exception {
-		vo = (MemberVO) session.getAttribute("vo");
-		email.setContent("새로운 비밀번호 " + vo.getPass() + " 입니다." );
-		email.setReceiver(vo.getId());
-		email.setSubject("안녕하세요 "+vo.getId() +"님  재설정된 비밀번호를 확인해주세요");
-		System.out.println("email>>"+emailSender);
-		emailSender.SendEmail(email);
-
-		System.out.println("이메일"+email);
-		session.invalidate();
 		return "login/login";
+
 	}
+
 }

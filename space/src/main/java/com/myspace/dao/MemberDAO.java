@@ -162,6 +162,16 @@ public class MemberDAO {
 	// public MemberVO getContent(String id) { 
 		// return sqlSession.selectOne(namespasce+".content", id); }
 	 
-			
+	//회원 전체 리스트 - 예약페이지
+	 public ArrayList<MemberVO> getMemberList(){
+		 List<MemberVO> list = sqlSession.selectList(namespasce+".memberlist");
+		 return (ArrayList<MemberVO>)list;
+	 }
+	 
+	 //회원 여부
+	 public int getMember(String id) {
+		 int value = sqlSession.selectOne(namespasce+".chkmember",id);
+		 return value;
+	 }
 
 }

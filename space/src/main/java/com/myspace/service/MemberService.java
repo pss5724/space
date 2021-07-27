@@ -22,4 +22,6 @@ public interface MemberService {
 	void newPassword(MemberVO vo);
 	MemberVO getInfo(String id);
 	boolean getPassChangResult(String new_pass,String id);
+	ArrayList<MemberVO> getMemberList();
+	int getMember(String id);
 }

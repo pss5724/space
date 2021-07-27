@@ -80,5 +80,15 @@ public class MemberServiceImpl implements MemberService {
 	public void newPassword(MemberVO vo){
 		memberDAO.newPassword(vo);
 	}
+	
+	@Override
+	public ArrayList<MemberVO> getMemberList() {
+		return memberDAO.getMemberList();
+	}
 
+	@Override
+	public int getMember(String id) {
+		return memberDAO.getMember(id);
+	}
+	
 }
