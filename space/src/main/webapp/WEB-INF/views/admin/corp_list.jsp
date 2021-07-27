@@ -69,15 +69,27 @@
 	border-bottom: 1px solid lightgray;
 }
 
+.mypage_right_box_booked_table tr td button {
+	padding: 5px 10px;
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+.in, .delete{
+	color: red;
+}
+
+
 /* .mypage_right_box_booked_table tr td:last-child button {
 	padding: 5px 10px;
 	background-color: white;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	color: red;
-} */
+}
 
-.mypage_right_box_booked_table tr td button {
+.mypage_right_box_booked_table tr td:nth-child(7) button {
 	padding: 5px 10px;
 	background-color: white;
 	border: 1px solid lightgray;
@@ -92,7 +104,7 @@
 	height: 60px;
 	border-top: 1px solid lightgray;
 	border-bottom: 1px solid lightgray;
-}
+} */
 </style>
 </head>
 <body>
