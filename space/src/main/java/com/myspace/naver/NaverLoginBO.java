@@ -2,8 +2,11 @@ package com.myspace.naver;
 
 import java.io.IOException;
 import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.util.StringUtils;
+
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
@@ -80,4 +83,7 @@ public class NaverLoginBO {
         Response response = request.send();
         return response.getBody();
     }
+	
+
+
 }

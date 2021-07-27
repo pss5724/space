@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.myspace.vo.SessionVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,6 +74,7 @@
 </script>
 <script>
 	$(document).ready(function() {
+		
 		$("#doResgister").click(function() {
 			if ($("#name").val() == "") {
 				alert("성함을 입력해주세요");
@@ -129,6 +131,8 @@
 			} else {
 				join_form.submit();
 			}
+			
+			if
 		});
 	});
 </script>
@@ -256,7 +260,7 @@
 									</div>
 								</li>
 								<li>
-									<div class="join_write_list_f">사업자주소</div>
+									<div class="join_write_list_f"><span>*</span> 사업자주소</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box join_write_addr">
 											<input type="text" name="caddr1" placeholder="주소" id="caddr1"
@@ -270,13 +274,13 @@
 									</div>
 								</li>
 								<li>
-									<div class="join_write_list_f">사업자등록증</div> <input type="file"
+									<div class="join_write_list_f"><span>*</span> 사업자등록증</div> <input type="file"
 									name="file1" class="bb_ipt_file" id="clic">
 								<!-- hidden --> <!-- <button class="join_file_btn" type="button" id="joinFile">첨부파일</button>
 									<span class="join_write_list_s_filetext bb_file_txt"></span> -->
 								</li>
 								<li>
-									<div class="join_write_list_f">대표번호</div>
+									<div class="join_write_list_f"><span>*</span> 대표번호</div>
 									<div class="join_write_list_s">
 										<div class="normal_ipt_box">
 											<input type="text" name="chp" placeholder="대표번호 입력" id="chp">
@@ -308,16 +312,9 @@
 					</div>
 					<div class="join_btn_box">
 						<!-- <button id="doResgister" type="button">회원가입</button> -->
-						<input id="doResgister" type="submit" value="회원가입">
+						<input id="doResgister" type="submit"  value="회원가입">
 					</div>
 				</form>
-				<div id="layer"
-					style="display: none; position: fixed; overflow: hidden; z-index: 100; -webkit-overflow-scrolling: touch;">
-					<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
-						id="btnCloseLayer"
-						style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
-						onclick="closeDaumPostcode()" alt="닫기 버튼">
-				</div>
 			</div>
 		</div>
 	</div>

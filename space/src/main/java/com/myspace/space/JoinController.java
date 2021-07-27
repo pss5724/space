@@ -1,9 +1,11 @@
 package com.myspace.space;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,14 +51,19 @@ public class JoinController {
 	 * join_per_proc.do   --> 개인 회원가입 처리
 	 * **/
 	@RequestMapping(value="/join_per_proc.do", method = RequestMethod.POST)
-	public String join_per_proc(MemberVO vo) {
+	public String join_per_proc(MemberVO vo, HttpServletResponse response) throws Exception{
 		String result_page = "";
 		
 		MemberDAO dao = new MemberDAO();
 		boolean join_result = memberService.getInsertResult0(vo);
 		
 		if(join_result == true) {
-			result_page = "join/joinSuccess";
+			//result_page = "join/joinSuccess";
+			result_page="index";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('가입 되었습니다.')</script>");
+			out.flush();  //안하면 알람 안뜸
 		} else {
 			result_page = "join/joinFail";
 			//result_page = "errorPage";
@@ -67,7 +74,7 @@ public class JoinController {
 	 * join_cor_proc.do   --> 기업 회원가입 처리
 	 * **/
 	@RequestMapping(value="/join_cor_proc.do", method = RequestMethod.POST)
-	public ModelAndView join_cor_proc(MemberVO vo, HttpServletRequest request) throws Exception {
+	public ModelAndView join_cor_proc(MemberVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String root_path="", attach_path="";
 		
@@ -88,7 +95,11 @@ public class JoinController {
 		boolean join_result = memberService.getInsertResult1(vo);
 		
 		if(join_result) {
-			mv.setViewName("join/joinSuccess");
+			mv.setViewName("index");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('가입신청 되었습니다.')</script>");
+			out.flush();  //안하면 알람 안뜸
 			
 			if(vo.getFile1().getSize() != 0) {
 				//4 DB 연동 성공 >>> upload 폴더에 저장

@@ -20,7 +20,7 @@
 	<div class="content">
 		<section class="login">
 			<div class="error">
-				<p><img src = "http://localhost:9000/mycgv/images/error.jpg"><p>
+				<p><img src = "http://localhost:9000/myspace/images/error.jpg"><p>
 				<h3>시스템 오류로 인해 불편을 드려 죄송합니다.</h3>
 			</div>
 		</section>

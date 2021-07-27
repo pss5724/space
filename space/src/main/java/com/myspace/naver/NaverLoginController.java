@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -67,41 +68,50 @@ public class NaverLoginController {
 	}
 
 	// 네이버 연동정보 조회
-	/*
-	 * @RequestMapping(value = "/login/oauth_naver") public String
-	 * oauthNaver(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception {
-	 * 
-	 * JSONParser parser = new JSONParser(); Gson gson = new Gson();
-	 * 
-	 * HttpSession session = request.getSession(); String code =
-	 * request.getParameter("code"); String state = request.getParameter("state");
-	 * String error = request.getParameter("error");
-	 * 
-	 * // 로그인 팝업창에서 취소버튼 눌렀을경우 if ( error != null ){
-	 * if(error.equals("access_denied")){ return "redirect:/login"; } }
-	 * 
-	 * OAuth2AccessToken oauthToken; oauthToken =
-	 * naverLoginBO.getAccessToken(session, code, state); //로그인 사용자 정보를 읽어온다. String
-	 * loginInfo = naverLoginBO.getUserProfile(session, oauthToken);
-	 * 
-	 * // JSON 형태로 변환 Object obj = parser.parse(loginInfo); JSONObject jsonObj =
-	 * JSONObject.fromObject(gson.toJson(obj)); JSONObject callbackResponse =
-	 * (JSONObject) jsonObj.get("response"); String naverUniqueNo =
-	 * callbackResponse.get("id").toString();
-	 * 
-	 * if (naverUniqueNo != null && !naverUniqueNo.equals("")) {
-	 * 
-	 * /**
-	 * 
-	 * TO DO : 리턴받은 naverUniqueNo 해당하는 회원정보 조회 후 로그인 처리 후 메인으로 이동
-	 * 
-	 */
+	/*@RequestMapping(value = "/login/oauth_naver")
+	public String oauthNaver(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-	// 네이버 정보조회 실패
-	/*
-	 * } else { throw new ErrorMessage("네이버 정보조회에 실패했습니다."); }
-	 * 
-	 * }
-	 */
+	    JSONParser parser = new JSONParser();
+	    Gson gson = new Gson();
+
+	    HttpSession session = request.getSession();
+	    String code = request.getParameter("code");
+	    String state = request.getParameter("state");
+	    String error = request.getParameter("error");
+
+	    // 로그인 팝업창에서 취소버튼 눌렀을경우
+	    if ( error != null ){
+	        if(error.equals("access_denied")){
+	            return "redirect:/login";
+	        }
+	    }
+
+	    OAuth2AccessToken oauthToken;
+	    oauthToken = naverLoginBO.getAccessToken(session, code, state);
+	    //로그인 사용자 정보를 읽어온다.
+	    String loginInfo = naverLoginBO.getUserProfile(session, oauthToken);
+
+	    // JSON 형태로 변환
+	    Object obj = parser.parse(loginInfo);
+	    JSONObject jsonObj = JSONObject.fromObject(gson.toJson(obj));
+	    JSONObject callbackResponse = (JSONObject) jsonObj.get("response");
+	    String naverUniqueNo = callbackResponse.get("id").toString();
+
+	    if (naverUniqueNo != null && !naverUniqueNo.equals("")) {
+
+	        /** 
+	        
+	            TO DO : 리턴받은 naverUniqueNo 해당하는 회원정보 조회 후 로그인 처리 후 메인으로 이동
+	        
+	        */
+
+	    // 네이버 정보조회 실패
+	   /* } else {
+	        throw new ErrorMessage("네이버 정보조회에 실패했습니다.");
+	    }
+
+	}*/
+	
+   
+	
 }
