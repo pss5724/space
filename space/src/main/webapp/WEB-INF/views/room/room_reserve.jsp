@@ -93,7 +93,6 @@ $(document).ready(function() {
 		if('${svo.beverage3}' != 'null'){
 			amount = amount + (Number('${svo.beverage3_price}') * Number($("#bev3").val()));
 		}
-		console.log('amount',amount);
 		
 	   	var mname = $("#r_name").val();
 
@@ -244,15 +243,9 @@ $(document).ready(function() {
     	}
     }
     
-    //콘솔에서 확인
-    for(var i=0;i<checkinlist.length;i++){
-    	console.log('chk',checkinlist[i]);
-    }
 
     //현재 날짜 가져오기
     var now_time = new Date();
-    console.log('ddd',now_time);
-    console.log('date',now_time.getMonth());
     var now_month = now_time.getMonth()+1;
     if(String(now_month).length == 1){
     	today = now_time.getFullYear()+".0"+now_month+"."+now_time.getDate();
@@ -261,7 +254,6 @@ $(document).ready(function() {
     }
     //현재 시간 가져오기
     now_hours = now_time.getHours();
-    console.log(String(now_hours).length);
     if(String(now_hours).length == 1){
     	now_hours="0"+now_hours;
     }
@@ -270,9 +262,6 @@ $(document).ready(function() {
     	now_minutes="0"+now_minutes;
     }
     now_time = now_hours + ":" + now_minutes;
-    console.log('tt',today);
-    console.log('tt1',$("#datepicker").val());
-    console.log(today == $("#datepicker").val());
     
     var length = rlist.length;//예약한 날짜들 수
     //타임피커 설정
@@ -322,7 +311,6 @@ $(document).ready(function() {
    	
    	//데이트피커 값 변경시 타임피커 재설정
     $("#datepicker").change(function(){
-    	console.log('시간2',disableAllTheseHours($("#datepicker").val()));
     	$("input[id^=time]").val("");
     	$("#time1").timepicker({
             timeFormat: 'H:i', //24시간
@@ -367,9 +355,6 @@ $(document).ready(function() {
 	   	});
     });
     
-    console.log('length',length);
-    console.log('disableallthesehours',disableAllTheseHours1($("#datepicker").val()));
-    
     
     //특정 시간 비활성화
     function disableAllTheseHours1(date){
@@ -386,7 +371,6 @@ $(document).ready(function() {
     	}
     	return hours;
     }
-    console.log('clist',clist[1]);
     function disableAllTheseHours2(date){
     	var hours = new Array();//비활성화 리스트
     	if(date == today){//데이트피커 날짜가 오늘이면
@@ -410,7 +394,6 @@ $(document).ready(function() {
     	}
     	hours.push([olist[0]+":"+olist[1],(Number(String($("#time1").val()).split(":")[0])+1)+":"+String($("#time1").val()).split(":")[1]]);
     	
-    	console.log('111',(Number(String($("#time1").val()).split(":")[0])+1)+":"+String($("#time1").val()).split(":")[1]);
     	
     	return hours;
     }
@@ -430,7 +413,6 @@ $(document).ready(function() {
     	var price = number_format($(this).text());
     	$(this).text(number_format(price)+"원");
     });
-   	console.log('999',$(".item_price").text());
    	
 });
 </script>
