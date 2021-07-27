@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,12 @@
 $(document).ready(function() {
 	
 	$("#r_name").click(function(){
+		
+		
+		
+	});
+	
+	$("#btn_reserve").click(function(){
 		/* 영업시간 숫자로 변환 */
 	    $("input[id^=time]").each(function() { 
 	       var tlist = $(this).val().split(":");
@@ -43,12 +50,7 @@ $(document).ready(function() {
 
 	       $(this).val(time);
 	    });
-		
-		
-	});
-	
-	$("#btn_reserve").click(function(){
-
+		//vo 저장할 때..
 		var used_hours = Number($("#time2").val()) - Number($("#time1").val());
 		$("#amount").append('<input type="text" name="used_hours" id="uhours" style="display:none">')
 		$("#uhours").val(used_hours);
@@ -91,6 +93,10 @@ $(document).ready(function() {
 		if('${svo.beverage3}' != 'null'){
 			amount = amount + (Number('${svo.beverage3_price}') * Number($("#bev3").val()));
 		}
+		console.log('amount',amount);
+		
+	   	var mname = $("#r_name").val();
+
 		$("#amount").append('<input type="text" name="amount" id="r_amount" style="display:none">')
 		$("#r_amount").val(amount);
 
@@ -135,12 +141,13 @@ $(document).ready(function() {
 			$("#phone").append('<input type="text" name="hp" id="hp" style="display:none">');
 			$("#hp").val(phone);
 			
-			$("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }");
+			$("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }&name="+mname);
 			room_reserve.submit();
 		}
 		
 	});
 	
+	//데이트피커 설정
 	$('#datepicker').datepicker({
 		dateFormat: 'yy.mm.dd',
         prevText: ' ',
@@ -158,22 +165,25 @@ $(document).ready(function() {
 	});
 	$("#datepicker").datepicker().datepicker("setDate", new Date());
 	
+	//현재 회의실 영업시간(오픈시간,마감시간)
     var opening_time, closing_time;
     var olist = "<c:out value='${vo.opening_time}' />".split(".");
     var clist = "<c:out value='${vo.closing_time}' />".split(".");
     
+    //오픈시간 30분 단위로 쪼개기
     if(olist[1]==0) {
     	opening_time = olist[0] + ":" + "00";
     } else {
     	opening_time = olist[0] + ":" + "30";
     }
+    //마감시간 30분 단위로 쪼개기
     if(clist[1]==0) {
        closing_time = clist[0] + ":" + "00";
     } else {
        closing_time = clist[0] + ":" + "30";
     }
 	
-	
+	//숫자 카운트 업 설정
 	$(".number-spinner input").click(function(){   
 		var btn = $(this),
 			oldValue = btn.closest('.number-spinner').find('input[type="text"]').val().trim(),
@@ -191,6 +201,7 @@ $(document).ready(function() {
 		btn.closest('.number-spinner').find('input[type="text"]').val(newVal);
 	});
 	
+	//이미지 크게 보기
 	$(".large_img>img").click(function(){
     	$(".large_img>div").show();
     	$(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
@@ -200,26 +211,26 @@ $(document).ready(function() {
     	$(".large_img>div").hide();
     });
     
-
+	//예약된 날짜 리스트
+    var rlist = new Array();
+    <c:forEach var="rsvo" items="${list}">
+    	rlist.push("${rsvo.reserve_date}");
+    </c:forEach>
+    
+    //예약된 시간 리스트
     var timelist = new Array();
     <c:forEach var="rsvo" items="${list}">
 	    timelist.push("${rsvo.checkin_time}");
 	    timelist.push("${rsvo.checkout_time}");
 	</c:forEach>
     
-    var rlist = new Array();
-    <c:forEach var="rsvo" items="${list}">
-    	rlist.push("${rsvo.reserve_date}");
-    </c:forEach>
-    
-    
+	//예약된 시간 30분 단위로 쪼개기
     var tlist = new Array();
     for(var i=0;i<timelist.length;i++){
     	tlist.push(timelist[i].split("."));
     }
-    
-    var checkinlist = new Array();
-    var checkoutlist = new Array();
+    var checkinlist = new Array(); //예약한 시간들 중 체크인 시간들만 담은 리스트
+    var checkoutlist = new Array(); //예약한 시간들 중 체크아웃 시간들만 담은 리스트
     for(var i=0;i<tlist.length;i=i){
     	if(tlist[i][1]==0) {
     		checkinlist.push(tlist[i++][0]+":"+"00");
@@ -233,236 +244,176 @@ $(document).ready(function() {
     	}
     }
     
+    //콘솔에서 확인
+    for(var i=0;i<checkinlist.length;i++){
+    	console.log('chk',checkinlist[i]);
+    }
 
+    //현재 날짜 가져오기
     var now_time = new Date();
+    console.log('ddd',now_time);
+    console.log('date',now_time.getMonth());
+    var now_month = now_time.getMonth()+1;
+    if(String(now_month).length == 1){
+    	today = now_time.getFullYear()+".0"+now_month+"."+now_time.getDate();
+    } else if(String(now_month).length == 2){
+    	today = now_time.getFullYear()+"."+now_month+"."+now_time.getDate();
+    }
+    //현재 시간 가져오기
     now_hours = now_time.getHours();
+    console.log(String(now_hours).length);
+    if(String(now_hours).length == 1){
+    	now_hours="0"+now_hours;
+    }
     now_minutes = now_time.getMinutes();
+    if(String(now_minutes).length == 1){
+    	now_minutes="0"+now_minutes;
+    }
     now_time = now_hours + ":" + now_minutes;
-    console.log(now_hours);
-    if(Number(olist[0]) == Number(now_hours)){
-    	if(Number(olist[1]) <= Number(now_minutes)){
-			$("input[id^=time]").timepicker({
-		        timeFormat: 'H:i',
-		        interval: 30,
-		        minTime: opening_time,
-		        maxTime: closing_time,
-		        startTime: opening_time,
-		        dynamic: false,
-		        dropdown: true,
-		        scrollbar: true,
-		        disableTimeRanges:[
-		        	[opening_time,opening_time]
-		        ]
-		    });
-    	}else {
-    		$("input[id^=time]").timepicker({
-		        timeFormat: 'H:i',
-		        interval: 30,
-		        minTime: opening_time,
-		        maxTime: closing_time,
-		        startTime: opening_time,
-		        dynamic: false,
-		        dropdown: true,
-		        scrollbar: true
-		    });
-    	}
-	}else if(Number(olist[0]) < Number(now_hours)){
-		$("input[id^=time]").timepicker({
-	        timeFormat: 'H:i',
-	        interval: 30,
-	        minTime: opening_time,
-	        maxTime: closing_time,
-	        startTime: opening_time,
+    console.log('tt',today);
+    console.log('tt1',$("#datepicker").val());
+    console.log(today == $("#datepicker").val());
+    
+    var length = rlist.length;//예약한 날짜들 수
+    //타임피커 설정
+	$("#time1").timepicker({
+            timeFormat: 'H:i', //24시간
+            interval: 30,	//30분 단위로 보여주기
+            minTime: opening_time,	//최소 시간 설정(오픈시간)
+            maxTime: closing_time,	//최대 시간 설정(마감시간)
+            startTime: opening_time,	//시작 시간 설정(오픈시간)
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true,
+            disableTimeRanges:
+            	disableAllTheseHours1($("#datepicker").val())
+            	
+        });
+	$("#time2").timepicker({
+        timeFormat: 'H:i', //24시간
+        interval: 30,	//30분 단위로 보여주기
+        minTime: opening_time,	//최소 시간 설정(오픈시간)
+        maxTime: closing_time,	//최대 시간 설정(마감시간)
+        startTime: opening_time,	//시작 시간 설정(오픈시간)
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
+        disableTimeRanges:
+        	disableAllTheseHours2($("#datepicker").val())
+        	
+    });
+   	$("#time1").change(function(){
+    	$("#time2").timepicker({
+            timeFormat: 'H:i', //24시간
+            interval: 30,	//30분 단위로 보여주기
+            minTime: opening_time,	//최소 시간 설정(오픈시간)
+            maxTime: closing_time,	//최대 시간 설정(마감시간)
+            startTime: opening_time,	//시작 시간 설정(오픈시간)
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true,
+            disableTimeRanges:
+            	disableAllTheseHours2($("#datepicker").val())
+            	
+        });
+   	});
+    
+   	
+   	
+   	//데이트피커 값 변경시 타임피커 재설정
+    $("#datepicker").change(function(){
+    	console.log('시간2',disableAllTheseHours($("#datepicker").val()));
+    	$("input[id^=time]").val("");
+    	$("#time1").timepicker({
+            timeFormat: 'H:i', //24시간
+            interval: 30,	//30분 단위로 보여주기
+            minTime: opening_time,	//최소 시간 설정(오픈시간)
+            maxTime: closing_time,	//최대 시간 설정(마감시간)
+            startTime: opening_time,	//시작 시간 설정(오픈시간)
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true,
+            disableTimeRanges:
+            	disableAllTheseHours1($("#datepicker").val())
+            	
+        });
+		$("#time2").timepicker({
+	        timeFormat: 'H:i', //24시간
+	        interval: 30,	//30분 단위로 보여주기
+	        minTime: opening_time,	//최소 시간 설정(오픈시간)
+	        maxTime: closing_time,	//최대 시간 설정(마감시간)
+	        startTime: opening_time,	//시작 시간 설정(오픈시간)
 	        dynamic: false,
 	        dropdown: true,
 	        scrollbar: true,
-	        disableTimeRanges:[
-	        	[opening_time,now_time]
-	        ]
+	        disableTimeRanges:
+	        	disableAllTheseHours2($("#datepicker").val())
+	        	
 	    });
-	}else {
-		$("input[id^=time]").timepicker({
-	        timeFormat: 'H:i',
-	        interval: 30,
-	        minTime: opening_time,
-	        maxTime: closing_time,
-	        startTime: opening_time,
-	        dynamic: false,
-	        dropdown: true,
-	        scrollbar: true
-	    });
-		var length = rlist.length;
-		for(var i=0;i<length;i++){
-    		if(rlist[i]==$("#datepicker").val()){
-    			length = i;
-    			$("input[id^=time]").timepicker({
-    		        timeFormat: 'H:i',
-    		        interval: 30,
-    		        minTime: opening_time,
-    		        maxTime: closing_time,
-    		        startTime: opening_time,
-    		        dynamic: false,
-    		        dropdown: true,
-    		        scrollbar: true,
-    		        disableTimeRanges:[
-    		        	[(Number(checkinlist[i].split(":")[0])-1)+":"+checkinlist[i].split(":")[1],checkoutlist[i]]
-    		        ]
-    		    });
-    			var k=i;
-    			$("#time1").change(function(){
-    				if(Number($(this).val().split(":")[0]) <= Number(checkinlist[k].split(":")[0])){
-    					$("#time2").timepicker({
-            		        timeFormat: 'H:i',
-            		        interval: 30,
-            		        minTime: opening_time,
-            		        maxTime: closing_time,
-            		        startTime: opening_time,
-            		        dynamic: false,
-            		        dropdown: true,
-            		        scrollbar: true,
-            		        disableTimeRanges:[
-            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
-            		        	[checkinlist[k],(Number(closing_time.split(":")[0])+1)+":"+closing_time.split(":")[1]],
-            		        ]
-            		    });
-    				}else {
-    					$("#time2").timepicker({
-            		        timeFormat: 'H:i',
-            		        interval: 30,
-            		        minTime: opening_time,
-            		        maxTime: closing_time,
-            		        startTime: opening_time,
-            		        dynamic: false,
-            		        dropdown: true,
-            		        scrollbar: true,
-            		        disableTimeRanges:[
-            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]]
-            		        ]
-            		    });
-    				}
-    			});
-    		}else {
-    	    	$("input[id^=time]").timepicker({
-    		        timeFormat: 'H:i',
-    		        interval: 30,
-    		        minTime: opening_time,
-    		        maxTime: closing_time,
-    		        startTime: opening_time,
-    		        dynamic: false,
-    		        dropdown: true,
-    		        scrollbar: true
-    		    });
-    	    	$("#time1").change(function(){
-   					$("#time2").timepicker({
-           		        timeFormat: 'H:i',
-           		        interval: 30,
-           		        minTime: opening_time,
-           		        maxTime: closing_time,
-           		        startTime: opening_time,
-           		        dynamic: false,
-           		        dropdown: true,
-           		        scrollbar: true,
-           		        disableTimeRanges:[
-           		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
-           		        ]
-           		    });
-    			});
-    		}
-    	}
-	}
-    
-    $("#datepicker").change(function(){
-    	var length = rlist.length;
-    	$("input[id^=time]").val("");
-    	$("input[id^=time]").timepicker({
-	        timeFormat: 'H:i',
-	        interval: 30,
-	        minTime: opening_time,
-	        maxTime: closing_time,
-	        startTime: opening_time,
-	        dynamic: false,
-	        dropdown: true,
-	        scrollbar: true
-	    });
-    	for(var i=0;i<length;i++){
-    		if(rlist[i]==$("#datepicker").val()){
-    			length = i;
-    			$("input[id^=time]").timepicker({
-    		        timeFormat: 'H:i',
-    		        interval: 30,
-    		        minTime: opening_time,
-    		        maxTime: closing_time,
-    		        startTime: opening_time,
-    		        dynamic: false,
-    		        dropdown: true,
-    		        scrollbar: true,
-    		        disableTimeRanges:[
-    		        	[(Number(checkinlist[i].split(":")[0])-1)+":"+checkinlist[i].split(":")[1],checkoutlist[i]]
-    		        ]
-    		    });
-    			var k=i;
-    			$("#time1").change(function(){
-    				if(Number($(this).val().split(":")[0]) <= Number(checkinlist[k].split(":")[0])){
-    					$("#time2").timepicker({
-            		        timeFormat: 'H:i',
-            		        interval: 30,
-            		        minTime: opening_time,
-            		        maxTime: closing_time,
-            		        startTime: opening_time,
-            		        dynamic: false,
-            		        dropdown: true,
-            		        scrollbar: true,
-            		        disableTimeRanges:[
-            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
-            		        	[checkinlist[k],(Number(closing_time.split(":")[0])+1)+":"+closing_time.split(":")[1]],
-            		        ]
-            		    });
-    				}else {
-    					$("#time2").timepicker({
-            		        timeFormat: 'H:i',
-            		        interval: 30,
-            		        minTime: opening_time,
-            		        maxTime: closing_time,
-            		        startTime: opening_time,
-            		        dynamic: false,
-            		        dropdown: true,
-            		        scrollbar: true,
-            		        disableTimeRanges:[
-            		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]]
-            		        ]
-            		    });
-    				}
-    			});
-    		}else {
-    	    	$("input[id^=time]").timepicker({
-    		        timeFormat: 'H:i',
-    		        interval: 30,
-    		        minTime: opening_time,
-    		        maxTime: closing_time,
-    		        startTime: opening_time,
-    		        dynamic: false,
-    		        dropdown: true,
-    		        scrollbar: true
-    		    });
-    	    	$("#time1").change(function(){
-   					$("#time2").timepicker({
-           		        timeFormat: 'H:i',
-           		        interval: 30,
-           		        minTime: opening_time,
-           		        maxTime: closing_time,
-           		        startTime: opening_time,
-           		        dynamic: false,
-           		        dropdown: true,
-           		        scrollbar: true,
-           		        disableTimeRanges:[
-           		        	[opening_time, (Number($(this).val().split(":")[0])+1)+":"+$(this).val().split(":")[1]],
-           		        ]
-           		    });
-    			});
-    		}
-    	}
+	   	$("#time1").change(function(){
+	    	$("#time2").timepicker({
+	            timeFormat: 'H:i', //24시간
+	            interval: 30,	//30분 단위로 보여주기
+	            minTime: opening_time,	//최소 시간 설정(오픈시간)
+	            maxTime: closing_time,	//최대 시간 설정(마감시간)
+	            startTime: opening_time,	//시작 시간 설정(오픈시간)
+	            dynamic: false,
+	            dropdown: true,
+	            scrollbar: true,
+	            disableTimeRanges:
+	            	disableAllTheseHours2($("#datepicker").val())
+	            	
+	        });
+	   	});
     });
     
+    console.log('length',length);
+    console.log('disableallthesehours',disableAllTheseHours1($("#datepicker").val()));
+    
+    
+    //특정 시간 비활성화
+    function disableAllTheseHours1(date){
+    	var hours = new Array();//비활성화 리스트
+    	if(date == today){//데이트피커 날짜가 오늘이면
+    		if(olist[0] <= now_hours && olist[1] <= now_minutes){
+    			hours.push([opening_time,now_time]);//비활성화 리스트에 추가
+    		}
+    	}
+    	for(var i=0;i<length;i++){
+    		if(rlist[i]==date){
+    			hours.push([(Number(String(checkinlist[i]).split(":")[0])-1)+":"+String(checkinlist[i]).split(":")[1],checkoutlist[i]]);
+    		}
+    	}
+    	return hours;
+    }
+    console.log('clist',clist[1]);
+    function disableAllTheseHours2(date){
+    	var hours = new Array();//비활성화 리스트
+    	if(date == today){//데이트피커 날짜가 오늘이면
+    		if(olist[0] <= now_hours && olist[1] <= now_minutes){
+    			hours.push([opening_time,now_time]);//비활성화 리스트에 추가
+    		}
+    	}
+    	for(var i=0;i<length;i++){
+    		if(rlist[i]==date){
+    			hours.push([(Number(String(checkinlist[i]).split(":")[0]))+":"+String(checkinlist[i]).split(":")[1],checkoutlist[i]]);
+    		}
+    		if(Number(String($("#time1").val()).split(":")[0])<Number(String(checkinlist[i]).split(":")[0])){
+    			if(Number(String($("#time1").val()).split(":")[0]+1)>Number(String(checkinlist[i]).split(":")[0])){
+    				if(clist[1] == 0){
+    					hours.push([olist[0]+":"+olist[1],clist[0]+":30"]);
+    				}else if(clist[1] == 5){
+    					hours.push([olist[0]+":"+olist[1],(Number(clist[0])+1)+":00"]);
+    				}
+    			}
+    		}
+    	}
+    	hours.push([olist[0]+":"+olist[1],(Number(String($("#time1").val()).split(":")[0])+1)+":"+String($("#time1").val()).split(":")[1]]);
+    	
+    	console.log('111',(Number(String($("#time1").val()).split(":")[0])+1)+":"+String($("#time1").val()).split(":")[1]);
+    	
+    	return hours;
+    }
     
     /* 금액 콤마 표시하기 */
 	function number_format(numstr) {
@@ -480,7 +431,7 @@ $(document).ready(function() {
     	$(this).text(number_format(price)+"원");
     });
    	console.log('999',$(".item_price").text());
-    
+   	
 });
 </script>
 </head>
@@ -873,14 +824,18 @@ $(document).ready(function() {
 				<div><span>* 필수입력</span></div>
 				<div>
 					<ul>
-						<li>
-							<label>예약자<span>*</span></label>
-							<input type="text" id="r_name" name="name">
-						</li>
-						<li id="phone">
-							<label>연락처<span>*</span></label>
-							<input type="text" id="phone1" name="ph1"> - <input type="text" id="phone2" name="ph2"> - <input type="text" id="phone3" name="ph3">
-						</li>
+						<c:forEach var="member" items="${memberlist }">
+							<c:if test="${member.id == sessionScope.svo.id }">
+							<li>
+								<label>예약자<span>*</span></label>
+								<input type="text" id="r_name" name="name" value="${member.name }" disabled>
+							</li>
+							<li id="phone">
+								<label>연락처<span>*</span></label>
+								<input type="text" id="phone1" name="ph1" value="${fn:split(member.hp,'-')[0]}"> - <input type="text" id="phone2" name="ph2" value="${fn:split(member.hp,'-')[1]}"> - <input type="text" id="phone3" name="ph3" value="${fn:split(member.hp,'-')[2]}">
+							</li>
+							</c:if>
+						</c:forEach>
 						<li>
 							<label>이메일<span>*</span></label>
 							<input type="text" id="email" name="email" value="${sessionScope.svo.id }" disabled>
