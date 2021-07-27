@@ -298,7 +298,7 @@
 									class="join_cont_check_list_text" href="#">이용약관 및 개인정보 처리방침
 										동의</a> <span class="red">(필수)</span></li>
 								<li><input type="checkbox" name="agree_notify" value="1"
-									class="check_box_input" title="이용약관 및 개인정보 처리방침 동의 체크" required>
+									class="check_box_input" title="이용약관 및 개인정보 처리방침 동의 체크"  value="1" title="이용약관 및 개인정보 처리방침 동의 체크">
 									<!-- hidden --> <!-- <button class="check_box_btn" type="button"
 										title="이용약관 및 개인정보 처리방침 동의 체크"></button> -->
 									<p class="join_cont_check_list_text" href="#">이벤트 등 프로모션 알림</p>
