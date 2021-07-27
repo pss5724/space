@@ -32,9 +32,7 @@ $(document).ready(function() {
 	for(var i in time_list) {
 		var list = time_list[i].split(".");
 
-		if(list[0]<10) {
-			time += "0";
-		}
+		if(list[0] < 10) time += "0";
 		
 		if(list[1]==0) {
 			time += list[0] + ":" + "00"; 
