@@ -193,7 +193,7 @@ $(document).ready(function() {
 	}else if((service/count).toFixed(1) <4.5){
 		$("#servicelv").after('<img src="http://localhost:9000/space/images/list_star40.png">');
 	}else if((service/count).toFixed(1) >= 4.5){
-		$("#servicelv").after('<img src="http://localhost:9000/space/images/list_star40.png">');
+		$("#servicelv").after('<img src="http://localhost:9000/space/images/list_star50.png">');
 	}
 		
    
