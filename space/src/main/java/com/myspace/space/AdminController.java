@@ -131,6 +131,22 @@ public class AdminController {
 
 		return mv;
 	}
+	
+	/**
+	 * clic_Popup.do : corp_list에서 사업자등록증 보기버튼 눌렀을때 열리는 팝업창
+	 * **/
+	@RequestMapping(value="/clic_Popup.do", method = RequestMethod.GET)
+	public ModelAndView clic_Popup(String clic) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("/admin/clic_Popup");
+		mv.addObject("clic", clic);
+		System.out.println("clic=" + clic);
+		
+		return mv;
+	}
+	
+	
 
 	@RequestMapping(value="/admin_booked.do", method=RequestMethod.GET)
 	public ModelAndView admin_booked(String rpage,HttpSession session ) {
@@ -157,10 +173,6 @@ public class AdminController {
 		 mv.addObject("dbcount", map.get("dbCount"));
 		 mv.addObject("rpage", map.get("rpage"));
 		 mv.addObject("pagesize", map.get("pageSize"));
-		
-		
-		
-		
 		
 		return mv;
 	}

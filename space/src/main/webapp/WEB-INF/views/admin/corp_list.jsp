@@ -12,18 +12,16 @@
 <script>
 	//팝업창 띄우기
 	$(document).ready(function() {
-		$('.clic_btn').click(function(event) {
-			console.log('click');
-			popupOpen();
-		});
 
-		function popupOpen() {
-			var url = "/AdminController/modiftCartPopup";
-			var winWidth = 700;
+		$('.popupOpen').click(function(){
+			var fname = $(this).attr("id");
+			//alert(fname);  //clic가 화면에 잘 받아오는지 확인하기 위함
+			var url = "clic_Popup.do?clic="+fname;
+			var winWidth = 500;
 			var winHeight = 600;
 			var popupOption = "width=" + winWidth + ", height=" + winHeight;
 			window.open(url, "", popupOption);  //url, name, option
-		}
+		});
 	});
 </script>
 <style>
@@ -161,14 +159,14 @@
 							<td>${vo.name }</td>
 							<td>${vo.id }</td>
 							<td>${vo.hp }</td>
-							<td><button type="button" id=clic_btn>보기</button></td>
+							<td><button type="button" class="popupOpen" id="${vo.clic}">보기</button></td>
 							<c:choose>
 								<c:when test="${vo.choicein==1 }">
 									<td><button type="button" disabled>완료</button></td>
 								</c:when>
 								<c:otherwise>
 									<td><a href="cor_join_proc.do?id=${vo.id}"><button
-												type="button">승인</button></td>
+												type="button">승인</button></a></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
@@ -177,7 +175,7 @@
 								</c:when>
 								<c:otherwise>
 									<td><a href="member_delete_proc.do?id=${vo.id}"><button
-												type="button">승인</button></td>
+												type="button">승인</button></a></td>
 								</c:otherwise>
 							</c:choose>
 							<!-- <td><button type="button" disabled>승인</button></td>
