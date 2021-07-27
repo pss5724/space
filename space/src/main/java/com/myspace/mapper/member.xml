@@ -53,7 +53,7 @@
 	
 	<!-- 관리자페이지 - 사용자 탈퇴 처리하기 -->
 	<delete id="member_joinout" parameterType="java.lang.String">
-		delete from space_member where id= #{id}
+		delete from space_member + space_member where id= #{id}
 	</delete>
 	
 	

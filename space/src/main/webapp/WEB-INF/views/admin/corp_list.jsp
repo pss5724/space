@@ -183,13 +183,13 @@
 							<td>${vo.id }</td>
 							<td>${vo.hp }</td>
 							<td><button type="button" class="popupOpen" id="${vo.clic}">보기</button></td>
-							<c:if test="${vo.choicein==1 }">
+							<%-- <c:if test="${vo.choicein==0 }">
 								<td><a href="cor_join_proc.do?id=${vo.id}" class="in"><button type="button">승인</button></a></td>
 							</c:if>
 							<c:if test="${vo.choiceout==1 }">
 								<td><a href="member_delete_proc.do?id=${vo.id}" class="delete"><button type="button">승인</button></a></td>
-							</c:if>
-							<%-- <c:choose>
+							</c:if> --%>
+							<c:choose>
 								<c:when test="${vo.choicein==1 }">
 									<td><button type="button" disabled>완료</button></td>
 								</c:when>
@@ -206,7 +206,7 @@
 									<td><a href="member_delete_proc.do?id=${vo.id}" class="delete"><button
 												type="button">승인</button></a></td>
 								</c:otherwise>
-							</c:choose> --%>
+							</c:choose>
 						</tr>
 					</c:forEach>
 

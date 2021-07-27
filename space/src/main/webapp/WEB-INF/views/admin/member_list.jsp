@@ -12,17 +12,11 @@
 <script>
  $(document).ready(function(){
 	
-	 $(".member_out_btn").click(function(){
-			alert("탈퇴 신청 완료");
+	 $(".delete").click(function(){
+			alert("탈퇴 완료");
 			return true;
 		
-		}); 
-		 
-		 $(".member_notout_btn").click(function(){
-			alert("탈퇴 철회하기");
-			return true;
-		
-		}); 
+	}); 
 	
 }); 
  </script>
@@ -137,14 +131,17 @@
 					<td><a href="member_content.do?name=${vo.name}&rno=${vo.rno }">${vo.name }</a></td>
 					<td>${vo.id }</td>
 					<td>${vo.hp }</td>
-					<c:choose>
+					<c:if test="${vo.choiceout==1 }">
+						<td><a href="member_delete_proc.do?id=${vo.id}" class="delete"><button type="button">승인</button></a></td>
+					</c:if>
+					<%-- <c:choose>
 					<c:when test="${vo.choiceout==0 }">
 					<td><button type="button" disabled>-</button></td>
 					</c:when>
 					<c:otherwise>
 					<td><a href="member_delete_proc.do?id=${vo.id}"><button type="button" >승인</button></td>
 					</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
 				</tr>
 				</c:forEach>
 			</table>
