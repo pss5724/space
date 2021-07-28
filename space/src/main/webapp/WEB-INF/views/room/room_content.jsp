@@ -210,7 +210,7 @@ $(document).ready(function() {
 
             var rlist = new Array();
             for(var i in result.reviewlist) {
-                rlist.push(((result.reviewlist[i].id).split("@")[0]).substring(0,((result.reviewlist[i].id).split("@")[0]).length-4)+"****");
+                rlist.push(((result.reviewlist[i].id).split("@")[0]).substring(0,3)+"****");
                  rlist.push(result.reviewlist[i].totallv);
                  rlist.push(result.reviewlist[i].room_name);
                  rlist.push(result.reviewlist[i].rdate);
