@@ -231,7 +231,7 @@ tr.form_explanation {
 				$("#address").focus();
 				return false;
 			} else if ($addr_val.indexOf("서울") == -1 && $addr_val.indexOf("경기") == -1 && $addr_val.indexOf("인천") == -1 ) {
-				alert("서울/경기 지역의 회의실만 등록할 수 있습니다.");
+				alert("수도권 지역의 회의실만 등록할 수 있습니다.");
 				$("#address").focus();
 				return false;
 			} else if ($("#intro").val() == "") {

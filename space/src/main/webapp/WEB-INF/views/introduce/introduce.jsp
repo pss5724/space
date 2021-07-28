@@ -151,7 +151,7 @@ $(function(){
 						<div class="sub_section_introduce02_list_img"><img src="http://localhost:9000/space/images/sub_section_introduce02_list_img01.png" alt=""></div>
 						<p class="sub_section_introduce02_list_text">
 							지금도 많은 분들이<br>
-							회의실닷컴을<br>
+							스페이스닷컴을<br>
 							이용하고 계십니다.
 						</p>
 					</li>
@@ -187,12 +187,12 @@ $(function(){
 		<!-- e sub_section -->
 
 		<!-- s sub_section -->
-		<div class="sub_section sub_section_introduce03">
+<!-- 		<div class="sub_section sub_section_introduce03">
 			<div class="center_box motion s_obj bottom_obj01 active">
 				<p class="sub_section_introduce03_tit">스페이스닷컴과 직접 <span class="sub_section_introduce03_tit_bold"><span>회의실 예약 시 비교</span></span></p>
 				<div class="sub_section_introduce03_img_box"><img src="http://localhost:9000/space/images/sub_section_introduce03_img01.png"></div>
 			</div>
-		</div>
+		</div> -->
 		<!-- e sub_section -->
 	</div>
 	<!-- e container -->

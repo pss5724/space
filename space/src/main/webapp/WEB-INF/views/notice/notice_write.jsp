@@ -131,8 +131,7 @@ function noticeFormCheck(){
 				<tr>
 					<th scope="row">상단 고정</th>
 					<td>
-						<select class="notice_category" name="notice_category">
-							
+						<select class="notice_category" name="important">
 							<option value="choice" selected>선택</option>
 							<option value="IMPORTANT">중요</option>
 							<option value="NORMAL">기본</option>

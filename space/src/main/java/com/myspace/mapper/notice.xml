@@ -73,10 +73,10 @@
   <insert id="insert" parameterType="com.myspace.vo.NoticeVO">
   	<choose>
   		<when test="nfile != null">
-		  	insert into space_notice values('N_'||sequ_space_notice.nextval,#{ntitle},#{ncontent},'test',0,#{nfile},#{nsfile},sysdate,#{important})
+		  	insert into space_notice values('N_'||sequ_space_notice.nextval,#{ntitle},#{ncontent},'admin@naver.com',0,#{nfile},#{nsfile},sysdate,#{important})
   		</when>
   		<otherwise>
-		  	insert into space_notice values('N_'||sequ_space_notice.nextval,#{ntitle},#{ncontent},'test',0,null,null,sysdate,#{important})
+		  	insert into space_notice values('N_'||sequ_space_notice.nextval,#{ntitle},#{ncontent},'admin@naver.com',0,null,null,sysdate,#{important})
   		</otherwise>
   	</choose>
   </insert>
