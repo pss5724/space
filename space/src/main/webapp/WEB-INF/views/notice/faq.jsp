@@ -77,10 +77,27 @@ $(document).ready(function(){
 					$(this).next('.faq_content_text').slideDown(250);
 				}
 			});
+			
+			
+			
+			$(".search_btn").click(function(){
+				console.log('클릭');
+					var question = $("#q").val();
+					$(".board_type01>table>tbody>tr").hide();
+					var temp = $(".board_type01>table>tbody>tr>td:nth-child(2n+2):contains('"+ question +"')");
+					
+					console.log('dd',question);
+					
+					$(temp).parent().show();
+					
+			});
+			
+			
 		});
 	</script>
 <style>
 /*  자주 묻는 질문{ */
+
 			.cus_slectbox {
 				position:relative;
 				display:inline-block;
@@ -161,6 +178,7 @@ $(document).ready(function(){
 
 			.faq_box {
 				border-top:2px solid #2d8ee6;
+				margin-top: 50px;
 			}
 			.faq_content + .faq_content {
 				border-top:1px solid #d7d7d7;
@@ -279,7 +297,7 @@ $(document).ready(function(){
 		<div class="sub_section sub_section_board01">
 			<div class="center_box">
 				<p class="sub_tit">자주묻는 질문</p>
-				<div class="board_search_box">
+				<!-- <div class="board_search_box">
 					<form action="#" method="GET">
 					<div class="cus_slectbox">
 						<select class="hidden_select" name="q_category" id="">
@@ -306,7 +324,7 @@ $(document).ready(function(){
 					</div>
 					<div class="board_search_box_text"><input type="text" name="q" placeholder="검색어를 입력해주세요." title="검색어 입력" value=""><button type="submit"></button></div>
 					</form>
-				</div>
+				</div> -->
 
 				<div class="faq_box">
 				
