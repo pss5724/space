@@ -152,16 +152,14 @@ public class AdminController {
 	 * member_delete_process : 呕硼贸府(昏力)
 	 * **/
 	@RequestMapping(value="/member_delete_proc.do", method = RequestMethod.GET)
-	public ModelAndView member_delete_proc(String id, HttpSession session) {
+	public ModelAndView member_delete_proc(String id, String position) {
 		
-		SessionVO svo = (SessionVO)session.getAttribute("svo");
 		
 		ModelAndView mv = new ModelAndView();
 		boolean result = memberService.getJoinOut(id);
 
-		//if(result) mv.setViewName("redirect:/corp_list.do"); 
 		if(result) {
-			if(svo.getPosition() == 0 ) {
+			if(position.equals("0") ) {
 				mv.setViewName("redirect:/member_list.do");    
 			}else {
 				mv.setViewName("redirect:/corp_list.do"); 
@@ -174,13 +172,20 @@ public class AdminController {
 	 * member_delete_process : 呕硼贸府(昏力)
 	 * **/
 	/*@RequestMapping(value="/member_delete_proc.do", method = RequestMethod.GET)
-	public ModelAndView member_delete_proc(String id) {
+	public ModelAndView member_delete_proc(String id, HttpSession session) {
 		
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
 		
 		ModelAndView mv = new ModelAndView();
 		boolean result = memberService.getJoinOut(id);
 		
-		if(result) mv.setViewName("redirect:/corp_list.do"); 
+		if(result) {
+			if(svo.getPosition() == 0 ) {
+				mv.setViewName("redirect:/member_list.do");    
+			}else {
+				mv.setViewName("redirect:/corp_list.do"); 
+			}
+		}    
 		
 		return mv;
 	}*/

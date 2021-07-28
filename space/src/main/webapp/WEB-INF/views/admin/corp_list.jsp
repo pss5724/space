@@ -203,7 +203,7 @@
 									<td><button type="button" disabled>-</button></td>
 								</c:when>
 								<c:otherwise>
-									<td><a href="member_delete_proc.do?id=${vo.id}" class="delete"><button
+									<td><a href="member_delete_proc.do?id=${vo.id}&position=1" class="delete"><button
 												type="button">승인</button></a></td>
 								</c:otherwise>
 							</c:choose>
