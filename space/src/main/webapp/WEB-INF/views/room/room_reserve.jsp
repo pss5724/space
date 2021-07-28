@@ -25,13 +25,6 @@
 </style>
 <script>
 $(document).ready(function() {
-   
-   $("#r_name").click(function(){
-      
-      
-      
-   });
-   
    $("#btn_reserve").click(function(){
       /* 영업시간 숫자로 변환 */
        $("input[id^=time]").each(function() { 

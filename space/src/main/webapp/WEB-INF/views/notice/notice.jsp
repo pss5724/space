@@ -16,6 +16,7 @@
 //페이징 처리
 	$(document).ready(function(){
 		
+		
 		var pager = jQuery('#ampaginationsm').pagination({
 			
 		    maxSize: 5,	    		// max page size
@@ -40,7 +41,22 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){  //페이지가 변경되면 href의 주소 변경
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 	           $(location).attr('href', "http://localhost:9000/space/notice.do?rpage="+e.page);         
+	           
 	    });
+		
+		
+		$(".search_btn").click(function(){
+			console.log('클릭');
+				var question = $("#q").val();
+				$(".board_type01>table>tbody>tr").hide();
+				var temp = $(".board_type01>table>tbody>tr>td:nth-child(2n+2):contains('"+ question +"')");
+				
+				console.log('dd',question);
+				
+				$(temp).parent().show();
+				
+		});
+		
  	});
 </script>
 </head>
@@ -74,7 +90,7 @@
 				<p class="sub_tit">공지사항</p>
 				<div class="board_search_box">
 					<form action="#" method="GET">
-					<div class="board_search_box_text"><input type="text" name="q" placeholder="검색어를 입력해주세요." title="검색어 입력" value=""><button type="submit"></button></div>
+					<div class="board_search_box_text"><input type="text" id="q" name="q" placeholder="검색어를 입력해주세요." title="검색어 입력" value=""><button type="button" class="search_btn"></button></div>
 					</form>
 				</div>
 
@@ -126,9 +142,11 @@
 						</tbody>
 					</table>
 				</div>
-					<div class="notice_write">
-					<a href="http://localhost:9000/space/notice_write.do"><button type="button" >글 작성</button></a>
-					</div>
+				<c:if test='${sessionScope.svo.position ==2}'>
+              		 <div class="notice_write">
+              		 <a href="http://localhost:9000/space/notice_write.do"><button type="button" >글 작성</button></a>
+               		</div>
+           		 </c:if>
 					
 				<div class="content_paging">
 				<a class="content_paging_prev" href="#"><img src="http://localhost:9000/space/images/content_paging_left.png" alt="이전"></a>
