@@ -28,74 +28,9 @@
 <script src="http://localhost:9000/space/js/am-pagination.js"></script>
 <script>
 $(document).ready(function() {
-   
-   /* 금액 콤마 표시하기 */
-   function number_format(numstr) {
-      var numstr = String(numstr);
-      var re0 = /(\d+)(\d{3})($|\..*)/;
-      if (re0.test(numstr)) {
-         return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
-      } else {
-         return numstr;
-      }
-   }
-   
-   var mapContainer = document.getElementById('g_map');
-   var mapOptions = {
-      center: new google.maps.LatLng(37.55539849783088, 126.98713113288264),
-      zoom: 10
-   };
-   var map = new google.maps.Map(mapContainer, mapOptions);
-   
-   var geocoder = new google.maps.Geocoder();
-   
-   geocodeAddress(geocoder, map);
-
-   function geocodeAddress(geocoder, resultMap) {
-
-        // 주소 설정
-        var address = "<c:out value='${vo.address}'/>";
-
-        /**
-         * 입력받은 주소로 좌표에 맵 마커를 찍는다.
-         * 1번째 파라미터 : 주소 등 여러가지. 
-         *      ㄴ 참고 : https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingRequests
-         * 
-         * 2번째 파라미터의 함수
-         *      ㄴ result : 결과값
-         *      ㄴ status : 상태. OK가 나오면 정상.
-         */
-        geocoder.geocode({'address': address}, function(result, status) {
-
-            if (status === 'OK') {
-                // 맵의 중심 좌표를 설정한다.
-                resultMap.setCenter(result[0].geometry.location);
-                // 맵의 확대 정도를 설정한다.
-                resultMap.setZoom(16);
-                // 맵 마커
-                var marker = new google.maps.Marker({
-                    map: resultMap,
-                    position: result[0].geometry.location
-                });
-                
-                var title = "<c:out value='${vo.address}'/>";
-                
-               var infowindow = new google.maps.InfoWindow({zIndex:1});
-                infowindow.setContent('<div style="font-size:12px;">' + title + '</div>');
-                infowindow.open(map, marker);
-                
-            } else {
-                alert('지오코드가 다음의 이유로 성공하지 못했습니다 : ' + status);
-            }
-        });
-    }
-
-   $('.slider').slick({
-       slidesToShow: 4, //한 화면에 보여줄 아이템수
-       slidesToScroll: 4 // 한번에 슬라이드 시킬 아이템 개수
-  });
-   
-   $('#datepicker').datepicker({
+	
+	/************************* 예약현황 ***************************/
+	$('#datepicker').datepicker({
       dateFormat: 'yy.mm.dd',
         prevText: ' ',
         nextText: ' ',
@@ -113,6 +48,179 @@ $(document).ready(function() {
 
    $("#datepicker").datepicker().datepicker("setDate", new Date());
    
+   
+   var timelist = new Array();
+   <c:forEach var="rsvo" items="${list}">
+      timelist.push("${rsvo.checkin_time}");
+      timelist.push("${rsvo.checkout_time}");
+  </c:forEach>
+   
+   var reslist = new Array();
+   <c:forEach var="rsvo" items="${list}">
+      reslist.push("${rsvo.reserve_date}");
+   </c:forEach>
+   
+   for(var i=0;i<reslist.length;i++){
+       if(reslist[i]==$("#datepicker").val()){
+          var j=i*2;
+            for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
+               $("td").each(function(){
+                if(($(this).attr('id') == k)){
+                   $(this).css("background-color","#97ccff");
+                }
+               });
+            }
+       }
+    }
+   $("#datepicker").change(function(){
+      $("td").each(function(){
+         $(this).css("background-color","white");
+      });
+      for(var i=0;i<rlist.length;i++){
+         if(reslist[i]==$("#datepicker").val()){
+            var j=i*2;
+              for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
+                 $("td").each(function(){
+                  if(($(this).attr('id') == k)){
+                     $(this).css("background-color","#97ccff");
+                  }
+                 });
+              }
+         }
+      }
+   });
+   
+   
+   /*************** 회의실 안내 *****************/
+   
+   $(".select_btn").click(function(){
+         $(this).css('background','#006be0').css('color','white');
+         $(".room_inform>div:last-child").css('border', '1px solid #006be0');
+         $(this).data('clicked', true);
+   });
+   
+    $(".large_img>img").click(function(){
+       $(".large_img>div").show();
+       $(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
+    });
+    
+    $(".large_img>div>img:first-child").click(function(){
+       $(".large_img>div").hide();
+    });
+    
+    
+    var service = new Array();
+   <c:if test="${ovo.lounge == 1}">
+         service.push("공용 라운지"); 
+   </c:if>
+   <c:if test="${ovo.smoking_room == 1}">
+      service.push("흡연실"); 
+   </c:if>
+   <c:if test="${ovo.parking_lot == 1}">
+      service.push("주차장");
+   </c:if>
+   <c:if test="${ovo.elevator == 1}">
+      service.push("승강기");
+   </c:if>
+   <c:if test="${ovo.freight_elevator == 1}">
+      service.push("화물승강기");
+   </c:if>
+   <c:if test="${ovo.vending_machine == 1}">
+      service.push("자판기");
+   </c:if>
+   <c:if test="${ovo.wifi == 1}">
+      service.push("WI-FI"); 
+   </c:if>
+   <c:if test="${ovo.accessible_toilet == 1}">
+      service.push("장애인 화장실");
+   </c:if>
+   <c:if test="${ovo.toilet == 1}">
+      service.push("화장실");
+   </c:if>
+   <c:if test="${ovo.water_dispenser == 1}">
+      service.push("정수기"); 
+   </c:if>
+   <c:if test="${ovo.ktx == 1}">
+      service.push("KTX/SRT 인근");
+   </c:if>
+   <c:if test="${ovo.beam == 1}">
+      service.push("빔프로젝터");
+   </c:if>
+   <c:if test="${ovo.video_device == 1}">
+      service.push("화상회의장비");
+   </c:if>
+   <c:if test="${ovo.mic == 1}">
+      service.push("마이크");
+   </c:if>
+   <c:if test="${ovo.lectern == 1}">
+      service.push("강연대");
+   </c:if>
+   <c:if test="${ovo.tv == 1}">
+      service.push("TV");
+   </c:if>
+   <c:if test="${ovo.speaker == 1}">
+      service.push("스피커"); 
+   </c:if>
+   <c:if test="${ovo.pc == 1}">
+      service.push("PC/노트북");
+   </c:if>
+   <c:if test="${ovo.pointer == 1}">
+      service.push("포인터");
+   </c:if>
+   <c:if test="${ovo.banner == 1}">
+      service.push("현수막");
+   </c:if>
+   <c:if test="${ovo.whiteboard == 1}">
+      service.push("화이트보드"); 
+   </c:if>
+   <c:if test="${ovo.dais == 1}">
+      service.push("단상"); 
+   </c:if>
+   <c:if test="${ovo.conference_call == 1}">
+      service.push("컨퍼런스콜"); 
+   </c:if>
+   <c:if test="${ovo.air_conditional == 1}">
+      service.push("에어컨"); 
+   </c:if>
+   <c:if test="${ovo.heater == 1}">
+      service.push("난방기"); 
+   </c:if>
+   <c:if test="${ovo.internet == 1}">
+      service.push("유선인터넷"); 
+   </c:if>
+   <c:if test="${ovo.studio == 1}">
+      service.push("영상스튜디오"); 
+   </c:if>            
+   
+   var output="";
+   for(var i=0;i<service.length;i++){
+      if(i != service.length-1){
+         output += (service[i]+", ");
+      }else {
+         output += service[i];
+      }
+   }
+   $("#service").append(output);
+    
+    /******************* 리뷰 ******************/
+    
+    /* var total=0, rlocation=0, facilities=0, price=0, service=0, count=0;
+    <c:forEach var="review" items="${reviewlist}">
+       total += ${review.totallv};
+       rlocation += ${review.locationlv};
+       facilities += ${review.facilitylv};
+       price += ${review.pricelv};
+       service += ${review.servicelv};
+       count++;
+   </c:forEach>
+   
+   $("#totallv>span>span").append(total/count);
+   $("#locationlv>span").append(rlocation/count);
+   $("#facilitieslv>span").append(facilities/count);
+   $("#pricelv>span").append(price/count);
+   $("#servicelv>span").append(service/count); */
+   
+
    	var total=0, rlocation=0, facilities=0, price=0, service=0, count=0;
    	<c:forEach var="lv" items="${reviewgradelist}">
 		total += ${lv.totallv};
@@ -285,23 +393,137 @@ $(document).ready(function() {
    }
    
 
-   
-   $(".select_btn").click(function(){
-         $(this).css('background','#006be0').css('color','white');
-         $(".room_inform>div:last-child").css('border', '1px solid #006be0');
-         $(this).data('clicked', true);
-   });
-   
-    $(".large_img>img").click(function(){
-       $(".large_img>div").show();
-       $(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
-    });
+    /* 오시는 길 */
+    var mapContainer = document.getElementById('g_map');
+    var mapOptions = {
+       center: new google.maps.LatLng(37.55539849783088, 126.98713113288264),
+       zoom: 10
+    };
+    var map = new google.maps.Map(mapContainer, mapOptions);
     
-    $(".large_img>div>img:first-child").click(function(){
-       $(".large_img>div").hide();
-    });
+    var geocoder = new google.maps.Geocoder();
+    
+    geocodeAddress(geocoder, map);
+
+    function geocodeAddress(geocoder, resultMap) {
+
+         // 주소 설정
+         var address = "<c:out value='${vo.address}'/>";
+
+         /**
+          * 입력받은 주소로 좌표에 맵 마커를 찍는다.
+          * 1번째 파라미터 : 주소 등 여러가지. 
+          *      ㄴ 참고 : https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingRequests
+          * 
+          * 2번째 파라미터의 함수
+          *      ㄴ result : 결과값
+          *      ㄴ status : 상태. OK가 나오면 정상.
+          */
+         geocoder.geocode({'address': address}, function(result, status) {
+
+             if (status === 'OK') {
+                 // 맵의 중심 좌표를 설정한다.
+                 resultMap.setCenter(result[0].geometry.location);
+                 // 맵의 확대 정도를 설정한다.
+                 resultMap.setZoom(16);
+                 // 맵 마커
+                 var marker = new google.maps.Marker({
+                     map: resultMap,
+                     position: result[0].geometry.location
+                 });
+                 
+                 var title = "<c:out value='${vo.address}'/>";
+                 
+                var infowindow = new google.maps.InfoWindow({zIndex:1});
+                 infowindow.setContent('<div style="font-size:12px;">' + title + '</div>');
+                 infowindow.open(map, marker);
+                 
+             } else {
+                 alert('지오코드가 다음의 이유로 성공하지 못했습니다 : ' + status);
+             }
+         });
+     }
+    
+
+    /**************** 비슷한 회의실 ********************/
+    
+   $('.slider').slick({
+       slidesToShow: 4, //한 화면에 보여줄 아이템수
+       slidesToScroll: 4 // 한번에 슬라이드 시킬 아이템 개수
+  });
+    
+    var rolist = new Array();
+     <c:forEach var="room" items="${roomlist}">
+        rolist.push("${room.address}".split(' ')[1]);
+        rolist.push("${room.rid}");
+        rolist.push("${room.capacity}");
+        rolist.push("${room.charge}");
+        rolist.push("${room.rsfile1}");
+        rolist.push("${room.intro}");
+        rolist.push("${room.branch_name}");
+        rolist.push("${room.capacity}");
+        rolist.push("${room.charge}");
+        rolist.push("${room.grade}");
+    </c:forEach>
+    console.log(rolist);
     
     
+    var similar ="";
+    var num=0;
+    var k=0;
+    for(var i=0;i<rolist.length;i++){
+       if(rolist[i] == ("${vo.address}".split(' ')[1])){
+          k=i;
+          if(rolist[++i] != "${vo.rid}" && rolist[++i] >= Number("${vo.capacity}") && rolist[++i] <= Number("${vo.charge}")+50000){
+             num++;
+             similar += "<div class='s_room slick-slide slick-active' data-slick-index='1' aria-hidden='false' tabindex='0' style='width: 180px;'>"
+             similar += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[++k] + "'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px' height='91px'>";
+             similar += "<div><span>" + rolist[++i] + "</span>";
+             similar += "<span>" + rolist[++i] + "</span>";
+             similar += "<div><img src='http://localhost:9000/space/images/cont_list_detail_info01.png'><span>" + rolist[--k] + "</span>";
+             similar += "<img src='http://localhost:9000/space/images/cont_list_detail_info03.png'><span>" + rolist[++i] + "인실</span>";
+             similar += "</div><div><span class='item_price'>" + rolist[++i] + "</span><span>부터</span>";
+             k=++i;
+             console.log('ro',rolist[k]);
+             var roomsgrade = Number(rolist[k]).toFixed(1);
+             if(rolist[k] == 0){
+ 	            similar += "<img src='http://localhost:9000/space/images/star00.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+             }else if(rolist[k] < 1.5){
+             	similar += "<img src='http://localhost:9000/space/images/star10.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+             }else if(rolist[k] < 2.5){
+             	similar += "<img src='http://localhost:9000/space/images/star20.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+             }else if(rolist[k] < 3.5){                                                
+             	similar += "<img src='http://localhost:9000/space/images/star30.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+             }else if(rolist[k] < 4.5){                                                     
+             	similar += "<img src='http://localhost:9000/space/images/star40.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+             }else if(rolist[k] >= 4.5){                                                     
+             	similar += "<img src='http://localhost:9000/space/images/star50.png'><span>"+roomsgrade+"</span></div></div></a></div>";
+             }
+          }
+       }
+    }
+    $(".slick-track").append(similar);
+    
+    if(similar == "") {
+ 	   $(".oblique").hide();
+ 	   $(".similar").hide();
+    }
+    
+     if(num >= 4) {
+       $(".slick-slider").prepend("<button class='slick-prev slick-arrow' aria-label='Previous' type='button' style=''>Previous</button>");
+       $(".slick-slider").append("<button class='slick-next slick-arrow' aria-label='Next' type='button' style=''>Next</button>");
+     }
+     
+     $(".slick-prev").click(function(){
+        $(".s_room:last").prependTo(".slick-track");
+     });
+     
+     $(".slick-next").click(function(){
+        $(".s_room:first").appendTo(".slick-track");
+     });
+    
+     
+     /* 개인 - 예약하기 */
     $("#btn_reserve").click(function(){
        if($(".select_btn").data('clicked') == true){
           location.replace('http://localhost:9000/space/room_reserve.do?rid=<c:out value='${vo.rid}'/>');
@@ -311,217 +533,8 @@ $(document).ready(function() {
           return false;
        }
     });
-    var timelist = new Array();
-    <c:forEach var="rsvo" items="${list}">
-       timelist.push("${rsvo.checkin_time}");
-       timelist.push("${rsvo.checkout_time}");
-   </c:forEach>
-    
-    var reslist = new Array();
-    <c:forEach var="rsvo" items="${list}">
-       reslist.push("${rsvo.reserve_date}");
-    </c:forEach>
-    
-    for(var i=0;i<reslist.length;i++){
-        if(reslist[i]==$("#datepicker").val()){
-           var j=i*2;
-             for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
-                $("td").each(function(){
-                 if(($(this).attr('id') == k)){
-                    $(this).css("background-color","#97ccff");
-                 }
-                });
-             }
-        }
-     }
-    $("#datepicker").change(function(){
-       $("td").each(function(){
-          $(this).css("background-color","white");
-       });
-       for(var i=0;i<rlist.length;i++){
-          if(reslist[i]==$("#datepicker").val()){
-             var j=i*2;
-               for(var k=Number(timelist[j++]);k<Number(timelist[j]);k=k+0.5){
-                  $("td").each(function(){
-                   if(($(this).attr('id') == k)){
-                      $(this).css("background-color","#97ccff");
-                   }
-                  });
-               }
-          }
-       }
-    });
-    
 
-   var rolist = new Array();
-    <c:forEach var="room" items="${roomlist}">
-       rolist.push("${room.address}".split(' ')[1]);
-       rolist.push("${room.rid}");
-       rolist.push("${room.capacity}");
-       rolist.push("${room.charge}");
-       rolist.push("${room.rsfile1}");
-       rolist.push("${room.intro}");
-       rolist.push("${room.branch_name}");
-       rolist.push("${room.capacity}");
-       rolist.push("${room.charge}");
-       rolist.push("${room.grade}");
-   </c:forEach>
-   console.log(rolist);
-   
-   
-   var similar ="";
-   var num=0;
-   var k=0;
-   for(var i=0;i<rolist.length;i++){
-      if(rolist[i] == ("${vo.address}".split(' ')[1])){
-         k=i;
-         if(rolist[++i] != "${vo.rid}" && rolist[++i] >= Number("${vo.capacity}") && rolist[++i] <= Number("${vo.charge}")+50000){
-            num++;
-            similar += "<div class='s_room slick-slide slick-active' data-slick-index='1' aria-hidden='false' tabindex='0' style='width: 180px;'>"
-            similar += "<a href='http://localhost:9000/space/room_content.do?rid=" + rolist[++k] + "'><img src='http://localhost:9000/space/upload/" + rolist[++i] + "' width='178px' height='91px'>";
-            similar += "<div><span>" + rolist[++i] + "</span>";
-            similar += "<span>" + rolist[++i] + "</span>";
-            similar += "<div><img src='http://localhost:9000/space/images/cont_list_detail_info01.png'><span>" + rolist[--k] + "</span>";
-            similar += "<img src='http://localhost:9000/space/images/cont_list_detail_info03.png'><span>" + rolist[++i] + "인실</span>";
-            similar += "</div><div><span class='item_price'>" + rolist[++i] + "</span><span>부터</span>";
-            k=++i;
-            console.log('ro',rolist[k]);
-            var roomsgrade = Number(rolist[k]).toFixed(1);
-            if(rolist[k] == 0){
-	            similar += "<img src='http://localhost:9000/space/images/star00.png'><span>"+roomsgrade+"</span></div></div></a></div>";
-            }else if(rolist[k] < 1.5){
-            	similar += "<img src='http://localhost:9000/space/images/star10.png'><span>"+roomsgrade+"</span></div></div></a></div>";
-            }else if(rolist[k] < 2.5){
-            	similar += "<img src='http://localhost:9000/space/images/star20.png'><span>"+roomsgrade+"</span></div></div></a></div>";
-            }else if(rolist[k] < 3.5){                                                
-            	similar += "<img src='http://localhost:9000/space/images/star30.png'><span>"+roomsgrade+"</span></div></div></a></div>";
-            }else if(rolist[k] < 4.5){                                                     
-            	similar += "<img src='http://localhost:9000/space/images/star40.png'><span>"+roomsgrade+"</span></div></div></a></div>";
-            }else if(rolist[k] >= 4.5){                                                     
-            	similar += "<img src='http://localhost:9000/space/images/star50.png'><span>"+roomsgrade+"</span></div></div></a></div>";
-            }
-         }
-      }
-   }
-   $(".slick-track").append(similar);
-   
-   if(similar == "") {
-	   $(".oblique").hide();
-	   $(".similar").hide();
-   }
-   
-    if(num >= 4) {
-      $(".slick-slider").prepend("<button class='slick-prev slick-arrow' aria-label='Previous' type='button' style=''>Previous</button>");
-      $(".slick-slider").append("<button class='slick-next slick-arrow' aria-label='Next' type='button' style=''>Next</button>");
-    }
-    
-    $(".slick-prev").click(function(){
-       $(".s_room:last").prependTo(".slick-track");
-    });
-    
-    $(".slick-next").click(function(){
-       $(".s_room:first").appendTo(".slick-track");
-    });
-   
-    $(".item_price").each(function(){
-       var price = number_format($(this).text());
-       $(this).text(number_format(price)+"원");
-    });
-    
-    var service = new Array();
-   <c:if test="${ovo.lounge == 1}">
-         service.push("공용 라운지"); 
-   </c:if>
-   <c:if test="${ovo.smoking_room == 1}">
-      service.push("흡연실"); 
-   </c:if>
-   <c:if test="${ovo.parking_lot == 1}">
-      service.push("주차장");
-   </c:if>
-   <c:if test="${ovo.elevator == 1}">
-      service.push("승강기");
-   </c:if>
-   <c:if test="${ovo.freight_elevator == 1}">
-      service.push("화물승강기");
-   </c:if>
-   <c:if test="${ovo.vending_machine == 1}">
-      service.push("자판기");
-   </c:if>
-   <c:if test="${ovo.wifi == 1}">
-      service.push("WI-FI"); 
-   </c:if>
-   <c:if test="${ovo.accessible_toilet == 1}">
-      service.push("장애인 화장실");
-   </c:if>
-   <c:if test="${ovo.toilet == 1}">
-      service.push("화장실");
-   </c:if>
-   <c:if test="${ovo.water_dispenser == 1}">
-      service.push("정수기"); 
-   </c:if>
-   <c:if test="${ovo.ktx == 1}">
-      service.push("KTX/SRT 인근");
-   </c:if>
-   <c:if test="${ovo.beam == 1}">
-      service.push("빔프로젝터");
-   </c:if>
-   <c:if test="${ovo.video_device == 1}">
-      service.push("화상회의장비");
-   </c:if>
-   <c:if test="${ovo.mic == 1}">
-      service.push("마이크");
-   </c:if>
-   <c:if test="${ovo.lectern == 1}">
-      service.push("강연대");
-   </c:if>
-   <c:if test="${ovo.tv == 1}">
-      service.push("TV");
-   </c:if>
-   <c:if test="${ovo.speaker == 1}">
-      service.push("스피커"); 
-   </c:if>
-   <c:if test="${ovo.pc == 1}">
-      service.push("PC/노트북");
-   </c:if>
-   <c:if test="${ovo.pointer == 1}">
-      service.push("포인터");
-   </c:if>
-   <c:if test="${ovo.banner == 1}">
-      service.push("현수막");
-   </c:if>
-   <c:if test="${ovo.whiteboard == 1}">
-      service.push("화이트보드"); 
-   </c:if>
-   <c:if test="${ovo.dais == 1}">
-      service.push("단상"); 
-   </c:if>
-   <c:if test="${ovo.conference_call == 1}">
-      service.push("컨퍼런스콜"); 
-   </c:if>
-   <c:if test="${ovo.air_conditional == 1}">
-      service.push("에어컨"); 
-   </c:if>
-   <c:if test="${ovo.heater == 1}">
-      service.push("난방기"); 
-   </c:if>
-   <c:if test="${ovo.internet == 1}">
-      service.push("유선인터넷"); 
-   </c:if>
-   <c:if test="${ovo.studio == 1}">
-      service.push("영상스튜디오"); 
-   </c:if>            
-   
-   var output="";
-   for(var i=0;i<service.length;i++){
-      if(i != service.length-1){
-         output += (service[i]+", ");
-      }else {
-         output += service[i];
-      }
-   }
-   $("#service").append(output);
-   
-    
+    /* 기업 - 회의실 삭제 */
     $("#btn_delete").click(function() {
         var con = confirm("회의실을 삭제하시겠습니까?");
         if(con) {
@@ -529,22 +542,23 @@ $(document).ready(function() {
         }
    });
     
-    var total=0, rlocation=0, facilities=0, price=0, service=0, count=0;
-    <c:forEach var="review" items="${reviewlist}">
-       total += ${review.totallv};
-       rlocation += ${review.locationlv};
-       facilities += ${review.facilitylv};
-       price += ${review.pricelv};
-       service += ${review.servicelv};
-       count++;
-   </c:forEach>
-   
-   $("#totallv>span>span").append(total/count);
-   $("#locationlv>span").append(rlocation/count);
-   $("#facilitieslv>span").append(facilities/count);
-   $("#pricelv>span").append(price/count);
-   $("#servicelv>span").append(service/count);
-   
+    
+    /* 금액 콤마 표시하기 */
+    function number_format(numstr) {
+       var numstr = String(numstr);
+       var re0 = /(\d+)(\d{3})($|\..*)/;
+       if (re0.test(numstr)) {
+          return numstr.replace(re0, function(str,p1,p2,p3) { return number_format(p1) + "," + p2 + p3; });
+       } else {
+          return numstr;
+       }
+    }
+
+    $(".item_price").each(function(){
+       var price = number_format($(this).text());
+       $(this).text(number_format(price)+"원");
+    });
+    
 });
 </script>
 </head>
@@ -755,22 +769,22 @@ $(document).ready(function() {
                   <label>평점</label>
 					<c:choose>
 						<c:when test="${vo.grade == 0 }">
-							<img src="http://localhost:9000/space/images/list_star00.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+							<img src="http://localhost:9000/space/images/list_star00.png" id="rate"><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/>
 						</c:when>
 						<c:when test="${vo.grade < 1.5 }">
-							<img src="http://localhost:9000/space/images/list_star10.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+							<img src="http://localhost:9000/space/images/list_star10.png" id="rate"><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/>
 						</c:when>
 						<c:when test="${vo.grade < 2.5 }">
-							<img src="http://localhost:9000/space/images/list_star20.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+							<img src="http://localhost:9000/space/images/list_star20.png" id="rate"><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/>
 						</c:when>
 						<c:when test="${vo.grade < 3.5 }">
-							<img src="http://localhost:9000/space/images/list_star30.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+							<img src="http://localhost:9000/space/images/list_star30.png" id="rate"><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/>
 						</c:when>
 						<c:when test="${vo.grade < 4.5 }">
-							<img src="http://localhost:9000/space/images/list_star40.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+							<img src="http://localhost:9000/space/images/list_star40.png" id="rate"><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/>
 						</c:when>
 						<c:when test="${vo.grade >= 4.5 }">
-							<img src="http://localhost:9000/space/images/list_star50.png" id="rate"><fmt:formatNumber value="${vo.grade }" pattern=".0"/>
+							<img src="http://localhost:9000/space/images/list_star50.png" id="rate"><fmt:formatNumber value="${vo.grade }" maxFractionDigits="1" minFractionDigits="0"/>
 						</c:when>
 					</c:choose>
                </li>

@@ -25,119 +25,16 @@
 </style>
 <script>
 $(document).ready(function() {
-   $("#btn_reserve").click(function(){
-      /* 영업시간 숫자로 변환 */
-       $("input[id^=time]").each(function() { 
-          var tlist = $(this).val().split(":");
-          var time = 0;
-
-          if (tlist[0] < 10) { //시간
-             time += Number(tlist[0].substr(1, 1))
-          } else {
-             time += Number(tlist[0]);
-          }
-
-          if (tlist[1] == 30) { //분
-             time += 0.5;
-          }
-
-          $(this).val(time);
-       });
-      var used_hours = Number($("#time2").val()) - Number($("#time1").val());
-      $("#amount").append('<input type="text" name="used_hours" id="uhours" style="display:none">')
-      $("#uhours").val(used_hours);
-
-      if("<c:out value='${svo.convenience1}'/>" == ""){
-         $("#slist").append('<li style="display:none"><input type="text" value="0" id="conv1" name="convenience1_num"></li>');
-      }
-      if("<c:out value='${svo.convenience2}'/>" == ""){
-         $("#slist").append('<li style="display:none"><input type="text" value="0" id="conv2" name="convenience2_num"></li>');
-      }
-      if("<c:out value='${svo.convenience3}'/>" == ""){
-         $("#slist").append('<li style="display:none"><input type="text" value="0" id="conv3" name="convenience3_num"></li>');
-      }
-      if("<c:out value='${svo.beverage1}'/>" == ""){
-         $("#slist").append('<li style="display:none"><input type="text" value="0" id="bev1" name="beverage1_num"></li>');
-      }
-      if("<c:out value='${svo.beverage2}'/>" == ""){
-         $("#slist").append('<li style="display:none"><input type="text" value="0" id="bev2" name="beverage2_num"></li>');
-      }
-      if("<c:out value='${svo.beverage3}'/>" == ""){
-         $("#slist").append('<li style="display:none"><input type="text" value="0" id="bev3" name="beverage3_num"></li>');
-      }
-
-      var amount = (Number('${vo.charge}')*Number($("#uhours").val()));
-      if('${svo.convenience1}' != 'null'){
-         amount = amount + (Number('${svo.convenience1_price}') * Number($("#conv1").val()));
-      }
-      if('${svo.convenience2}' != 'null'){
-         amount = amount + (Number('${svo.convenience2_price}') * Number($("#conv2").val()));
-      }
-      if('${svo.convenience3}' != 'null'){
-         amount = amount + (Number('${svo.convenience3_price}') * Number($("#conv3").val()));
-      }
-      if('${svo.beverage1}' != 'null'){
-         amount = amount + (Number('${svo.beverage1_price}') * Number($("#bev1").val()));
-      }
-      if('${svo.beverage2}' != 'null'){
-         amount = amount + (Number('${svo.beverage2_price}') * Number($("#bev2").val()));
-      }
-      if('${svo.beverage3}' != 'null'){
-         amount = amount + (Number('${svo.beverage3_price}') * Number($("#bev3").val()));
-      }
-      console.log('amount',amount);
-      
-         var mname = $("#r_name").val();
-
-      $("#amount").append('<input type="text" name="amount" id="r_amount" style="display:none">')
-      $("#r_amount").val(amount);
-
-      if($("#datepicker").val() == ""){
-         alert("이용일자를 선택해주세요");
-         $("#datepicker").focus();
-      }else if($("#time1").val()==0){
-         alert("입실시간을 선택해주세요");
-         $("#time1").focus();
-      }else if($("#time2").val()==0){
-         alert("퇴실시간을 선택해주세요");
-         $("#time2").focus();
-      }else if($("#headcount").val() == 0){
-         alert("이용인원을 입력해주세요");
-         $("#headcount").focus();
-      }else if($("#r_name").val() == ""){
-         alert("예약자를 입력해주세요");
-         $("#r_name").focus();
-      }else if($("#phone1").val() == ""){
-         alert("연락처를 입력해주세요");
-         $("#phone1").focus();
-      }else if($("#phone2").val() == ""){
-         alert("연락처를 입력해주세요");
-         $("#phone2").focus();
-      }else if($("#phone3").val() == ""){
-         alert("연락처를 입력해주세요");
-         $("#phone3").focus();
-      }else if($("#email").val() == ""){
-         alert("로그인을 해주세요");
-         $("#email").focus();
-      }else if($("#c_name").val() == ""){
-         alert("회사명을 입력해주세요");
-         $("#c_name").focus();
-      }else if($("#event_name").val() == ""){
-         alert("행사명을 입력해주세요");
-         $("#event_name").focus();
-      }else if($("#online").is(":checked")==false && $("#onsite").is(":checked")==false){
-         alert("결제방식을 선택해주세요");
-         $("#online").focus();
-      }else {
-         var phone = $("#phone1").val() + "-" + $("#phone2").val() + "-" + $("#phone3").val();
-         $("#phone").append('<input type="text" name="hp" id="hp" style="display:none">');
-         $("#hp").val(phone);
-         
-         $("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }&name="+mname);
-         room_reserve.submit();
-      }
-      
-   });
+	/* 이미지 크게 보기 */
+   $(".large_img>img").click(function(){
+       $(".large_img>div").show();
+       $(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
+    });
+    
+    $(".large_img>div>img:first-child").click(function(){
+       $(".large_img>div").hide();
+    });
+    
    
    $('#datepicker').datepicker({
       dateFormat: 'yy.mm.dd',
@@ -188,29 +85,17 @@ $(document).ready(function() {
       }
       btn.closest('.number-spinner').find('input[type="text"]').val(newVal);
    });
-   
-   $(".large_img>img").click(function(){
-       $(".large_img>div").show();
-       $(".large_img>div").css('box-shadow','rgba(0,0,0,0.5) 0 0 0 9999px');
-    });
-    
-    $(".large_img>div>img:first-child").click(function(){
-       $(".large_img>div").hide();
-    });
-    
-
-    
-    var timelist = new Array();
-    <c:forEach var="rsvo" items="${list}">
-       timelist.push("${rsvo.checkin_time}");
-       timelist.push("${rsvo.checkout_time}");
-   </c:forEach>
     
     var rlist = new Array();
     <c:forEach var="rsvo" items="${list}">
        rlist.push("${rsvo.reserve_date}");
     </c:forEach>
     
+    var timelist = new Array();
+    <c:forEach var="rsvo" items="${list}">
+       timelist.push("${rsvo.checkin_time}");
+       timelist.push("${rsvo.checkout_time}");
+   </c:forEach>
     
     var tlist = new Array();
     for(var i=0;i<timelist.length;i++){
@@ -232,13 +117,7 @@ $(document).ready(function() {
        }
     }
     
-    for(var i=0;i<checkinlist.length;i++){
-       console.log('chk',checkinlist[i]);
-    }
-
     var now_time = new Date();
-    console.log('ddd',now_time);
-    console.log('date',now_time.getMonth());
     var now_month = now_time.getMonth()+1;
     if(String(now_month).length == 1){
        today = now_time.getFullYear()+".0"+now_month+"."+now_time.getDate();
@@ -335,6 +214,119 @@ $(document).ready(function() {
        return hours;
     }
     
+
+    $("#btn_reserve").click(function(){
+       /* 영업시간 숫자로 변환 */
+        $("input[id^=time]").each(function() { 
+           var tlist = $(this).val().split(":");
+           var time = 0;
+
+           if (tlist[0] < 10) { //시간
+              time += Number(tlist[0].substr(1, 1))
+           } else {
+              time += Number(tlist[0]);
+           }
+
+           if (tlist[1] == 30) { //분
+              time += 0.5;
+           }
+
+           $(this).val(time);
+        });
+       var used_hours = Number($("#time2").val()) - Number($("#time1").val());
+       $("#amount").append('<input type="text" name="used_hours" id="uhours" style="display:none">')
+       $("#uhours").val(used_hours);
+
+       if("<c:out value='${svo.convenience1}'/>" == ""){
+          $("#slist").append('<li style="display:none"><input type="text" value="0" id="conv1" name="convenience1_num"></li>');
+       }
+       if("<c:out value='${svo.convenience2}'/>" == ""){
+          $("#slist").append('<li style="display:none"><input type="text" value="0" id="conv2" name="convenience2_num"></li>');
+       }
+       if("<c:out value='${svo.convenience3}'/>" == ""){
+          $("#slist").append('<li style="display:none"><input type="text" value="0" id="conv3" name="convenience3_num"></li>');
+       }
+       if("<c:out value='${svo.beverage1}'/>" == ""){
+          $("#slist").append('<li style="display:none"><input type="text" value="0" id="bev1" name="beverage1_num"></li>');
+       }
+       if("<c:out value='${svo.beverage2}'/>" == ""){
+          $("#slist").append('<li style="display:none"><input type="text" value="0" id="bev2" name="beverage2_num"></li>');
+       }
+       if("<c:out value='${svo.beverage3}'/>" == ""){
+          $("#slist").append('<li style="display:none"><input type="text" value="0" id="bev3" name="beverage3_num"></li>');
+       }
+
+       var amount = (Number('${vo.charge}')*Number($("#uhours").val()));
+       if('${svo.convenience1}' != 'null'){
+          amount = amount + (Number('${svo.convenience1_price}') * Number($("#conv1").val()));
+       }
+       if('${svo.convenience2}' != 'null'){
+          amount = amount + (Number('${svo.convenience2_price}') * Number($("#conv2").val()));
+       }
+       if('${svo.convenience3}' != 'null'){
+          amount = amount + (Number('${svo.convenience3_price}') * Number($("#conv3").val()));
+       }
+       if('${svo.beverage1}' != 'null'){
+          amount = amount + (Number('${svo.beverage1_price}') * Number($("#bev1").val()));
+       }
+       if('${svo.beverage2}' != 'null'){
+          amount = amount + (Number('${svo.beverage2_price}') * Number($("#bev2").val()));
+       }
+       if('${svo.beverage3}' != 'null'){
+          amount = amount + (Number('${svo.beverage3_price}') * Number($("#bev3").val()));
+       }
+       var mname = $("#r_name").val();
+
+       $("#amount").append('<input type="text" name="amount" id="r_amount" style="display:none">')
+       $("#r_amount").val(amount);
+
+       if($("#datepicker").val() == ""){
+          alert("이용일자를 선택해주세요");
+          $("#datepicker").focus();
+       }else if($("#time1").val()==0){
+          alert("입실시간을 선택해주세요");
+          $("#time1").focus();
+       }else if($("#time2").val()==0){
+          alert("퇴실시간을 선택해주세요");
+          $("#time2").focus();
+       }else if($("#headcount").val() == 0){
+          alert("이용인원을 입력해주세요");
+          $("#headcount").focus();
+       }else if($("#r_name").val() == ""){
+          alert("예약자를 입력해주세요");
+          $("#r_name").focus();
+       }else if($("#phone1").val() == ""){
+          alert("연락처를 입력해주세요");
+          $("#phone1").focus();
+       }else if($("#phone2").val() == ""){
+          alert("연락처를 입력해주세요");
+          $("#phone2").focus();
+       }else if($("#phone3").val() == ""){
+          alert("연락처를 입력해주세요");
+          $("#phone3").focus();
+       }else if($("#email").val() == ""){
+          alert("로그인을 해주세요");
+          $("#email").focus();
+       }else if($("#c_name").val() == ""){
+          alert("회사명을 입력해주세요");
+          $("#c_name").focus();
+       }else if($("#event_name").val() == ""){
+          alert("행사명을 입력해주세요");
+          $("#event_name").focus();
+       }else if($("#online").is(":checked")==false && $("#onsite").is(":checked")==false){
+          alert("결제방식을 선택해주세요");
+          $("#online").focus();
+       }else {
+          var phone = $("#phone1").val() + "-" + $("#phone2").val() + "-" + $("#phone3").val();
+          $("#phone").append('<input type="text" name="hp" id="hp" style="display:none">');
+          $("#hp").val(phone);
+          
+          $("form").attr("action", "room_reserve_proc.do?rid=${vo.rid}&branch_name=${vo.branch_name}&room_name=${vo.room_name}&type=${vo.type}&email=${sessionScope.svo.id }&name="+mname);
+          room_reserve.submit();
+       }
+       
+    });
+    
     /* 금액 콤마 표시하기 */
    function number_format(numstr) {
       var numstr = String(numstr);
@@ -350,7 +342,6 @@ $(document).ready(function() {
        var price = number_format($(this).text());
        $(this).text(number_format(price)+"원");
     });
-      console.log('999',$(".item_price").text());
       
 });
 </script>
